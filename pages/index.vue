@@ -1,6 +1,6 @@
 <template>
 
-    <div class="h-screen lg:overflow-y-scroll lg:snap-y lg:snap-proximity">
+    <div class="h-screen overflow-y-scroll lg:snap-y lg:snap-proximity">
          <HomeWelcome class="lg:snap-start"/>
         <HomeFavouritePackages class="lg:snap-start"/> 
         <HomeDestinations class="lg:snap-start"/> 

@@ -8,8 +8,8 @@
       :style="props.imageStyle"
     ></div>
     <!-- content pane: -->
-    <div class="h-[400px] sm:h-[300px] md:h-[400px] lg:h-none relative flex items-center  rounded-xl">
-      <div class="absolute h-full ">
+    <div class="h-[400px] sm:h-[300px] md:h-[400px] lg:h-none relative flex items-none md:items-center  rounded-xl">
+      <div class="hidde md:block absolute h-full ">
         <div class="relative w-full h-full flex items-start md:items-center lg:items-start xl:items-center ">
           <div
             class="
@@ -27,11 +27,11 @@
       </div>
       <div class="relative w-full">
         <div
-          class=" grid grid-cols-[1fr,5fr] grid-rows-[min-content,auto]"
+          class="pt-4 md:pt-4 grid grid-cols-[1fr,5fr] grid-rows-[min-content,auto] "
         >
           <div
             class="
-              text-3xl
+              text-2xl
               md:text-5xl
               font-titillium font-semibold
               text-center
