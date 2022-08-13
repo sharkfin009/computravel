@@ -83,3 +83,7 @@ em {
 transform: translate2d(0, 0);
 }
 
+.scroll{
+  -webkit-overflow-scrolling: touch; /* adds momentum scrolling for iOS*/ 
+
+}

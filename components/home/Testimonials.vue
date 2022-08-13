@@ -32,7 +32,7 @@
 
             bg-lime-300
             opacity-50
-            rounded-lg
+            rounded-3xl
           "
         ></div>
       </div>

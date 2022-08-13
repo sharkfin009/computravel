@@ -1,7 +1,7 @@
 <template>
-  <div class="overflow-hidden inset-0 bg-light-200 font-open-sans">
+  <div class="overflow-y-scroll lg:snap-y lg:snap-proximity bg-light-200 font-open-sans ring">
     
-    <Header />
+    <!-- <Header /> -->
 
     <slot />
   </div>
