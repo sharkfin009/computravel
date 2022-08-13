@@ -2,10 +2,8 @@
   <div
     class="
       bg-green-avo
-      md:h-screen
       grid 
       grid-rows-[min-content,auto,min-content]
-     
       md:p-20
       p-10
     "

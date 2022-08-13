@@ -5,7 +5,6 @@
       text-black
       flex flex-col
       justify-between
-      xl:h-screen
       w-screen
     "
     v-if="favourites"

@@ -7,7 +7,6 @@
       p-10
       lg:p-20
       lg:pb-40
-      lg:h-screen
       justify-evenly
     "
     v-if="reasons.length > 0"

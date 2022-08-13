@@ -8,7 +8,6 @@
       px-10
       sm:px-10
       md:px-20
-      lg:h-screen
     "
     v-if="data"
   >
@@ -36,7 +35,7 @@
       ></TabMenu>
     </div>
 
-    <div class="relative h-[900px] w-full">
+    <div class="relative h-[700px] w-full">
       <HomeDestination
         v-for="(destination, index) in packages"
         :key="index"
