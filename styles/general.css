@@ -1,0 +1,85 @@
+.fade-in {
+  animation: 1s fade-in ease-out
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
+
+}
+  .unroll {
+    animation: 0.2s unroll ease-out
+  }
+  
+  @keyframes unroll {
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+  
+ html{
+    font-size:14px;
+  }
+
+ .font-titillium { 
+ font-family: 'Titillium Web', sans-serif;
+ }
+
+
+ .font-open-sans{ 
+  font-family: 'Open Sans', sans-serif;
+ }
+
+
+
+  .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.svg-shadow {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, 0.537));
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, 0.505));
+  /* Similar syntax to box-shadow */
+}
+
+.input-outline {
+  outline: 2px #96969c4d solid;
+}
+
+em {
+  font-weight: 600;
+  font-style: normal;
+  color: rgb(121, 121, 121) !important;
+}
+
+.hide-scroll {
+  padding-right: 50px;
+  box-sizing: content-box;
+  /* So the width will be 100% + 25px */
+}
+
+*{
+  -webkit-transform: translate2d(0, 0);
+-moz-transform: translate2d(0, 0);
+-ms-transform: translate2d(0, 0);
+-o-transform: translate2d(0, 0);
+transform: translate2d(0, 0);
+}
+

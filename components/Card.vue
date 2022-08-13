@@ -1,0 +1,174 @@
+<template>
+  <NuxtLink
+    :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
+    class=" "
+  >
+    <div
+      class="
+        md:w-[335px]
+       
+        grid grid-rows-[300px,auto]
+        rounded-xl
+        overflow-hidden
+        h-full
+      "
+    >
+      <div>
+        <div
+          class=" h-full bg-white flex items-end"
+          :style="{
+            backgroundImage: `url(https://${props.package.image_url_md})`,
+            backgroundSize: 'cover',
+          }"
+        >
+          <div
+          v-if="props.package.category"
+            class="
+              bg-black
+              text-white
+              rounded-tr-full rounded-br-full
+              w-[50%]
+              text-center
+              mb-10
+              py-3
+              font-titillium
+              shadow-light-300
+              shadow-xl
+            "
+          >
+            {{ props.package.category }}
+          </div>
+        </div>
+      </div>
+      <div class="p-5 bg-white flex flex-col justify-between">
+        <div class="w-full font-titillium font-semibold text-2xl">
+          <h3 class="text-center mb-3">{{ props.package.title }}</h3>
+          <div class="flex items-center justify-center mb-3">
+            <div
+              v-for="(star, index) in parseInt(props.package.star_rating)"
+              :key="index"
+              class="px-2"
+            >
+              <IconStar />
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div
+            v-if="props.package.destination"
+            class="text-center text-sm font-extralight mr-1"
+            :class="{ loadingStateClass: searchStore.loadingState }"
+          >
+            {{ props.package.destination.toUpperCase() }},
+          </div>
+          <!-- <div v-if="JSON.parse(props.package.countries)!==null" class="text-center text-sm font-extralight pb-5">{{JSON.parse(props.package.countries)[0].name.toUpperCase()}}</div> -->
+          <div
+            v-if="props.package.subdestination"
+            class="text-center text-sm font-extralight pb-1"
+            :class="{ loadingStateClass: searchStore.loadingState }"
+          >
+            {{ props.package.subdestination.toUpperCase() }}
+          </div>
+        </div>
+        <div
+          class="hidden  text-sm pb-1"
+          :class="{ loadingStateClass: searchStore.loadingState }"
+
+        >
+          {{ cutText }} ...
+        </div>
+        <div class="flex justify-between items-center pb-5">
+          <div
+            class="font-titillium text-center text-3xl"
+            :class="{ loadingStateClass: searchStore.loadingState }"
+          >
+            R{{ props.package.price }}
+          </div>
+          <div class="">
+            <div
+              class="font-open-sans text-sm flex justify-start"
+              :class="{ loadingStateClass: searchStore.loadingState }"
+            >
+              <div class="w-[100px] font-bold text-right pr-2">departs</div>
+              <div>{{ props.package.from }}</div>
+            </div>
+            <div
+              class="font-open-sans text-sm flex justify-start"
+              :class="{ loadingStateClass: searchStore.loadingState }"
+            >
+              <div class="w-[100px] font-bold text-right pr-2">book before</div>
+              <div>{{ props.package.valid_to }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+        <BookButton
+          class=""
+          :class="{ loadingStateClass: searchStore.loadingState }"
+          >read more</BookButton
+        >
+        </div>
+      </div>
+    </div>
+  </NuxtLink>
+</template>
+
+<script setup>
+const props = defineProps({
+  package: Object,
+});
+
+import { useStore } from "@/stores/search";
+
+const slugify = (str) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const searchStore = useStore();
+const route = useRoute();
+
+let text = props.package.description;
+
+let cutTextChars = text.substring(0, 70);
+let lastWord = cutTextChars.split(" ").pop(-1);
+let cutText = cutTextChars.slice(0, cutTextChars.length - lastWord.length);
+
+let stars = [];
+for (let i = 0; i < props.package.star_rating; i++) {
+  stars.push(1);
+}
+
+onMounted(() => {
+  console.log(props.package);
+});
+</script>
+
+<style scoped>
+.loadingStateClass {
+  transition: color;
+  background: linear-gradient(-45deg, #ffffff, #808080, #aaaaaa, #ffffff);
+  background-size: 1000% 1000%;
+  animation: gradient 15s ease infinite;
+  border-radius: 8px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+    color: #b7b7b700;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+    color: black;
+  }
+}
+</style>

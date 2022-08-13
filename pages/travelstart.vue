@@ -1,0 +1,168 @@
+ <template>
+ <div>
+    
+    <div class="spin "></div>
+    <iframe  id='travelstartIframe-39daee2d-b6c4-4404-bbbc-efabeb5045db' frameBorder='0' scrolling='auto'
+        style='margin-top: 100px; padding: 0px; border: 0px; height: 0px; background-color: #fafafa;'>
+    </iframe>
+
+
+    <img height="0" width="0" src="https://travelstart.zwjlk6.net/i/1217489/1302577/5446"
+        style="position:absolute;visibility:hidden;" border="0" />
+        </div>
+</template>
+
+<script setup>
+definePageMeta({
+    layout:'home'
+})
+onMounted (()=>{
+ // these variables can be configured 
+    var trackingLink = 'https://travelstart.pxf.io/c/1217489/1302577/5446';
+    var travelstartIframeId = 'travelstartIframe-39daee2d-b6c4-4404-bbbc-efabeb5045db';
+    var iframeUrl = 'https://www.travelstart.co.za';
+    var logMessages = false;
+    var showBanners = false;
+    var affId = '1217489';
+    var affCampaign = '';
+    var affCurrency = 'Default'; // ZAR / USD / NAD / ... 
+    var height = '0px';
+    var width = '100%';
+    var language = ''; // ar / en / leave empty for user preference
+
+
+    // do not change these 
+    var iframe = jQuery('#' + travelstartIframeId);
+    var iframeVersion = '11';
+    var autoSearch = false;
+    var affiliateIdExist = false;
+    var urlParams = {};
+    var alreadyExist = [];
+    var iframeParams = [];
+    var cpySource = '';
+    var match,
+        pl = /\+/g,
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) {
+            return decodeURIComponent(s.replace(pl, " "));
+        },
+        query = window.location.search.substring(1);
+    while (match = search.exec(query)) {
+        urlParams[decode(match[1])] = decode(match[2]);
+    }
+    for (var key in urlParams) {
+        if (urlParams.hasOwnProperty(key)) {
+            if (key == 'search' && urlParams[key] == 'true') {
+                autoSearch = true;
+            }
+            if (key == 'affId' || key == 'affid' || key == 'aff_id') {
+                affiliateIdExist = true;
+            }
+            iframeParams.push(key + '=' + urlParams[key]);
+            alreadyExist.push(key);
+        }
+    }
+    if (!('show_banners' in alreadyExist)) {
+        iframeParams.push('show_banners=' + showBanners);
+    }
+    if (!('log' in alreadyExist)) {
+        iframeParams.push('log=' + logMessages);
+    }
+    if (!affiliateIdExist) {
+        iframeParams.push('affId=' + affId);
+    }
+    if (!affiliateIdExist) {
+        iframeParams.push('language=' + language);
+    }
+    if (!('affCampaign' in alreadyExist)) {
+        iframeParams.push('affCampaign=' + affCampaign);
+    }
+    if (cpySource !== '' && !('cpySource' in alreadyExist)) {
+        iframeParams.push('cpy_source=' + cpySource);
+    }
+    if (!('utm_source' in alreadyExist)) {
+        iframeParams.push('utm_source=affiliate');
+    }
+    if (!('utm_medium' in alreadyExist)) {
+        iframeParams.push('utm_medium=' + affId);
+    }
+    if (!('isiframe' in alreadyExist)) {
+        iframeParams.push('isiframe=true');
+    }
+    if (!('landing_page' in alreadyExist)) {
+        iframeParams.push('landing_page=false');
+    }
+    if (affCurrency.length == 3) {
+        iframeParams.push('currency=' + affCurrency);
+    }
+    if (!('iframeVersion' in alreadyExist)) {
+        iframeParams.push('iframeVersion=' + iframeVersion);
+    }
+    if (!('host' in alreadyExist)) {
+        iframeParams.push('host=https://computravel.co.za');
+    }
+    var newIframeUrl = iframeUrl + ('/?search=false') + '&' + iframeParams.join('&');
+    iframe.attr('src', newIframeUrl);
+
+    window.addEventListener('message', function (e) {
+        var $iframe = jQuery("#" + travelstartIframeId);
+        var eventName = e.data[0];
+        var data = e.data[1];
+        switch (eventName) {
+            case 'setHeight':
+                $iframe.height(data);
+                setIframeSize(width, $iframe.height(data));
+                break;
+        }
+    }, false);
+
+    function setIframeSize(newWidth, newHeight) {
+        iframe.css('width', newWidth);
+        iframe.width(newWidth);
+        iframe.css('height', newHeight);
+        iframe.height(newHeight);
+    }
+   jQuery("#" + travelstartIframeId).ready(function () {
+        $(".spin").css("display", "none");
+      });
+      jQuery("#" + travelstartIframeId).load(function () {
+        $(".spin").css("display", "none");
+      });    
+})
+   
+</script>
+
+
+
+<style>
+    /* @keyframes spinner {
+        0% {
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        }
+
+        100% {
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        }
+    } */
+
+    .spin::before {
+        animation: 1.5s linear infinite spinner;
+        animation-play-state: inherit;
+        border: solid 5px #cfd0d1;
+        border-bottom-color: #1c87c9;
+        border-radius: 50%;
+        content: "";
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* transform: translate3d(-50%, -50%, 0); */
+        will-change: transform;
+    }
+
+    iframe {
+        height: 100vh !important;
+        width: 100%;
+    }
+</style>
