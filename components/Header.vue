@@ -60,10 +60,8 @@
     <div   v-if="route.path == '/' && enquiry.showEnquireNow == false" class="lg:flex lg:w-full lg:justify-end">
       <BookButton
       
-        &&
-        !localStorage.getItem(enquirySent)
         @mousedown="enquiry.showEnquireNow = true"
-        class="z-30 lg:px-10 py-6 text-sm lg:text-2xl shadow-xl"
+        class="z-30 lg:px-10 py-3 lg:py-6  text-sm lg:text-2xl shadow-xl"
         >enquire now</BookButton
       >
       <div class="w-0 lg:w-8 h-full"></div>

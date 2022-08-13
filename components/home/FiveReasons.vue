@@ -15,7 +15,7 @@
     <h3 class="text-3xl font-medium mb-2">five reasons to</h3>
 
     <!-- XL header section -->
-    <div class="hidden xl:grid grid-cols-[1fr,5fr] grid-rows-[1fr,] mb-10">
+    <div class="hidden xl:grid grid-cols-[1fr,5fr]  mb-10">
       <div class="text-5xl font-titillium font-semibold leading-none">
         travel with us
       </div>
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <div class="relative h-[450px]">
+    <div class="relative h-[450px] overflow-hidden">
       <HomeReason
         v-for="(reason, index) in reasons"
         :key="index"

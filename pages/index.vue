@@ -1,11 +1,11 @@
 <template>
 
-    <div class="h-screen overflow-y-scroll snap-y snap-proximity">
-         <HomeWelcome class="snap-start"/>
-        <HomeFavouritePackages class="snap-start"/> 
-        <HomeDestinations class="snap-start"/> 
-         <HomeFlights class="snap-start" />
-        <HomeTestimonials class="snap-start"/>
+    <div class="h-screen lg:overflow-y-scroll lg:snap-y lg:snap-proximity">
+         <HomeWelcome class="lg:snap-start"/>
+        <HomeFavouritePackages class="lg:snap-start"/> 
+        <HomeDestinations class="lg:snap-start"/> 
+         <HomeFlights class="lg:snap-start" />
+        <HomeTestimonials class="lg:snap-start"/>
         <HomeFiveReasons class=""/> 
     </div>
 </template>

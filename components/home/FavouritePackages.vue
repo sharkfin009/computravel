@@ -37,7 +37,7 @@
       </div>
 
 
-        <div class="grid md:block overflow-x-auto snap-x snap-mandatory" ref="cardRow">
+        <div class="grid md:block overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
           <div ref="" class="  flex">
             <div
               v-for="(fave, index) in favourites.favourites.data.map(
