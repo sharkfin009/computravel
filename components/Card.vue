@@ -7,7 +7,7 @@
       class="
         md:w-[335px]
        
-        grid grid-rows-[300px,auto]
+        grid grid-rows-[280px,auto]
         rounded-xl
         overflow-hidden
         h-full

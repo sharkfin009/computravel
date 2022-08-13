@@ -18,8 +18,8 @@
         ></card>
       </div>
       </div>
-      <div class="flex justify-center w-full">
-        <div class="flex gap-5">
+      <div class="flex justify-center gap-5 w-full">
+
           <div
             v-for="(dot, index) in dots"
             class="cursor-pointer z-50"
@@ -33,7 +33,7 @@
               @click="manageClick(index)"
               v-show="index !== selectedCard"
             />
-          </div>
+      
         </div>
       </div>
     </div>
