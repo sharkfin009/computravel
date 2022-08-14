@@ -1,6 +1,6 @@
 <template>
-  <div class=" w-full h-full ">
-    <div class="relative w-full">
+  <div class="w-full h-full">
+    <div class="relative w-full z-50">
       <input
         id="findInput"
         name="search"
@@ -44,7 +44,6 @@
         justify-center
         items-start
         lg:px-20
-        
         w-full
       "
       :class="wrapperClass"
@@ -62,7 +61,6 @@
           origin-top
           lg:grid lg:grid-cols-[3fr,1.3fr]
           w-[90vw]
-          
         "
         :class="{
           'bg-opacity-60 ': route.path == '/',
@@ -72,7 +70,7 @@
           <div
             v-for="(suggestion, index) in suggestions"
             :class="{
-              ' !bg-opacity-90  rounded-3xl bg-lime-600':
+              ' !bg-opacity-90  rounded-3xl bg-lime-600 text-lime-200':
                 index === selectedSuggestion,
             }"
             :key="index"
@@ -104,10 +102,24 @@
                   <!-- <span class="mr-2 " style="color:gray!important;">
             <IconSearch /> </span> -->
 
-                  <div class="hidden lg:block font-semibold mr-2 text-lime-200">
+                  <div
+                    class="hidden lg:block font-semibold mr-2 text-lime-700"
+                    :class="{
+                      ' !text-lime-200': index === hoveredSuggestion - 1,
+                      ' text-lime-200':
+                        index === selectedSuggestion,
+                    }"
+                  >
                     {{ suggestion.titleShort }}
                   </div>
-                  <div class="block lg:hidden font-semibold mr-2 text-lime-200">
+                  <div
+                    class="block lg:hidden font-semibold mr-2 text-lime-700"
+                    :class="{
+                      ' !text-lime-200': index === hoveredSuggestion - 1,
+                      ' !text-lime-200':
+                        index === selectedSuggestion,
+                    }"
+                  >
                     {{ suggestion.title }}
                   </div>
                   <div class="hidden lg:block">
@@ -119,11 +131,16 @@
                 class="
                   hidden
                   lg:flex
-                  text-lime-200
+                  text-lime-700
                   items-center
                   font-medium
                   px-1
                 "
+                :class="{
+                  ' !text-lime-200': index === hoveredSuggestion - 1,
+                  '  !text-lime-200':
+                    index === selectedSuggestion,
+                }"
               >
                 {{ suggestion.destination }}
               </div>
@@ -143,7 +160,7 @@
                 bg-gray-100
                 rounded-full
                 p-1
-                hover:bg-green-text hover:text-white
+                hover:bg-green-text hover:text-lime-200
               "
               @mousedown="searchDestination(item.name)"
             >

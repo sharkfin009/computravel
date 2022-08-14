@@ -57,7 +57,7 @@
     <SearchBar class="w-full " :parent="'header'" />
     <!--  enq now button: -->
     </div>
-    <div   v-if="route.path == '/' && enquiry.showEnquireNow == false" class="lg:flex lg:w-full lg:justify-end">
+    <div   v-if="route.path == '/' && enquiry.showEnquireNow == false && enquiry.enquirySent==false" class="lg:flex lg:w-full lg:justify-end">
       <BookButton
       
         @mousedown="enquiry.showEnquireNow = true"
@@ -104,7 +104,9 @@
       <EnquiryConfirmation v-if="enquiry.showConfirmation">
         Thank you for your enquiry!
         <br />
+         Your enquiry reference is {{enquiry.enquiryRef}}
         One of our travel experts will revert to you very soon.
+        You may add to or remove items from your list at any point.
       </EnquiryConfirmation>
     </transition>
   </div>

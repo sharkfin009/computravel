@@ -29,7 +29,7 @@
       <div class="flex justify-center gap-5 w-full">
         <div
           v-for="(dot, index) in dots"
-          class="cursor-pointer z-50"
+          class="cursor-pointer "
           :key="index"
         >
           <IconActiveDot

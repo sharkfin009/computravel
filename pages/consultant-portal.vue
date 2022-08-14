@@ -161,7 +161,7 @@ tr:nth-child(even) {
 th {
   position: sticky;
   top: 0;
-  background-color: rgba(160, 202, 96, 0.217);
+  background-color: rgb(216, 250, 216); 
 }
 table {
   border-collapse: collapse;

@@ -1,8 +1,32 @@
 <template>
   <div
-    class="relative bg-green-avo rounded-xl p-10 flex flex-col justify-evenly"
+    class="
+      bg-green-avo
+      rounded-xl
+      p-10
+      flex flex-col
+      items-evenly
+      justify-evenly
+    "
   >
-    <div class="grid grid-cols-3 gap-x-10 gap-y-2 mb-5">
+    <div class="py-10 flex gap-5 flex-wrap items-center">
+      <div>Bookings I am interested in:</div>
+      <div
+        class="bg-lime-200 p-2 px-4 rounded-full text-lime-900 font-medium shadow"
+        v-for="(item, index) in packages.map((item) => item.attributes.title)"
+        :key="index"
+      >
+        {{ item }}
+      </div>
+    </div>
+    <div
+      class="
+        flex flex-col
+        gap-8
+        md:grid md:grid-cols-3 md:gap-x-10 md:gap-y-2
+        mb-5
+      "
+    >
       <Input
         v-if="vl.full_name"
         inputName="full_name"
@@ -138,16 +162,21 @@ const airports = [
 
 const graphql = useStrapiGraphQL();
 const response = ref("");
-
-const send = () => {
-  let list =''
-  if(localStorage.getItem('my-packages')){
-    let packages = JSON.parse(localStorage.getItem('my-packages'))
-    let ids = packages.map(item=>item.id)
-    console.log(ids)
-    list = "packages: " + JSON.stringify(ids)
+const packages = ref([]);
+let ids = [];
+const titles = ref([]);
+let list = "";
+onMounted(() => {
+  if (localStorage.getItem("my-packages")) {
+    packages.value = JSON.parse(localStorage.getItem("my-packages"));
+    ids = packages.value.map((item) => item.id);
+    console.log(packages);
+    titles.value = ref(packages.value.map((item) => item.attributes.title));
+    list = "packages: " + JSON.stringify(ids);
   }
-     let enquiryRef = Math.floor(Math.random() * 10000)
+});
+const send = () => {
+  let enquiryRef = Math.floor(Math.random() * 10000);
 
   let query = `mutation{
   createEnquiry(
@@ -176,14 +205,14 @@ const send = () => {
   enquiryState.showConfirmation = true;
   graphql(query).then((response) => {
     response.value = response.data;
-    enquiryState.enquiryId = response.data.createEnquiry.data.id
-    localStorage.setItem("enquiryId", response.data.createEnquiry.data.id)
-    enquiryState.enquiryRef = enquiryRef
-    localStorage.setItem("enquiryRef" , enquiryRef)
+    enquiryState.enquiryId = response.data.createEnquiry.data.id;
+    localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);
+    enquiryState.enquiryRef = enquiryRef;
+    localStorage.setItem("enquiryRef", enquiryRef);
     localStorage.setItem("enquirySent", true);
-    enquiryState.enquirySent = true
-  
-    enquiryState.listDirtyState = false
+    enquiryState.enquirySent = true;
+
+    enquiryState.listDirtyState = false;
   });
 };
 </script>
