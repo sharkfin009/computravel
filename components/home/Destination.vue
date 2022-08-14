@@ -4,7 +4,7 @@
     v-if="props.destination.length > 0"
   >
     <slot />
-    <div class="w-full h-[600px] flex flex-col mt-8 lg:mt-0">
+    <div class="w-full lg:h-[600px] flex flex-col mt-8 lg:mt-0">
       <div class="w-full h-full flex justify-center">
       <div class="relative mb-7 w-[335px] ">
         
