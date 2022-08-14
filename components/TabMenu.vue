@@ -29,10 +29,10 @@
         duration-700
         py-3
         md:px-5
-        md:p-5
+     
 
         text-xs
-        md:text-xl
+        lg:text-xl
 
       "
       @click="manageClick(index)"

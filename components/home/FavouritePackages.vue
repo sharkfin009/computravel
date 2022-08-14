@@ -51,7 +51,7 @@
         <IconChevronRight class="cursor-pointer" @click="scrollRight" />
       </div>
     </div>
-    <!-- mobile: -->
+    <!-- mobile cards: -->
     <div class="block md:hidden relative mb-7 w-[335px]">
       <card
         v-for="(tour, index) in favourites.favourites.data.map(

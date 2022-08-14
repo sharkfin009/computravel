@@ -1,14 +1,6 @@
 <template>
   <div
-    class="
-      bg-green-avo
-      flex flex-col
-      pt-20
-      text-2xl
-      px-10
-      sm:px-10
-      md:px-20
-    "
+    class="bg-green-avo flex flex-col pt-20 text-2xl px-10 lg:px-20 h-[1100px] lg:h-[850px]"
     v-if="data"
   >
     <h3 class="text-3xl font-medium mb-2">experience these</h3>
@@ -24,35 +16,42 @@
       ></TabMenu>
     </div>
 
-    <!-- lG down header: -->
-    <h1 class="block xl:hidden text-5xl font-titillium font-semibold mr-4 mb-5 ">
+    <h1 class="block xl:hidden text-5xl font-titillium font-semibold mr-4 mb-5">
       destinations
     </h1>
-    <div class="grid xl:hidden ">
+    <div class="grid xl:hidden">
       <TabMenu
         @selectTab="setActiveTab"
         :titles="destinationsDictionaryMobile"
       ></TabMenu>
-    </div>
+    </div>   <!-- lG down header: -->
+ 
 
-    <div class="relative h-[850px] lg:h-[600px] w-full">
+    <div class="relative h-[600px] lg:h-[600px] w-full">
       <HomeDestination
         v-for="(destination, index) in packages"
         :key="index"
         :destination="packages[index]"
-        class="absolute inset-0 w-full "
+        class="absolute inset-0 w-full"
         :class="{ 'opacity-0': index !== activeTab }"
       >
         <!-- unnamed slot for destination pic on left: -->
         <div
-          class="relative rounded-3xl overflow-hidden shadow-2xl h-[250px]  lg:h-full lg:mr-10  "
+          class="
+            relative
+            rounded-3xl
+            overflow-hidden
+            shadow-2xl
+            h-[250px]
+            lg:h-[550px] lg:mr-10
+          "
           v-if="picStyles.length > 0"
         >
           <div
             v-for="(destination, index) in destinationsDictionary"
             :key="index"
             :style="picStyles[index]"
-            class="h-full w-full absolute inset-0 "
+            class=" absolute inset-0"
             :class="{ 'opacity-0': index !== activeTab }"
           ></div>
         </div>

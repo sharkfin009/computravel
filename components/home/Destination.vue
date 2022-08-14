@@ -1,39 +1,45 @@
 <template>
   <div
-    class="w-full h-full  lg:grid grid-rows-[250px,min-content] lg:grid-rows-none lg:grid-cols-[auto,335px] py-10 "
+    class="
+      w-full
+  
+      lg:grid
+      grid-rows-[250px,auto]
+      lg:grid-rows-none
+      grid-cols-none
+     lg:grid-cols-[auto,335px]
+      py-10
+    "
     v-if="props.destination.length > 0"
   >
     <slot />
-    <div class="w-full h-full flex flex-col mt-8 lg:mt-0">
-      <div class="w-full h-full flex justify-center">
-      <div class="relative mb-7 w-[335px] h-[500px] ">
-        
-        <card
-          v-for="(tour, index) in props.destination"
-          :key="index"
-          :title="tour.attributes.title"
-          :package="tour.attributes"
-          class="absolute inset-0 transition-opacity duration-700 "
-          :class="{ 'opacity-0': index !== selectedCard }"
-        ></card>
-      </div>
+    <div class=" flex flex-col mt-8 lg:mt-0 ">
+      <div class=" flex justify-center">
+        <div class="relative mb-7 w-[335px] h-[500px]">
+          <card
+            v-for="(tour, index) in props.destination"
+            :key="index"
+            :title="tour.attributes.title"
+            :package="tour.attributes"
+            class="absolute inset-0 transition-opacity duration-700"
+            :class="{ 'opacity-0': index !== selectedCard }"
+          ></card>
+        </div>
       </div>
       <div class="flex justify-center gap-5 w-full">
-
-          <div
-            v-for="(dot, index) in dots"
-            class="cursor-pointer z-50"
-            :key="index"
-          >
-            <IconActiveDot
-              @click="manageClick(index)"
-              v-show="index === selectedCard"
-            />
-            <IconDotInactive
-              @click="manageClick(index)"
-              v-show="index !== selectedCard"
-            />
-      
+        <div
+          v-for="(dot, index) in dots"
+          class="cursor-pointer z-50"
+          :key="index"
+        >
+          <IconActiveDot
+            @click="manageClick(index)"
+            v-show="index === selectedCard"
+          />
+          <IconDotInactive
+            @click="manageClick(index)"
+            v-show="index !== selectedCard"
+          />
         </div>
       </div>
     </div>
