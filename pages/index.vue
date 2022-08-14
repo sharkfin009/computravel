@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full ">
     <HomeWelcome class="lg:snap-start" />
-    <HomeFavouritePackages class="lg:snap-start" />
+    <!-- <HomeFavouritePackages class="lg:snap-start" /> -->
   
     <HomeDestinations class="lg:snap-start" />
     <HomeFlights class="lg:snap-start" />

@@ -22,8 +22,8 @@
       </div>
       <div></div>
 
-      <!-- next row -->
-      <div class="flex items-center justify-center">
+     <!-- desktop cards: -->
+      <div class="hidden md:flex items-center justify-center">
         <IconChevronLeft
           class="cursor-pointer scroll-smooth"
           @click="scrollLeft"
@@ -31,7 +31,7 @@
       </div>
 
       <div
-        class="grid md:block overflow-x-auto lg:snap-x lg:snap-mandatory"
+        class=" overflow-x-auto lg:snap-x lg:snap-mandatory"
         ref="cardRow"
       >
         <div ref="" class="flex">

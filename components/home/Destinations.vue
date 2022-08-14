@@ -35,7 +35,7 @@
       ></TabMenu>
     </div>
 
-    <div class="relative h-[700px] w-full">
+    <div class="relative h-[850px] lg:h-[600px] w-full">
       <HomeDestination
         v-for="(destination, index) in packages"
         :key="index"

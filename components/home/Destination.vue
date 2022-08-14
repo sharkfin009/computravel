@@ -1,12 +1,12 @@
 <template>
   <div
-    class="w-full h-full  lg:grid lg:h-[60vh] lg:grid-cols-[auto,335px] "
+    class="w-full h-full  lg:grid grid-rows-[250px,min-content] lg:grid-rows-none lg:grid-cols-[auto,335px] py-10 "
     v-if="props.destination.length > 0"
   >
     <slot />
-    <div class="w-full lg:h-[600px] flex flex-col mt-8 lg:mt-0">
+    <div class="w-full h-full flex flex-col mt-8 lg:mt-0">
       <div class="w-full h-full flex justify-center">
-      <div class="relative mb-7 w-[335px] ">
+      <div class="relative mb-7 w-[335px] h-[500px] ">
         
         <card
           v-for="(tour, index) in props.destination"
