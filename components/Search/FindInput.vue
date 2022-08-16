@@ -55,15 +55,17 @@
           z-30
           shadow-3xl
           bg-gray-300
+          
           p-2
           lg:p-10
           rounded-3xl
           origin-top
           lg:grid lg:grid-cols-[3fr,1.3fr]
-          w-[90vw]
+          w-[50%]
+          md:w-[90vw]
         "
         :class="{
-          'bg-opacity-60 ': route.path == '/',
+          'md:bg-opacity-60 ': route.path == '/',
         }"
       >
         <div class="w-full">
@@ -99,8 +101,7 @@
                     transition-colors
                   "
                 >
-                  <!-- <span class="mr-2 " style="color:gray!important;">
-            <IconSearch /> </span> -->
+           
 
                   <div
                     class="hidden lg:block font-semibold mr-2 text-lime-700"
@@ -113,14 +114,14 @@
                     {{ suggestion.titleShort }}
                   </div>
                   <div
-                    class="block lg:hidden font-semibold mr-2 text-lime-700"
+                    class="block lg:hidden font-semibold mr-2 text-lime-900 text-xs text-center" 
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
                       ' !text-lime-200':
                         index === selectedSuggestion,
                     }"
                   >
-                    {{ suggestion.title }}
+                    {{ suggestion.titleShort }}
                   </div>
                   <div class="hidden lg:block">
                     {{ suggestion.description }}

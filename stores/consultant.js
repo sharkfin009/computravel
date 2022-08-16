@@ -11,6 +11,7 @@ export const useConsultantStore = defineStore("consultant", {
     token: ref(""),
     enquiries: ref([]),
     consultantSessionKey: ref(""),
+    currentEnquiry:ref()
   }),
   actions: {
     frontGetPortalToken() {

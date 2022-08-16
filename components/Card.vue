@@ -42,7 +42,7 @@
       </div>
       <div class="p-5 bg-white flex flex-col justify-between">
         <div class="w-full font-titillium font-semibold text-2xl">
-          <h3 class="text-center mb-3">{{ props.package.title }}</h3>
+          <h3 class="text-center mb-3">{{ cutTitle }}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"
@@ -51,6 +51,7 @@
             >
               <IconStar />
             </div>
+    
           </div>
         </div>
         <div class="flex justify-center">
@@ -75,7 +76,7 @@
           :class="{ loadingStateClass: searchStore.loadingState }"
 
         >
-          {{ cutText }} ...
+        loading
         </div>
         <div class="flex justify-between items-center pb-5">
           <div
@@ -131,11 +132,14 @@ const slugify = (str) =>
 const searchStore = useStore();
 const route = useRoute();
 
-let text = props.package.description;
+let text = props.package.title;
 
-let cutTextChars = text.substring(0, 70);
-let lastWord = cutTextChars.split(" ").pop(-1);
-let cutText = cutTextChars.slice(0, cutTextChars.length - lastWord.length);
+let cutTextTitle = text.substring(0,30);
+let lastWord = cutTextTitle.split(" ").pop(-1);
+let cutTitle = cutTextTitle.slice(0, cutTextTitle.length - lastWord.length);
+if (cutTitle[cutTitle.length-1] == '-') {
+  cutTitle.pop()
+} 
 
 let stars = [];
 for (let i = 0; i < props.package.star_rating; i++) {

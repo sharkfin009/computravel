@@ -15,7 +15,7 @@
       class="
         w-[90vw]
         h-[70vh]
-        bg-white
+        bg-gray-100
         rounded-3xl
         py-20
         px-5
@@ -23,14 +23,14 @@
         items-center
       "
     >
-      <div class="flex justify-between px-10 w-full items-baseline mb-5">
+      <div class="flex justify-between px-10 w-full items-center bg-white rounded-3xl mb-5 h-[150px]">
         <div class="w-[50px]">
           <div
             @click="consultantStore.toggleActive()"
             class="cursor-pointer"
             v-if="consultantStore.active"
           >
-            <div class="">active</div>
+            <div class="text-center">active</div>
             <IconToggle class="text-green-700" />
           </div>
           <div
@@ -48,7 +48,7 @@
         <h3 class="text-4xl font-bold font-titillium">my consultant portal</h3>
         <h3 class="text-2xl font-bold font-titillium">my enquiries</h3>
       </div>
-      <div class="w-full overflow-auto">
+      <div class="w-full rounded-3xl overflow-auto">
         <table class="w-full font-open-sans font-extralight">
           <thead>
             <tr>
@@ -57,32 +57,29 @@
               <th class="">ref</th>
               <th class="">when</th>
               <th class="">view</th>
-              <th class="">Accept</th>
-              <th class="">Pass On</th>
+              <th class="">accept</th>
+              <th class="">pass On</th>
             </tr>
           </thead>
-          <tbody  class="overflow-auto">
-            <tr v-for="(enquiry, index) in consultantStore.enquiries" :key="index">
+          <tbody class="overflow-auto">
+            <tr
+              v-for="(enquiry, index) in consultantStore.enquiries"
+              :key="index"
+            >
               <td>{{ enquiry.createdAt }}</td>
               <td>{{ enquiry.full_name }}</td>
               <td>{{ enquiry.ref }}</td>
 
               <td>{{ enquiry.when }}</td>
-              <td>    <BookButton v-if="!enquiry.accepted" @click="view(enquiry.id)"
-                  >view</BookButton
-                ></td>
+
               <td>
-                <BookButton v-if="!enquiry.accepted" @click="view(enquiry.id)"
-                  >view</BookButton
-                >
+                <BookButton @click="view(index)">view</BookButton>
               </td>
               <td>
-                <BookButton
-                  v-if="!enquiry.accepted"
-                  @click="accept(enquiry.id)"
+                <BookButton v-if="!enquiry.accepted" @click="accept(enquiry.id)"
                   >accept</BookButton
                 >
-                <div v-if="enquiry.accepted" class="text-center" >accepted</div>
+                <div v-if="enquiry.accepted" class="text-center">accepted</div>
               </td>
               <td>
                 <BookButton
@@ -90,7 +87,9 @@
                   @click="passOn(enquiry.id)"
                   >pass on</BookButton
                 >
-                <div v-if="enquiry.passed_on" class="text-center">passed on</div>
+                <div v-if="enquiry.passed_on" class="text-center">
+                  passed on
+                </div>
               </td>
             </tr>
           </tbody>
@@ -109,7 +108,7 @@ const consultantStore = useConsultantStore();
 var consultant_key = 0;
 
 onMounted(async () => {
-  await consultantStore.frontGetPortalToken()
+  await consultantStore.frontGetPortalToken();
   if (
     document.cookie
       .split(";")
@@ -120,7 +119,6 @@ onMounted(async () => {
       consultantStore.getConsultantSessionKey();
     }
 
-    
     consultantStore.getEnquiries();
   } else {
     console.log("no cookie");
@@ -128,20 +126,24 @@ onMounted(async () => {
 });
 
 const config = useRuntimeConfig();
-const enquiriesReady = ref(false)
+const enquiriesReady = ref(false);
 
 const toggleActive = () => {
-  consultantStore.toggleActive()
-}
+  consultantStore.toggleActive();
+};
 const accept = async (enquiryId) => {
-  consultantStore.acceptEnquiry(enquiryId)
+  consultantStore.acceptEnquiry(enquiryId);
 };
 const passOn = async (enquiryId) => {
-  consultantStore.passOnEnquiry(enquiryId)
+  consultantStore.passOnEnquiry(enquiryId);
 };
 
-
-
+const view = async (enquiryIndex) => {
+  consultantStore.currentEnquiry = enquiryIndex;
+  navigateTo({
+    path: "consultant-single-enquiry",
+  });
+};
 </script>
 
 <style>
@@ -149,19 +151,18 @@ th,
 td {
   border: none;
   padding: 8px 16px;
-  text-align:center;
-  
+  text-align: center;
 }
 tr:nth-child(odd) {
   background: white;
 }
 tr:nth-child(even) {
-  background: #E3EBE7;
+  background: #e3ebe7;
 }
 th {
   position: sticky;
   top: 0;
-  background-color: rgb(216, 250, 216); 
+  background-color: rgb(193, 218, 193);
 }
 table {
   border-collapse: collapse;

@@ -15,22 +15,25 @@
     <slot />
     <div class=" flex flex-col mt-8 lg:mt-0 ">
       <div class=" flex justify-center">
-        <div class="relative mb-7 w-[335px] h-[500px]">
+        <div class="relative mb-7 w-[335px] h-[500px]" >
+          
           <card
             v-for="(tour, index) in props.destination"
             :key="index"
-            :title="tour.attributes.title"
+     
             :package="tour.attributes"
-            class="absolute inset-0 transition-opacity duration-700"
-            :class="{ 'opacity-0': index !== selectedCard }"
-          ></card>
+            class="absolute inset-0 transition-opacity duration-700 opacity-0"
+            :class="{ '!opacity-100': index == selectedCard  }"
+          >
+          </card>
         </div>
       </div>
       <div class="flex justify-center gap-5 w-full">
         <div
           v-for="(dot, index) in dots"
-          class="cursor-pointer "
+          class="cursor-pointer z-50 "
           :key="index"
+
         >
           <IconActiveDot
             @click="manageClick(index)"
@@ -52,11 +55,12 @@
 const props = defineProps({
   destination: Array,
 });
-const dots = [1, 1, 1];
+const dots = [1,2,3];
 const selectedCard = ref(0);
 
 const manageClick = (index) => {
   selectedCard.value = index;
   console.log(selectedCard.value);
+  
 };
 </script>
