@@ -1,94 +1,34 @@
 <template>
-  <div class="overflow-y-auto  h-full w-full ">
-    <div class="pt-10 w-full h-full">
-      <div class="relative overflow-y-hidden min-h-[530px] w-full">
-        <!-- pics layout -->
+  <div class="relative w-full h-screen overflow-scroll">
+     <div class="sticky top-0 bg-gray-100 mb-10 z-50">
+      <PackageHeader class="mx-5" :package_data="package_data" />
+    </div>
+    <div
+      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full"
+    >
+      <!-- pics layout -->
+      <div
+        class="
+          absolute
+          inset-0
+          h-full
+          w-full
+          overflow-x-hidden overflow-y-hidden
+          pb-4
+          box-content
+          pointer-events-none
+        "
+        ref="scrollBox"
+      >
+        <!-- chevrons -->
         <div
           class="
             absolute
             inset-0
             h-full
             w-full
-            overflow-x-auto overflow-y-hidden
-            pb-4
-            box-content
-            pointer-events-none
-          "
-          ref="scrollBox"
-        >
-          <!-- lg down: -->
-          <div class="flex xl:hidden bg-blue-500 overflow-hidden w-full h-full" >
-            <div v-for="(image, index) of images" :key="index">
-             
-            </div>
-          </div>
-          <!-- case of many pix xl up-->
-          <div
-            v-if="images.length > 1"
-            class="hidden xl:flex"
-            ref="scrollContents"
-          >
-            <div
-              class=""
-              v-for="(pic, index) in threeImagesArray"
-              :key="index"
-              style="scroll-snap-align: start"
-            >
-              <!-- odd 3s -->
-              <div
-                v-if="index % 2 == 0"
-                class="grid grid-cols-[2fr,1fr] gap-5 mb-10 h-[500px] px-10"
-                :style="`width:${picScrollWidth}px`"
-              >
-                <div class="overflow-hidden rounded-xl">
-                  <img class="w-full object-cover max-h-full" :src="pic[0]" />
-                </div>
-                <div class="grid grid-rows-2 gap-5 h-[500px]">
-                  <div class="bg-green-400 overflow-hidden rounded-xl">
-                    <img class="w-full object-cover max-h-full" :src="pic[1]" />
-                  </div>
-                  <div class="bg-green-400 overflow-hidden rounded-xl">
-                    <img class="w-full object-cover max-h-full" :src="pic[2]" />
-                  </div>
-                </div>
-              </div>
-              <!-- even 3s -->
-              <div
-                v-if="index % 2 !== 0 && index < images.length - 2"
-                class="grid grid-cols-[1fr,2fr] gap-5 mb-10 h-[500px] px-10"
-                :style="`width:${picScrollWidth}px`"
-              >
-                <div class="grid grid-rows-2 gap-5 h-[500px]">
-                  <div class="bg-green-400 overflow-hidden rounded-xl">
-                    <img class="w-full object-cover max-h-full" :src="pic[0]" />
-                  </div>
-                  <div class="bg-green-400 overflow-hidden rounded-xl">
-                    <img class="w-full object-cover max-h-full" :src="pic[1]" />
-                  </div>
-                </div>
-                <div class="overflow-hidden rounded-xl">
-                  <img class="w-full object-cover max-h-full" :src="pic[2]" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- case of one pic -->
-          <div v-if="images.length == 1" class="w-full flex justify-center">
-            <div class="mb-10 w-[800px] px-10">
-              <div class="overflow-hidden rounded-xl">
-                <img class="w-full object-cover" :src="images[0]" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="
-            absolute
-            inset-0
-            h-full
-            w-full
-            flex
+            hidden
+            xl:flex
             justify-between
             items-end
             pb-20
@@ -151,133 +91,292 @@
             </div>
           </div>
         </div>
-      </div>
-      <!-- content belop pics: -->
-      <div class="px-10">
-        <!-- tabs header -->
-        <TabMenu @selectTab="setActiveTab" :titles="items"></TabMenu>
-        <!-- tabs content -->
-        <div class="pb-10 text-xl tracking-wide leading-normal h-[80vh]">
-          <!-- overview -->
+        <!-- lg down: centered with max-width-->
+
+        <div class="flex xl:hidden justify-center w-full pb-6 h-full w-full">
+          <!-- one pic-->
           <div
-            v-if="activeTab === 0"
-            class="grid grid-cols-2 gap-4 transition ease-in duration-300"
+            v-if="images.length == 1"
+            class="rounded-xl overflow-hidden max-w-[800px]"
           >
-            <div class="rounded-xl bg-white p-12">
-              <p v-for="(line, index) in descripLines" :key="index">
-                {{ line }}.
-              </p>
+            <img class="w-full h-full object-cover" :src="images[0]" />
+          </div>
+          <!-- many pics -->
+
+          <div
+            v-if="images.length > 1"
+            class="
+              relative
+              w-full
+              h-full
+              justify-center
+              max-w-[800px]
+              bg-blue-100
+              rounded-xl
+              overflow-hidden
+            "
+          >
+            <div
+              v-for="(image, index) of images"
+              :key="index"
+              class="
+                absolute
+                inset-0
+                bg-red-400
+                transition-opacity
+                duration-300
+                opacity-0
+              "
+              :class="{ '!opacity-100': index == mobilePicPointer }"
+            >
+              <img class="w-full h-full object-cover" :src="image" />
             </div>
-            <div class="rounded-xl bg-white p-12">
-              <ul>
-                <li>
-                  <div>Prices from:</div>
-                  <div>
-                    R
-                    {{
-                      props.package_data.packages.data[0].attributes.price
-                    }}
-                    per person sharing
-                  </div>
-                </li>
-                <li>
-                  <div>Trip Reference:</div>
-                  <div>
-                    {{
-                      props.package_data.packages.data[0].attributes
-                        .supplier_ref
-                    }}
-                  </div>
-                </li>
-                <li>
-                  <div>Flights:</div>
-                  Not Included
-                </li>
-                <li>
-                  <div>From:</div>
-                  {{ props.package_data.packages.data[0].attributes.from }}
-                </li>
-                <li>
-                  <div>Duration:</div>
-                  {{ props.package_data.packages.data[0].attributes.duration }}
-                  nights
-                </li>
-                <li>
-                  <div>Book before:</div>
-                  {{ props.package_data.packages.data[0].attributes.valid_to }}
-                </li>
-              </ul>
-              <div class="flex flex-col items-center mt-5">
-                <div class="text-center font-semibold">Need Visas?</div>
-                <div class="grid grid-cols-[3fr,1fr,3fr,1fr] grid-rows-2 gap-2">
-                  <span class="text-end">South Africa:</span>
-                  <div>No</div>
-                  <span class="text-right">EU:</span>
-                  <div>No</div>
-                  <span class="text-right">America:</span>
-                  <div>No</div>
-                  <span class="text-right">British:</span>
-                  <div>No</div>
+            <!-- chevrons for mobile -->
+            <div
+              class="
+                absolute
+                inset-0
+                h-full
+                w-full
+                flex
+                justify-between
+                items-end
+                pb-5
+                px-5
+                pointer-events-none
+              "
+            >
+              <div>
+                <div
+                  class="
+                    bg-green-avo
+                    rounded-full
+                    bg-opacity-50
+                    scale-[70%]
+                    pointer-events-auto
+                    duration-500
+                    hover:bg-opacity-100
+                    transition-all
+                  "
+                  v-if="mobilePicPointer > 0 && images.length > 1"
+                >
+                  <IconChevronLeft
+                    class="
+                      text-lime-600
+                      transform
+                      scale-50
+                      cursor-pointer
+                      pointer-events-auto
+                    "
+                    @click="mobileBrowseLeft"
+                  />
+                </div>
+              </div>
+              <div>
+                <div
+                  class="
+                    bg-green-avo
+                    rounded-full
+                    scale-[70%]
+                    bg-opacity-50
+                    pointer-events-auto
+                    duration-500
+                    hover:bg-opacity-100
+                    transition-all
+                  "
+                  v-if="mobilePicPointer < images.length"
+                >
+                  <IconChevronRight
+                    class="
+                      text-lime-600
+                      transform
+                      scale-50
+                      cursor-pointer
+                      pointer-events-auto
+                    "
+                    @click="mobileBrowseRight"
+                  />
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- inc & exc -->
+      <!-- case of many pix xl up : magazine layout-->
+      <div
+        v-if="images.length > 1"
+        class="hidden xl:flex pb-10"
+        ref="scrollContents"
+      >
+        <div
+          class=""
+          v-for="(pic, index) in threeImagesArray"
+          :key="index"
+          style="scroll-snap-align: start"
+        >
+          <!-- odd 3s -->
           <div
-            v-if="activeTab === 1"
-            class="
-              grid
-              gap-4
-              grid-cols-[2fr,1fr]
-              transform
-              translate-x-0
-              transition
-              ease-in
-              duration-300
-            "
+            v-if="index % 2 == 0"
+            class="grid grid-cols-[2fr,1fr] gap-5 h-[500px] px-10"
+            :style="`width:${picScrollWidth}px`"
           >
-            <div class="rounded-xl bg-white p-12">
-              <p v-for="(line, index) in array" :key="index">
-                {{ line }}
-              </p>
+            <div class="overflow-hidden rounded-xl">
+              <img class="w-full object-cover h-full" :src="pic[0]" />
             </div>
-            <div class="rounded-xl bg-white p-12">
-              {{ props.package_data.packages.data[0].attributes.excludes }}
+            <div class="grid grid-rows-2 gap-5 h-[500px]">
+              <div class="bg-green-400 overflow-hidden rounded-xl">
+                <img class="w-full object-cover h-full" :src="pic[1]" />
+              </div>
+              <div class="bg-green-400 overflow-hidden rounded-xl">
+                <img class="w-full object-cover h-full" :src="pic[2]" />
+              </div>
             </div>
           </div>
-
-          <!-- about destination -->
+          <!-- even 3s -->
           <div
-            v-if="activeTab === 2"
-            class="transform translate-x-0 transition ease-in duration-300"
+            v-if="index % 2 !== 0 && index < images.length - 2"
+            class="grid grid-cols-[1fr,2fr] gap-5 h-[500px] px-10"
+            :style="`width:${picScrollWidth}px`"
           >
-            <div class="rounded-xl bg-white p-12">
-              {{ aboutCopy }}
+            <div class="grid grid-rows-2 gap-5 h-[500px]">
+              <div class="bg-green-400 overflow-hidden rounded-xl">
+                <img class="w-full object-cover h-full" :src="pic[0]" />
+              </div>
+              <div class="bg-green-400 overflow-hidden rounded-xl">
+                <img class="w-full object-cover h-full" :src="pic[1]" />
+              </div>
+            </div>
+            <div class="overflow-hidden rounded-xl">
+              <img class="w-full object-cover h-full" :src="pic[2]" />
             </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <!-- ts & cs -->
-          <div
-            v-if="activeTab === 3"
-            class="
-              -0
-              rounded-xl
-              bg-white
-              p-12
-              transform
-              translate-x-0
-              transition
-              ease-in
-              duration-300
-            "
-          >
-            <ul class="list-disc">
-              <li v-for="(line, index) in termsLines" :key="index">
-                {{ line }}
+    <!-- content below pics: -->
+    <div class="px-10">
+      <!-- tabs header -->
+      <TabMenu @selectTab="setActiveTab" :titles="items"></TabMenu>
+      <!-- tabs content -->
+      <div class="pb-10 text-xl tracking-wide leading-normal h-[80vh]">
+        <!-- overview -->
+        <div
+          v-if="activeTab === 0"
+          class="grid grid-cols-2 gap-4 transition ease-in duration-300"
+        >
+          <div class="rounded-xl bg-white p-12">
+            <p v-for="(line, index) in descripLines" :key="index">
+              {{ line }}.
+            </p>
+          </div>
+          <div class="rounded-xl bg-white p-12">
+            <ul>
+              <li>
+                <div>Prices from:</div>
+                <div>
+                  R
+                  {{ props.package_data.packages.data[0].attributes.price }}
+                  per person sharing
+                </div>
+              </li>
+              <li>
+                <div>Trip Reference:</div>
+                <div>
+                  {{
+                    props.package_data.packages.data[0].attributes.supplier_ref
+                  }}
+                </div>
+              </li>
+              <li>
+                <div>Flights:</div>
+                Not Included
+              </li>
+              <li>
+                <div>From:</div>
+                {{ props.package_data.packages.data[0].attributes.from }}
+              </li>
+              <li>
+                <div>Duration:</div>
+                {{ props.package_data.packages.data[0].attributes.duration }}
+                nights
+              </li>
+              <li>
+                <div>Book before:</div>
+                {{ props.package_data.packages.data[0].attributes.valid_to }}
               </li>
             </ul>
+            <div class="flex flex-col items-center mt-5">
+              <div class="text-center font-semibold">Need Visas?</div>
+              <div class="grid grid-cols-[3fr,1fr,3fr,1fr] grid-rows-2 gap-2">
+                <span class="text-end">South Africa:</span>
+                <div>No</div>
+                <span class="text-right">EU:</span>
+                <div>No</div>
+                <span class="text-right">America:</span>
+                <div>No</div>
+                <span class="text-right">British:</span>
+                <div>No</div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- inc & exc -->
+        <div
+          v-if="activeTab === 1"
+          class="
+            grid
+            gap-4
+            grid-cols-[2fr,1fr]
+            transform
+            translate-x-0
+            transition
+            ease-in
+            duration-300
+          "
+        >
+          <div class="rounded-xl bg-white p-12">
+            <p v-for="(line, index) in array" :key="index">
+              {{ line }}
+            </p>
+          </div>
+          <div class="rounded-xl bg-white p-12">
+            {{ props.package_data.packages.data[0].attributes.excludes }}
+          </div>
+        </div>
+
+        <!-- about destination -->
+        <div
+          v-if="activeTab === 2"
+          class="transform translate-x-0 transition ease-in duration-300"
+        >
+          <div class="rounded-xl bg-white p-12">
+            {{ aboutCopy }}
+          </div>
+        </div>
+
+        <!-- ts & cs -->
+        <div
+          v-if="activeTab === 3"
+          class="
+            -0
+            rounded-xl
+            bg-white
+            p-12
+            transform
+            translate-x-0
+            transition
+            ease-in
+            duration-300
+          "
+        >
+          <ul class="list-disc">
+            <li v-for="(line, index) in termsLines" :key="index">
+              {{ line }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -362,6 +461,17 @@ const items = ["Overview", "Inc & Exc", "About This Destination", "Ts & Cs"];
 const activeTab = ref(0);
 const setActiveTab = (tab) => {
   activeTab.value = tab;
+};
+const mobilePicPointer = ref(0);
+const mobileBrowseLeft = () => {
+  if (mobilePicPointer.value > 0) {
+    mobilePicPointer.value--;
+  }
+};
+const mobileBrowseRight = () => {
+  if (mobilePicPointer.value < images.length) {
+    mobilePicPointer.value++;
+  }
 };
 </script>
 

@@ -1,16 +1,18 @@
 <template>
+<div    v-if="package_data"
+class="">
   <div
-    v-if="package_data"
+ 
     class="
-      grid grid-cols-[auto,250px]
-      max-h-min
+      grid md:grid-cols-[auto,250px]
       bg-green-avo
       rounded-3xl
-      p-5
+      p-2
+      md:p-5
       shadow-xl
     "
   >
-    <div class="grid grid-cols-[2fr,1fr]">
+    <div class="grid md:grid-cols-[2fr,1fr]">
       <div
         class="
           w-full
@@ -18,10 +20,12 @@
           text-5xl
           flex
           items-center
+          justify-center
+          md:justify-start
           p-2
         "
       >
-        <h3 class="">
+        <h3 class="text-center">
           {{ props.package_data.packages.data[0].attributes.title }}
         </h3>
       </div>
@@ -34,7 +38,7 @@
           text-5xl
         "
       >
-        <div class="flex text-3xl p-2">
+        <div class="flex text-3xl p-2 justify-center md:justify-start w-full">
           R{{ props.package_data.packages.data[0].attributes.price }}
           <div class="font-normal text-3xl flex items-end ml-2">pps</div>
         </div>
@@ -51,10 +55,11 @@
 
     <div class="flex items-center justify-center h-full ">
       <NuxtLink to="/my-packages">
-        <BookButton class="px-10 py-5">Add to my packages</BookButton>
+        <BookButton class="md:px-10 md:py-5">Add to my packages</BookButton>
       </NuxtLink>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
