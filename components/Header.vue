@@ -3,7 +3,7 @@
     class="
       fixed
       flex
-      z-10
+      z-50
       w-full
       items-center
       justify-between
@@ -11,6 +11,7 @@
       lg:px-5
       px-5
     "
+    :class="{'bg-gray-100':route.path !== '/'}"
   >
     <NuxtLink class="relative text-primary" to="/">
       <div

@@ -1,6 +1,27 @@
 <template>
-  <div class="w-full h-full">
-    <div class="relative w-full z-50">
+  <div class="w-full h-full  "
+          style="z-index:1000"
+>
+          <div
+        class="
+          fixed
+          inset-0
+          bg-black
+          opacity-0
+          transition
+          duration-300
+          w-screen
+          h-screen
+          pointer-events-none
+         
+          thisone
+          
+        "
+        :class="{
+          'opacity-40': suggestions.length > 0 && showFindSuggestions,
+        }"
+      />
+    <div class="relative w-full ">
       <input
         id="findInput"
         name="search"
@@ -49,13 +70,14 @@
       :class="wrapperClass"
       v-show="showFindSuggestions && suggestions.length > 0"
     >
+    
       <div
         class="
+          relative
           unroll
-          z-30
           shadow-3xl
-          bg-gray-300
-          
+          bg-white
+          lg:bg-gray-300
           p-2
           lg:p-10
           rounded-3xl
@@ -63,6 +85,7 @@
           lg:grid lg:grid-cols-[3fr,1.3fr]
           w-[50%]
           md:w-[90vw]
+          z-50
         "
         :class="{
           'md:bg-opacity-60 ': route.path == '/',
@@ -104,7 +127,7 @@
            
 
                   <div
-                    class="hidden lg:block font-semibold mr-2 text-lime-700"
+                    class="hidden lg:block font-semibold mr-2 text-lime-700 "
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
                       ' text-lime-200':
@@ -114,7 +137,7 @@
                     {{ suggestion.titleShort }}
                   </div>
                   <div
-                    class="block lg:hidden font-semibold mr-2 text-lime-900 text-xs text-center" 
+                    class="block lg:hidden font-semibold mr-2 text-lime-900 text-xs text-center w-full" 
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
                       ' !text-lime-200':
@@ -171,22 +194,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="
-          fixed
-          inset-0
-          bg-black
-          opacity-0
-          transition
-          duration-300
-          w-screen
-          h-screen
-          pointer-events-none
-        "
-        :class="{
-          'opacity-40': suggestions.length > 0 && showFindSuggestions,
-        }"
-      />
+
     </div>
   </div>
 </template>

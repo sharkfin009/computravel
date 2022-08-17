@@ -1,6 +1,6 @@
 <template>
   <div class="relative  mx-5">
-    <div class="sticky top-[94px] bg-gray-100 mb-10 z-50">
+    <div class="sticky top-[94px] bg-gray-100 mb-10 z-10 ">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -17,6 +17,7 @@
           pb-4
           box-content
           pointer-events-none
+          
         "
         ref="scrollBox"
       >
@@ -94,7 +95,7 @@
         <!-- lg down: centered with max-width-->
 
         <div
-          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5"
+          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5 "
         >
           <!-- one pic-->
           <div
@@ -128,6 +129,7 @@
                 transition-opacity
                 duration-300
                 opacity-0
+                
               "
               :class="{ '!opacity-100': index == mobilePicPointer }"
             >
@@ -208,7 +210,7 @@
       <!-- case of many pix xl up : magazine layout-->
       <div
         v-if="images.length > 1"
-        class="hidden xl:flex pb-10"
+        class="hidden xl:flex pb-10 "
         ref="scrollContents"
       >
         <div
@@ -283,7 +285,7 @@
           >
             Overview
           </h3>
-          <div class="rounded-xl bg-white p-12">
+          <div class="rounded-xl bg-white p-5 mc:p-12">
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
@@ -370,12 +372,13 @@
               md:hidden
               text-xl text-center
               font-semibold font-titillium
+              mt-5
             "
           >
             Inc & Exc
           </h3>
 
-          <div class="rounded-xl bg-white p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             <p v-for="(line, index) in array" :key="index">
               {{ line }}
             </p>
@@ -418,6 +421,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
