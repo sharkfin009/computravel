@@ -1,6 +1,6 @@
 <template>
-  <div class="relative w-full h-screen overflow-scroll">
-    <div class="sticky top-0 bg-gray-100 mb-10 z-50">
+  <div class="relative  mx-5">
+    <div class="sticky top-[94px] bg-gray-100 mb-10 z-50">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -267,7 +267,7 @@
       ></TabMenu>
       <!-- tabs content -->
 
-      <div class="pb-10  tracking-wide leading-normal h-[80vh]">
+      <div class="pb-10  tracking-wide leading-normal ">
         <!-- overview -->
         <div
           v-if="belowMd || activeTab === 0"

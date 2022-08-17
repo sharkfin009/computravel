@@ -2,10 +2,10 @@
    
   <div
     v-if="package_data && destination_content"
-    class="h-screen fixed overlow-hidden bg-gray-100 px-5 md:px-10 grid grid-rows-[100px,auto]"
+    class="bg-gray-100  md:px-10 grid grid-rows-[94px,auto]"
   >
     <div />
-    <div class="h-full w-full">
+    <div class="w-full">
       <PackageBody
         :package_data="package_data"
         :destination_content="destination_content"
