@@ -1,6 +1,5 @@
 <template>
   <div class="w-full h-full  "
-          style="z-index:1000"
 >
           <div
         class="
@@ -27,7 +26,7 @@
         name="search"
         type="text"
         v-model="searchStore.findQuery"
-        class="h-full text-sm rounded-full input-outline p-3 px-5 w-full"
+        class="h-full text-sm rounded-full input-outline p-2 md:p-3 md:px-5 w-full"
         :class="{ 'shadow-lg': inputHasFocus }"
         @keyup="manageKeyUp"
         @focus="findInputFocus"

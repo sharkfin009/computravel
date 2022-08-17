@@ -1,10 +1,10 @@
 <template>
   <div class="relative  mx-5">
-    <div class="sticky top-[94px] bg-gray-100 mb-10 z-10 ">
+    <div class="sticky top-[129px] md:top-[94px] bg-gray-100 mb-5 z-10 ">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
-      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full"
+      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full "
     >
       <!-- pics layout -->
       <div
@@ -375,7 +375,7 @@
               mt-5
             "
           >
-            Inc & Exc
+            Includes
           </h3>
 
           <div class="rounded-xl bg-white p-5 md:p-12">
@@ -383,6 +383,17 @@
               {{ line }}
             </p>
           </div>
+              <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+              mt-5
+            "
+          >
+            Excludes
+          </h3>
           <div class="rounded-xl bg-white p-12">
             {{ props.package_data.packages.data[0].attributes.excludes }}
           </div>
@@ -393,6 +404,17 @@
           v-if="belowMd || activeTab === 2"
           class="transform translate-x-0 transition ease-in duration-300"
         >
+          <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+              my-5
+            "
+          >
+            About this destination
+          </h3>
           <div class="rounded-xl bg-white p-12">
             {{ aboutCopy }}
           </div>

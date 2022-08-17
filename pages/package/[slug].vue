@@ -2,9 +2,9 @@
    
   <div
     v-if="package_data && destination_content"
-    class="bg-gray-100  md:px-10 grid grid-rows-[94px,auto]"
+    class="bg-gray-100  md:px-10 pt-[129px] md:pt-[95px]"
   >
-    <div />
+    
     <div class="w-full">
       <PackageBody
         :package_data="package_data"

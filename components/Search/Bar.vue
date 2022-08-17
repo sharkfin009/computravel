@@ -1,9 +1,10 @@
 <template>
-    <div class=" cursor-pointer p-5 bg-green-avo shadow-xl hover:shadow-none  rounded-full ">
-        <div class="flex items-center gap-4 ">
-            <IconMagnify class="  mt-2 ml-2 " />
+    <div class=" cursor-pointer px-5 py-4 lg:p-5 bg-green-avo shadow-xl hover:shadow-none  rounded-full ">
+        <div class="flex items-center gap-2 md:gap-2 ">
+           
         
             <SearchFindInput  :parent="props.parent" />
+             <IconMagnify class="  md:mt-2 md:ml-2 " />
                 <!-- <QueryButton  @click="go" class="shadow-xl">search</QueryButton> -->
 
 
