@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full h-screen overflow-scroll">
      <div class="sticky top-0 bg-gray-100 mb-10 z-50">
-      <PackageHeader class="mx-5" :package_data="package_data" />
+      <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
       class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full"

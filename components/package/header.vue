@@ -38,16 +38,16 @@ class="">
           text-5xl
         "
       >
-        <div class="flex text-3xl p-2 justify-center md:justify-start w-full">
+        <div class="flex text-3xl p-2 justify-center md:justify-end w-full">
           R{{ props.package_data.packages.data[0].attributes.price }}
           <div class="font-normal text-3xl flex items-end ml-2">pps</div>
         </div>
       </div>
-      <div class="text-xl p-2">
+      <div class="text-xl p-2 text-center w-full md:text-start ">
         {{ props.package_data.packages.data[0].attributes.subdestination }},
         {{ props.package_data.packages.data[0].attributes.destination }}
       </div>
-      <div class="flex justify-end text-xl p-2">
+      <div class="flex justify-center md:justify-end text-xl p-2">
         Valid Until:
         {{ props.package_data.packages.data[0].attributes.valid_to }}
       </div>
