@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full h-screen overflow-scroll">
-     <div class="sticky top-0 bg-gray-100 mb-10 z-50">
+    <div class="sticky top-0 bg-gray-100 mb-10 z-50">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -93,7 +93,9 @@
         </div>
         <!-- lg down: centered with max-width-->
 
-        <div class="flex xl:hidden justify-center w-full pb-6 h-full w-full">
+        <div
+          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5"
+        >
           <!-- one pic-->
           <div
             v-if="images.length == 1"
@@ -256,29 +258,54 @@
     </div>
 
     <!-- content below pics: -->
-    <div class="px-10">
+    <div class="px-5 md:px-10">
       <!-- tabs header -->
-      <TabMenu @selectTab="setActiveTab" :titles="items"></TabMenu>
+      <TabMenu
+        @selectTab="setActiveTab"
+        class="hidden md:flex"
+        :titles="items"
+      ></TabMenu>
       <!-- tabs content -->
-      <div class="pb-10 text-xl tracking-wide leading-normal h-[80vh]">
+
+      <div class="pb-10  tracking-wide leading-normal h-[80vh]">
         <!-- overview -->
         <div
-          v-if="activeTab === 0"
-          class="grid grid-cols-2 gap-4 transition ease-in duration-300"
+          v-if="belowMd || activeTab === 0"
+          class="grid md:grid-cols-2 gap-4 transition ease-in duration-300"
         >
+          <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+            "
+          >
+            Overview
+          </h3>
           <div class="rounded-xl bg-white p-12">
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
           </div>
-          <div class="rounded-xl bg-white p-12">
+                 <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+            "
+          >
+            Details
+          </h3>
+          <div class="rounded-xl bg-white p-5 md:p-12 ">
             <ul>
               <li>
                 <div>Prices from:</div>
                 <div>
                   R
                   {{ props.package_data.packages.data[0].attributes.price }}
-                  per person sharing
+                  per pps
                 </div>
               </li>
               <li>
@@ -325,11 +352,11 @@
 
         <!-- inc & exc -->
         <div
-          v-if="activeTab === 1"
+          v-if="belowMd || activeTab === 1"
           class="
             grid
             gap-4
-            grid-cols-[2fr,1fr]
+            md:grid-cols-[2fr,1fr]
             transform
             translate-x-0
             transition
@@ -337,6 +364,17 @@
             duration-300
           "
         >
+          <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+            "
+          >
+            Inc & Exc
+          </h3>
+
           <div class="rounded-xl bg-white p-12">
             <p v-for="(line, index) in array" :key="index">
               {{ line }}
@@ -349,7 +387,7 @@
 
         <!-- about destination -->
         <div
-          v-if="activeTab === 2"
+          v-if="belowMd || activeTab === 2"
           class="transform translate-x-0 transition ease-in duration-300"
         >
           <div class="rounded-xl bg-white p-12">
@@ -473,6 +511,9 @@ const mobileBrowseRight = () => {
     mobilePicPointer.value++;
   }
 };
+const belowMd = computed(() => {
+  return window.matchMedia("(max-width: 768px)").matches;
+});
 </script>
 
 <style scoped>

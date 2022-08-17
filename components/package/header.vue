@@ -17,37 +17,38 @@ class="">
         class="
           w-full
           font-titillium font-semibold
-          text-5xl
+          text-2xl
+          md:text-5xl
           flex
           items-center
           justify-center
           md:justify-start
-          p-2
+          md:p-2
         "
       >
-        <h3 class="text-center">
+        <h3 class="text-center ">
           {{ props.package_data.packages.data[0].attributes.title }}
         </h3>
       </div>
       <div
         class="
           flex
-          items-center
+          items-baseline
           justify-end
           font-titillium font-semibold
           text-5xl
         "
       >
-        <div class="flex text-3xl p-2 justify-center md:justify-end w-full">
+        <div class="flex  md:p-2 justify-center md:justify-end w-full text-lg md:text-3xl">
           R{{ props.package_data.packages.data[0].attributes.price }}
-          <div class="font-normal text-3xl flex items-end ml-2">pps</div>
+          <div class="font-normal text-lg md:text-3xl flex items-end ml-2">pps</div>
         </div>
       </div>
-      <div class="text-xl p-2 text-center w-full md:text-start ">
+      <div class=" md:p-2 text-center w-full md:text-start ">
         {{ props.package_data.packages.data[0].attributes.subdestination }},
         {{ props.package_data.packages.data[0].attributes.destination }}
       </div>
-      <div class="flex justify-center md:justify-end text-xl p-2">
+      <div class="flex justify-center md:justify-end  md:p-2">
         Valid Until:
         {{ props.package_data.packages.data[0].attributes.valid_to }}
       </div>
@@ -55,7 +56,7 @@ class="">
 
     <div class="flex items-center justify-center h-full ">
       <NuxtLink to="/my-packages">
-        <BookButton class="md:px-10 md:py-5">Add to my packages</BookButton>
+        <BookButton class="my-2 md:px-10 md:py-5">Add to my packages</BookButton>
       </NuxtLink>
     </div>
   </div>
