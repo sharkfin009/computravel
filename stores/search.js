@@ -6,8 +6,8 @@ export const useStore = defineStore("search", {
     activeInput: ref(""),
     results: [],
     region: "",
-    destination: ref({}),
-
+    destination: ref(''),
+    destinationType:ref('subdestination'),
     from_date: "",
     to_date: "",
     price_min: ref(0),
@@ -27,15 +27,14 @@ export const useStore = defineStore("search", {
       let noDestinationFilter = false;
       let noRegionFilter = false;
       let destinationFilterString
-      if (this.destination.name == null) {
-        alert('null')
+      if (this.destination== '') {
         destinationFilterString = '';
       } else {
-        destinationFilterString = `${this.destination.type}:{ eq:"${this.destination.name}"}`
+        destinationFilterString = `${this.destinationType}:{ eq:"${this.destination}"}`
       }
 
       let DatesFilter = true;
-      if (this.to_date == "" || this.from_date == "") {
+      if (this.to_date == "" && this.from_date == "") {
         DatesFilter = false;
       }
       
@@ -121,4 +120,5 @@ export const useStore = defineStore("search", {
         });
     },
   },
+  
 });

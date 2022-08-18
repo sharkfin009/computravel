@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed w-full z-50 pb-5"
+    class="fixed w-full z-50 pb-5 md:pb-0"
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
     <div class="flex w-full items-center justify-between py-3 lg:px-5 px-5">
@@ -42,40 +42,37 @@
           <IconComputravelLogo class="h-full w-full" />
         </div>
       </NuxtLink>
-      <div class="w-full px-2" v-if="route.path !== '/'">
-        <div class="flex justify-evenly">
-          <SearchBar  class="hidden md:block w-[80%]" :parent="'header'" />
-        </div>
-        <!--  enq now button: -->
-      </div>
-      <div
-        v-if="
-          route.path == '/' &&
-          enquiry.showEnquireNow == false &&
-          enquiry.enquirySent == false
-        "
-        class="lg:flex lg:w-full lg:justify-end"
-      >
+
+      <SearchBar
+        v-if="route.path !== '/'"
+        class="hidden md:block w-[20%]"
+        :parent="'header'"
+      />
+
+      <!--  enq now button: -->
+
+      <div class="flex gap-5">
         <BookButton
+          v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
           @mousedown="enquiry.showEnquireNow = true"
           class="z-30 lg:px-10 py-3 lg:py-6 text-sm lg:text-2xl shadow-xl"
           >enquire now</BookButton
         >
-        <div class="w-0 lg:w-8 h-full"></div>
-      </div>
-      <div
-        class="
-          flex flex-col
-          items-center
-          bg-green-avo
-          rounded-full
-          bg-opacity-80
-          shadow-xl
-          p-2
-          lg:p-5
-        "
-      >
-        <IconHamburger />
+
+        <div
+          class="
+            flex flex-col
+            items-center
+            bg-green-avo
+            rounded-full
+            bg-opacity-80
+            shadow-xl
+            p-2
+            lg:p-5
+          "
+        >
+          <IconHamburger />
+        </div>
       </div>
 
       <transition name="fade">
@@ -96,7 +93,6 @@
             <span class="text-lime-500"> {{ enquiry.enquiryRef }} </span>
           </div>
         </ConfirmModal>
-
       </transition>
     </div>
     <!-- mobile search bar -->

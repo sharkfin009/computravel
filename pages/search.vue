@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 px-10 w-screen pt-[129px] md:pt-[95px] lg:pt-[120px]">
+  <div class="bg-gray-100 lg:px-10 w-screen pt-[129px] md:pt-[88px] lg:pt-[101px]">
     <div>
       <SearchOptions class="" />
       <div
@@ -30,11 +30,11 @@
     </div>
     <div
       v-if="resultsReady && searchStore.results.length > 0"
-      class="overflow-y-auto hide-scroll w-full pb-10"
+      class=" w-full py-10 px-10 flex justify-center "
     >
-      <div class="flex flex-wrap gap-6 justify-center py-10 w-full rounded">
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-10 ">
         <div
-          class="shadow-2xl hover:shadow-none"
+          class="shadow-2xl "
           v-for="(card, index) in searchStore.results"
           :key="index"
         >
@@ -43,16 +43,16 @@
       </div>
     </div>
     <div
-      v-if="resultsReady && searchStore.fallbackResults.length > 0"
-      class="overflow-y-auto hide-scroll w-full pb-10 bg-blue-100"
+      v-if="resultsReady && searchStore.results.length == 0 && searchStore.fallbackResults.length > 0"
+      class=" w-full py-10 px-10 flex justify-center "
     >
-      <div class="flex flex-wrap gap-6 justify-center py-10 w-full rounded">
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-10 ">
         <div
-          class="shadow-2xl hover:shadow-none"
+          class="  "
           v-for="(card, index) in searchStore.fallbackResults"
           :key="index"
         >
-          <Card :package="card.attributes" />
+          <Card class="w-full" :package="card.attributes" />
         </div>
       </div>
     </div>

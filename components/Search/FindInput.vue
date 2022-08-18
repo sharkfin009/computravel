@@ -59,8 +59,10 @@
           @mousedown="clear()"
         />
       </div>
-      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%]">
-        <IconMagnify class=" md:mt-2 md:ml-2 mr-10 bg-green-avo rounded-full w-10 h-10 p-2" />
+      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%] ">
+        <NuxtLink to="/search">
+        <IconMagnify class=" md:mt-2 md:ml-2 mr-10 bg-green-avo hover:bg-lime-500 rounded-full w-10 h-10 p-2" />
+        </NuxtLink>
       </div>
 
       <!-- autosuggest list-->
@@ -277,6 +279,7 @@ const manageKeyUp = (e) => {
           showFindSuggestions.value = false
 
       searchDestination(searchStore.findQuery)
+      return
      }
     
     // if suggestion:
@@ -393,10 +396,7 @@ import { useStore } from "@/stores/search";
 const searchStore = useStore();
 
 const searchDestination = (destination) => {
-  searchStore.destination = {
-    type: "subdestination",
-    name: destination,
-  };
+  searchStore.destination = destination
   searchStore.findQuery = "";
   searchStore.fireQuery();
   if (route.path != "/search") {

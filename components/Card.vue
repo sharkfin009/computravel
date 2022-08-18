@@ -5,17 +5,18 @@
   >
     <div
       class="
-        md:w-[335px]
        
         grid grid-rows-[280px,auto]
         rounded-xl
         overflow-hidden
         h-full
+        shadow-xl
+        hover:shadow-none
       "
     >
       <div>
         <div
-          class=" h-full  flex items-end"
+          class=" h-full  flex items-end bg-gray-100"
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',
@@ -41,8 +42,8 @@
         </div>
       </div>
       <div class="p-5 bg-white flex flex-col justify-between ">
-        <div class="w-full font-titillium font-semibold text-2xl">
-          <h3 class="text-center mb-3">{{ cutTitle }}</h3>
+        <div class="w-full font-titillium font-semibold text-xl">
+          <h3 class="w-[300px] text-center mb-3">{{ props.package.title}}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"

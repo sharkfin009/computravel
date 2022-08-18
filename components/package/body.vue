@@ -513,7 +513,6 @@ const browseLeft = () => {
 };
 
 const browseRight = () => {
-  alert()
   if (scrollPos.value < Math.floor(images.length / 3)) {
     scrollPos.value++;
     scrollBox.value.scrollTo({

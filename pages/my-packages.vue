@@ -86,14 +86,15 @@
     </div>
 
     <transition name="fade" v-if="enquiryState.showUpdateModal">
-      <EnquiryConfirmation v-if="enquiryState.showUpdateModal">
-        <p>
-          Thank you for updating your list for enquiry reference no
-          <span class="text-lime-600"> {{ enquiryState.enquiryRef }}</span>
-          <br />
-          One of our travel experts will revert to you very soon.
-        </p>
-      </EnquiryConfirmation>
+        <ConfirmModal >
+          <h3 class="text-6xl font-bold">Thankyou for your update to your list!</h3>
+          <p>One of our travel experts will be in touch soon.</p>
+          <div>
+            Your enquiry reference is
+            <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
+          </div>
+        </ConfirmModal>
+
     </transition>
   </div>
 </template>

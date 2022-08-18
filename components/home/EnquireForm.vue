@@ -201,7 +201,6 @@ const send = () => {
     }
     }`;
   enquiryState.showEnquireNow = false;
-  enquiryState.showEnquireFormMyPackages = false;
   enquiryState.showConfirmation = true;
   graphql(query).then((response) => {
     response.value = response.data;

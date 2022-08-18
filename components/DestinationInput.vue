@@ -1,15 +1,24 @@
 <template>
   <div class="w-full h-full relative">
-    <label class="text-lg ">Destination </label>
+    <label class="text-lg">Destination </label>
     <input
       id="findInput"
       name="search"
       type="text"
-      v-model="destination.name"
-      class="w-full rounded-xl bg-white p-4 relative input-outline shadow-xl hover:shadow-none"
+      v-model="searchStore.destination"
+      class="
+        w-full
+        rounded-xl
+        bg-white
+        p-4
+        relative
+        input-outline
+        shadow-xl
+        hover:shadow-none
+      "
       @keyup="manageKeyUp"
-      @focus="showSuggestions = true"
-      @blur="showSuggestions = false"
+      @focus="suggestStore.showSuggestions = true"
+      @blur="suggestStore.showSuggestions = false"
       placeholder="Anywhere"
       ref="findInput"
     />
@@ -23,7 +32,10 @@
         hover:rotate-180
         cursor-pointer
       "
-    @mousedown="destination.name = '';clear()"
+      @mousedown="
+        searchStore.destination= '';
+        clear();
+      "
     />
     <!-- autosuggest list-->
 
@@ -41,12 +53,12 @@
         h-min-[350px]
         origin-top
       "
-      v-show="showSuggestions && suggestions.length > 0"
+      v-show="suggestStore.showSuggestions && suggestStore.suggestions.length > 0"
     >
       <div class="bg-stone-100 rounded-xl overflow-hidden border">
         <div class="grid">
           <div
-            v-for="(item, index) in suggestions"
+            v-for="(item, index) in suggestStore.suggestions"
             :key="index"
             class="
               flex
@@ -56,9 +68,10 @@
               px-3
               hover:!bg-green-text hover:text-white
             "
-            :class="{ '!bg-lime-100 text-black': index == selectedSuggestion }"
+            :class="{ '!bg-lime-100 text-black': index == suggestStore.selectedSuggestion }"
             @mousedown="
-              destination = item;
+              searchStore.destination = item.name
+              searchStore.destinationType = item.type
               clear();
             "
           >
@@ -71,22 +84,19 @@
 </template>
 
 <script setup>
-const destination = ref({
-  name:"",
-  type:""
-});
+
 const route = useRoute();
 const props = defineProps({
   parent: String,
 });
-const showSuggestions = ref(false);
 
 const findInput = ref(null);
 const wrapperClass = ref("");
-import {useStore} from "@/stores/search"
-const searchStore = useStore()
+import { useStore } from "@/stores/search";
+const searchStore = useStore();
+import {useSuggestStore} from "@/stores/suggest"
+const suggestStore = useSuggestStore()
 onMounted(() => {
-
   findInput.value.focus();
   if (props.parent == "welcome") {
     wrapperClass.value = "top-[64%]";
@@ -95,17 +105,13 @@ onMounted(() => {
     wrapperClass.value = "top-[120%]";
   }
 });
-const selectedSuggestion = ref(0);
-const suggestions = ref([]);
 const hoveredSuggestion = ref(0);
-const destinationSuggestions = ref([]);
-const subdestinationSuggestions = ref([]);
 
 // clear
 const clear = () => {
-  showSuggestions.value = false;
-  suggestions.value = [];
-  selectedSuggestion.value = 0;
+  suggestStore.showSuggestions = false;
+  suggestStore.suggestions = [];
+  suggestStore.selectedSuggestion = 0;
 };
 
 const manageKeyUp = (e) => {
@@ -119,36 +125,37 @@ const manageKeyUp = (e) => {
   // down Arrow:
   if (
     e.key === "ArrowDown" &&
-    selectedSuggestion.value < suggestions.value.length &&
-    selectedSuggestion.value < suggestions.value.length - 1
+   suggestStore.selectedSuggestion < suggestions.value.length &&
+    suggestStore.selectedSuggestion < suggestions.value.length - 1
   ) {
-    selectedSuggestion.value++;
+    suggestStore.selectedSuggestion++;
 
     return;
   }
   if (
     e.key === "ArrowDown" &&
-    selectedSuggestion.value === suggestions.value.length - 1
+    suggestStore.selectedSuggestion === suggestions.value.length - 1
   ) {
-    selectedSuggestion.value = 0;
+    suggestStore.selectedSuggestion = 0;
 
     return;
   }
   // up arrow:
   if (e.key === "ArrowUp") {
-    if (selectedSuggestion.value >= 0) {
-      selectedSuggestion.value--;
+    if (suggestStore.selectedSuggestion >= 0) {
+      suggestStore.selectedSuggestion--;
     }
     return;
   }
   // enter
   if (e.key === "Enter") {
     // if no selection:
-    if (selectedSuggestion.value === -1) {
+    if (suggestStore.selectedSuggestion === -1) {
+
       return;
     }
     // if suggestion:
-    destination.value = suggestions.value[selectedSuggestion.value].name;
+    searchStore.destination = suggestStore.suggestions[suggestStore.selectedSuggestion];
     clear();
 
     return;
@@ -156,17 +163,59 @@ const manageKeyUp = (e) => {
 
   // backspace
   if (e.key === "Backspace") {
-    showSuggestions.value = false;
-    suggestions.value = [];
-    selectedSuggestion.value = -1;
-    if (destination.value == "") {
+    suggestStore.showSuggestions = false;
+    suggestStore.suggestions = [];
+    suggestStore.selectedSuggestion = -1;
+    if (searchStore.destination == "") {
       return;
     }
   }
 
-  getDestinationSuggestions();
+  getDestinationSuggestions(searchStore.destination);
 };
-
+  const { result: subdestinationResult, search: subdestinationSearch } = useSearch("subdestinations")
+        const { result: destinationResult, search: destinationSearch } = useSearch("destinations")
+const getDestinationSuggestions = async () =>{
+  let subdestinationSuggestions = []
+  let destinationSuggestions = []
+            await subdestinationSearch({
+                query: searchStore.destination,
+                requestOptions: {
+                hitsPerPage: 10,
+                },
+                })
+                .then((result) => {
+                    if (result === null || result === undefined) {
+                    return;
+                    }
+                    suggestStore.showSuggestions = true;
+                     subdestinationSuggestions = result.hits.map((item) => ({
+                    name: item.subdestination,
+                    type: "subdestination",
+                    }));
+                });
+    
+           await  destinationSearch({
+                    query: searchStore.destination,
+                    requestOptions: {
+                    hitsPerPage: 10,
+                    },
+                }).then((result) => {
+                    if (result === null || result === undefined) {
+                    return;
+                    }
+                    suggestStore.showSuggestions = true;
+    
+                    destinationSuggestions = result.hits.map((item) => ({
+                    name: item.destination,
+                    type: "destination",
+                    }));
+                    suggestStore.suggestions = [
+                    ...destinationSuggestions,
+                    ...subdestinationSuggestions,
+                    ];
+                });
+}
 const mouseOver = (index) => {
   hoveredSuggestion.value = index + 1;
 };
@@ -175,58 +224,11 @@ const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
 
-const { result: subdestinationResult, search: subdestinationSearch } =
-  useSearch("subdestinations");
-const { result: destinationResult, search: destinationSearch } =
-  useSearch("destinations");
-
-const getDestinationSuggestions = async () => {
-  await subdestinationSearch({
-    query: destination.value.name,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    showSuggestions.value = true;
-    subdestinationSuggestions.value = result.hits.map((item) => ({
-      name: item.subdestination,
-      type: "subdestination",
-    }));
-  });
-
-  await destinationSearch({
-    query: destination.value.name,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    showSuggestions.value = true;
-
-    destinationSuggestions.value = result.hits.map((item) => ({
-      name: item.destination,
-      type: "destination",
-    }));
-    suggestions.value = [
-      ...destinationSuggestions.value,
-      ...subdestinationSuggestions.value,
-    ];
-  });
-};
-
 const emit = defineEmits(["setValue"]);
 watch(
-  () => destination.value,
+  () => searchStore.destination,
   (a, b) => {
-    emit("setValue", "destination", destination.value.name);
+    emit("setValue", "destination", searchStore.destination);
   }
 );
-
-
-
 </script>

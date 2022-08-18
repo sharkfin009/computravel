@@ -2,6 +2,7 @@
   <div
     v-if="searchStore"
     class="
+    relative
       select-none
       rounded-3xl
       user-select-none
@@ -11,13 +12,13 @@
       items-center
       justify-between
       p-5
-      md-p-10
+      md:p-10
       opacity-100
       font-medium
     "
   >
     <!-- first row grid -->
-    <div class="grid lg:grid-cols-1 xl:grid-cols-5 gap-5 md-gap-10 w-full">
+    <div class=" grid lg:grid-cols-1 xl:grid-cols-3 gap-5 md-gap-10 w-full">
       <!-- destination autosuggest input -->
       <DestinationInput @setValue="setValue" />
 
@@ -28,8 +29,7 @@
         placeholder="All"
         @setValue="setValue"
       />
-      <!--dates  -->
-
+    
       <!-- dates -->
       <Input
         inputName="from_date"
@@ -58,10 +58,7 @@
         @setValue="setValue"
         placeholder="price low to high"
       />
-    </div>
-    <!-- last two items flex -->
-    <div class="flex flex-wrap w-full justify-evenly gap-9 md:gap-10 m-5">
-      <div class="h-full max-w-[500px]">
+          <div class="h-full ">
         <div class="mb-1">Price Range</div>
         <div
           class="
@@ -112,12 +109,9 @@
           </div>
         </div>
       </div>
-      <div class="flex items-end justify-center">
-        <QueryButton @click="enquiry.showEnquireNow = true" class="shadow-xl"
-          >send us an enquiry</QueryButton
-        >
-      </div>
+      <div @click="clearFilters" class="cursor-pointer absolute top-0 right-0 m-5 text-lime-600 hover:text-lime-500 ">clear filters</div>
     </div>
+ 
   </div>
 </template>
 
@@ -141,30 +135,23 @@ const selectInput = (input) => {
 
 
 const setValue = (inputName, value) => {
-  console.log(value);
-  if (value == null) return;
+//   if (value == null) return;
+// console.log(value)
+//   let valueForSearchQuery;
+//   if (typeof value == "string") {
+//     valueForSearchQuery = value;
+//   } else {
+//     if (inputName == "sort_by") {
+//       valueForSearchQuery = value.order;
+//     }
+//     if (inputName == "destination") {
+//       valueForSearchQuery = value;
+//     }
+//   }
+//   console.log(valueForSearchQuery);
+//   searchStore[inputName] = valueForSearchQuery
+  searchStore.fireQuery()
 
-  let valueForSearchQuery;
-  if (typeof value == "string") {
-    valueForSearchQuery = value;
-  } else {
-    if (inputName == "sort_by") {
-      valueForSearchQuery = value.order;
-    }
-    if (inputName == "destination") {
-      valueForSearchQuery = value;
-    }
-  }
-  console.log(valueForSearchQuery);
-  searchStore[inputName] = valueForSearchQuery;
-   watch(
-    () => {
-      searchStore[inputName];
-    },
-    () => {
-      searchStore.fireQuery()
-    }
-  );
 };
 
 searchStore.$subscribe((mutation, state) => {
@@ -207,6 +194,11 @@ const categories = [
   "Train Trips",
   "Weekend Getaways",
 ];
+
+const clearFilters = ()=>{
+searchStore.$reset()
+
+}
 </script>
 
 
