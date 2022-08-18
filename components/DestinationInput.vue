@@ -104,7 +104,7 @@ const subdestinationSuggestions = ref([]);
 // clear
 const clear = () => {
   showSuggestions.value = false;
-  searchStore.suggestions.value = [];
+  suggestions.value = [];
   selectedSuggestion.value = 0;
 };
 

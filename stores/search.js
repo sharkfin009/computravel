@@ -15,10 +15,12 @@ export const useStore = defineStore("search", {
     category: "All",
     sort_by: "price:asc",
     loadingState: false,
-    noResults: false,
+    fallbackResults: ref([]),
+    firstLoad: ref(true)
   }),
   actions: {
     fireQuery() {
+      this.fallbackResults = []
       this.results = [];
       this.loadingState = true;
       const graphql = useStrapiGraphQL();
@@ -83,7 +85,7 @@ export const useStore = defineStore("search", {
       let query = `
             query{packages(
               sort:"title"
-                pagination:{page:1,pageSize:100}
+                pagination:{page:1,pageSize:30}
                 ){
                 data{
                     attributes{
@@ -108,7 +110,7 @@ export const useStore = defineStore("search", {
             array.sort(() => Math.random() - 0.5);
             return array
           }
-          this.results = shuffle(response.data.packages.data);
+          this.fallbackResults = shuffle(response.data.packages.data);
           
           this.loadingState = false;
           this.noResults = true;

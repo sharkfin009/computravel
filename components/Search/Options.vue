@@ -158,7 +158,7 @@ const setValue = (inputName, value) => {
   }
   console.log(valueForSearchQuery);
   searchStore[inputName] = valueForSearchQuery;
-  searchStore.fireQuery();
+   searchStore.fireQuery();
 };
 
 searchStore.$subscribe((mutation, state) => {
@@ -168,6 +168,7 @@ searchStore.$subscribe((mutation, state) => {
   if (state.price_max < state.price_min) {
     state.price_min = state.price_max;
   }
+
 });
 
 const numberWithCommas = (x) => {
