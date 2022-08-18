@@ -10,13 +10,14 @@
       flex flex-col
       items-center
       justify-between
-      p-10
+      p-5
+      md-p-10
       opacity-100
       font-medium
     "
   >
     <!-- first row grid -->
-    <div class="grid grid-cols-5 gap-10 w-full">
+    <div class="grid lg:grid-cols-1 xl:grid-cols-5 gap-5 md-gap-10 w-full">
       <!-- destination autosuggest input -->
       <DestinationInput @setValue="setValue" />
 
@@ -59,16 +60,18 @@
       />
     </div>
     <!-- last two items flex -->
-    <div class="flex w-full justify-center gap-10 mt-4">
-      <div class="h-full w-[500px]">
+    <div class="flex flex-wrap w-full justify-evenly gap-9 md:gap-10 m-5 ">
+      <div class="h-full max-w-[500px]">
         <div class="mb-1">Price Range</div>
         <div
           class="
-            grid grid-cols-[100px,auto,100px]
+            grid md:grid-cols-[100px,auto,100px]
+           grid-cols-[50px,auto,90px]
             bg-white
-            py-[15px]
+            py-4
+            md:py-[15px]
+            md:px-5
             inputsStyling
-            px-5
             rounded-xl
             text-sm
             shadow-lg
@@ -112,7 +115,7 @@
       <div class="flex items-end justify-center">
         <QueryButton
           @click="enquiry.showEnquireNow = true"
-          class="shadow-xl py-4"
+          class="shadow-xl "
           >send us an enquiry</QueryButton
         >
       </div>

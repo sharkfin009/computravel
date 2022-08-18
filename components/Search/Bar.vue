@@ -4,7 +4,6 @@
            
         
             <SearchFindInput  :parent="props.parent" />
-             <IconMagnify class="  md:mt-2 md:ml-2 " />
                 <!-- <QueryButton  @click="go" class="shadow-xl">search</QueryButton> -->
 
 

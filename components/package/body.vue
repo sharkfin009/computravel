@@ -1,10 +1,10 @@
 <template>
-  <div class="relative  mx-5">
-    <div class="sticky top-[129px] md:top-[94px] bg-gray-100 mb-5 z-10 ">
+  <div class="relative mx-5">
+    <div class="sticky top-[129px] md:top-[94px] lg:top-[110px] bg-gray-100 mb-5 z-10">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
-      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full "
+      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full"
     >
       <!-- pics layout -->
       <div
@@ -17,7 +17,6 @@
           pb-4
           box-content
           pointer-events-none
-          
         "
         ref="scrollBox"
       >
@@ -95,7 +94,7 @@
         <!-- lg down: centered with max-width-->
 
         <div
-          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5 "
+          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5"
         >
           <!-- one pic-->
           <div
@@ -125,11 +124,9 @@
               class="
                 absolute
                 inset-0
-                bg-red-400
                 transition-opacity
                 duration-300
                 opacity-0
-                
               "
               :class="{ '!opacity-100': index == mobilePicPointer }"
             >
@@ -210,7 +207,7 @@
       <!-- case of many pix xl up : magazine layout-->
       <div
         v-if="images.length > 1"
-        class="hidden xl:flex pb-10 "
+        class="hidden xl:flex pb-10"
         ref="scrollContents"
       >
         <div
@@ -269,7 +266,7 @@
       ></TabMenu>
       <!-- tabs content -->
 
-      <div class="pb-10  tracking-wide leading-normal ">
+      <div class="pb-10 tracking-wide leading-normal">
         <!-- overview -->
         <div
           v-if="belowMd || activeTab === 0"
@@ -290,7 +287,7 @@
               {{ line }}.
             </p>
           </div>
-                 <h3
+          <h3
             class="
               block
               md:hidden
@@ -300,7 +297,7 @@
           >
             Details
           </h3>
-          <div class="rounded-xl bg-white p-5 md:p-12 ">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             <ul>
               <li>
                 <div>Prices from:</div>
@@ -383,7 +380,7 @@
               {{ line }}
             </p>
           </div>
-              <h3
+          <h3
             class="
               block
               md:hidden
@@ -401,7 +398,7 @@
 
         <!-- about destination -->
         <div
-          v-if="belowMd || activeTab === 2"
+          v-if="(belowMd || activeTab === 2 ) && aboutCopy"
           class="transform translate-x-0 transition ease-in duration-300"
         >
           <h3
@@ -415,12 +412,23 @@
           >
             About this destination
           </h3>
-          <div class="rounded-xl bg-white p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             {{ aboutCopy }}
           </div>
         </div>
 
         <!-- ts & cs -->
+           <h3
+            class="
+              block
+              md:hidden
+              text-xl text-center
+              font-semibold font-titillium
+              my-5
+            "
+          >
+            Terms and Conditions
+          </h3>
         <div
           v-if="activeTab === 3"
           class="
@@ -435,6 +443,7 @@
             duration-300
           "
         >
+       
           <ul class="list-disc">
             <li v-for="(line, index) in termsLines" :key="index">
               {{ line }}
@@ -443,7 +452,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -493,6 +501,7 @@ for (let i = 0; i < images.length - (images.length % 3); i++) {
 }
 let scrollPos = ref(0);
 const browseLeft = () => {
+  
   if (scrollPos.value > 0) {
     scrollPos.value--;
     scrollBox.value.scrollTo({
@@ -504,6 +513,7 @@ const browseLeft = () => {
 };
 
 const browseRight = () => {
+  alert()
   if (scrollPos.value < Math.floor(images.length / 3)) {
     scrollPos.value++;
     scrollBox.value.scrollTo({
@@ -522,6 +532,10 @@ let description = array[0];
 array.shift();
 
 const items = ["Overview", "Inc & Exc", "About This Destination", "Ts & Cs"];
+if(aboutCopy == ''){
+  items.splice(2,1)
+}
+
 const activeTab = ref(0);
 const setActiveTab = (tab) => {
   activeTab.value = tab;

@@ -15,7 +15,7 @@
     >
       <div>
         <div
-          class=" h-full bg-white flex items-end"
+          class=" h-full  flex items-end"
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="p-5 bg-white flex flex-col justify-between">
+      <div class="p-5 bg-white flex flex-col justify-between ">
         <div class="w-full font-titillium font-semibold text-2xl">
           <h3 class="text-center mb-3">{{ cutTitle }}</h3>
           <div class="flex items-center justify-center mb-3">

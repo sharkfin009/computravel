@@ -2,7 +2,7 @@
    
   <div
     v-if="package_data && destination_content"
-    class="bg-gray-100  md:px-10 pt-[129px] md:pt-[95px]"
+    class="bg-gray-100  md:px-10 pt-[129px] md:pt-[95px] lg:pt-[110px]"
   >
     
     <div class="w-full">

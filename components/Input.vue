@@ -11,7 +11,7 @@
       :id="inputName"
       :name="inputName"
       @input="setValue"
-      class="z-0 w-full rounded-xl bg-white input-outline p-4 shadow-xl hover:shadow-none"
+      class=" w-full rounded-xl bg-white input-outline p-4 shadow-xl hover:shadow-none"
       :type="type"
       :class="{
         greenClass:

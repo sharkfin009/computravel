@@ -46,7 +46,7 @@
       </NuxtLink>
       <div class="w-full px-2" v-if="route.path !== '/'">
         <div class="flex justify-evenly">
-          <SearchBar class="hidden md:block :w-[500px]" :parent="'header'" />
+          <SearchBar class="hidden md:block w-[80%]" :parent="'header'" />
         </div>
         <!--  enq now button: -->
       </div>
@@ -101,7 +101,7 @@
     </div>
     <!-- mobile search bar -->
     <div class="w-full flex justify-evenly ">
-      <SearchBar class="block md:hidden :w-[500px]" :parent="'header'" />
+      <SearchBar class="block md:hidden w-[80%]" :parent="'header'" />
     </div>
   </div>
 </template>

@@ -83,7 +83,7 @@ export const useStore = defineStore("search", {
       let query = `
             query{packages(
               sort:"title"
-                pagination:{page:1,pageSize:16}
+                pagination:{page:1,pageSize:100}
                 ){
                 data{
                     attributes{

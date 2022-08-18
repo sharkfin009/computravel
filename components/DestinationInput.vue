@@ -86,10 +86,7 @@ const wrapperClass = ref("");
 import {useStore} from "@/stores/search"
 const searchStore = useStore()
 onMounted(() => {
-  if(searchStore.destination.name !== null){
-    destination.value = searchStore.destination
-    }
- 
+
   findInput.value.focus();
   if (props.parent == "welcome") {
     wrapperClass.value = "top-[64%]";
@@ -107,7 +104,7 @@ const subdestinationSuggestions = ref([]);
 // clear
 const clear = () => {
   showSuggestions.value = false;
-  suggestions.value = [];
+  searchStore.suggestions.value = [];
   selectedSuggestion.value = 0;
 };
 
@@ -152,7 +149,6 @@ const manageKeyUp = (e) => {
     }
     // if suggestion:
     destination.value = suggestions.value[selectedSuggestion.value].name;
-    console.log(destination.value);
     clear();
 
     return;

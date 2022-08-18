@@ -1,32 +1,38 @@
 <template>
-  <div class="w-full h-full  "
->
-          <div
-        class="
-          fixed
-          inset-0
-          bg-black
-          opacity-0
-          transition
-          duration-300
-          w-screen
-          h-screen
-          pointer-events-none
-         
-          thisone
-          
-        "
-        :class="{
-          'opacity-40': suggestions.length > 0 && showFindSuggestions,
-        }"
-      />
-    <div class="relative w-full ">
+  <div class="w-full h-full">
+    <div
+      class="
+        fixed
+        inset-0
+        bg-black
+        opacity-0
+        transition
+        duration-300
+        w-screen
+        h-screen
+        pointer-events-none
+      "
+      :class="{
+        'opacity-40': suggestions.length > 0 && showFindSuggestions,
+      }"
+    />
+    <div class="relative w-full">
       <input
         id="findInput"
         name="search"
         type="text"
         v-model="searchStore.findQuery"
-        class="h-full text-sm rounded-full input-outline p-2 md:p-3 md:px-5 w-full"
+        class="
+          h-full
+          text-sm
+          lg:text-xl
+          rounded-full
+          input-outline
+          py-2
+          px-10
+          md:py-3 md:px-14
+          w-full
+        "
         :class="{ 'shadow-lg': inputHasFocus }"
         @keyup="manageKeyUp"
         @focus="findInputFocus"
@@ -39,7 +45,7 @@
       />
       <div
         class="
-          pr-3
+          pr-2
           absolute
           inset-y-0
           right-0
@@ -53,6 +59,10 @@
           @mousedown="clear()"
         />
       </div>
+      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%]">
+        <IconMagnify class=" md:mt-2 md:ml-2 mr-10 bg-green-avo rounded-full w-10 h-10 p-2" />
+      </div>
+
       <!-- autosuggest list-->
     </div>
     <div
@@ -69,7 +79,6 @@
       :class="wrapperClass"
       v-show="showFindSuggestions && suggestions.length > 0"
     >
-    
       <div
         class="
           relative
@@ -123,24 +132,27 @@
                     transition-colors
                   "
                 >
-           
-
                   <div
-                    class="hidden lg:block font-semibold mr-2 text-lime-700 "
+                    class="hidden lg:block font-semibold mr-2 text-lime-700"
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
-                      ' text-lime-200':
-                        index === selectedSuggestion,
+                      ' text-lime-200': index === selectedSuggestion,
                     }"
                   >
                     {{ suggestion.titleShort }}
                   </div>
                   <div
-                    class="block lg:hidden font-semibold mr-2 text-lime-900 text-xs text-center w-full" 
+                    class="
+                      block
+                      lg:hidden
+                      font-semibold
+                      mr-2
+                      text-lime-900 text-xs text-center
+                      w-full
+                    "
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
-                      ' !text-lime-200':
-                        index === selectedSuggestion,
+                      ' !text-lime-200': index === selectedSuggestion,
                     }"
                   >
                     {{ suggestion.titleShort }}
@@ -161,8 +173,7 @@
                 "
                 :class="{
                   ' !text-lime-200': index === hoveredSuggestion - 1,
-                  '  !text-lime-200':
-                    index === selectedSuggestion,
+                  '  !text-lime-200': index === selectedSuggestion,
                 }"
               >
                 {{ suggestion.destination }}
@@ -193,7 +204,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -264,12 +274,15 @@ const manageKeyUp = (e) => {
   if (e.key === "Enter") {
     // if no selection:
     if (selectedSuggestion.value === -1) {
-      return;
-    }
-    // if suggestion:
-    viewPackage(suggestions.value[selectedSuggestion.value].slug);
-    clear();
+          showFindSuggestions.value = false
 
+      searchDestination(searchStore.findQuery)
+     }
+    
+    // if suggestion:
+    viewPackage(suggestions.value[selectedSuggestion.value].slug,suggestions.value[selectedSuggestion.value].supplier_ref);
+    clear();
+    showFindSuggestions.value = false
     return;
   }
 

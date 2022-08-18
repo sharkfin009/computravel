@@ -1,14 +1,5 @@
 <template>
-  <div
-    class="
-      bg-gray-100
-      px-10
-      h-screen
-      w-screen
-      grid grid-rows-[130px,auto,auto]
-    "
-  >
-    <div></div>
+  <div class="bg-gray-100 px-10 w-screen pt-[129px] md:pt-[95px] lg:pt-[120px]">
     <div>
       <SearchOptions class="" />
       <div
@@ -24,34 +15,25 @@
       </div>
       <div
         class="w-full h-[500px] flex justify-center items-center"
-        v-if="!searchStore.loadingState && searchStore.results.length == 0"
-      > 
-    <div class="flex flex-col gap-10 items-center text-center">
-      <IconSad class="w-[30px]"/>
-      Sorry we have no results! <br>Please try changing the search filter settings...</div>
+        v-if="!searchStore.loadingState && !noResults"
+      >
+        <div class="flex flex-col gap-10 items-center text-center">
+          <IconSad class="w-[30px]" />
+          Sorry we have no results for that search. <br />
+          Take a look at these random adventures:
+        </div>
       </div>
     </div>
-    <div v-if="resultsReady" class="  overflow-y-auto hide-scroll w-full pb-10">
+    <div v-if="resultsReady" class="overflow-y-auto hide-scroll w-full pb-10">
+      <div class="flex flex-wrap gap-6 justify-center py-10 w-full rounded">
         <div
-          
-          class="
-            flex flex-wrap
-            gap-6
-            justify-center
-            py-10
-            w-full
-            
-            rounded
-          "
+          class="shadow-2xl hover:shadow-none"
+          v-for="(card, index) in searchStore.results"
+          :key="index"
         >
-          <div
-            class="shadow-2xl hover:shadow-none"
-            v-for="(card, index) in searchStore.results"
-            :key="index"
-          >
-            <Card :package="card.attributes" />
-          </div>
+          <Card :package="card.attributes" />
         </div>
+      </div>
     </div>
   </div>
 </template>
@@ -65,17 +47,22 @@ import { useStore } from "@/stores/search";
 const resultsReady = ref(false);
 const searchStore = useStore();
 onMounted(() => {
-   if (searchStore.results.length == 0) searchStore.fireDefaultQuery();
+  if (searchStore.results.length == 0) searchStore.fireDefaultQuery();
 });
 
 if (searchStore.results.length > 0) {
   resultsReady.value = true;
+  noResults.value = false
 }
-
+const noResults = ref(false);
 watch(
   () => searchStore.results,
   () => {
     resultsReady.value = true;
+    if (searchStore.results.length == 0) {
+      noResults.value = true;
+      searchStore.fireDefaultQuery();
+    }
   }
 );
 </script>
