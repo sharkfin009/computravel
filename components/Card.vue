@@ -147,7 +147,7 @@ for (let i = 0; i < props.package.star_rating; i++) {
 }
 
 onMounted(() => {
-  console.log(props.package);
+  // console.log(props.package);
 });
 </script>
 

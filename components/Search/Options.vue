@@ -60,17 +60,17 @@
       />
     </div>
     <!-- last two items flex -->
-    <div class="flex flex-wrap w-full justify-evenly gap-9 md:gap-10 m-5 ">
+    <div class="flex flex-wrap w-full justify-evenly gap-9 md:gap-10 m-5">
       <div class="h-full max-w-[500px]">
         <div class="mb-1">Price Range</div>
         <div
           class="
-            grid md:grid-cols-[100px,auto,100px]
-           grid-cols-[50px,auto,90px]
+            grid
+            md:grid-cols-[100px,auto,100px]
+            grid-cols-[50px,auto,90px]
             bg-white
             py-4
-            md:py-[15px]
-            md:px-5
+            md:py-[15px] md:px-5
             inputsStyling
             rounded-xl
             text-sm
@@ -113,9 +113,7 @@
         </div>
       </div>
       <div class="flex items-end justify-center">
-        <QueryButton
-          @click="enquiry.showEnquireNow = true"
-          class="shadow-xl "
+        <QueryButton @click="enquiry.showEnquireNow = true" class="shadow-xl"
           >send us an enquiry</QueryButton
         >
       </div>
@@ -141,6 +139,7 @@ const selectInput = (input) => {
   searchStore.activeInput = input;
 };
 
+
 const setValue = (inputName, value) => {
   console.log(value);
   if (value == null) return;
@@ -158,7 +157,14 @@ const setValue = (inputName, value) => {
   }
   console.log(valueForSearchQuery);
   searchStore[inputName] = valueForSearchQuery;
-   searchStore.fireQuery();
+   watch(
+    () => {
+      searchStore[inputName];
+    },
+    () => {
+      searchStore.fireQuery()
+    }
+  );
 };
 
 searchStore.$subscribe((mutation, state) => {
@@ -168,7 +174,7 @@ searchStore.$subscribe((mutation, state) => {
   if (state.price_max < state.price_min) {
     state.price_min = state.price_max;
   }
-
+ 
 });
 
 const numberWithCommas = (x) => {

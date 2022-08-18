@@ -1,11 +1,9 @@
 <template>
-  <div class="fixed w-full z-50 pb-5"
+  <div
+    class="fixed w-full z-50 pb-5"
     :class="{ 'bg-gray-100': route.path !== '/' }"
-    >
-    <div
-      class="flex w-full items-center justify-between py-3 lg:px-5 px-5"
-    
-    >
+  >
+    <div class="flex w-full items-center justify-between py-3 lg:px-5 px-5">
       <NuxtLink class="relative text-primary" to="/">
         <div
           class="
@@ -46,7 +44,7 @@
       </NuxtLink>
       <div class="w-full px-2" v-if="route.path !== '/'">
         <div class="flex justify-evenly">
-          <SearchBar class="hidden md:block w-[80%]" :parent="'header'" />
+          <SearchBar  class="hidden md:block w-[80%]" :parent="'header'" />
         </div>
         <!--  enq now button: -->
       </div>
@@ -90,17 +88,19 @@
         />
       </transition>
       <transition name="fade">
-        <EnquiryConfirmation v-if="enquiry.showConfirmation">
-          Thank you for your enquiry!
-          <br />
-          Your enquiry reference is {{ enquiry.enquiryRef }}
-          One of our travel experts will revert to you very soon. You may add to
-          or remove items from your list at any point.
-        </EnquiryConfirmation>
+        <ConfirmModal v-if="enquiry.showConfirmation">
+          <h3 class="text-6xl font-bold">Thankyou for your enquiry!</h3>
+          <p>One of our travel experts will be in touch soon.</p>
+          <div>
+            Your enquiry reference is
+            <span class="text-lime-500"> {{ enquiry.enquiryRef }} </span>
+          </div>
+        </ConfirmModal>
+
       </transition>
     </div>
     <!-- mobile search bar -->
-    <div class="w-full flex justify-evenly ">
+    <div v-if="route.path !== '/'" class="w-full flex justify-evenly">
       <SearchBar class="block md:hidden w-[80%]" :parent="'header'" />
     </div>
   </div>

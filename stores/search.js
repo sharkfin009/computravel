@@ -28,6 +28,7 @@ export const useStore = defineStore("search", {
       let noRegionFilter = false;
       let destinationFilterString
       if (this.destination.name == null) {
+        alert('null')
         destinationFilterString = '';
       } else {
         destinationFilterString = `${this.destination.type}:{ eq:"${this.destination.name}"}`

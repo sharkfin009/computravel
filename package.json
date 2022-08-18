@@ -12,6 +12,8 @@
     "nuxt": "3.0.0-rc.8"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.6.7",
+    "@heroicons/vue": "^1.0.6",
     "@nuxtjs/algolia": "^0.7.0",
     "@pinia/nuxt": "^0.4.0",
     "@vuelidate/core": "^2.0.0-alpha.34",

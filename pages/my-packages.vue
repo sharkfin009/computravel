@@ -78,21 +78,21 @@
           @click="updateList()"
           >Send your updated list to us</BookButton
         >
-        <div  v-if="enquireButtonLogic">
-        <BookButton @click="enquire"
-          >submit your enquiry</BookButton
-        >
-        <div class="py-5 text-xs">You may edit your list later</div>
-</div>
+        <div v-if="enquireButtonLogic">
+          <BookButton @click="enquire">submit your enquiry</BookButton>
+          <div class="py-5 text-xs">You may edit your list later</div>
+        </div>
       </div>
     </div>
 
     <transition name="fade" v-if="enquiryState.showUpdateModal">
       <EnquiryConfirmation v-if="enquiryState.showUpdateModal">
-        Thank you for updating your list for enquiry reference no
-        {{ enquiryState.enquiryRef }}
-        <br />
-        One of our travel experts will revert to you very soon.
+        <p>
+          Thank you for updating your list for enquiry reference no
+          <span class="text-lime-600"> {{ enquiryState.enquiryRef }}</span>
+          <br />
+          One of our travel experts will revert to you very soon.
+        </p>
       </EnquiryConfirmation>
     </transition>
   </div>
@@ -177,7 +177,6 @@ function ellipsis(text, length) {
 }
 
 const enquire = () => {
-  alert();
   enquiryState.showEnquireNow = true;
   navigateTo({
     path: "/",

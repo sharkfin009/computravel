@@ -44,7 +44,7 @@
     </div>
     <div
       v-if="resultsReady && searchStore.fallbackResults.length > 0"
-      class="overflow-y-auto hide-scroll w-full pb-10"
+      class="overflow-y-auto hide-scroll w-full pb-10 bg-blue-100"
     >
       <div class="flex flex-wrap gap-6 justify-center py-10 w-full rounded">
         <div
