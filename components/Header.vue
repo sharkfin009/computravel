@@ -3,43 +3,51 @@
     class="fixed w-full z-50 pb-5 md:pb-0"
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
-    <div class="flex w-full items-center justify-between py-3 lg:px-5 px-5">
-      <NuxtLink class="relative text-primary" to="/">
+    <div class="absolute block md:hidden w-full h-[1000px] pt-3 ml-5 flex">
+      <NuxtLink class="text-primary" to="/">
+        <div
+        style="transform-origin: 0% 0%;"
+          class="
+            bg-opacity-80 bg-green-avo
+            rounded-full
+           scale-[45%]
+           pt-3
+            shadow-lg
+            px-5
+            py-2
+          "
+        >
+          <IconComputravelLogo class="" />
+        </div>
+      </NuxtLink>
+    </div>
+    <div
+      class="
+        relative
+        flex
+        w-full
+        items-center
+        justify-between
+        py-3
+        lg:px-5
+        px-5
+      "
+    >
+      <!-- mobile logo -->
+
+      <NuxtLink class="text-primary" to="/">
         <div
           class="
             hidden
-            lg:block
-            relative
+            md:block
             bg-opacity-80 bg-green-avo
             rounded-full
             shadow-lg
-            py-3
-            w-[290px]
-            lg:h-[80px]
+            px-5
+            py-2
           "
         >
-          <IconComputravelSubtext
-            class="hidden lg:block h-full w-full absolute inset-0"
-          />
-          <IconComputravelLogo class="h-full w-full absolute inset-0" />
-        </div>
-
-        <!-- mobile: -->
-        <div
-          class="
-            block
-            lg:hidden
-            relative
-            bg-opacity-80 bg-green-avo
-            rounded-full
-            shadow-lg
-            flex
-            justify-center
-            w-[120px]
-            h-[33px]
-          "
-        >
-          <IconComputravelLogo class="h-full w-full" />
+          <IconComputravelLogo class="" />
         </div>
       </NuxtLink>
 

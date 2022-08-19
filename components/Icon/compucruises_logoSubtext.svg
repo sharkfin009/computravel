@@ -1,0 +1,25 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="464.87" height="15.25" viewBox="0 0 464.87 15.25">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        font-size: 81.1px;
+        font-family: EurostileRegular, Eurostile;
+      }
+
+      .cls-1 {
+        fill: #4b6b06;
+      }
+
+      .cls-2 {
+        fill: #50710e;
+      }
+
+      .cls-3 {
+        fill: #8cc640;
+      }
+    </style>
+  </defs>
+  <title>logoSubtext</title>
+  <text class="cls-1" transform="translate(-4.11 -9.79)">compucr<tspan class="cls-2" x="301.48" y="0">u</tspan><tspan x="342.62" y="0">ises</tspan></text>
+  <text class="cls-3" transform="translate(-5.21 -11.26)">compucruises</text>
+</svg>

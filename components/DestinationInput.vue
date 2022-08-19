@@ -103,10 +103,10 @@ const destinationSuggest = useDestinationSuggestStore();
 onMounted(() => {
   findInput.value.focus();
   if (props.parent == "welcome") {
-    wrapperClass.value = "top-[64%]";
+    wrapperClass.value = "md:top-[64%]";
   }
   if (props.parent == "header") {
-    wrapperClass.value = "top-[120%]";
+    wrapperClass.value = "-top-[50%] md:top-[120%]";
   }
 });
 const hoveredSuggestion = ref(0);

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 lg:px-10 w-screen pt-[129px] md:pt-[88px] lg:pt-[101px]">
+  <div class="bg-gray-100 p-2 lg:px-10 w-screen pt-[129px] md:pt-[88px] lg:pt-[101px]">
     <div>
       <SearchOptions class="" />
       <div

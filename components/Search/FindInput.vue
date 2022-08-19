@@ -100,6 +100,7 @@
           unroll
           shadow-3xl
           bg-white
+
           lg:bg-gray-300
           p-2
           lg:p-10
@@ -114,7 +115,7 @@
           'md:bg-opacity-60 ': route.path == '/',
         }"
       >
-        <div class="w-full">
+        <div class="hidden md:block w-full">
           <div
             v-for="(suggestion, index) in suggestions"
             :class="{
@@ -156,22 +157,7 @@
                   >
                     {{ suggestion.titleShort }}
                   </div>
-                  <div
-                    class="
-                      block
-                      lg:hidden
-                      font-semibold
-                      mr-2
-                      text-lime-900 text-xs text-center
-                      w-full
-                    "
-                    :class="{
-                      ' !text-lime-200': index === hoveredSuggestion - 1,
-                      ' !text-lime-200': index === selectedSuggestion,
-                    }"
-                  >
-                    {{ suggestion.titleShort }}
-                  </div>
+              
                   <div class="hidden lg:block">
                     {{ suggestion.description }}
                   </div>
@@ -200,6 +186,28 @@
         <div class="hidden lg:block p-2">
           <div class="mb-2">related searches:</div>
           <div class="grid grid-cols-2 gap-2">
+            <div
+              v-for="(item, index) in findSuggest.suggestions"
+              :key="index"
+              class="
+                flex
+                items-center
+                bg-gray-100
+                rounded-full
+                p-1
+                hover:bg-green-text hover:text-lime-200
+              "
+              @mousedown="searchDestination(item.name)"
+            >
+              <IconSearch class="h-4" />
+              <div class="">{{ item.name }}</div>
+            </div>
+          </div>
+        </div>
+        <!-- mobile: -->
+        <div class="block lg:hidden p-2 h-[250px] overflow-auto">
+          <div class="mb-2">related searches:</div>
+          <div class="grid  gap-2">
             <div
               v-for="(item, index) in findSuggest.suggestions"
               :key="index"
@@ -395,7 +403,7 @@ const getDestinationSuggestions = async () => {
   let subdestinationSuggestions = [];
   let destinationSuggestions = [];
   await subdestinationSearch({
-    query: searchStore.destinationQuery,
+    query: searchStore.findQuery,
     requestOptions: {
       hitsPerPage: 10,
     },
@@ -411,7 +419,7 @@ const getDestinationSuggestions = async () => {
   });
 
   await destinationSearch({
-    query: searchStore.destinationQuery,
+    query: searchStore.findQuery,
     requestOptions: {
       hitsPerPage: 10,
     },

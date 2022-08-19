@@ -167,8 +167,8 @@ const numberWithCommas = (x) => {
 };
 
 const sort_options = [
-  { order: "price:desc", label: "price high to low" },
-  { order: "price:asc", label: "price low to high" },
+  "Price low to high" ,
+  "Price high to low" ,
 ];
 
 

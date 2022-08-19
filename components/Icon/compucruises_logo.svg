@@ -1,0 +1,43 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="478.21" height="81.45" viewBox="0 0 478.21 81.45">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        font-size: 81.1px;
+        font-family: EurostileRegular, Eurostile;
+      }
+
+      .cls-1 {
+        fill: #4b6b06;
+      }
+
+      .cls-2 {
+        fill: #50710e;
+      }
+
+      .cls-3 {
+        fill: #8cc640;
+      }
+
+      .cls-4, .cls-5 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+
+      .cls-4 {
+        stroke: #466706;
+      }
+
+      .cls-5 {
+        stroke: #96d802;
+      }
+    </style>
+  </defs>
+  <title>computravel_logo</title>
+  <text class="cls-1" transform="translate(1.1 56.07)">compucr<tspan class="cls-2" x="301.48" y="0">u</tspan><tspan x="342.62" y="0">ises</tspan></text>
+  <text class="cls-3" transform="translate(0 54.6)">compucruises</text>
+  <path class="cls-4" d="M52.29,39.34c2,0,2,2,4,2s2-2,4-2,2,2,4,2,2-2,4-2"/>
+  <path class="cls-5" d="M51.86,38.41c2,0,2,2,4,2s2-2,4-2,2,2,4,2,2-2,4-2"/>
+  <path class="cls-4" d="M52.29,32.34c2,0,2,2,4,2s2-2,4-2,2,2,4,2,2-2,4-2"/>
+  <path class="cls-5" d="M51.86,31.41c2,0,2,2,4,2s2-2,4-2,2,2,4,2,2-2,4-2"/>
+</svg>

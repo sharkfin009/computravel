@@ -14,7 +14,7 @@ export const useStore = defineStore("search", {
     price_min: ref(0),
     price_max: ref(100000),
     category: "All",
-    sort_by: "",
+    sort_by: "Price low to high",
     loadingState: false,
     fallbackResults: ref([]),
     firstLoad: ref(true)
@@ -38,7 +38,12 @@ export const useStore = defineStore("search", {
       if (this.to_date == "" && this.from_date == "") {
         DatesFilter = false;
       }
+      let hashMap = new Map([
+        ["Price high to low","price:desc"],
+        ["Price low to high","price:asc"]
+      ])
       
+      let sortString = hashMap.get(this.sort_by)
       let dateFilterString = DatesFilter
         ? ` from:{ between:["${this.from_date}","${this.to_date}"]}`
         : "";
@@ -48,7 +53,7 @@ export const useStore = defineStore("search", {
         this.category !== "All" ? ` category:{eq:"${this.category}"}` : "";
       let query = `
             query{packages(
-              sort: "${this.sort_by}",
+              sort: "${sortString}",
               filters: {${destinationFilterString}  ${priceFilterString}  ${categoryFilterString} ${dateFilterString}},
             pagination:{page:1,pageSize:16}
             ){
@@ -76,7 +81,7 @@ export const useStore = defineStore("search", {
           this.loadingState = false;
         })
         .catch((error) => {
-          data.value = error;
+          console.log(error)
         });
     },
     fireDefaultQuery() {
@@ -85,7 +90,7 @@ export const useStore = defineStore("search", {
       this.loadingState = true;
       let query = `
             query{packages(
-              sort:"title"
+       
                 pagination:{page:1,pageSize:30}
                 ){
                 data{
