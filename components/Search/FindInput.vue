@@ -59,9 +59,22 @@
           @mousedown="clear()"
         />
       </div>
-      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%] ">
+      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%]">
         <NuxtLink to="/search">
-        <IconMagnify class=" md:mt-2 md:ml-2 mr-10 bg-green-avo hover:bg-lime-500 rounded-full w-10 h-10 p-2" />
+          <IconMagnify
+            class="
+              md:mt-2 md:ml-2
+              mr-10
+              bg-green-avo
+              hover:bg-green-text
+              text-black-200
+              hover:text-white
+              rounded-full
+              w-10
+              h-10
+              p-2
+            "
+          />
         </NuxtLink>
       </div>
 
@@ -188,7 +201,7 @@
           <div class="mb-2">related searches:</div>
           <div class="grid grid-cols-2 gap-2">
             <div
-              v-for="(item, index) in destinationSuggestions"
+              v-for="(item, index) in findSuggest.suggestions"
               :key="index"
               class="
                 flex
@@ -210,6 +223,7 @@
   </div>
 </template>
 <script setup>
+
 const route = useRoute();
 const props = defineProps({
   parent: String,
@@ -232,9 +246,9 @@ const selectedSuggestion = ref(-1);
 const suggestions = ref([]);
 const hoveredSuggestion = ref(0);
 const destinationSuggestions = ref([]);
-//   const emit = defineEmits(['fireFindQuery', 'clearAll', 'fireSearch'])
 const clear = () => {
-  searchStore.findQuery = "";
+  searchStore.destinationQuery = ''
+    searchStore.findQuery = "";
   showFindSuggestions.value = false;
   suggestions.value = [];
   selectedSuggestion.value = -1;
@@ -276,16 +290,19 @@ const manageKeyUp = (e) => {
   if (e.key === "Enter") {
     // if no selection:
     if (selectedSuggestion.value === -1) {
-          showFindSuggestions.value = false
+      showFindSuggestions.value = false;
 
-      searchDestination(searchStore.findQuery)
-      return
-     }
-    
+      searchDestination(searchStore.findQuery);
+      return;
+    }
+
     // if suggestion:
-    viewPackage(suggestions.value[selectedSuggestion.value].slug,suggestions.value[selectedSuggestion.value].supplier_ref);
+    viewPackage(
+      suggestions.value[selectedSuggestion.value].slug,
+      suggestions.value[selectedSuggestion.value].supplier_ref
+    );
     clear();
-    showFindSuggestions.value = false
+    showFindSuggestions.value = false;
     return;
   }
 
@@ -334,7 +351,7 @@ const fireSuggestionQuery = async () => {
       supplier_ref: item.supplier_ref,
     }));
 
-    getDestinationSuggestions(suggestions.value[0].destination);
+    getDestinationSuggestions(searchStore.findQuery);
 
     function ellipsis(text, length) {
       if (text.length > length) {
@@ -370,33 +387,60 @@ const findInputFocus = () => {
   inputHasFocus.value = true;
 };
 
-const { result: destinationResult, search: destinationSearch } = useSearch(
-  "subdestinations_from_destination"
-);
-
-const getDestinationSuggestions = async (destination) => {
-  await destinationSearch({
-    query: destination,
+const { result: subdestinationResult, search: subdestinationSearch } =
+  useSearch("subdestinations");
+const { result: destinationResult, search: destinationSearch } =
+  useSearch("destinations");
+const getDestinationSuggestions = async () => {
+  let subdestinationSuggestions = [];
+  let destinationSuggestions = [];
+  await subdestinationSearch({
+    query: searchStore.destinationQuery,
     requestOptions: {
-      hitsPerPage: 5,
+      hitsPerPage: 10,
     },
   }).then((result) => {
     if (result === null || result === undefined) {
       return;
     }
-
-    destinationSuggestions.value = result.hits.map((item) => ({
+    findSuggest.showSuggestions = true;
+    subdestinationSuggestions = result.hits.map((item) => ({
       name: item.subdestination,
+      type: "subdestination",
     }));
+  });
+
+  await destinationSearch({
+    query: searchStore.destinationQuery,
+    requestOptions: {
+      hitsPerPage: 10,
+    },
+  }).then((result) => {
+    if (result === null || result === undefined) {
+      return;
+    }
+    findSuggest.showSuggestions = true;
+
+    destinationSuggestions = result.hits.map((item) => ({
+      name: item.destination,
+      type: "destination",
+    }));
+    findSuggest.suggestions = [
+      ...destinationSuggestions,
+      ...subdestinationSuggestions,
+    ];
   });
 };
 
 import { useStore } from "@/stores/search";
+const searchStore = useStore()
 
-const searchStore = useStore();
+import{ useFindSuggestStore} from "~~/stores/findSuggest"
+const findSuggest = useFindSuggestStore();
 
 const searchDestination = (destination) => {
-  searchStore.destination = destination
+  searchStore.destinationQuery = destination;
+  searchStore.destination = destination;
   searchStore.findQuery = "";
   searchStore.fireQuery();
   if (route.path != "/search") {

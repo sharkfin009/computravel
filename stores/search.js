@@ -6,6 +6,7 @@ export const useStore = defineStore("search", {
     activeInput: ref(""),
     results: [],
     region: "",
+    destinationQuery: ref(''),
     destination: ref(''),
     destinationType:ref('subdestination'),
     from_date: "",
@@ -13,7 +14,7 @@ export const useStore = defineStore("search", {
     price_min: ref(0),
     price_max: ref(100000),
     category: "All",
-    sort_by: "price:asc",
+    sort_by: "",
     loadingState: false,
     fallbackResults: ref([]),
     firstLoad: ref(true)

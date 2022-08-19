@@ -41,6 +41,7 @@ export default defineNuxtConfig({
   },
   css: [
     '~/styles/general.css',
+    'animate.css'
   ],
 
 

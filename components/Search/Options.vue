@@ -17,12 +17,12 @@
       font-medium
     "
   >
-    <!-- first row grid -->
+    <!--  grid -->
     <div class=" grid lg:grid-cols-1 xl:grid-cols-3 gap-5 md-gap-10 w-full">
       <!-- destination autosuggest input -->
       <DestinationInput @setValue="setValue" />
 
-      <CTSelect
+      <SearchSelect
         label="Category"
         inputName="category"
         :options="categories"
@@ -31,7 +31,7 @@
       />
     
       <!-- dates -->
-      <Input
+      <SearchInput
         inputName="from_date"
         label="Show Packages From"
         type="date"
@@ -40,7 +40,7 @@
         placeholder="Anytime"
         @setValue="setValue"
       />
-      <Input
+      <SearchInput
         inputName="to_date"
         label="To"
         type="date"
@@ -51,7 +51,7 @@
       />
       <!-- sort by dropdown -->
 
-      <CTSelect
+      <SearchSelect
         label="Sort by"
         inputName="sort_by"
         :options="sort_options"
@@ -135,21 +135,19 @@ const selectInput = (input) => {
 
 
 const setValue = (inputName, value) => {
-//   if (value == null) return;
-// console.log(value)
-//   let valueForSearchQuery;
-//   if (typeof value == "string") {
-//     valueForSearchQuery = value;
-//   } else {
-//     if (inputName == "sort_by") {
-//       valueForSearchQuery = value.order;
-//     }
-//     if (inputName == "destination") {
-//       valueForSearchQuery = value;
-//     }
-//   }
-//   console.log(valueForSearchQuery);
-//   searchStore[inputName] = valueForSearchQuery
+  if (value == null) return;
+console.log(value)
+  let valueForSearchQuery;
+  if (typeof value == "string") {
+    valueForSearchQuery = value;
+  } else {
+    if (inputName == "sort_by") {
+      valueForSearchQuery = value.order;
+    }
+ 
+  }
+  console.log(valueForSearchQuery);
+  searchStore[inputName] = valueForSearchQuery
   searchStore.fireQuery()
 
 };
@@ -172,6 +170,7 @@ const sort_options = [
   { order: "price:desc", label: "price high to low" },
   { order: "price:asc", label: "price low to high" },
 ];
+
 
 const categories = [
   "Adventure",
@@ -210,12 +209,12 @@ searchStore.$reset()
   width: 19px;
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
-  background-color: #8fc15a;
+  background-color: #d9e8c9;
   margin-top: -2px;
   transform: translateX(-50%);
   pointer-events: all;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgb(115, 115, 115);
+  box-shadow: 2px 2px 5px rgba(190, 190, 190, 0.801);
 }
 
 #max input[type="range"]::-webkit-slider-thumb {
@@ -224,12 +223,12 @@ searchStore.$reset()
   width: 19px;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
-  background-color: #8fc15a;
+  background-color: #d9e8c9;
   margin-top: -2px;
   transform: translateX(50%);
   pointer-events: all;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgb(122, 122, 122);
+  box-shadow: 2px 2px 5px rgb(190, 190, 190, 0.801);
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useSuggestStore = defineStore("suggest", {
+export const useFindSuggestStore = defineStore("findSuggest", {
     state: () => ({
         suggestions: ref([]),
         query:ref(''),

@@ -1,5 +1,5 @@
 <template>
-  <div class=" bg-light-200 font-open-sans ring">
+  <div class=" bg-light-200 font-open-sans ">
     
     <Header />
 

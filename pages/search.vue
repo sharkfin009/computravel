@@ -21,10 +21,10 @@
           !searchStore.firstLoad
         "
       >
-        <div class="flex flex-col gap-5 items-center text-center">
+        <div class="flex flex-col gap-5 items-center justify-center text-center h-[200px]">
           <IconSad class="w-[30px]" />
           Sorry we have no results for that search. <br />
-          Take a look at these adventures:
+ 
         </div>
       </div>
     </div>
