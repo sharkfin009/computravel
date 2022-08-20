@@ -1,6 +1,16 @@
 <template>
   <div class="relative mx-5">
-    <div class="sticky top-[129px] md:top-[94px] lg:top-[110px] bg-gray-100 mb-5 z-10">
+    <div
+      class="
+        sticky
+        top-[129px]
+        md:top-[94px]
+        lg:top-[110px]
+        bg-gray-100
+        mb-5
+        z-10
+      "
+    >
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -18,101 +28,28 @@
           box-content
           pointer-events-none
         "
-        ref="scrollBox"
       >
-        <!-- chevrons -->
-        <div
-          class="
-            absolute
-            inset-0
-            h-full
-            w-full
-            hidden
-            xl:flex
-            justify-between
-            items-end
-            pb-20
-            px-20
-            pointer-events-none
-          "
-        >
-          <div>
-            <div
-              class="
-                bg-green-avo
-                rounded-full
-                p-4
-                bg-opacity-50
-                pointer-events-auto
-                duration-500
-                hover:bg-opacity-100
-                transition-all
-              "
-              v-if="scrollPos > 0 && images.length > 1"
-            >
-              <IconChevronLeft
-                class="
-                  text-lime-600
-                  transform
-                  scale-150
-                  cursor-pointer
-                  pointer-events-auto
-                "
-                @click="browseLeft"
-              />
-            </div>
-          </div>
-          <div>
-            <div
-              class="
-                bg-green-avo
-                rounded-full
-                p-4
-                bg-opacity-50
-                pointer-events-auto
-                duration-500
-                hover:bg-opacity-100
-                transition-all
-              "
-              v-if="
-                scrollPos < Math.floor(images.length / 3) - (images.length % 3)
-              "
-            >
-              <IconChevronRight
-                class="
-                  text-lime-600
-                  transform
-                  scale-150
-                  cursor-pointer
-                  pointer-events-auto
-                "
-                @click="browseRight"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- lg down: centered with max-width-->
+        <!-- all screens, one pic: centered with max-width-->
 
-        <div
-          class="flex xl:hidden justify-center w-full pb-6 h-full w-full px-5"
-        >
-          <!-- one pic-->
+        <div class="flex justify-center pb-6 h-full w-full px-5">
           <div
             v-if="images.length == 1"
-            class="rounded-xl overflow-hidden max-w-[800px]"
+            class="rounded-xl overflow-hidden max-w-screen-md"
           >
             <img class="w-full h-full object-cover" :src="images[0]" />
           </div>
-          <!-- many pics -->
+
+          <!-- many pics mobile:-->
 
           <div
             v-if="images.length > 1"
             class="
+              block
+              xl:hidden
               relative
               w-full
               h-full
-              justify-center
-              max-w-[800px]
+              max-w-screen-md
               bg-blue-100
               rounded-xl
               overflow-hidden
@@ -121,13 +58,7 @@
             <div
               v-for="(image, index) of images"
               :key="index"
-              class="
-                absolute
-                inset-0
-                transition-opacity
-                duration-300
-                opacity-0
-              "
+              class="absolute inset-0 transition-opacity duration-300 opacity-0"
               :class="{ '!opacity-100': index == mobilePicPointer }"
             >
               <img class="w-full h-full object-cover" :src="image" />
@@ -152,8 +83,7 @@
                   class="
                     bg-green-avo
                     rounded-full
-                    bg-opacity-50
-                    scale-[70%]
+                    scale-[80%]
                     pointer-events-auto
                     duration-500
                     hover:bg-opacity-100
@@ -178,8 +108,7 @@
                   class="
                     bg-green-avo
                     rounded-full
-                    scale-[70%]
-                    bg-opacity-50
+                    scale-[80%]
                     pointer-events-auto
                     duration-500
                     hover:bg-opacity-100
@@ -203,12 +132,83 @@
           </div>
         </div>
       </div>
+      <!-- chevrons xl up: -->
+      <div
+        class="
+          absolute
+          inset-0
+          h-full
+          w-full
+          hidden
+          xl:flex
+          justify-between
+          items-end
+          pb-20
+          px-20
+          pointer-events-none
+        "
+      >
+        <div>
+          <div
+            class="
+              bg-green-avo
+              rounded-full
+              p-4
+              bg-opacity-50
+              pointer-events-auto
+              duration-500
+              hover:bg-opacity-100
+              transition-all
+            "
+            v-if="scrollPos > 0 && images.length > 1"
+          >
+            <IconChevronLeft
+              class="
+                text-lime-600
+                transform
+                scale-150
+                cursor-pointer
+                pointer-events-auto
+              "
+              @click="browseLeft"
+            />
+          </div>
+        </div>
+        <div>
+          <div
+            class="
+              bg-green-avo
+              rounded-full
+              p-4
+              bg-opacity-50
+              pointer-events-auto
+              duration-500
+              hover:bg-opacity-100
+              transition-all
+            "
+            v-if="
+              scrollPos < Math.floor(images.length / 3) - (images.length % 3)
+            "
+          >
+            <IconChevronRight
+              class="
+                text-lime-600
+                transform
+                scale-150
+                cursor-pointer
+                pointer-events-auto
+              "
+              @click="browseRight"
+            />
+          </div>
+        </div>
+      </div>
 
-      <!-- case of many pix xl up : magazine layout-->
+      <!--  many pix xl up : magazine layout-->
       <div
         v-if="images.length > 1"
-        class="hidden xl:flex pb-10"
-        ref="scrollContents"
+        class="hidden xl:flex pb-10 overflow-x-hidden overflow-y-hidden"
+        ref="scrollBox"
       >
         <div
           class=""
@@ -297,7 +297,7 @@
           >
             Details
           </h3>
-          <div class="rounded-xl bg-white p-5 md:p-12">
+          <div class="rounded-xl bg-white p-4 lg:p-12">
             <ul>
               <li>
                 <div>Prices from:</div>
@@ -398,7 +398,7 @@
 
         <!-- about destination -->
         <div
-          v-if="(belowMd || activeTab === 2 ) && aboutCopy"
+          v-if="(belowMd || activeTab === 2) && aboutCopy"
           class="transform translate-x-0 transition ease-in duration-300"
         >
           <h3
@@ -418,17 +418,17 @@
         </div>
 
         <!-- ts & cs -->
-           <h3
-            class="
-              block
-              md:hidden
-              text-xl text-center
-              font-semibold font-titillium
-              my-5
-            "
-          >
-            Terms and Conditions
-          </h3>
+        <h3
+          class="
+            block
+            md:hidden
+            text-xl text-center
+            font-semibold font-titillium
+            my-5
+          "
+        >
+          Terms and Conditions
+        </h3>
         <div
           v-if="activeTab === 3"
           class="
@@ -443,7 +443,6 @@
             duration-300
           "
         >
-       
           <ul class="list-disc">
             <li v-for="(line, index) in termsLines" :key="index">
               {{ line }}
@@ -501,7 +500,6 @@ for (let i = 0; i < images.length - (images.length % 3); i++) {
 }
 let scrollPos = ref(0);
 const browseLeft = () => {
-  
   if (scrollPos.value > 0) {
     scrollPos.value--;
     scrollBox.value.scrollTo({
@@ -531,8 +529,8 @@ let description = array[0];
 array.shift();
 
 const items = ["Overview", "Inc & Exc", "About This Destination", "Ts & Cs"];
-if(aboutCopy == ''){
-  items.splice(2,1)
+if (aboutCopy == "") {
+  items.splice(2, 1);
 }
 
 const activeTab = ref(0);
