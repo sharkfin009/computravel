@@ -3,7 +3,7 @@
         class="
          
           p-5
-          rounded-l-full
+          rounded-l-xl
           hover:-translate-x-[0%]
           translate-x-[62%]
           transition

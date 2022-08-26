@@ -1,7 +1,7 @@
 <template>
   <div class="fixed inset-0 flex justify-end items-center">
     <div class="flex flex-col w-50 text-3xli text-white">
-   <SocialButton class=" bg-blue-500"> 
+   <SocialButton class=" bg-blue-500" @click="share('facebook')"> 
         <fa-icon icon="fab fa-facebook  " />
         <div class="text-xl">share</div>
      </SocialButton> 
