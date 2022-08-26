@@ -23,18 +23,18 @@
             class="
               text-white text-shadow
               font-medium font-titillium
-              xl:text-6xl
+              xl:text-5xl
               md:text-3xl
               text-2xl
-              md:w-[50vw]
+              md:w-[40vw]
               leading-none
-              mb-10
+              mb-5
             "
           >
             Welcome to <span class="">Computravel</span>, the travel experts who
             care.
           </div>
-          <h3 class="text-white font-open-sans font-medium text-xl md:text-2xl xl:text-4xl w-[250]">
+          <h3 class="text-white font-open-sans font-medium text-xl md:text-2xl xl:text-3xl w-[250]">
             Let us help book you <br />your perfect holiday!
           </h3>
         </div>
@@ -44,7 +44,7 @@
             left-0
             bottom-[40%]
             w-full
-            pt-10
+            pt-20
             flex flex-col
             justify-start
             items-center

@@ -147,25 +147,5 @@ const view = async (enquiryIndex) => {
 </script>
 
 <style>
-th,
-td {
-  border: none;
-  padding: 8px 16px;
-  text-align: center;
-}
-tr:nth-child(odd) {
-  background: white;
-}
-tr:nth-child(even) {
-  background: #e3ebe7;
-}
-th {
-  position: sticky;
-  top: 0;
-  background-color: rgb(193, 218, 193);
-}
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+
 </style>

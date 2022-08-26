@@ -1,13 +1,16 @@
 <template>
   <div
-    class="bg-green-avo flex flex-col pt-20 text-2xl px-10 lg:px-20 h-[1100px] lg:h-[850px]"
+    class="flex flex-col pt-20 text-2xl px-10 md:px-[80px] md:pt-40 md:pb-20
+    bg-stone-50"
     v-if="data"
   >
-    <h3 class="text-3xl font-medium mb-2">experience these</h3>
+    <h3 class="text-4xl font-medium mb-2">experience these</h3>
 
+    <h1 class="text-5xl font-titillium font-semibold mr-4 xl:mb-10">
+      destinations
+    </h1>
     <!-- XL header:-->
-    <div class="hidden xl:grid grid-cols-[1fr,5fr] mb-10">
-      <h1 class="text-5xl font-titillium font-semibold mr-4">destinations</h1>
+    <div class="hidden xl:block">
       <div />
       <div />
       <TabMenu
@@ -16,18 +19,7 @@
       ></TabMenu>
     </div>
 
-    <h1 class="block xl:hidden text-5xl font-titillium font-semibold mr-4 mb-5">
-      destinations
-    </h1>
-    <div class="grid xl:hidden">
-      <TabMenu
-        @selectTab="setActiveTab"
-        :titles="destinationsDictionaryMobile"
-      ></TabMenu>
-    </div>   <!-- lG down header: -->
- 
-
-    <div class="relative h-[600px] lg:h-[600px] w-full">
+    <div class="relative h-[800px] lg:h-[500px] w-full">
       <HomeDestination
         v-for="(destination, index) in packages"
         :key="index"
@@ -39,11 +31,11 @@
         <div
           class="
             relative
-            rounded-3xl
+            rounded-lala
             overflow-hidden
             shadow-2xl
             h-[250px]
-            lg:h-[550px] lg:mr-10
+            lg:h-[450px] lg:mr-10
           "
           v-if="picStyles.length > 0"
         >
@@ -51,13 +43,11 @@
             v-for="(destination, index) in destinationsDictionary"
             :key="index"
             :style="picStyles[index]"
-            class=" absolute inset-0"
+            class="absolute inset-0"
             :class="{ 'opacity-0': index !== activeTab }"
           ></div>
         </div>
       </HomeDestination>
-
-      <!-- LG down layout -->
     </div>
   </div>
 </template>
@@ -76,12 +66,7 @@ const activeTab = ref(0);
 
 import { useGraph } from "../../composables/useGraph";
 
-const destinationsDictionary = [
-  "Europe",
-  "Middle East",
-  "Africa",
-  "Indian Ocean Islands",
-];
+const destinationsDictionary = ["Europe", "Middle East", "Africa"];
 const destinationsDictionaryMobile = ["Europe", "Middle East", "Africa"];
 
 const destinations = ref([]);

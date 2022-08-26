@@ -87,3 +87,29 @@ transform: translate2d(0, 0);
   -webkit-overflow-scrolling: touch; /* adds momentum scrolling for iOS*/ 
 
 }
+.rounded-lala{
+  border-radius: 50px
+}
+
+/* table styles */
+th,
+td {
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+}
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: #E2EBE8;
+}
+th {
+  position: sticky;
+  top: 0;
+  background-color: rgb(193, 218, 193);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}

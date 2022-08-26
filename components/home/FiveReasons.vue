@@ -1,48 +1,30 @@
 <template>
   <div
     class="
-      bg-gray-200
+      bg-green-avo
       flex flex-col
       text-2xl
       p-10
-      lg:p-20
-      lg:pb-40
       justify-evenly
+      md:px-[80px] pt-20 md:pt-40 md:pb-20
     "
     v-if="reasons.length > 0"
   >
-    <h3 class="text-3xl font-medium mb-2">five reasons to</h3>
-
-    <!-- XL header section -->
-    <div class="hidden xl:grid grid-cols-[1fr,5fr]  mb-10">
-      <div class="text-5xl font-titillium font-semibold leading-none">
-        travel with us
-      </div>
-      <div />
-      <div />
-      <div class="flex-1">
-        <TabMenu
-          v-if="titles.length > 0"
-          @selectTab="setActiveTab"
-          :titles="titles"
-        ></TabMenu>
-      </div>
-    </div>
-    <!-- MD down header section -->
-    <div class="grid xl:hidden text-5xl font-titillium font-semibold leading-non mb-10">
+    <h3 class="text-4xl font-medium mb-2">five reasons to</h3>
+    <div class="text-5xl font-titillium font-semibold leading-none mb-5 md:mb-10">
       travel with us
     </div>
-    <div class="grid xl:hidden mb-10">
-      <div class="flex-1">
-        <TabMenu
-          v-if="titles.length > 0"
-          @selectTab="setActiveTab"
-          :titles="titles"
-        ></TabMenu>
-      </div>
-    </div>
+    <!-- XL header section -->
 
-    <div class="relative h-[450px] overflow-hidden">
+    <TabMenu
+      v-if="titles.length > 0"
+      @selectTab="setActiveTab"
+      :titles="titles"
+      class="mb-5 md:mb-10"
+    ></TabMenu>
+
+
+    <div class="relative h-[350px] overflow-hidden">
       <HomeReason
         v-for="(reason, index) in reasons"
         :key="index"

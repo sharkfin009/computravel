@@ -12,9 +12,10 @@
     v-if="props.destination.length > 0"
   >
     <slot />
+
     <div class="flex flex-col mt-8 lg:mt-0">
       <div class="flex justify-center">
-        <div class="relative mb-7 w-[335px] h-[500px]">
+        <div class="relative mb-7 w-[335px] h-[400px]">
           <card
             v-for="(tour, index) in props.destination"
             :key="index"

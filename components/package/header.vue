@@ -9,7 +9,7 @@ class="">
       rounded-3xl
       p-2
       md:p-5
-      shadow-xl
+      shadow
     "
   >
     <div class="grid md:grid-cols-[2fr,1fr]">

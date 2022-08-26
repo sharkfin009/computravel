@@ -1,15 +1,15 @@
 <template>
   <div
-    class="bg-gray-300 text-black flex flex-col justify-between w-screen"
+    class="bg-green-avo text-black flex flex-col justify-between w-screen"
     v-if="favourites"
   >
     <!-- top row -->
-    <div class="flex flex-col justify-end p-10">
-      <h3 class="text-3xl font-medium mb-2">our favourite</h3>
+    <div class="flex flex-col justify-end px-10 md:px-[80px] pt-20 md:pt-40 md:pb-20">
+      <h3 class="text-4xl font-medium mb-2">our favourite</h3>
       <h2 class="text-5xl font-titillium font-semibold">holiday packages</h2>
     </div>
     <!-- desktop cards: -->
-    <div class="hidden lg:grid w-full grid-cols-[100px,auto,100px]">
+    <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
       <div class="flex items-center justify-center">
         <IconChevronLeft
           class="cursor-pointer hover:scale-110"
@@ -18,13 +18,13 @@
       </div>
 
       <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
-        <div ref="" class="flex">
+        <div ref="" class="flex gap-8 pb-8">
           <div
             v-for="(fave, index) in favourites.favourites.data.map(
               (item) => item.attributes.package.data.attributes
             )"
             :key="index"
-            class="mx-8 snap-center w-[82vw]"
+            class=" snap-center "
           >
             <Card class="" :package="fave" />
           </div>
@@ -37,8 +37,8 @@
     </div>
 
     <!-- mobile cards: -->
-    <div class="flex justify-center lg:hidden relative w-full px-10 pt-10">
-      <div class="relative h-[500px] w-[335px]">
+    <div class="flex justify-center md:hidden relative w-full  pt-10">
+      <div class="relative w-[320px] h-[400px]">
         <card
           v-for="(fave, index) in favourites.favourites.data.map(
             (item) => item.attributes.package.data.attributes

@@ -1,40 +1,55 @@
 <template>
-  <div class="bg-gray-300 text-black flex flex-col justify-around p-10 lg:p-20">
+  <div
+    class="
+      bg-green-avo
+      text-black
+      flex flex-col
+      justify-around
+      px-10
+      md:px-[80px]
+      pt-20
+      md:pt-40 
+      pb-10
+      md:pb-20
+    "
+  >
     <div>
-      <h3 class="text-3xl font-medium">fly somewhere new & exciting</h3>
+      <h3 class="text-4xl font-medium">fly somewhere new & exciting</h3>
       <h2 class="text-5xl font-titillium font-semibold mb-20">
         latest flight specials
       </h2>
-      <div class="w-full overflow-auto text-sm lg:text-base">
-        <table
+      <div class="w-full flex justify-center mb-10">
+        <div
           class="
-            w-full
-            font-open-sans font-extralight
+          lg:min-w-[800px]
+            overflow-auto
+            text-sm
+            lg:text-base
+            shadow-xl
             rounded-3xl
             overflow-hidden
           "
         >
-          <tbody class="overflow-auto">
-            <tr v-for="(special, index) in specials" :key="index">
-              <td class="">{{ special.flight_route }}</td>
-              <td class="hidden xl:table-cell">{{ special.airline }}</td>
-              <td class="hidden xl:table-cell">{{ special.trip_type }}</td>
-              <td class="">
-                {{ special.price_from }}
-              </td>
-              <td class="flex justify-center">
-                <BookButton class=" ">
-                  book <span class="hidden sm:inline">with our expert</span>
-                </BookButton>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="w-full font-open-sans font-extralight">
+            <tbody class="overflow-auto">
+              <tr v-for="(special, index) in specials" :key="index">
+                <td class="">{{ special.flight_route }}</td>
+                <td class="">
+                  {{ special.price_from }}
+                </td>
+                <td class="flex justify-center">
+                  <BookButton class="!px-5 !py-3">
+                    book <span class="hidden sm:inline">with our expert</span>
+                  </BookButton>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="rounded-xl overflow-hidden mb-20"></div>
     </div>
     <div class="flex justify-center">
-      <BlackButton class="mx-20"> view flights </BlackButton>
+      <BlackButton class=""> view all flights </BlackButton>
     </div>
   </div>
 </template>
@@ -71,17 +86,6 @@ const specials = [
     trip_type: "Return",
     price_from: "R6899",
   },
-  {
-    flight_route: "Johannesburg to New York",
-    airline: "Virgin Atlantic",
-    trip_type: "Return",
-    price_from: "R9399",
-  },
-  {
-    flight_route: "Johannesburg to Hong Kong",
-    airline: "Emirates Airlines",
-    trip_type: "Return",
-    price_from: "R9679",
-  },
+
 ];
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class=" cursor-pointer px-5 py-4 lg:p-5 bg-green-avo shadow-xl hover:shadow-none  rounded-full ">
+    <div class=" cursor-pointer px-5 py-4 lg:p-5 bg-green-avo shadow hover:shadow-none  rounded-full ">
         <div class="flex items-center gap-2 md:gap-2 ">
            
         

@@ -15,6 +15,7 @@ export const useStore = defineStore("reasons", {
             data {
               id
               attributes {
+                
                 title
                 subtitle
                 content

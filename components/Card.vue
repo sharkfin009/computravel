@@ -5,14 +5,16 @@
   >
     <div
       class="
-       
-        grid grid-rows-[280px,auto]
-        rounded-xl
+         w-[320px]
+         h-[400px]
+        grid grid-rows-2
         overflow-hidden
         h-full
-        shadow-xl
+        shadow
         hover:shadow-none
+        rounded-lala
       "
+     
     >
       <div>
         <div
@@ -27,7 +29,6 @@
             class="
               bg-black
               text-white
-              rounded-tr-full rounded-br-full
               w-[50%]
               text-center
               mb-10
@@ -41,9 +42,9 @@
           </div>
         </div>
       </div>
-      <div class="p-5 bg-white flex flex-col justify-between ">
+      <div class="p-8 bg-white flex flex-col justify-evenly ">
         <div class="w-full font-titillium font-semibold text-xl">
-          <h3 class="w-[300px] text-center mb-3">{{ props.package.title}}</h3>
+          <h3 class=" text-center mb-3">{{ titleFirstBit}}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"
@@ -61,7 +62,7 @@
             class="text-center text-sm font-extralight mr-1"
             :class="{ loadingStateClass: searchStore.loadingState }"
           >
-            {{ props.package.destination.toUpperCase() }},
+            {{ props.package.destination }},
           </div>
           <!-- <div v-if="JSON.parse(props.package.countries)!==null" class="text-center text-sm font-extralight pb-5">{{JSON.parse(props.package.countries)[0].name.toUpperCase()}}</div> -->
           <div
@@ -69,7 +70,7 @@
             class="text-center text-sm font-extralight pb-1"
             :class="{ loadingStateClass: searchStore.loadingState }"
           >
-            {{ props.package.subdestination.toUpperCase() }}
+            {{ props.package.subdestination }}
           </div>
         </div>
         <div
@@ -104,10 +105,10 @@
           </div>
         </div>
         <div class="flex justify-center">
-        <BookButton
-          class=""
+        <div
+          class="underline text-base leading- text-gray-700 decoration-gray-300 hover:text-lime-500"
           :class="{ loadingStateClass: searchStore.loadingState }"
-          >read more</BookButton
+          >read more</div
         >
         </div>
       </div>
@@ -141,6 +142,7 @@ let cutTitle = cutTextTitle.slice(0, cutTextTitle.length - lastWord.length);
 if (cutTitle[cutTitle.length-1] == '-') {
   cutTitle.pop()
 } 
+let titleFirstBit = text.split(" - ")[0]
 
 let stars = [];
 for (let i = 0; i < props.package.star_rating; i++) {
