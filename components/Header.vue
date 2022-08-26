@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed w-full z-50   md:pb-0"
+    class="fixed w-full z-50 md:pb-0"
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
     <!-- mobile logo: -->
@@ -69,7 +69,6 @@
         >
 
         <div
-    
           @click="showMenu = true"
           class="
             flex flex-col
@@ -84,7 +83,7 @@
             z-10
           "
           :class="{
-            'opacity-0':showMenu == true
+            'opacity-0': showMenu == true,
           }"
         >
           <IconHamburger />
@@ -92,8 +91,11 @@
       </div>
     </div>
     <!-- mobile search bar -->
-    <div v-if="route.path !== '/'" class="block md:hidden w-full flex justify-evenly items-center pt-1 pb-4 ">
-      <SearchBar class=" w-[80%]" :parent="'header'" />
+    <div
+      v-if="route.path !== '/'"
+      class="block md:hidden w-full flex justify-evenly items-center pt-1 pb-4"
+    >
+      <SearchBar class="w-[80%]" :parent="'header'" />
     </div>
 
     <!-- MODALs -->
@@ -118,8 +120,13 @@
       </ConfirmModal>
     </transition>
     <transition name="fade">
-      <Menu v-if="showMenu" @hideMenu="showMenu = false"/>
+      <Menu v-if="showMenu" @hideMenu="showMenu = false" />
     </transition>
+    <div class="fixed inset-0 bg-white">
+  
+      
+ <SocialShares/>
+    </div>
   </div>
 </template>
 

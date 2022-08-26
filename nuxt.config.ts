@@ -41,7 +41,8 @@ export default defineNuxtConfig({
   },
   css: [
     '~/styles/general.css',
-    'animate.css'
+    'animate.css',
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
 
 

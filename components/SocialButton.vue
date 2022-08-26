@@ -1,0 +1,18 @@
+<template>
+     <div
+        class="
+          bg-blue-500
+          p-5
+          rounded-l-full
+          hover:-translate-x-[0%]
+          translate-x-[62%]
+          transition
+          flex
+          gap-4
+          items-center
+          cursor-pointer
+        "
+      >
+<slot/>
+      </div>
+</template>
