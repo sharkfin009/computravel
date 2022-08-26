@@ -1,27 +1,24 @@
 <template>
   <div class="fixed inset-0 flex justify-end items-center">
     <div class="flex flex-col w-50 text-3xli text-white">
-   <SocialButton> 
+   <SocialButton class=" bg-blue-500"> 
         <fa-icon icon="fab fa-facebook  " />
         <div class="text-xl">share</div>
      </SocialButton> 
-   <SocialButton> 
-        <fa-icon icon="fab fa-twitter  " />
+   <SocialButton class="bg-blue-200"> 
+        <fa-icon icon="fab fa-twitter   " />
         <div class="text-xl">share</div>
      </SocialButton> 
-   <SocialButton> 
-        <fa-icon icon="fab fa-facebook  " />
-        <div class="text-xl">share</div>
-     </SocialButton> 
-   <SocialButton> 
+ 
+   <SocialButton class="bg-gray-400"> 
         <fa-icon icon="far fa-envelope  " />
         <div class="text-xl">share</div>
      </SocialButton> 
-   <SocialButton> 
-        <fa-icon icon="fab fa-pinterest  " />
+   <SocialButton class="bg-red-500 "> 
+        <fa-icon icon="fab fa-pinterest " />
         <div class="text-xl">share</div>
      </SocialButton> 
-   <SocialButton> 
+   <SocialButton class="bg-green-500"> 
         <fa-icon icon="fab fa-whatsapp  " />
         <div class="text-xl">share</div>
      </SocialButton> 

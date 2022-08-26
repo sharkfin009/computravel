@@ -1,7 +1,7 @@
 <template>
      <div
         class="
-          bg-blue-500
+         
           p-5
           rounded-l-full
           hover:-translate-x-[0%]
