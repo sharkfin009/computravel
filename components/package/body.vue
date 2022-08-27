@@ -463,7 +463,8 @@ let picScrollWidth = ref(0);
 const scrollBox = ref(null);
 const scrollContents = ref(null);
 onMounted(() => {
-  picScrollWidth.value = scrollBox.value.offsetWidth;
+  if(scrollBox.value)
+  {picScrollWidth.value = scrollBox.value.offsetWidth;}
   // scrollBox.value.addEventListener("scroll",(e)=>{
   //   let scrollLeft= scrollBox.value.scrollLeft / images.length
   //  let contentsWidth = scrollContents.value.offsetWidth
@@ -500,7 +501,7 @@ for (let i = 0; i < images.length - (images.length % 3); i++) {
 }
 let scrollPos = ref(0);
 const browseLeft = () => {
-  if (scrollPos.value > 0) {
+  if (scrollBox.value && scrollPos.value > 0) {
     scrollPos.value--;
     scrollBox.value.scrollTo({
       top: 0,
@@ -511,7 +512,7 @@ const browseLeft = () => {
 };
 
 const browseRight = () => {
-  if (scrollPos.value < Math.floor(images.length / 3)) {
+  if (scrollBox.value && scrollPos.value < Math.floor(images.length / 3)) {
     scrollPos.value++;
     scrollBox.value.scrollTo({
       top: 0,
