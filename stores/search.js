@@ -97,6 +97,7 @@ export const useStore = defineStore("search", {
                 data{
                     attributes{
                       title
+                      slug
                    description
                    subdestination
                    destination
