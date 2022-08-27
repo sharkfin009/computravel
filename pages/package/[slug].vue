@@ -6,6 +6,8 @@
   >
   <Head>
     <Title> {{package_data.packages.data[0].attributes.title}}</Title>
+    <Meta property = "og:description" :content = "package_data.packages.data[0].attributes.price"/>
+    <Meta property = "og:image" :content = "package_data.packages.data[0].attributes.image_url_md"/>
   </Head>
     
     <div class="w-full">
@@ -38,6 +40,7 @@ let query = `
                   attributes{
                       title
                    image_url_lg
+                   image_url_md
                    includes
                    excludes
                    subdestination
