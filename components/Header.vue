@@ -28,7 +28,6 @@
         relative
         flex
         w-full
-        items-center
         justify-between
         py-3
         lg:px-5
@@ -42,14 +41,14 @@
           class="
             hidden
             md:block
-            bg-opacity-80 bg-green-avo
+            bg-opacity-90 bg-green-avo
             rounded-full
             shadow
-            px-5
-            py-2
+            px-8
+            py-4
           "
         >
-          <IconComputravelLogo class="" />
+          <IconComputravelLogo class="h-[60px]" />
         </div>
       </NuxtLink>
 
@@ -59,9 +58,9 @@
         :parent="'header'"
       />
 
-      <!--  enq now button: -->
 
-      <div class="flex gap-5">
+      <div class="grid grid-cols-[auto,88px] gap-4 ">
+      <!--  enq now button: -->
         <BookButton
           v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
           @mousedown="enquiry.showEnquireNow = true"
@@ -72,16 +71,19 @@
         <div
           @click="showMenu = true"
           class="
-            flex flex-col
+            flex 
+            justify-center
             items-center
             bg-green-avo
             rounded-full
             bg-opacity-80
             shadow
-            p-2
+            px-2
+            flex
             lg:p-5
             cursor-pointer
             z-10
+           h-full
           "
           :class="{
             'opacity-0': showMenu == true,
