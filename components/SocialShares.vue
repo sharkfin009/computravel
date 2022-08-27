@@ -29,7 +29,7 @@
 <script setup>
 const config = useRuntimeConfig();
 const route = useRoute()
-console.log(route.fullPath,route.meta)
+console.log(route.fullPath)
 var fullPath = config.baseUrl + route.fullPath
 const share = (provider) => {
   let url = "";
@@ -59,6 +59,7 @@ const share = (provider) => {
 };
 
 const socialWindow = (url, width, height) => {
+  console.log(url)
   var left = (screen.width - width) / 2;
   var top = (screen.height - height) / 2;
   var params =
