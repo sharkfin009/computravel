@@ -1,28 +1,10 @@
 <template>
   <div
-    class="fixed w-full z-50 md:pb-0"
+    class="fixed w-full z-50  h-[50px] md:h-[130px] flex "
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
  
-    <!-- mobile logo: -->
-    <div class="absolute z-10 block md:hidden w-full h-[10px] pt-2 ml-5 flex">
-      <NuxtLink class="text-primary" to="/">
-        <div
-          style="transform-origin: 0% 0%"
-          class="
-            bg-opacity-80 bg-green-avo
-            rounded-full
-            scale-[45%]
-            pt-3
-            shadow
-            px-5
-            py-2
-          "
-        >
-          <IconComputravelLogo class="" />
-        </div>
-      </NuxtLink>
-    </div>
+
     <div
       class="
         relative
@@ -39,16 +21,20 @@
       <NuxtLink class="text-primary" to="/">
         <div
           class="
-            hidden
-            md:block
+           
             bg-opacity-90 bg-green-avo
             rounded-full
             shadow
-            px-8
-            py-4
+            w-[160px]
+            md:w-[320px]
+            justify-center
+            h-full
+            flex 
+
+            items-center 
           "
         >
-          <IconComputravelLogo class="h-[60px]" />
+          <IconComputravelLogo class="h-[30px] md:h-[60px]" />
         </div>
       </NuxtLink>
 
@@ -59,7 +45,7 @@
       />
 
 
-      <div class="grid grid-cols-[auto,88px] gap-4 ">
+      <div class="grid grid-cols-[auto,auto] gap-4 ">
       <!--  enq now button: -->
         <BookButton
           v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
@@ -67,7 +53,7 @@
           class=""
           >enquire now</BookButton
         >
-
+<!-- hamburger -->
         <div
           @click="showMenu = true"
           class="
@@ -78,12 +64,14 @@
             rounded-full
             bg-opacity-80
             shadow
-            px-2
+            
             flex
-            lg:p-5
+            w-[40px]
+            md:w-[109px]
+            lg:px-0
             cursor-pointer
             z-10
-           h-full
+           
           "
           :class="{
             'opacity-0': showMenu == true,

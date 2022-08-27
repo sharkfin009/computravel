@@ -13,15 +13,15 @@
       duration-500
       text-center
       z-30
+      px-6
       
-
      flex
      items-center
-      px-2
+      md:px-2
       lg:px-10
 
-
-      text-sm
+      text-xs
+      md:text-xl
       lg:text-2xl
       shadow
       opacity-80
