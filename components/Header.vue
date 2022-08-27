@@ -3,6 +3,7 @@
     class="fixed w-full z-50 md:pb-0"
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
+ 
     <!-- mobile logo: -->
     <div class="absolute z-10 block md:hidden w-full h-[10px] pt-2 ml-5 flex">
       <NuxtLink class="text-primary" to="/">
@@ -122,12 +123,11 @@
     <transition name="fade">
       <Menu v-if="showMenu" @hideMenu="showMenu = false" />
     </transition>
-    <div class="fixed inset-0 pointer-events-none">
-  
-      
+
  <SocialShares/>
-    </div>
   </div>
+       
+    
 </template>
 
 <script setup>
