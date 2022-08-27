@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 flex justify-end items-center">
+  <div class="fixed inset-0 flex justify-end items-center pointer-events-auto ">
     <div class="flex flex-col w-50 text-3xli text-white">
       <SocialButton class="bg-blue-500" @click="share('facebook')">
         <fa-icon icon="fab fa-facebook  " />
@@ -28,17 +28,16 @@
 
 <script setup>
 const config = useRuntimeConfig();
-
-  
-
+const route = useRoute()
+console.log(route.fullPath,route.meta)
+var fullPath = config.baseUrl + route.fullPath
 const share = (provider) => {
-    let pageUrl = config.baseUrl;
   let url = "";
 
   let pageTitle = "";
 
   if (provider == "facebook") {
-    url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+    url = "https://www.facebook.com/sharer.php?u=" + fullPath;
     socialWindow(url, 570, 570);
   }
 
@@ -54,9 +53,7 @@ const share = (provider) => {
   }
 
   if (provider == "mail") {
-    url =
-      "mailto:" +
-      pageUrl;
+    url = "mailto:" + pageUrl;
     socialWindow(url, 570, 450);
   }
 };

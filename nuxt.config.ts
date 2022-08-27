@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from 'nuxt';
 export default defineNuxtConfig({
+  
   meta: {
     link: [
       {

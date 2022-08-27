@@ -122,7 +122,7 @@
     <transition name="fade">
       <Menu v-if="showMenu" @hideMenu="showMenu = false" />
     </transition>
-    <div class="fixed inset-0 ">
+    <div class="fixed inset-0 pointer-events-none">
   
       
  <SocialShares/>

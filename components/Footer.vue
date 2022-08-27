@@ -10,7 +10,7 @@
         </p>
       </div>
       <div class="flex justify-center items-center">
-        <img width="250" src="public/asata-logo-full-500-sq-transp.png" />
+        <img width="250" src="/public/asata-logo-full-500-sq-transp.png" />
       </div>
     </div>
     <!-- 3rd row -->
@@ -87,7 +87,7 @@
     </div>
     <div class="bg-slate-800 flex justify-center p-5">
       <div class="m-0 p-0 text-center">
-        Website build by Ben Amato from <i>iSimon</i>, design by <i>hippl</i>
+        Website custom coded by Ben Amato from <i>iSimon</i>, design by <i>hippl</i>
       </div>
     </div>
   </div>

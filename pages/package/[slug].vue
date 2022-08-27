@@ -4,6 +4,9 @@
     v-if="package_data && destination_content"
     class="bg-gray-100  md:px-10 pt-[129px] md:pt-[95px] lg:pt-[110px]"
   >
+  <Head>
+    <Title> {{package_data.packages.data[0].attributes.title}}</Title>
+  </Head>
     
     <div class="w-full">
       <PackageBody
@@ -18,7 +21,9 @@
 <script setup>
 definePageMeta({
   layout: "home",
+
 });
+
 const route = useRoute();
 import { useStore } from "@/stores/package";
 let store = useStore();
