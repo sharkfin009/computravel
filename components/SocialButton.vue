@@ -1,8 +1,8 @@
 <template>
      <div
         class="
-         
-          p-5
+         px-3
+          md:p-5
           rounded-l-xl
           hover:-translate-x-[0%]
           translate-x-[62%]

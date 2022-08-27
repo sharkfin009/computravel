@@ -1,6 +1,6 @@
 <template>
   <div class="fixed inset-0 flex justify-end items-center pointer-events-none">
-    <div class="flex flex-col w-50 text-3xli text-white pointer-events-auto">
+    <div class="flex flex-col gap-5 md:gap-2 md:w-50 text-3xli text-white pointer-events-auto">
       <SocialButton class="bg-blue-500" @click="share('facebook')">
         <fa-icon icon="fab fa-facebook  " />
         <div class="text-xl">share</div>
