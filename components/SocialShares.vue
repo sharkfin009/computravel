@@ -48,13 +48,14 @@ const share = (provider) => {
   }
 
   if (provider == "whatsapp") {
-    url = "whatsapp://send?text=" + pageTitle + "%20" + pageUrl;
+    url = "whatsapp://send?text=" + "package" + "%20" + fullPath;
     socialWindow(url, 570, 450);
   }
 
-  if (provider == "mail") {
-    url = "mailto:" + pageUrl;
-    socialWindow(url, 570, 450);
+  if (provider == "email") {
+    url = "/mailto:" + fullPath;
+ window.location.href = "mailto:?subject=Hi!&body=" + fullPath;
+
   }
 };
 
