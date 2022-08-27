@@ -7,7 +7,7 @@
   <Head>
     <Title> {{package_data.packages.data[0].attributes.title}}</Title>
     <Meta property = "og:description" :content = "package_data.packages.data[0].attributes.price"/>
-    <Meta property = "og:image" :content = "'https:/' + package_data.packages.data[0].attributes.image_url_lg"/>
+    <Meta property = "og:image" :content = "'https://' + package_data.packages.data[0].attributes.image_url_lg"/>
   </Head>
     
     <div class="w-full">
