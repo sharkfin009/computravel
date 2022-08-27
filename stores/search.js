@@ -78,6 +78,7 @@ export const useStore = defineStore("search", {
       graphql(query)
         .then((response) => {
           this.results = response.data.packages.data;
+          console.log(this.results)
           this.loadingState = false;
         })
         .catch((error) => {

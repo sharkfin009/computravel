@@ -74,6 +74,7 @@ const { data: favourites, error } = useGraph(`
                 package {
                   data {
                     attributes {
+                      slug
                       title
                       subdestination
                       starts

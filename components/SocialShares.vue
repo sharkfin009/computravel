@@ -43,7 +43,7 @@ const share = (provider) => {
 
   if (provider == "twitter") {
     url =
-      "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + pageTitle;
+      "https://twitter.com/intent/tweet?url=" + fullPath + "&text=" + pageTitle;
     socialWindow(url, 570, 300);
   }
 
