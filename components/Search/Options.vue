@@ -2,7 +2,9 @@
   <div
     v-if="searchStore"
     class="
-    relative
+       sticky
+        top-[127px]
+   
       select-none
       rounded-3xl
       user-select-none
@@ -18,7 +20,7 @@
     "
   >
     <!--  grid -->
-    <div class=" grid lg:grid-cols-1 xl:grid-cols-3 gap-5 md-gap-10 w-full">
+    <div class=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md-gap-10 w-full">
       <!-- destination autosuggest input -->
       <DestinationInput @setValue="setValue" />
 

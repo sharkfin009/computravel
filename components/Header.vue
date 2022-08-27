@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed w-full z-50  h-[50px] md:h-[130px] flex "
+    class="fixed w-full z-50   flex flex-col"
     :class="{ 'bg-gray-100': route.path !== '/' }"
   >
  
@@ -9,6 +9,7 @@
       class="
         relative
         flex
+        md:h-[120px]
         w-full
         justify-between
         py-3
@@ -17,7 +18,6 @@
       "
     >
       <!-- desktop logo -->
-
       <NuxtLink class="text-primary" to="/">
         <div
           class="
@@ -38,11 +38,13 @@
         </div>
       </NuxtLink>
 
+      <div class="hidden md:flex items-center  ">
       <SearchBar
         v-if="route.path !== '/'"
-        class="hidden md:block w-[20%]"
+        class="w-[250px]"
         :parent="'header'"
       />
+      </div>
 
 
       <div class="grid grid-cols-[auto,auto] gap-4 ">
@@ -84,7 +86,7 @@
     <!-- mobile search bar -->
     <div
       v-if="route.path !== '/'"
-      class="block md:hidden w-full flex justify-evenly items-center pt-1 pb-4"
+      class="block md:hidden w-full  flex justify-evenly items-center pt-1 pb-4 " 
     >
       <SearchBar class="w-[80%]" :parent="'header'" />
     </div>

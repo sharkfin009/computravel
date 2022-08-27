@@ -1,6 +1,6 @@
 <template>
   <div class="absolute h-screen inset-0  flex justify-end z-50">
-    <ul class="w-full md:w-[30vw] h-full flex flex-col gap-5 justify-center items-center font-titillium bg-green-avo opacity-90">
+    <ul class="w-full md:w-[24vw] h-full flex flex-col gap-5 justify-start items-start pl-20 pt-32 font-titillium bg-white opacity-90">
         <li v-for = "(item, index) of items" :key="index">
             <NuxtLink @click="hideMenu" :to="item.url">
                 {{item.name}}

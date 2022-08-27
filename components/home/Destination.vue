@@ -2,11 +2,12 @@
   <div
     class="
       w-full
+      
       lg:grid
-      grid-rows-[250px,auto]
+      grid-rows-[320px,auto]
       lg:grid-rows-none
       grid-cols-none
-      lg:grid-cols-[auto,335px]
+      lg:grid-cols-[auto,320px]
       py-10
     "
     v-if="props.destination.length > 0"
@@ -15,7 +16,7 @@
 
     <div class="flex flex-col mt-8 lg:mt-0">
       <div class="flex justify-center">
-        <div class="relative mb-7 w-[335px] h-[400px]">
+        <div class="relative mb-7 w-[320px] h-[400px]">
           <card
             v-for="(tour, index) in props.destination"
             :key="index"

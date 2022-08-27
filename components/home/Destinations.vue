@@ -1,12 +1,12 @@
 <template>
   <div
-    class="flex flex-col pt-20 text-2xl px-10 md:px-[80px] md:pt-40 md:pb-20
+    class="flex flex-col pt-20 text-2xl px-5 md:px-[80px] py-20 md:py-40 
     bg-stone-50"
     v-if="data"
   >
-    <h3 class="text-4xl font-medium mb-2">experience these</h3>
+    <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">experience these</h3>
 
-    <h1 class="text-5xl font-titillium font-semibold mr-4 xl:mb-10">
+    <h1 class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold mr-4 xl:mb-10">
       destinations
     </h1>
     <!-- XL header:-->

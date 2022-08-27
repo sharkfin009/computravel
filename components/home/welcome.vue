@@ -25,7 +25,7 @@
               font-medium font-titillium
               xl:text-5xl
               md:text-3xl
-              text-2xl
+              text-3xl
               md:w-[40vw]
               leading-none
               mb-5
@@ -34,7 +34,7 @@
             Welcome to <span class="">Computravel</span>, the travel experts who
             care.
           </div>
-          <h3 class="text-white font-open-sans font-medium text-xl md:text-2xl xl:text-3xl w-[250]">
+          <h3 class="text-white font-open-sans font-medium text-2xl md:text-2xl xl:text-3xl w-[250] text-shadow">
             Let us help book you <br />your perfect holiday!
           </h3>
         </div>

@@ -54,10 +54,12 @@ class="">
       </div>
     </div>
 
-    <div class="flex items-center justify-center h-full ">
+    <div class="flex flex-col items-center justify-center h-full ">
       <NuxtLink to="/my-packages">
-        <BookButton class="my-2 md:px-10 md:py-5">Add to my packages</BookButton>
+        
+        <fa-icon class="text-2xl md:text-3xl" icon="fa-regular fa-heart"/>
       </NuxtLink>
+        <p class="text-sm">add to my list</p>
     </div>
   </div>
 </div>

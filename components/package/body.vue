@@ -3,9 +3,8 @@
     <div
       class="
         sticky
-        top-[129px]
-        md:top-[94px]
-        lg:top-[110px]
+        top-[127px]
+        md:top-[119px]
         bg-gray-100
         mb-5
         z-10
@@ -280,9 +279,9 @@
               font-semibold font-titillium
             "
           >
-            Overview
+            overview
           </h3>
-          <div class="rounded-xl bg-white p-5 mc:p-12">
+          <div class="rounded-xl bg-white p-10 md:p-12">
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
@@ -295,9 +294,9 @@
               font-semibold font-titillium
             "
           >
-            Details
+            details
           </h3>
-          <div class="rounded-xl bg-white p-4 lg:p-12">
+          <div class="rounded-xl bg-white p-10 lg:p-12">
             <ul>
               <li>
                 <div>Prices from:</div>
@@ -372,10 +371,10 @@
               mt-5
             "
           >
-            Includes
+            includes
           </h3>
 
-          <div class="rounded-xl bg-white p-5 md:p-12">
+          <div class="rounded-xl bg-white p-10 md:p-12">
             <p v-for="(line, index) in array" :key="index">
               {{ line }}
             </p>
@@ -389,9 +388,9 @@
               mt-5
             "
           >
-            Excludes
+            excludes
           </h3>
-          <div class="rounded-xl bg-white p-12">
+          <div class="rounded-xl bg-white p-10 md:p-12">
             {{ props.package_data.packages.data[0].attributes.excludes }}
           </div>
         </div>
@@ -410,15 +409,16 @@
               my-5
             "
           >
-            About this destination
+            about this destination
           </h3>
-          <div class="rounded-xl bg-white p-5 md:p-12">
+          <div class="rounded-xl bg-white p-10 md:p-12">
             {{ aboutCopy }}
           </div>
         </div>
 
         <!-- ts & cs -->
         <h3
+         v-if="(belowMd || activeTab === 2) && termsLines.length"
           class="
             block
             md:hidden
@@ -427,15 +427,16 @@
             my-5
           "
         >
-          Terms and Conditions
+          terms and conditions
         </h3>
         <div
-          v-if="activeTab === 3"
+          v-if="activeTab === 3 "
           class="
             -0
             rounded-xl
             bg-white
-            p-12
+            p-5
+            md:p-12
             transform
             translate-x-0
             transition

@@ -7,15 +7,14 @@
       justify-around
       px-10
       md:px-[80px]
-      pt-20
-      md:pt-40 
-      pb-10
-      md:pb-20
+      py-20
+      md:py-40 
+     
     "
   >
     <div>
-      <h3 class="text-4xl font-medium">fly somewhere new & exciting</h3>
-      <h2 class="text-5xl font-titillium font-semibold mb-20">
+      <h3 class="text-3xl md:text-4xl font-medium">fly somewhere new & exciting</h3>
+      <h2 class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold mb-10 ">
         latest flight specials
       </h2>
       <div class="w-full flex justify-center mb-10">

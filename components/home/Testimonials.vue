@@ -5,17 +5,17 @@
       md:p-20
       p-10
       md:px-[80px]
-      pt-20
-      md:pt-40 md:pb-20
+      py-20
+      md:py-40 
       bg-stone-50
     "
   >
     <!-- header section -->
     <div class="flex flex-col justify-center">
-      <div class="text-5xl font-titillium font-semibold mb-5">
+      <div class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold leading-none mb-5 md:mb-10">
         every holiday has a highlight
       </div>
-      <div class="text-4xl font-medium mr-20">what our travellers say:</div>
+      <div class="text-3xl md:text-4xl font-regular md:font-medium mr-20">what our travellers say:</div>
     </div>
     <!-- body section -->
     <div

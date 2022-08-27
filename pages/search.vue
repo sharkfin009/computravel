@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-100 p-2 lg:px-10 w-screen pt-[129px] md:pt-[88px] lg:pt-[101px]">
+  <div class=" bg-gray-100 px-10 w-screen pt-[127px] md:pt-[88px] lg:pt-[101px]">
     <div>
-      <SearchOptions class="" />
+      <SearchOptions />
       <div
         class="w-full h-[500px] flex justify-center items-center"
         v-if="searchStore.loadingState"
@@ -32,7 +32,7 @@
       v-if="resultsReady && searchStore.results.length > 0"
       class=" w-full py-10 px-10 flex justify-center "
     >
-      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-10 ">
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10 ">
         <div
           class="shadow-2xl "
           v-for="(card, index) in searchStore.results"
@@ -46,7 +46,7 @@
       v-if="resultsReady && searchStore.results.length == 0 && searchStore.fallbackResults.length > 0"
       class=" w-full py-10 px-10 flex justify-center "
     >
-      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-10 ">
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10 ">
         <div
           class="  "
           v-for="(card, index) in searchStore.fallbackResults"

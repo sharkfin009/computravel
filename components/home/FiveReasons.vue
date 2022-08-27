@@ -6,12 +6,12 @@
       text-2xl
       p-10
       justify-evenly
-      md:px-[80px] pt-20 md:pt-40 md:pb-20
+      md:px-[80px] py-20 md:py-40
     "
     v-if="reasons.length > 0"
   >
-    <h3 class="text-4xl font-medium mb-2">five reasons to</h3>
-    <div class="text-5xl font-titillium font-semibold leading-none mb-5 md:mb-10">
+    <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">five reasons to</h3>
+    <div class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold leading-none mb-5 md:mb-10">
       travel with us
     </div>
     <!-- XL header section -->

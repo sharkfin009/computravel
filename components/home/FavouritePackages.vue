@@ -1,12 +1,12 @@
 <template>
   <div
-    class="bg-green-avo text-black flex flex-col justify-between w-screen"
+    class="bg-green-avo text-black flex flex-col justify-between w-screen py-20 md:py-40"
     v-if="favourites"
   >
     <!-- top row -->
-    <div class="flex flex-col justify-end px-10 md:px-[80px] pt-20 md:pt-40 md:pb-20">
-      <h3 class="text-4xl font-medium mb-2">our favourite</h3>
-      <h2 class="text-5xl font-titillium font-semibold">holiday packages</h2>
+    <div class="flex flex-col justify-end px-10 md:px-[80px]  md:pb-20">
+      <h3 class="text-3xl md-text-4xl font-semibold md:font-medium mb-2">our favourite</h3>
+      <h2 class="text-4xl md-text-5xl font-titillium font-regular md:font-semibold">holiday packages</h2>
     </div>
     <!-- desktop cards: -->
     <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
