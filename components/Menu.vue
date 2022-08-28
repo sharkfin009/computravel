@@ -1,52 +1,111 @@
 <template>
-  <div class="absolute h-screen inset-0  flex justify-end z-50">
-    <ul class="w-full md:w-[24vw] h-full flex flex-col gap-5 justify-start items-start pl-20 pt-32 font-titillium bg-white opacity-90">
-        <li v-for = "(item, index) of items" :key="index">
-            <NuxtLink @click="hideMenu" :to="item.url">
-                {{item.name}}
-            </NuxtLink>
+  <div class="fixed h-screen inset-0 flex justify-end z-50">
+    <div
+      class="
+        w-full
+        h-full
+        md:w-[50vw]
+        lg:w-[24vw]
+        flex flex-col
+        gap-5
+        justify-start
+        items-start
+        pl-20
+        pt-40
+        font-titillium
+        bg-white
+        opacity-90
+        relative
+      "
+    >
+      <ul class="list-none">
+        <li v-for="(item, index) of items" :key="index" class="mb-5">
+          <NuxtLink @click="hideMenu" :to="item.url">
+            {{ item.name }}
+          </NuxtLink>
         </li>
-    </ul>
-    <CloseRow @click = "hideMenu" />
+      </ul>
+      <div
+        class="
+          absolute
+          inset-0
+          flex
+          justify-end
+          items-start
+          pt-3
+          px-5
+          lg:pt-3 lg:px-5
+          pointer-events-none
+        "
+      >
+        <div
+          @click="hideMenu"
+          class="
+            flex
+            justify-center
+            items-center
+            bg-green-avo
+            rounded-full
+            bg-opacity-80
+            shadow
+            flex
+            w-[30px]
+            h-[30px]
+            md:w-[99px] md:h-[99px]
+            cursor-pointer
+            pointer-events-auto
+          "
+        >
+          <fa-icon
+            class="text-stone-600 text-xl md:text-4xl"
+            icon="fas fa-close"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-let items= [
+let items = [
   {
-    name:"COVID-19",
+    name: "Travel Tips",
+    url: "/travel-tips",
+  },
+  {
+    name: "COVID-19",
     url: "/covid-19",
   },
   {
-    name:"Groups and Incentives",
+    name: "Groups and Incentives",
     url: "/groups-and-incentives",
   },
   {
-    name:"Book a Flight",
+    name: "Book a Flight",
     url: "/flight-bookings",
   },
   {
-    name:"Flight Specials",
+    name: "Flight Specials",
     url: "/flight-specials",
   },
   {
-    name:"Find A Car",
+    name: "Find A Car",
     url: "/car-bookings",
   },
   {
-    name:"Accomodation",
+    name: "Accomodation",
     url: "/accomodation",
   },
   {
-    name:"Blog",
+    name: "Blog",
     url: "/blog",
   },
   {
-    name:"Contact",
+    name: "Contact",
     url: "/contact",
   },
 ];
-const emit = defineEmits(['hideMenu'])
-const hideMenu = ()=>{
-emit('hideMenu')
-}
+const emit = defineEmits(["hideMenu"]);
+const hideMenu = () => {
+  emit("hideMenu");
+};
 </script>

@@ -54,7 +54,7 @@ class="">
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center h-full ">
+    <div class="flex flex-col items-center justify-center h-full hover:text-lime-500 cursor-pointer">
       <NuxtLink to="/my-packages">
         
         <fa-icon class="text-2xl md:text-3xl" icon="fa-regular fa-heart"/>

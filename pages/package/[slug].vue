@@ -1,29 +1,30 @@
 <template>
-   
-  <div
-    v-if="package_data && destination_content"
-    class="bg-gray-100  md:px-10 pt-[127px] md:pt-[119px]"
-  >
-  <Head>
-    <Title> {{package_data.packages.data[0].attributes.title}}</Title>
-    <Meta property = "og:description" :content = "package_data.packages.data[0].attributes.price"/>
-    <Meta property = "og:image" :content = "'https://' + package_data.packages.data[0].attributes.image_url_lg"/>
-  </Head>
-    
+  <div v-if="package_data && destination_content" class="bg-slate-50 md:px-10">
+    <Head>
+      <Title> {{ package_data.packages.data[0].attributes.title }}</Title>
+      <Meta
+        property="og:description"
+        :content="package_data.packages.data[0].attributes.price"
+      />
+      <Meta
+        property="og:image"
+        :content="
+          'https://' + package_data.packages.data[0].attributes.image_url_lg
+        "
+      />
+    </Head>
+
     <div class="w-full">
       <PackageBody
         :package_data="package_data"
         :destination_content="destination_content"
       />
     </div>
-
-
   </div>
 </template>
 <script setup>
 definePageMeta({
   layout: "home",
-
 });
 
 const route = useRoute();

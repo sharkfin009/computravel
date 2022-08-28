@@ -1,10 +1,8 @@
 <template>
   <div
-    class="fixed w-full z-50   flex flex-col"
-    :class="{ 'bg-gray-100': route.path !== '/' }"
+    class="sticky top-0 w-full z-50 flex flex-col"
+    :class="{ 'bg-slate-50': route.path !== '/' }"
   >
- 
-
     <div
       class="
         relative
@@ -21,7 +19,6 @@
       <NuxtLink class="text-primary" to="/">
         <div
           class="
-           
             bg-opacity-90 bg-green-avo
             rounded-full
             shadow
@@ -29,64 +26,62 @@
             md:w-[320px]
             justify-center
             h-full
-            flex 
-
-            items-center 
+            flex
+            items-center
           "
         >
           <IconComputravelLogo class="h-[30px] md:h-[60px]" />
         </div>
       </NuxtLink>
 
-      <div class="hidden md:flex items-center  ">
-      <SearchBar
-        v-if="route.path !== '/'"
-        class="w-[250px]"
-        :parent="'header'"
-      />
+      <div class="hidden md:flex items-center">
+        <SearchBar
+          v-if="route.path !== '/'"
+          class="w-[250px]"
+          :parent="'header'"
+        />
       </div>
 
-
-      <div class="grid grid-cols-[auto,auto] gap-4 ">
-      <!--  enq now button: -->
+      <div class="grid grid-cols-[auto,auto] gap-4">
+        <!--  enq now button: -->
         <BookButton
           v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
           @mousedown="enquiry.showEnquireNow = true"
-          class=""
+          class="!h-full"
           >enquire now</BookButton
         >
-<!-- hamburger -->
+        <!-- hamburger -->
         <div
           @click="showMenu = true"
           class="
-            flex 
+            flex
             justify-center
             items-center
             bg-green-avo
             rounded-full
             bg-opacity-80
             shadow
-            
             flex
-            w-[40px]
-            md:w-[109px]
-            lg:px-0
+            w-[30px]
+            md:w-[99px]
             cursor-pointer
             z-10
-           
           "
           :class="{
             'opacity-0': showMenu == true,
           }"
         >
-          <IconHamburger />
+          <fa-icon
+            class="text-stone-600 text-xl lg:text-4xl"
+            icon="fas fa-bars"
+          />
         </div>
       </div>
     </div>
     <!-- mobile search bar -->
     <div
       v-if="route.path !== '/'"
-      class="block md:hidden w-full  flex justify-evenly items-center pt-1 pb-4 " 
+      class="block md:hidden w-full flex justify-evenly items-center pt-1 pb-4"
     >
       <SearchBar class="w-[80%]" :parent="'header'" />
     </div>
@@ -116,10 +111,8 @@
       <Menu v-if="showMenu" @hideMenu="showMenu = false" />
     </transition>
 
- <SocialShares/>
+    <SocialShares />
   </div>
-       
-    
 </template>
 
 <script setup>

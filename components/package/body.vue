@@ -1,15 +1,6 @@
 <template>
   <div class="relative mx-5">
-    <div
-      class="
-        sticky
-        top-[127px]
-        md:top-[119px]
-        bg-gray-100
-        mb-5
-        z-10
-      "
-    >
+    <div class="sticky top-[127px] md:top-[119px] bg-slate-50 mb-5 z-10">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -418,7 +409,7 @@
 
         <!-- ts & cs -->
         <h3
-         v-if="(belowMd || activeTab === 2) && termsLines.length"
+          v-if="(belowMd || activeTab === 2) && termsLines.length"
           class="
             block
             md:hidden
@@ -430,7 +421,7 @@
           terms and conditions
         </h3>
         <div
-          v-if="activeTab === 3 "
+          v-if="activeTab === 3"
           class="
             -0
             rounded-xl
@@ -464,8 +455,9 @@ let picScrollWidth = ref(0);
 const scrollBox = ref(null);
 const scrollContents = ref(null);
 onMounted(() => {
-  if(scrollBox.value)
-  {picScrollWidth.value = scrollBox.value.offsetWidth;}
+  if (scrollBox.value) {
+    picScrollWidth.value = scrollBox.value.offsetWidth;
+  }
   // scrollBox.value.addEventListener("scroll",(e)=>{
   //   let scrollLeft= scrollBox.value.scrollLeft / images.length
   //  let contentsWidth = scrollContents.value.offsetWidth

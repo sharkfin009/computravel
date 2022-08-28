@@ -16,9 +16,8 @@
     <!-- 3rd row -->
     <div class="grid sm:grid sm:grid-cols-2 gap-3">
       <div class="">
-        <div class="h-[60px]">
+      
           <h3 class="font-titillium text-5xl">contact us</h3>
-        </div>
         <div class="grid lg:grid lg:grid-cols-2 gap-3">
           <div class="">
             <p>T: +27 (021) 762-0511</p>
@@ -34,7 +33,7 @@
             >
           </div>
 
-          <div class="flex justify-center items-center">
+          <div class="flex justify-center items-center p-5">
             <BookButton
               v-if="
                 enquiry.showEnquireNow == false && enquiry.enquirySent == false

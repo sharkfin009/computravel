@@ -1,12 +1,12 @@
 <template>
   <NuxtLink
     :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
-    class=" "
+    class=""
   >
     <div
       class="
-         w-[320px]
-         h-[400px]
+        w-[320px]
+        h-[400px]
         grid grid-rows-2
         overflow-hidden
         h-full
@@ -14,18 +14,17 @@
         hover:shadow-none
         rounded-lala
       "
-     
     >
       <div>
         <div
-          class=" h-full  flex items-end bg-gray-100"
+          class="h-full flex items-end bg-slate-50"
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',
           }"
         >
           <div
-          v-if="props.package.category"
+            v-if="props.package.category"
             class="
               bg-black
               text-white
@@ -34,17 +33,16 @@
               mb-10
               py-3
               font-titillium
-              shadow-light-300
-              shadow-xl
+              shadow-light-300 shadow-xl
             "
           >
             {{ props.package.category }}
           </div>
         </div>
       </div>
-      <div class="p-8 bg-white flex flex-col justify-evenly ">
+      <div class="p-8 bg-white flex flex-col justify-evenly">
         <div class="w-full font-titillium font-semibold text-xl">
-          <h3 class=" text-center mb-3">{{ titleFirstBit}}</h3>
+          <h3 class="text-center mb-3">{{ titleFirstBit }}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"
@@ -53,7 +51,6 @@
             >
               <IconStar />
             </div>
-    
           </div>
         </div>
         <div class="flex justify-center">
@@ -74,11 +71,10 @@
           </div>
         </div>
         <div
-          class="hidden  text-sm pb-1"
+          class="hidden text-sm pb-1"
           :class="{ loadingStateClass: searchStore.loadingState }"
-
         >
-        loading
+          loading
         </div>
         <div class="flex justify-between items-center pb-5">
           <div
@@ -105,11 +101,19 @@
           </div>
         </div>
         <div class="flex justify-center">
-        <div
-          class="underline text-base leading- text-gray-700 decoration-gray-300 hover:text-lime-500"
-          :class="{ loadingStateClass: searchStore.loadingState }"
-          >read more</div
-        >
+          <div
+            class="
+              underline
+              text-base
+              leading-
+              text-gray-700
+              decoration-gray-300
+              hover:text-lime-500
+            "
+            :class="{ loadingStateClass: searchStore.loadingState }"
+          >
+            read more
+          </div>
         </div>
       </div>
     </div>
@@ -136,13 +140,13 @@ const route = useRoute();
 
 let text = props.package.title;
 
-let cutTextTitle = text.substring(0,30);
+let cutTextTitle = text.substring(0, 30);
 let lastWord = cutTextTitle.split(" ").pop(-1);
 let cutTitle = cutTextTitle.slice(0, cutTextTitle.length - lastWord.length);
-if (cutTitle[cutTitle.length-1] == '-') {
-  cutTitle.pop()
-} 
-let titleFirstBit = text.split(" - ")[0]
+if (cutTitle[cutTitle.length - 1] == "-") {
+  cutTitle.pop();
+}
+let titleFirstBit = text.split(" - ")[0];
 
 let stars = [];
 for (let i = 0; i < props.package.star_rating; i++) {

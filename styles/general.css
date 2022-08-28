@@ -113,3 +113,10 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
+
+ul{
+  list-style-type:circle;
+}
+p{
+  margin-bottom:10px;
+}

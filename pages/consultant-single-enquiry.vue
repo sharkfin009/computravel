@@ -15,7 +15,7 @@
       class="
         w-[90vw]
         h-[70vh]
-        bg-gray-100
+        bg-slate-50
         rounded-3xl
         py-20
         px-5
@@ -23,7 +23,19 @@
         items-center
       "
     >
-      <div class="flex justify-between px-10 w-full items-center mb-5 bg-white rounded-3xl h-[150px]">
+      <div
+        class="
+          flex
+          justify-between
+          px-10
+          w-full
+          items-center
+          mb-5
+          bg-white
+          rounded-3xl
+          h-[150px]
+        "
+      >
         <div class="w-[50px]">
           <div
             @click="consultantStore.toggleActive()"
@@ -49,14 +61,15 @@
         <h3 class="text-2xl font-bold font-titillium">enquiry details</h3>
       </div>
       <div class="flex flex-col gap-10 w-[70vw]">
-      
         <div class="grid grid-cols-4 gap-5">
-              <h3>
-          Enquiry ref:
-          <div class="bg-white rounded p-4">
-            {{ consultantStore.enquiries[consultantStore.currentEnquiry].ref }}
-          </div>
-        </h3>
+          <h3>
+            Enquiry ref:
+            <div class="bg-white rounded p-4">
+              {{
+                consultantStore.enquiries[consultantStore.currentEnquiry].ref
+              }}
+            </div>
+          </h3>
           <h3>
             Customer Name:
             <div class="bg-white rounded p-4">
@@ -129,10 +142,10 @@
           </h3>
         </div>
         <h3>Notes</h3>
-  
-      <NuxtLink to="/consultant-portal" class="flex justify-center">
-      <BookButton>all my enquiries</BookButton>
-      </NuxtLink>
+
+        <NuxtLink to="/consultant-portal" class="flex justify-center">
+          <BookButton>all my enquiries</BookButton>
+        </NuxtLink>
       </div>
     </div>
   </div>

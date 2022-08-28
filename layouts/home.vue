@@ -1,5 +1,5 @@
 <template>
-  <div class=" bg-light-200 font-open-sans ">
+  <div class=" bg-light-200 font-open-sans w-screen">
     
     <Header />
 

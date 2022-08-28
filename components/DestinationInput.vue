@@ -1,42 +1,37 @@
 <template>
-  <div class="w-full h-full relative">
+  <div class="w-full h-full flex flex-col justify-between mb-5">
     <label class="text-lg">Destination </label>
-    <input
-      id="findInput"
-      name="search"
-      type="text"
-      v-model="searchStore.destinationQuery"
-      class="
-        w-full
-        rounded-xl
-        bg-white
-        p-4
-        relative
-        input-outline
-        shadow-xl
-        hover:shadow-none
-      "
-      @keyup="manageKeyUp"
-      @focus="destinationSuggest.showSuggestions = true"
-      @blur="destinationSuggest.showSuggestions = false"
-      placeholder="Anywhere"
-      ref="findInput"
-    />
-    <IconClose
-      class="
-        w-6
-        absolute
-        right-[10px]
-        top-[50%]
-        transition
-        hover:rotate-180
-        cursor-pointer
-      "
-      @mousedown="
-        searchStore.destinationQuery = '';
-        clear();
-      "
-    />
+    <div class="relative">
+      <input
+        id="findInput"
+        name="search"
+        type="text"
+        v-model="searchStore.destinationQuery"
+        class="
+          w-full
+          rounded-xl
+          bg-white
+          p-4
+          relative
+          input-outline
+          hover:shadow-none
+        "
+        @keyup="manageKeyUp"
+        @focus="destinationSuggest.showSuggestions = true"
+        @blur="destinationSuggest.showSuggestions = false"
+        placeholder="Anywhere"
+        ref="findInput"
+      />
+      <div class="absolute inset-0 flex items-center justify-end pr-2">
+        <IconClose
+          class="w-6 transition hover:rotate-180 cursor-pointer"
+          @mousedown="
+            searchStore.destinationQuery = '';
+            clear();
+          "
+        />
+      </div>
+    </div>
     <!-- autosuggest list-->
 
     <div
@@ -47,14 +42,15 @@
         unroll
         z-30
         shadow-2xl
-        bg-gray-100
+        bg-slate-50
         rounded-xl
         overflow-auto
         h-min-[350px]
         origin-top
       "
       v-show="
-        destinationSuggest.showSuggestions && destinationSuggest.suggestions.length > 0
+        destinationSuggest.showSuggestions &&
+        destinationSuggest.suggestions.length > 0
       "
     >
       <div class="bg-stone-100 rounded-xl overflow-hidden border">
@@ -110,7 +106,6 @@ onMounted(() => {
   }
 });
 const hoveredSuggestion = ref(0);
-
 
 // clear
 const clear = () => {
@@ -233,7 +228,7 @@ const mouseLeave = () => {
 watch(
   () => searchStore.destination,
   (a, b) => {
-   searchStore.fireQuery() 
+    searchStore.fireQuery();
   }
 );
 </script>

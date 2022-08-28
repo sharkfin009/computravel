@@ -1,14 +1,16 @@
 <template>
   <div class="relative">
-    <div class="h-full flex flex-col justify-between">
-      <label v-if="validationObject" class="tracking-wide">{{ label }} </label>
-      <input
-        autocomplete="off"
+    <div class="h-full flex flex-col justify-between mb-5">
+      <label v-if="validationObject" class="tracking-wide mb-0 md:mb-5"
+        >{{ label }}
+      </label>
+      <textarea
+        class="w-full rounded-xl bg-white input-outline p-4 hover:shadow-none"
         :id="inputName"
         :name="inputName"
         @input="setValue"
-        class="w-full rounded-xl bg-white input-outline p-4 hover:shadow-none"
-        :type="type"
+        rows="3"
+        cols=""
         :class="{
           greenClass:
             validationObject.$error === false &&
@@ -52,10 +54,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    required: true,
-  },
+
   errorMessage: {
     type: String,
   },

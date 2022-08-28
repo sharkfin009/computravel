@@ -100,7 +100,6 @@
           unroll
           shadow-3xl
           bg-white
-
           lg:bg-gray-300
           p-2
           lg:p-10
@@ -157,7 +156,7 @@
                   >
                     {{ suggestion.titleShort }}
                   </div>
-              
+
                   <div class="hidden lg:block">
                     {{ suggestion.description }}
                   </div>
@@ -192,7 +191,7 @@
               class="
                 flex
                 items-center
-                bg-gray-100
+                bg-slate-50
                 rounded-full
                 p-1
                 hover:bg-green-text hover:text-lime-200
@@ -207,14 +206,14 @@
         <!-- mobile: -->
         <div class="block lg:hidden p-2 h-[250px] overflow-auto">
           <div class="mb-2">related searches:</div>
-          <div class="grid  gap-2">
+          <div class="grid gap-2">
             <div
               v-for="(item, index) in findSuggest.suggestions"
               :key="index"
               class="
                 flex
                 items-center
-                bg-gray-100
+                bg-slate-50
                 rounded-full
                 p-1
                 hover:bg-green-text hover:text-lime-200
@@ -231,7 +230,6 @@
   </div>
 </template>
 <script setup>
-
 const route = useRoute();
 const props = defineProps({
   parent: String,
@@ -255,8 +253,8 @@ const suggestions = ref([]);
 const hoveredSuggestion = ref(0);
 const destinationSuggestions = ref([]);
 const clear = () => {
-  searchStore.destinationQuery = ''
-    searchStore.findQuery = "";
+  searchStore.destinationQuery = "";
+  searchStore.findQuery = "";
   showFindSuggestions.value = false;
   suggestions.value = [];
   selectedSuggestion.value = -1;
@@ -441,9 +439,9 @@ const getDestinationSuggestions = async () => {
 };
 
 import { useStore } from "@/stores/search";
-const searchStore = useStore()
+const searchStore = useStore();
 
-import{ useFindSuggestStore} from "~~/stores/findSuggest"
+import { useFindSuggestStore } from "~~/stores/findSuggest";
 const findSuggest = useFindSuggestStore();
 
 const searchDestination = (destination) => {

@@ -15,7 +15,7 @@
       class="
         w-[90vw]
         h-[70vh]
-        bg-gray-100
+        bg-slate-50
         rounded-3xl
         py-20
         px-5
@@ -23,7 +23,19 @@
         items-center
       "
     >
-      <div class="flex justify-between px-10 w-full items-center bg-white rounded-3xl mb-5 h-[150px]">
+      <div
+        class="
+          flex
+          justify-between
+          px-10
+          w-full
+          items-center
+          bg-white
+          rounded-3xl
+          mb-5
+          h-[150px]
+        "
+      >
         <div class="w-[50px]">
           <div
             @click="consultantStore.toggleActive()"
@@ -147,5 +159,4 @@ const view = async (enquiryIndex) => {
 </script>
 
 <style>
-
 </style>

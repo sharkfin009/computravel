@@ -2,9 +2,7 @@
   <div
     v-if="searchStore"
     class="
-       sticky
-        top-[127px]
-   
+      md:sticky md:top-[119px]
       select-none
       rounded-3xl
       user-select-none
@@ -20,10 +18,20 @@
     "
   >
     <!--  grid -->
-    <div class=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md-gap-10 w-full">
+    <div
+      class="
+        grid grid-cols-1 grid-rows-1
+        md:grid-cols-2 md:grid-rows-3
+        xl:grid-cols-3 xl:grid-rows-2
+        gap-10
+        md-gap-10
+        w-full
+      "
+    >
       <!-- destination autosuggest input -->
-      <DestinationInput @setValue="setValue" />
-
+      <div class="">
+        <DestinationInput @setValue="setValue" />
+      </div>
       <SearchSelect
         label="Category"
         inputName="category"
@@ -31,7 +39,7 @@
         placeholder="All"
         @setValue="setValue"
       />
-    
+
       <!-- dates -->
       <SearchInput
         inputName="from_date"
@@ -60,30 +68,27 @@
         @setValue="setValue"
         placeholder="price low to high"
       />
-          <div class="h-full ">
-        <div class="mb-1">Price Range</div>
+      <div class="h-full">
+        <div class="mb-5">Price Range</div>
         <div
           class="
             grid
             md:grid-cols-[100px,auto,100px]
             grid-cols-[50px,auto,90px]
             bg-white
-            py-4
             md:py-[15px] md:px-5
-            inputsStyling
+            h-[55px]
             rounded-xl
             text-sm
-            shadow-lg
-            hover:shadow-none
             input-outline
           "
         >
-          <div class="text-center">
+          <div class="text-center flex items-center justify-center">
             R{{ numberWithCommas(searchStore.price_min) }}
           </div>
           <div class="relative">
             <div
-              class="absolute inset-0 flex flex-col gap-4 cursor-pointer"
+              class="absolute inset-0 gap-4 cursor-pointer flex items-center"
               id="min"
             >
               <input
@@ -96,7 +101,10 @@
               />
             </div>
 
-            <div class="flex flex-col gap-4 cursor-pointer" id="max">
+            <div
+              class="relative h-full flex items-center gap-4 cursor-pointer"
+              id="max"
+            >
               <input
                 v-model.number="searchStore.price_max"
                 type="range"
@@ -106,14 +114,26 @@
               />
             </div>
           </div>
-          <div class="text-center">
+          <div class="flex justify-center items-center">
             R{{ numberWithCommas(searchStore.price_max) }}
           </div>
         </div>
       </div>
-      <div @click="clearFilters" class="cursor-pointer absolute top-0 right-0 m-5 text-lime-600 hover:text-lime-500 ">clear filters</div>
+      <div
+        @click="clearFilters"
+        class="
+          cursor-pointer
+          absolute
+          top-0
+          right-0
+          m-5
+          text-lime-600
+          hover:text-lime-500
+        "
+      >
+        clear filters
+      </div>
     </div>
- 
   </div>
 </template>
 
@@ -135,10 +155,9 @@ const selectInput = (input) => {
   searchStore.activeInput = input;
 };
 
-
 const setValue = (inputName, value) => {
   if (value == null) return;
-console.log(value)
+  console.log(value);
   let valueForSearchQuery;
   if (typeof value == "string") {
     valueForSearchQuery = value;
@@ -146,12 +165,10 @@ console.log(value)
     if (inputName == "sort_by") {
       valueForSearchQuery = value.order;
     }
- 
   }
   console.log(valueForSearchQuery);
-  searchStore[inputName] = valueForSearchQuery
-  searchStore.fireQuery()
-
+  searchStore[inputName] = valueForSearchQuery;
+  searchStore.fireQuery();
 };
 
 searchStore.$subscribe((mutation, state) => {
@@ -161,18 +178,13 @@ searchStore.$subscribe((mutation, state) => {
   if (state.price_max < state.price_min) {
     state.price_min = state.price_max;
   }
- 
 });
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const sort_options = [
-  "Price low to high" ,
-  "Price high to low" ,
-];
-
+const sort_options = ["Price low to high", "Price high to low"];
 
 const categories = [
   "Adventure",
@@ -196,10 +208,9 @@ const categories = [
   "Weekend Getaways",
 ];
 
-const clearFilters = ()=>{
-searchStore.$reset()
-
-}
+const clearFilters = () => {
+  searchStore.$reset();
+};
 </script>
 
 

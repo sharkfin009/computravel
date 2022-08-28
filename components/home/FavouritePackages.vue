@@ -4,10 +4,11 @@
     v-if="favourites"
   >
     <!-- top row -->
-    <div class="flex flex-col justify-end px-10 md:px-[80px]  md:pb-20">
-      <h3 class="text-3xl md-text-4xl font-semibold md:font-medium mb-2">our favourite</h3>
-      <h2 class="text-4xl md-text-5xl font-titillium font-regular md:font-semibold">holiday packages</h2>
-    </div>
+<SectionHeading
+    heading = "holiday packages"
+    subheading = "our favourite"
+    inverse= "true"
+/>
     <!-- desktop cards: -->
     <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
       <div class="flex items-center justify-center">
