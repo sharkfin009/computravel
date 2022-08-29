@@ -5,65 +5,135 @@
       subheading="we'd love to hear from you"
       :inverted="false"
     />
-    <div
-      class="
-        bg-green-avo
-        rounded-xl
-        p-10
-        flex flex-col
-        items-evenly
-        justify-evenly
-      "
-    >
+    <div class="grid lg:grid-cols-3 gap-20 mb-20">
       <div
         class="
           flex flex-col
-          md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-10 md:gap-y-10 md:mb-10
+          items-center
+          justify-center
+          p-20
+          gap-5
+          rounded-lala
+          bg-white
+          shadow
         "
       >
-        <Input
-          v-if="vl.full_name"
-          inputName="full_name"
-          label="Full Name"
-          type="text"
-          :validationObject="vl.full_name"
-          errorMessage="full name is required"
-          placeholder="full name"
-          @setValue="setValue"
-        />
-        <Input
-          v-if="vl.email"
-          inputName="email"
-          label="Email Address"
-          type="text"
-          :validationObject="vl.email"
-          errorMessage="email is required"
-          placeholder="email"
-          @setValue="setValue"
-        />
-        <Input
-          v-if="vl.cell"
-          inputName="cell"
-          label="Cell Number"
-          type="text"
-          :validationObject="vl.cell"
-          errorMessage="cell no is required"
-          placeholder="number"
-          @setValue="setValue"
-        />
+        <fa-icon icon="fas fa-phone " />
+        <h4 class="font-semibold">phone</h4>
+        <div class="text-center">
+          <p>Tel: +27 (021) 762-0511</p>
+          <p>After hours: +27 (0)84 674-0246</p>
+        </div>
       </div>
-      <TextArea
-        v-if="vl.message"
-        inputName="message"
-        label="Message"
-        :validationObject="vl.message"
-        errorMessage="date is required"
-        placeholder=""
-        @setValue="setValue"
-      />
+      <div
+        class="
+          flex flex-col
+          items-center
+          justify-center
+          p-20
+          gap-5
+          rounded-lala
+          bg-white
+          shadow
+        "
+      >
+        <fa-icon icon="fa fa-map-marker " />
+        <h4 class="font-semibold">address</h4>
+        <div class="text-center">
+          <p>
+            59 Waterloo Road, Cnr. Waterloo Road and Wolfe Street, Wynberg,
+            7800.
+          </p>
+        </div>
+      </div>
+      <div
+        class="
+          flex flex-col
+          items-center
+          justify-center
+          p-20
+          gap-5i
+          rounded-lala
+          bg-white
+          shadow
+        "
+      >
+        <fa-icon icon="fas fa-envelope " />
+        <h4 class="font-semibold">email</h4>
+        <div class="text-center">
+          <p>info@computravel.co.za</p>
+        </div>
+      </div>
+    </div>
+    <div class="md:flex flex-col items-center">
+      <div
+        class="
+          bg-green-avo
+          rounded-xl
+          p-10
+          flex flex-col
+          items-evenly
+          justify-evenly
+          w-none
+          md:w-[70vw]
+        "
+      >
+        <div
+          class="
+            flex flex-col
+            md:grid
+            md:grid-cols-2
+            md:grid-rows-2
+            md:gap-x-10
+            md:gap-y-10
+            md:mb-10
+          "
+        >
+          <Input
+            v-if="vl.full_name"
+            inputName="full_name"
+            label="Full Name"
+            type="text"
+            :validationObject="vl.full_name"
+            errorMessage="full name is required"
+            placeholder="full name"
+            @setValue="setValue"
+          />
+          <Input
+            v-if="vl.email"
+            inputName="email"
+            label="Email Address"
+            type="text"
+            :validationObject="vl.email"
+            errorMessage="email is required"
+            placeholder="email"
+            @setValue="setValue"
+          />
+          <Input
+            class="col-span-full"
+            v-if="vl.cell"
+            inputName="cell"
+            label="Cell Number"
+            type="text"
+            :validationObject="vl.cell"
+            errorMessage="cell no is required"
+            placeholder="number"
+            @setValue="setValue"
+          />
+        </div>
+        <TextArea
+          v-if="vl.message"
+          inputName="message"
+          label="Message"
+          :validationObject="vl.message"
+          errorMessage="date is required"
+          placeholder=""
+          @setValue="setValue"
+        />
 
-      <div class="flex justify-end">
-        <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
+        <div class="flex justify-end">
+          <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
+        </div>
       </div>
     </div>
   </div>
