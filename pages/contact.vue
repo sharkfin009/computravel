@@ -65,6 +65,7 @@
         </div>
       </div>
     </div>
+    <h3>get in touch with us directly here</h3>
     <div class="md:flex flex-col items-center">
       <div
         class="

@@ -1,7 +1,6 @@
 <template>
   <div
     class="
-      h-[80px]
       text-white
       font-titillium font-semibold
       block
@@ -13,11 +12,12 @@
       transition
       duration-500
       text-center
-      px-6
       flex
       items-center
-      md:px-2
+      px-6
+      md:px-10
       lg:px-10
+      xl:px-10
       text-xs
       md:text-xl
       lg:text-2xl
@@ -26,4 +26,4 @@
   >
     <slot />
   </div>
-</template>
+</template>s

@@ -1,6 +1,7 @@
 <template>
   <div
     class="
+      md:pt-20
       grid grid-rows-[auto,auto,auto]
       gap-3
       bg-slate-800
@@ -32,7 +33,6 @@
         <div class="grid lg:grid lg:grid-cols-2 gap-3">
           <div class="">
             <p>T: +27 (021) 762-0511</p>
-            <p>F: +27 (021) 762-0512</p>
           </div>
 
           <div>
@@ -72,7 +72,7 @@
           <div class="h-[60px] flex items-center">
             <h4 class="font-bold mb-5">legal</h4>
           </div>
-          <ul class="list-none">
+          <ul class="list-none text-base">
             <li>sacoronavirus.co.za</li>
             <li>Terms And Conditions</li>
             <li>Disclaimer</li>
@@ -84,7 +84,7 @@
           <div class="h-[60px] flex items-center">
             <h4 class="font-bold mb-5">data, privacy and more</h4>
           </div>
-          <ul class="list-none">
+          <ul class="list-none text-base">
             <li>Privacy Policy</li>
             <li>Cookie Policy</li>
             <li>Careers</li>

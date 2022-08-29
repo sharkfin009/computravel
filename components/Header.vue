@@ -7,7 +7,9 @@
       class="
         relative
         flex
-        md:h-[120px]
+        h-[66px]
+        md:h-[90px]
+        lg:h-[110px]
         w-full
         justify-between
         py-3
@@ -22,15 +24,15 @@
             bg-opacity-90 bg-green-avo
             rounded-full
             shadow
-            w-[160px]
-            md:w-[320px]
+            w-[150px]
+            md:w-[220px]
             justify-center
             h-full
             flex
             items-center
           "
         >
-          <IconComputravelLogo class="h-[30px] md:h-[60px]" />
+          <IconComputravelLogo class="h-[30px] md:h-[40px]" />
         </div>
       </NuxtLink>
 
@@ -62,8 +64,8 @@
             bg-opacity-80
             shadow
             flex
-            w-[30px]
-            md:w-[99px]
+            w-[45px]
+            md:w-[75px] md:w-[75px]
             cursor-pointer
             z-10
             hover:bg-lime-100

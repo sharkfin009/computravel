@@ -65,7 +65,7 @@
               leading-6
               font-light
               flex
-              justify-center
+              text-center
               px-10
             "
           >
