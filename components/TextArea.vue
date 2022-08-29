@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div class="h-full flex flex-col justify-between mb-5">
-      <label v-if="validationObject" class="tracking-wide mb-0 md:mb-5"
+      <label v-if="validationObject" class="tracking-wide mb-5 md:mb-5"
         >{{ label }}
       </label>
       <textarea

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col justify-between mb-5">
-    <label class="text-lg">Destination </label>
+    <label class="md:text-lg mb-5 md:pb-5">Destination </label>
     <div class="relative">
       <input
         id="findInput"

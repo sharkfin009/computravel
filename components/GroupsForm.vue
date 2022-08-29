@@ -13,7 +13,13 @@
       class="
         flex flex-col
         grid-rows-3
-        md:grid md:grid-cols-3 md:grid-rows-4 md:gap-x-10 md:gap-y-10 md:mb-10
+        md:grid
+        md:grid-cols-3
+        md:grid-rows-4
+        md:gap-x-10
+        md:gap-y-10
+        md:mb-10
+        md:h-[500px]
       "
     >
       <Input

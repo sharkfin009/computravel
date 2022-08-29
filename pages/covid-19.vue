@@ -18,7 +18,7 @@
             "
           />
           <img
-            class="object-cover rounedd"
+            class="object-cover rouned"
             :src="
               data.data.covid19.data.attributes.images.data[1].attributes.url
             "

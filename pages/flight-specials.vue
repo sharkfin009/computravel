@@ -1,8 +1,90 @@
 <template>
-    <div class="w-full h-screen flex justify-center items-center">Flight specials</div>
+  <div
+    class="
+      text-black
+      flex flex-col
+      justify-around
+      px-10
+      md:px-[80px]
+      py-20
+      md:py-40
+    "
+  >
+    <div>
+      <SectionHeading
+        heading="latest flight specials"
+        subheading="fly somewhere new"
+        :inverted="true"
+      />
+      <div class="w-full flex justify-center mb-10">
+        <div
+          class="
+            lg:min-w-[800px]
+            overflow-auto
+            text-sm
+            lg:text-base
+            shadow-xl
+            rounded-3xl
+            overflow-hidden
+          "
+        >
+          <table class="w-full font-open-sans font-extralight">
+            <tbody class="overflow-auto">
+              <tr v-for="(special, index) in specials" :key="index">
+                <td class="">{{ special.flight_route }}</td>
+                <td class="">
+                  {{ special.price_from }}
+                </td>
+                <td class="flex justify-center items-center py-5">
+                  <BookButton class="!px-14 h-[50px]">
+                    book with our experts
+                  </BookButton>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <BlackButton class=""> view all flights </BlackButton>
+    </div>
+  </div>
 </template>
 <script setup>
 definePageMeta({
-    layout:'home'
-})
+  layout: "home",
+});
+const specials = [
+  {
+    flight_route: "Johannesburg to Istanbul",
+    airline: "Turkish Airlines",
+    trip_type: "Return",
+    price_from: "R5429",
+  },
+  {
+    flight_route: "Johannesburg to Dubai",
+    airline: "Qatar Airlines",
+    trip_type: "Return",
+    price_from: "R5419",
+  },
+  {
+    flight_route: "Cape Town to London",
+    airline: "KLM Airlines",
+    trip_type: "Return",
+    price_from: "R8239",
+  },
+  {
+    flight_route: "Johannesburg to London",
+    airline: "KLM Airlines",
+    trip_type: "Return",
+    price_from: "R7739",
+  },
+  {
+    flight_route: "Johannesburg to Amsterdam",
+    airline: "Qatar Airlines",
+    trip_type: "Return",
+    price_from: "R6899",
+  },
+];
 </script>
