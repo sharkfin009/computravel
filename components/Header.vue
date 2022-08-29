@@ -66,6 +66,9 @@
             md:w-[99px]
             cursor-pointer
             z-10
+            hover:bg-lime-100
+            transition
+            duration-300
           "
           :class="{
             'opacity-0': showMenu == true,

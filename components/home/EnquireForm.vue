@@ -3,7 +3,8 @@
     class="
       bg-green-avo
       rounded-xl
-      p-10
+      px-3
+      lg:p-10
       flex flex-col
       items-evenly
       justify-evenly
@@ -12,7 +13,15 @@
     <div class="py-10 flex gap-5 flex-wrap items-center">
       <div>Bookings I am interested in:</div>
       <div
-        class="bg-lime-200 p-2 px-4 rounded-full text-lime-900 font-medium shadow"
+        class="
+          bg-lime-200
+          p-2
+          px-4
+          rounded-full
+          text-lime-900
+          font-medium
+          shadow
+        "
         v-for="(item, index) in packages.map((item) => item.attributes.title)"
         :key="index"
       >
@@ -23,7 +32,7 @@
       class="
         flex flex-col
         gap-8
-        md:grid md:grid-cols-3 md:gap-x-10 md:gap-y-2
+        lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-x-10 lg:gap-y-2
         mb-5
       "
     >
@@ -100,7 +109,7 @@
     </div>
 
     <div class="flex justify-end">
-      <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
+      <BookButton @mousedown="send" class="!px-10">send enquiry</BookButton>
     </div>
   </div>
 </template>

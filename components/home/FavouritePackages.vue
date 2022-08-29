@@ -1,70 +1,76 @@
 <template>
-  <div
-    class="bg-green-avo text-black flex flex-col justify-between w-screen py-20 md:py-40"
-    v-if="favourites"
-  >
-    <!-- top row -->
-<SectionHeading
-    heading = "holiday packages"
-    subheading = "our favourite"
-    inverse= "true"
-/>
-    <!-- desktop cards: -->
-    <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
-      <div class="flex items-center justify-center">
-        <IconChevronLeft
-          class="cursor-pointer hover:scale-110"
-          @click="scrollLeft"
-        />
+  <HomeSectionLayout bgColor="bg-green-avo">
+    <div v-if="favourites">
+      <!-- top row -->
+      <SectionHeading
+        heading="holiday packages"
+        subheading="our favourite"
+        :inverted="true"
+        class="px-10 md:px-20"
+      />
+      <!-- desktop cards: -->
+      <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
+        <div class="flex items-center justify-center">
+          <IconChevronLeft
+            class="cursor-pointer hover:scale-110"
+            @click="scrollLeft"
+          />
+        </div>
+
+        <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
+          <div ref="" class="flex gap-8 pb-8">
+            <div
+              v-for="(fave, index) in favourites.favourites.data.map(
+                (item) => item.attributes.package.data.attributes
+              )"
+              :key="index"
+              class="snap-center"
+            >
+              <Card class="" :package="fave" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center">
+          <IconChevronRight
+            class="cursor-pointer hover:scale-110"
+            @click="scrollRight"
+          />
+        </div>
       </div>
 
-      <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
-        <div ref="" class="flex gap-8 pb-8">
-          <div
+      <!-- mobile cards: -->
+      <div class="flex justify-center md:hidden relative w-full pt-10">
+        <div class="relative w-[320px] h-[400px]">
+          <card
             v-for="(fave, index) in favourites.favourites.data.map(
               (item) => item.attributes.package.data.attributes
             )"
             :key="index"
-            class=" snap-center "
-          >
-            <Card class="" :package="fave" />
-          </div>
+            :package="fave"
+            class="absolute inset-0 transition-opacity opacity-0 duration-700"
+            :class="{ '!opacity-100': index == browsePointer }"
+          ></card>
         </div>
       </div>
 
-      <div class="flex items-center justify-center">
-        <IconChevronRight class="cursor-pointer hover:scale-110" @click="scrollRight" />
+      <div class="flex justify-center items-center h-full py-5">
+        <BlackButton class="hidden lg:flex mx-10 md:mx-20 shadow-2xl mb-5">
+          view more holidays
+        </BlackButton>
+        <div class="flex lg:hidden w-full justify-evenly">
+          <IconChevronLeft class="cursor-pointer" @click="browseLeft" />
+          <IconChevronRight class="cursor-pointer" @click="browseRight" />
+        </div>
       </div>
     </div>
-
-    <!-- mobile cards: -->
-    <div class="flex justify-center md:hidden relative w-full  pt-10">
-      <div class="relative w-[320px] h-[400px]">
-        <card
-          v-for="(fave, index) in favourites.favourites.data.map(
-            (item) => item.attributes.package.data.attributes
-          )"
-          :key="index"
-          :package="fave"
-          class="absolute inset-0 transition-opacity opacity-0 duration-700"
-          :class="{ '!opacity-100': index == browsePointer }"
-        ></card>
-      </div>
-    </div>
-
-    <div class="flex justify-center items-center h-full py-5">
-      <BlackButton class="hidden lg:flex mx-10 md:mx-20 shadow-2xl mb-5">
-        view more holidays
-      </BlackButton>
-      <div class="flex lg:hidden w-full justify-evenly">
-        <IconChevronLeft class="cursor-pointer " @click="browseLeft" />
-        <IconChevronRight class="cursor-pointer" @click="browseRight" />
-      </div>
-    </div>
-  </div>
+  </HomeSectionLayout>
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "section",
+});
 import { useGraph } from "../../composables/useGraph";
 
 const { data: favourites, error } = useGraph(`
@@ -131,13 +137,11 @@ const browsePointer = ref(0);
 const browseLeft = () => {
   if (browsePointer.value > 0) {
     browsePointer.value--;
-  } else browsePointer.value = favourites.value.favourites.data.length -1;
+  } else browsePointer.value = favourites.value.favourites.data.length - 1;
 };
 const browseRight = () => {
   if (browsePointer.value < favourites.value.favourites.data.length - 1) {
     browsePointer.value++;
-  } else browsePointer.value = 0
-
-
+  } else browsePointer.value = 0;
 };
 </script>

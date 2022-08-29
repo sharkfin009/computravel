@@ -13,7 +13,6 @@
       transition
       duration-500
       text-center
-      z-30
       px-6
       flex
       items-center

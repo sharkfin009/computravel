@@ -3,7 +3,7 @@
     <SectionHeading
       heading="travel tips"
       subheading="current"
-      inverted="true"
+      :inverted="true"
     />
 
     <div v-if="data" class="grid lg:grid-cols-2 gap-5">

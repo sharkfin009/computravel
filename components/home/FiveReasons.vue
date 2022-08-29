@@ -1,40 +1,43 @@
 <template>
-  <div
-    class="
-      bg-green-avo
-      flex flex-col
-      text-2xl
-      p-10
-      justify-evenly
-      md:px-[80px] py-20 md:py-40
-    "
-    v-if="reasons.length > 0"
-  >
-    <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">five reasons to</h3>
-    <div class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold leading-none mb-5 md:mb-10">
-      travel with us
-    </div>
-    <!-- XL header section -->
-
-    <TabMenu
-      v-if="titles.length > 0"
-      @selectTab="setActiveTab"
-      :titles="titles"
-      class="mb-5 md:mb-10"
-    ></TabMenu>
-
-
-    <div class="relative h-[350px] overflow-hidden">
-      <HomeReason
-        v-for="(reason, index) in reasons"
-        :key="index"
-        :reason="reason"
-        :imageStyle="imageStyles[index]"
-        class="absolute inset-0 transition ease-in duration-700"
-        :class="{ 'opacity-0 translate-x-[80vw]': index !== activeTab }"
+  <HomeSectionLayout bgColor="bg-green-avo">
+    <div
+      class="
+        bg-green-avo
+        flex flex-col
+        text-2xl
+        p-10
+        justify-evenly
+        md:px-[80px]
+        py-20
+        md:py-40
+      "
+      v-if="reasons.length > 0"
+    >
+      <SectionHeading
+        heading="travel with us"
+        subheading="five reasons to"
+        :inverted="true"
       />
+
+      <TabMenu
+        v-if="titles.length > 0"
+        @selectTab="setActiveTab"
+        :titles="titles"
+        class="mb-5 md:mb-10"
+      ></TabMenu>
+
+      <div class="relative h-[350px] overflow-hidden">
+        <HomeReason
+          v-for="(reason, index) in reasons"
+          :key="index"
+          :reason="reason"
+          :imageStyle="imageStyles[index]"
+          class="absolute inset-0 transition ease-in duration-700"
+          :class="{ 'opacity-0 translate-x-[80vw]': index !== activeTab }"
+        />
+      </div>
     </div>
-  </div>
+  </HomeSectionLayout>
 </template>
 
 <script setup>

@@ -12,8 +12,19 @@
       z-50
     "
   >
-    <div class="relative bg-green-avo rounded-xl flex flex-col justify-evenly p-10 h-[80vh]">
-      <div class="text-center font-bold text-2xl ">
+    <div
+      class="
+        relative
+        bg-green-avo
+        rounded-xl
+        flex flex-col
+        justify-evenly
+        md:p-10
+        h-[80vh]
+        w-[90vw]
+      "
+    >
+      <div class="text-center font-bold text-2xl pt-10">
         Tell us a few things and we will get right back to you!
       </div>
       <div
@@ -24,18 +35,16 @@
           md:flex
           flex-col
           justify-evenly
-          overflow-scroll
-          md:overflow-none
+          overflow-auto
+          md:overflow-auto
         "
       >
         <HomeEnquireForm />
-
-        
       </div>
       <CloseRow
-          class="absolute top-0 left-0"
-          @closeModal="enquiry.showEnquireNow = false"
-        />
+        class="absolute top-0 left-0"
+        @closeModal="enquiry.showEnquireNow = false"
+      />
     </div>
   </div>
 </template>

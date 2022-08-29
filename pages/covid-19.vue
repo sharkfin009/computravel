@@ -3,6 +3,7 @@
     <SectionHeading
       heading="covid-19"
       subheading="statement and global procedure"
+      :inverted="false"
     />
 
     <div class="p-5 md:p-20 bg-green-avo rounded-xl">

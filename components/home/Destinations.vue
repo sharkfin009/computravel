@@ -1,55 +1,53 @@
 <template>
-  <div
-    class="flex flex-col pt-20 text-2xl px-5 md:px-[80px] py-20 md:py-40 
-    bg-stone-50"
-    v-if="data"
-  >
-    <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">experience these</h3>
+  <HomeSectionLayout bgColor="bg-stone-50">
+    <div class="px-10 md:px-20" v-if="data">
+      <SectionHeading
+        heading="destinations"
+        subheading="experience these"
+        :inverted="true"
+      />
+      <!-- XL header:-->
+      <div class="hidden xl:block">
+        <div />
+        <div />
+        <TabMenu
+          @selectTab="setActiveTab"
+          :titles="destinationsDictionary"
+        ></TabMenu>
+      </div>
 
-    <h1 class="text-4xl md:text-5xl font-titillium font-regular md:font-semibold mr-4 xl:mb-10">
-      destinations
-    </h1>
-    <!-- XL header:-->
-    <div class="hidden xl:block">
-      <div />
-      <div />
-      <TabMenu
-        @selectTab="setActiveTab"
-        :titles="destinationsDictionary"
-      ></TabMenu>
-    </div>
-
-    <div class="relative h-[800px] lg:h-[500px] w-full">
-      <HomeDestination
-        v-for="(destination, index) in packages"
-        :key="index"
-        :destination="packages[index]"
-        class="absolute inset-0 w-full"
-        :class="{ 'opacity-0': index !== activeTab }"
-      >
-        <!-- unnamed slot for destination pic on left: -->
-        <div
-          class="
-            relative
-            rounded-lala
-            overflow-hidden
-            shadow-2xl
-            h-[250px]
-            lg:h-[450px] lg:mr-10
-          "
-          v-if="picStyles.length > 0"
+      <div class="relative h-[800px] lg:h-[500px] w-full">
+        <HomeDestination
+          v-for="(destination, index) in packages"
+          :key="index"
+          :destination="packages[index]"
+          class="absolute inset-0 w-full"
+          :class="{ 'opacity-0': index !== activeTab }"
         >
+          <!-- unnamed slot for destination pic on left: -->
           <div
-            v-for="(destination, index) in destinationsDictionary"
-            :key="index"
-            :style="picStyles[index]"
-            class="absolute inset-0"
-            :class="{ 'opacity-0': index !== activeTab }"
-          ></div>
-        </div>
-      </HomeDestination>
+            class="
+              relative
+              rounded-lala
+              overflow-hidden
+              shadow-2xl
+              h-[250px]
+              lg:h-[450px] lg:mr-10
+            "
+            v-if="picStyles.length > 0"
+          >
+            <div
+              v-for="(destination, index) in destinationsDictionary"
+              :key="index"
+              :style="picStyles[index]"
+              class="absolute inset-0"
+              :class="{ 'opacity-0': index !== activeTab }"
+            ></div>
+          </div>
+        </HomeDestination>
+      </div>
     </div>
-  </div>
+  </HomeSectionLayout>
 </template>
 
 <style>
@@ -59,6 +57,9 @@
 </style>
 
 <script setup>
+definePageMeta({
+  layout: "section",
+});
 const packages = ref([]);
 const images = ref({});
 

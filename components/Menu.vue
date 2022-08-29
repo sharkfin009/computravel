@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed h-screen inset-0 flex justify-end z-50">
+  <div class="fixed h-screen inset-0 flex justify-end z-50 pointer-events-none">
     <div
       class="
         w-full
@@ -16,6 +16,7 @@
         bg-white
         opacity-90
         relative
+        pointer-events-auto
       "
     >
       <ul class="list-none">
@@ -54,6 +55,9 @@
             md:w-[99px] md:h-[99px]
             cursor-pointer
             pointer-events-auto
+            hover:bg-lime-100
+            transition
+            duration-300
           "
         >
           <fa-icon

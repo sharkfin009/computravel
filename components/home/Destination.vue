@@ -2,7 +2,6 @@
   <div
     class="
       w-full
-      
       lg:grid
       grid-rows-[320px,auto]
       lg:grid-rows-none
@@ -28,11 +27,7 @@
         </div>
       </div>
       <div class="flex justify-center gap-5 w-full">
-        <div
-          v-for="(dot, index) in dots"
-          class="cursor-pointer z-50"
-          :key="index"
-        >
+        <div v-for="(dot, index) in dots" class="cursor-pointer" :key="index">
           <IconActiveDot
             @click="manageClick(index)"
             v-show="index === selectedCard"

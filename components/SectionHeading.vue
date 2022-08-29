@@ -1,12 +1,12 @@
 <template>
   <div class="py-5 lg:py-10">
     <!-- normal -->
-    <div v-if="!inverted">
-      <div
+    <div v-if="inverted == false">
+      <h2
         class="
           text-4xl
           md:text-5xl
-          font-titillium font-regular
+          font-titillium font-medium
           md:font-semibold
           leading-none
           mb-5
@@ -14,21 +14,22 @@
         "
       >
         {{ heading }}
-      </div>
-      <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">
+      </h2>
+      <h3 class="text-3xl md:text-4xl font-extralight md:font-light mb-2">
         {{ subheading }}
       </h3>
     </div>
+
     <!-- inverted -->
-    <div v-if="inverted">
-      <h3 class="text-3xl md:text-4xl font-semibold md:font-medium mb-2">
+    <div v-if="inverted == true">
+      <h3 class="text-3xl md:text-4xl font-extralight md:font-light mb-2">
         {{ subheading }}
       </h3>
-      <div
+      <h2
         class="
           text-4xl
           md:text-5xl
-          font-titillium font-regular
+          font-titillium font-medium
           md:font-semibold
           leading-none
           mb-5
@@ -36,7 +37,7 @@
         "
       >
         {{ heading }}
-      </div>
+      </h2>
     </div>
   </div>
 </template>

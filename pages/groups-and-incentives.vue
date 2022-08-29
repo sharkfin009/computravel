@@ -5,6 +5,7 @@
       :subheading="
         data.data.groupsAndIncentivesContent.data.attributes.subtitle
       "
+      :inverted="false"
     />
 
     <div class="p-20 bg-green-avo rounded-xl">
@@ -35,6 +36,7 @@
       :subheading="
         data.data.groupsAndIncentivesContent.data.attributes.form_subtitle
       "
+      :inverted="false"
     />
     <GroupsForm class="" />
   </div>
