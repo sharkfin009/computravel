@@ -9,7 +9,7 @@
         flex
         h-[66px]
         md:h-[90px]
-        lg:h-[110px]
+        lg:h-[100px]
         w-full
         justify-between
         py-3
@@ -65,7 +65,8 @@
             shadow
             flex
             w-[45px]
-            md:w-[75px] md:w-[75px]
+            md:w-[69px]
+            lg:w-[79px]
             cursor-pointer
             z-10
             hover:bg-lime-100
