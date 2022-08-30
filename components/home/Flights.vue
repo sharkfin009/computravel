@@ -37,8 +37,9 @@
                     {{ special.price_from }}
                   </td>
                   <td class="flex justify-center items-center py-5">
-                    <CompuButton class="bg-lime-500 !px-14 h-[50px]">
-                      book with our experts
+                    <CompuButton class="bg-lime-500">
+                      book &nbsp
+                      <span class="hidden md:inline"> with our experts</span>
                     </CompuButton>
                   </td>
                 </tr>
