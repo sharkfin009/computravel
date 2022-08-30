@@ -34,6 +34,7 @@
               py-3
               font-titillium
               shadow-light-300 shadow-xl
+              rounded-r-xl
             "
           >
             {{ props.package.category }}
