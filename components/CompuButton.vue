@@ -13,13 +13,11 @@
       text-center
       flex
       items-center
-      px-6
-      md:px-10
-      lg:px-10
-      xl:px-10
+      px-3
+      py-3
+      md:px-8 md:py-5
       text-xs
       md:text-xl
-      lg:text-2xl
       shadow
     "
   >
