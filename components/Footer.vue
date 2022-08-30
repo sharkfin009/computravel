@@ -1,15 +1,16 @@
 <template>
   <div
     class="
-      md:pt-20
+      md:pt-24
       grid grid-rows-[auto,auto,auto]
       gap-3
       bg-slate-800
       text-white
       px-10
+      pb-12
       md:px-20
       xl:px-40
-      pt-20
+      pt-24
       xl:pt-0
     "
   >
@@ -95,7 +96,7 @@
         <div class=""></div>
       </div>
     </div>
-    <div class="bg-slate-800 flex justify-center p-5">
+    <div class="bg-slate-800 flex justify-center pt-8 px-5 pb-5">
       <div class="m-0 p-0 text-center text-xs">
         Website custom coded by Ben Amato from <i>iSimon</i>, design by
         <i>hippl</i>
