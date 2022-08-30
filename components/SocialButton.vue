@@ -1,19 +1,17 @@
 <template>
-     <div
-        class="
-         px-2
-          md:p-5
-          rounded-l-xl
-          hover:-translate-x-[0%]
-          translate-x-[73%]
-          md:translate-x-[62%]
-          transition
-          flex
-          gap-4
-          items-center
-          cursor-pointer
-        "
-      >
-<slot/>
-      </div>
+  <div
+    class="
+      rounded-l-xl
+      hover:-translate-x-[0%]
+      translate-x-[66%]
+      md:translate-x-[58%]
+      transition
+      flex
+      gap-4
+      items-center
+      cursor-pointer
+    "
+  >
+    <slot />
+  </div>
 </template>

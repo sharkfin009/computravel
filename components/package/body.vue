@@ -1,6 +1,6 @@
 <template>
-  <div class="relative mx-5">
-    <div class="sticky top-[127px] md:top-[119px] bg-slate-50 mb-5 z-10">
+  <div class="relative">
+    <div class="sticky top-[142px] md:top-[88px] bg-slate-50 mb-5 z-10">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -247,7 +247,7 @@
     </div>
 
     <!-- content below pics: -->
-    <div class="px-5 md:px-10">
+    <div class="px-5">
       <!-- tabs header -->
       <TabMenu
         @selectTab="setActiveTab"
@@ -272,7 +272,7 @@
           >
             overview
           </h3>
-          <div class="rounded-xl bg-white p-10 md:p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
@@ -287,7 +287,7 @@
           >
             details
           </h3>
-          <div class="rounded-xl bg-white p-10 lg:p-12">
+          <div class="rounded-xl bg-white p-5 lg:p-12">
             <ul>
               <li>
                 <div>Prices from:</div>
@@ -365,7 +365,7 @@
             includes
           </h3>
 
-          <div class="rounded-xl bg-white p-10 md:p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             <p v-for="(line, index) in array" :key="index">
               {{ line }}
             </p>
@@ -381,7 +381,7 @@
           >
             excludes
           </h3>
-          <div class="rounded-xl bg-white p-10 md:p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             {{ props.package_data.packages.data[0].attributes.excludes }}
           </div>
         </div>
@@ -402,7 +402,7 @@
           >
             about this destination
           </h3>
-          <div class="rounded-xl bg-white p-10 md:p-12">
+          <div class="rounded-xl bg-white p-5 md:p-12">
             {{ aboutCopy }}
           </div>
         </div>

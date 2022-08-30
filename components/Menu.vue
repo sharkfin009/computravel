@@ -52,7 +52,7 @@
             flex
             w-[30px]
             h-[30px]
-            md:w-[99px] md:h-[99px]
+            md:w-[69px] md:h-[69px]
             cursor-pointer
             pointer-events-auto
             hover:bg-lime-100

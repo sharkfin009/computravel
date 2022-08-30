@@ -1,26 +1,34 @@
 <template>
   <div class="fixed inset-0 flex justify-end items-center pointer-events-none">
-    <div class="flex flex-col gap-5 md:gap-2 md:w-50 text-3xli text-white pointer-events-auto">
-      <SocialButton class="bg-blue-500" @click="share('facebook')">
+    <div
+      class="
+        flex flex-col
+        gap-5
+        md:gap-2 md:w-50
+        text-3x text-white
+        pointer-events-auto
+      "
+    >
+      <SocialButton class="bg-blue-500 p-2 md-p-1" @click="share('facebook')">
         <fa-icon icon="fab fa-facebook  " />
-        <div class="text-xl">share</div>
+        <div class="text-xs md-text-lg">share</div>
       </SocialButton>
-      <SocialButton class="bg-blue-200" @click="share('twitter')">
+      <SocialButton class="bg-blue-200 p-2 md-p-1" @click="share('twitter')">
         <fa-icon icon="fab fa-twitter   " />
-        <div class="text-xl">share</div>
+        <div class="text-xs md-text-lg">share</div>
       </SocialButton>
 
-      <SocialButton class="bg-gray-400" @click="share('email')">
+      <SocialButton class="bg-gray-400 p-2 md-p-1" @click="share('email')">
         <fa-icon icon="far fa-envelope  " />
-        <div class="text-xl">share</div>
+        <div class="text-xs md-text-lg">share</div>
       </SocialButton>
-      <SocialButton class="bg-red-500" @click="share('pinterest')">
+      <SocialButton class="bg-red-500 p-2 md-p-1" @click="share('pinterest')">
         <fa-icon icon="fab fa-pinterest " />
-        <div class="text-xl">share</div>
+        <div class="text-xs md-text-lg">share</div>
       </SocialButton>
-      <SocialButton class="bg-green-500" @click="share('whatsapp')">
+      <SocialButton class="bg-green-500 p-2 md-p-1" @click="share('whatsapp')">
         <fa-icon icon="fab fa-whatsapp  " />
-        <div class="text-xl">share</div>
+        <div class="text-xs md-text-lg">share</div>
       </SocialButton>
     </div>
   </div>
@@ -28,9 +36,9 @@
 
 <script setup>
 const config = useRuntimeConfig();
-const route = useRoute()
-console.log(route.fullPath)
-var fullPath = config.baseUrl + route.fullPath
+const route = useRoute();
+console.log(route.fullPath);
+var fullPath = config.xsUrl + route.fullPath;
 const share = (provider) => {
   let url = "";
 
@@ -54,13 +62,12 @@ const share = (provider) => {
 
   if (provider == "email") {
     url = "/mailto:" + fullPath;
- window.location.href = "mailto:?subject=Hi!&body=" + fullPath;
-
+    window.location.href = "mailto:?subject=Hi!&body=" + fullPath;
   }
 };
 
 const socialWindow = (url, width, height) => {
-  console.log(url)
+  console.log(url);
   var left = (screen.width - width) / 2;
   var top = (screen.height - height) / 2;
   var params =

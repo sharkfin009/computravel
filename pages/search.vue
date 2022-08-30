@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-50 px-10">
+  <div class="bg-slate-50 px-10 md:px-14">
     <SearchOptions />
     <div
       class="w-full h-[500px] flex justify-center items-center"
@@ -39,11 +39,7 @@
       class="w-full py-10 px-10 flex justify-center"
     >
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
-        <div
-          class="shadow-2xl"
-          v-for="(card, index) in searchStore.results"
-          :key="index"
-        >
+        <div v-for="(card, index) in searchStore.results" :key="index">
           <Card :package="card.attributes" />
         </div>
       </div>

@@ -1,5 +1,8 @@
 <template>
-  <div v-if="package_data && destination_content" class="bg-slate-50 md:px-10">
+  <div
+    v-if="package_data && destination_content"
+    class="bg-slate-50 px-10 md:px-14"
+  >
     <Head>
       <Title> {{ package_data.packages.data[0].attributes.title }}</Title>
       <Meta

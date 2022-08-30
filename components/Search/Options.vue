@@ -2,7 +2,7 @@
   <div
     v-if="searchStore"
     class="
-      md:sticky md:top-[119px]
+      md:sticky md:top-[90px]
       select-none
       rounded-3xl
       user-select-none
@@ -20,11 +20,12 @@
     <!--  grid -->
     <div
       class="
+        h-[230px]
         grid grid-cols-1 grid-rows-1
         md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
         gap-10
-        md-gap-10
+        md-gap-1
         w-full
       "
     >
@@ -68,7 +69,7 @@
         @setValue="setValue"
         placeholder="price low to high"
       />
-      <div class="h-full">
+      <div class="h-full flex flex-col justify-between">
         <div class="mb-5">Price Range</div>
         <div
           class="
@@ -88,7 +89,14 @@
           </div>
           <div class="relative">
             <div
-              class="absolute inset-0 gap-4 cursor-pointer flex items-center"
+              class="
+                absolute
+                inset-0
+                gap-4
+                cursor-pointer
+                flex flex-col
+                justify-center
+              "
               id="min"
             >
               <input
@@ -101,10 +109,7 @@
               />
             </div>
 
-            <div
-              class="relative h-full flex items-center gap-4 cursor-pointer"
-              id="max"
-            >
+            <div class="h-full flex items-center gap-4 cursor-pointer" id="max">
               <input
                 v-model.number="searchStore.price_max"
                 type="range"

@@ -25,12 +25,12 @@
         class="
           h-full
           text-sm
-          lg:text-xl
+          lg:text-base
           rounded-full
           input-outline
           py-2
           px-10
-          md:py-3 md:px-14
+          md:py-3 md:px-[40px]
           w-full
         "
         :class="{ 'shadow-lg': inputHasFocus }"
@@ -59,22 +59,22 @@
           @mousedown="clear()"
         />
       </div>
-      <div class="absolute -inset-y-[4%] -left-1 scale-[70%] md:scale-[80%]">
+      <div class="absolute inset-0 flex items-center pl-3 pointer-events-none">
         <NuxtLink to="/search">
-          <IconMagnify
+          <div
             class="
-              md:mt-2 md:ml-2
-              mr-10
+              pointer-events-auto
               bg-green-avo
-              hover:bg-lime-500
-              text-black-200
-              hover:text-white
               rounded-full
-              w-10
-              h-10
               p-2
+              flex
+              justify-center
+              item-center
+              hover:bg-lime-500
             "
-          />
+          >
+            <fa-icon class="text-xs" icon="fas fa-search" />
+          </div>
         </NuxtLink>
       </div>
 
