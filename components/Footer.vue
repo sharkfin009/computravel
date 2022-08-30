@@ -55,15 +55,15 @@
               >enquire now</CompuButton
             >
           </div>
-          <div class="flex justify-start gap-5 items-center">
+          <div class="flex justify-start gap-8 items-center">
             <IconFacebook
-              class="hover:scale-150 transition-transform ease-out duration-500"
+              class="w-11 h-11 hover:scale-150 transition-transform ease-out duration-500"
             />
             <IconInstagram
-              class="hover:scale-150 transition-transform ease-out duration-500"
+              class="w-11 h-11 hover:scale-150 transition-transform ease-out duration-500"
             />
             <IconLinkedin
-              class="hover:scale-150 transition-transform ease-out duration-500"
+              class="w-11 h-11 hover:scale-150 transition-transform ease-out duration-500"
             />
           </div>
         </div>
