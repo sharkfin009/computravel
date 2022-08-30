@@ -133,7 +133,9 @@
         />
 
         <div class="flex justify-end">
-          <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
+          <CompuButton @mousedown="send" class="bg-lime-500 px-10"
+            >send enquiry</CompuButton
+          >
         </div>
       </div>
     </div>

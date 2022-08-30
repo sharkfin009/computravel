@@ -55,9 +55,11 @@
       </div>
 
       <div class="flex justify-center items-center h-full py-5">
-        <BlackButton class="hidden lg:flex mx-10 md:mx-20 shadow-2xl mb-5">
+        <CompuButton
+          class="bg-black hidden lg:flex mx-10 md:mx-20 shadow-2xl mb-5"
+        >
           view more holidays
-        </BlackButton>
+        </CompuButton>
         <div class="flex lg:hidden w-full justify-evenly">
           <IconChevronLeft class="cursor-pointer" @click="browseLeft" />
           <IconChevronRight class="cursor-pointer" @click="browseRight" />

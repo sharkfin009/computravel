@@ -17,7 +17,8 @@ module.exports = {
           avo: '#E6EEEA',
           avo2: "#4e8244",
           logo:'#8DD772',
-          text: '#8FC15A'
+          
+          brand: '#8FC15A'
         },
     },
   },

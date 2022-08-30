@@ -49,12 +49,15 @@
           @setValue="setValue"
         />
         <div class="h-20 flex items-center">
-          <div class="text-center w-full" v-if="!successful_login && state_dirty">
+          <div
+            class="text-center w-full"
+            v-if="!successful_login && state_dirty"
+          >
             Unsuccesfull login. Your login details may be incorrect. Please try
             again
           </div>
         </div>
-        <BookButton @click="send">Log In</BookButton>
+        <CompuButton class="bg-green-500" @click="send">Log In</CompuButton>
       </div>
     </div>
   </div>
@@ -82,22 +85,19 @@ const rules = {
 const setValue = (inputName, value) => {
   state[inputName] = value;
 };
-    let monthOfSeconds = 60 * 60 * 24 * 30;
-
-
+let monthOfSeconds = 60 * 60 * 24 * 30;
 
 const vl = useVuelidate(rules, state);
 const config = useRuntimeConfig();
 import { useConsultantStore } from "@/stores/consultant";
 const consultantStore = useConsultantStore();
 const successful_login = ref(true);
-const state_dirty = ref(false)
-console.log(state)
-const send = async() => {
+const state_dirty = ref(false);
+console.log(state);
+const send = async () => {
   successful_login.value = await consultantStore.logIn(state);
- state_dirty.value = true
+  state_dirty.value = true;
   if (successful_login.value === true) {
-   
     navigateTo({
       path: "/consultant-portal",
     });

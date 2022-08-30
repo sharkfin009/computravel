@@ -6,9 +6,8 @@
       block
       rounded-full
       cursor-pointer
-      hover:bg-lime-100 hover:text-black
+      hover:bg-lime-200 hover:text-black
       transform
-      bg-lime-500
       transition
       duration-500
       text-center

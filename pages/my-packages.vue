@@ -57,7 +57,7 @@
                 <NuxtLink
                   :to="`/package/${fave.attributes.slug}_ref=${fave.attributes.supplier_ref}`"
                 >
-                  <BookButton>view</BookButton>
+                  <CompuButton class="bg-lime-500">view</CompuButton>
                 </NuxtLink>
               </td>
               <td>
@@ -73,28 +73,32 @@
         </table>
       </div>
       <div class="flex flex-col items-center py-5 justify-center">
-        <BookButton
+        <CompuButton
+          class="bg-lime-500"
           v-if="enquiryState.listDirtyState && enquiryState.enquirySent"
           @click="updateList()"
-          >Send your updated list to us</BookButton
+          >Send your updated list to us</CompuButton
         >
         <div v-if="enquireButtonLogic">
-          <BookButton @click="enquire">submit your enquiry</BookButton>
+          <CompuButton class="bg-lime-500" @click="enquire"
+            >submit your enquiry</CompuButton
+          >
           <div class="py-5 text-xs">You may edit your list later</div>
         </div>
       </div>
     </div>
 
     <transition name="fade" v-if="enquiryState.showUpdateModal">
-        <ConfirmModal >
-          <h3 class="text-6xl font-bold">Thankyou for your update to your list!</h3>
-          <p>One of our travel experts will be in touch soon.</p>
-          <div>
-            Your enquiry reference is
-            <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
-          </div>
-        </ConfirmModal>
-
+      <ConfirmModal>
+        <h3 class="text-6xl font-bold">
+          Thankyou for your update to your list!
+        </h3>
+        <p>One of our travel experts will be in touch soon.</p>
+        <div>
+          Your enquiry reference is
+          <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
+        </div>
+      </ConfirmModal>
     </transition>
   </div>
 </template>

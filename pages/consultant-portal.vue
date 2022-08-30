@@ -85,19 +85,23 @@
               <td>{{ enquiry.when }}</td>
 
               <td>
-                <BookButton @click="view(index)">view</BookButton>
+                <CompuButton bg-lime-500 @click="view(index)">view</CompuButton>
               </td>
               <td>
-                <BookButton v-if="!enquiry.accepted" @click="accept(enquiry.id)"
-                  >accept</BookButton
+                <CompuButton
+                  class="bg-lime-500"
+                  v-if="!enquiry.accepted"
+                  @click="accept(enquiry.id)"
+                  >accept</CompuButton
                 >
                 <div v-if="enquiry.accepted" class="text-center">accepted</div>
               </td>
               <td>
-                <BookButton
+                <CompuButton
+                  class="bg-lime-500"
                   v-if="!enquiry.passed_on"
                   @click="passOn(enquiry.id)"
-                  >pass on</BookButton
+                  >pass on</CompuButton
                 >
                 <div v-if="enquiry.passed_on" class="text-center">
                   passed on

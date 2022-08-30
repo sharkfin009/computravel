@@ -144,7 +144,7 @@
         <h3>Notes</h3>
 
         <NuxtLink to="/consultant-portal" class="flex justify-center">
-          <BookButton>all my enquiries</BookButton>
+          <CompuButton class="bg-lime-500">all my enquiries</CompuButton>
         </NuxtLink>
       </div>
     </div>

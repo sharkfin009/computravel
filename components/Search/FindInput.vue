@@ -66,7 +66,7 @@
               md:mt-2 md:ml-2
               mr-10
               bg-green-avo
-              hover:bg-green-text
+              hover:bg-lime-500
               text-black-200
               hover:text-white
               rounded-full
@@ -127,7 +127,7 @@
             <div
               class="block lg:grid lg:grid-cols-[auto,120px] rounded-full"
               :class="{
-                '!bg-green-text !bg-opacity-80 !text-white':
+                '!bg-lime-500 !bg-opacity-80 !text-white':
                   index === hoveredSuggestion - 1,
               }"
               v-on:mouseover="mouseOver(index)"
@@ -194,7 +194,7 @@
                 bg-slate-50
                 rounded-full
                 p-1
-                hover:bg-green-text hover:text-lime-200
+                hover:bg-lime-500 hover:text-lime-200
               "
               @mousedown="searchDestination(item.name)"
             >
@@ -216,7 +216,7 @@
                 bg-slate-50
                 rounded-full
                 p-1
-                hover:bg-green-text hover:text-lime-200
+                hover:bg-lime-500 hover:text-lime-200
               "
               @mousedown="searchDestination(item.name)"
             >

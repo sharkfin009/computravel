@@ -36,9 +36,9 @@
                   {{ special.price_from }}
                 </td>
                 <td class="flex justify-center items-center py-5">
-                  <BookButton class="!px-14 h-[50px]">
+                  <CompuButton class="bg-lime-500 !px-14 h-[50px]">
                     book with our experts
-                  </BookButton>
+                  </CompuButton>
                 </td>
               </tr>
             </tbody>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="flex justify-center">
-      <BlackButton class=""> view all flights </BlackButton>
+      <CompuButton class="bg-black"> view all flights </CompuButton>
     </div>
   </div>
 </template>

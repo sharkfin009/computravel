@@ -45,11 +45,11 @@
 
       <div class="grid grid-cols-[auto,auto] gap-4">
         <!--  enq now button: -->
-        <BookButton
+        <CompuButton
           v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
           @mousedown="enquiry.showEnquireNow = true"
-          class="!h-full"
-          >enquire now</BookButton
+          class="bg-lime-500 !h-full"
+          >enquire now</CompuButton
         >
         <!-- hamburger -->
         <div
@@ -75,10 +75,7 @@
             'opacity-0': showMenu == true,
           }"
         >
-          <fa-icon
-            class="text-stone-600 text-xl lg:text-4xl"
-            icon="fas fa-bars"
-          />
+          <fa-icon class="text-stone-600 text-xl" icon="fas fa-bars" />
         </div>
       </div>
     </div>

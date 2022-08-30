@@ -45,13 +45,13 @@
           </div>
 
           <div class="flex justify-center items-center p-5">
-            <BookButton
+            <CompuButton
               v-if="
                 enquiry.showEnquireNow == false && enquiry.enquirySent == false
               "
               @mousedown="enquiry.showEnquireNow = true"
-              class=""
-              >enquire now</BookButton
+              class="bg-lime-500"
+              >enquire now</CompuButton
             >
           </div>
           <div class="flex justify-evenly items-center">

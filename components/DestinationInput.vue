@@ -64,7 +64,7 @@
               bg-light-300
               py-2
               px-3
-              hover:!bg-green-text hover:text-white
+              hover:!bg-lime-500 hover:text-white
             "
             :class="{
               '!bg-lime-100 text-black':
