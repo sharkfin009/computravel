@@ -11,7 +11,7 @@
       md:px-20
       xl:px-40
       pt-24
-      xl:pt-0
+  pb-12
     "
   >
     <div class="sm:grid sm:grid-cols-2 gap-3">
