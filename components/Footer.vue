@@ -29,7 +29,7 @@
     <!-- 3rd row -->
     <div class="grid sm:grid sm:grid-cols-2 gap-3">
       <div class="">
-        <h3 class="font-titillium text-5xl">contact us</h3>
+        <h3 class="font-titillium text-5xl pb-5">contact us</h3>
         <div class="grid lg:grid lg:grid-cols-2 gap-3">
           <div class="">
             <p>T: +27 (021) 762-0511</p>
@@ -44,7 +44,7 @@
             >
           </div>
 
-          <div class="flex justify-center items-center p-5">
+          <div class="flex justify-start items-center">
             <CompuButton
               v-if="
                 enquiry.showEnquireNow == false && enquiry.enquirySent == false
@@ -54,7 +54,7 @@
               >enquire now</CompuButton
             >
           </div>
-          <div class="flex justify-evenly items-center">
+          <div class="flex justify-start gap-5 items-center">
             <IconFacebook
               class="hover:scale-150 transition-transform ease-out duration-500"
             />
