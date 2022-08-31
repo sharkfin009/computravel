@@ -1,6 +1,6 @@
 <template>
   <HomeSectionLayout bgColor="bg-stone-50">
-    <div class="px-10 md:px-20" v-if="data">
+    <div class="" v-if="data">
       <SectionHeading
         heading="destinations"
         subheading="experience these"

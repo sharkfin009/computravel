@@ -23,4 +23,4 @@
   >
     <slot />
   </div>
-</template>s
+</template>

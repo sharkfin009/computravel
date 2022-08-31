@@ -1,16 +1,7 @@
 <template>
   <HomeSectionLayout bgColor="bg-green-avo">
     <div
-      class="
-        bg-green-avo
-        flex flex-col
-        text-2xl
-        p-10
-        justify-evenly
-        md:px-[80px]
-        py-20
-        md:py-40
-      "
+      class="bg-green-avo flex flex-col text-2xl justify-evenly"
       v-if="reasons.length > 0"
     >
       <SectionHeading

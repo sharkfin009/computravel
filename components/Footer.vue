@@ -70,7 +70,7 @@
       <div class="grid lg:grid lg:grid-cols-2 gap-3">
         <div class="">
           <div class="h-[60px] flex items-center">
-            <h4 class="font-bold">legal</h4>
+            <h4 class="font-bold mb-5">legal</h4>
           </div>
           <ul class="list-none text-base">
             <li>sacoronavirus.co.za</li>
@@ -82,7 +82,7 @@
         </div>
         <div class="">
           <div class="h-[60px] flex items-center">
-            <h4 class="font-bold">data, privacy and more</h4>
+            <h4 class="font-bold mb-5">data, privacy and more</h4>
           </div>
           <ul class="list-none text-base">
             <li>Privacy Policy</li>
@@ -96,7 +96,7 @@
       </div>
     </div>
     <div class="bg-slate-800 flex justify-center p-5">
-      <div class="m-0 p-0 text-center text-xs">
+      <div class="m-0 p-0 text-center">
         Website custom coded by Ben Amato from <i>iSimon</i>, design by
         <i>hippl</i>
       </div>

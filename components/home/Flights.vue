@@ -1,16 +1,6 @@
 <template>
   <HomeSectionLayout bgColor="bg-green-avo">
-    <div
-      class="
-        text-black
-        flex flex-col
-        justify-around
-        px-10
-        md:px-[80px]
-        py-20
-        md:py-40
-      "
-    >
+    <div class="text-black flex flex-col justify-around">
       <div>
         <SectionHeading
           heading="latest flight specials"

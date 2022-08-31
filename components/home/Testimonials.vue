@@ -1,16 +1,6 @@
 <template>
   <HomeSectionLayout bgColor="bg-stone-50">
-    <div
-      class="
-        grid grid-rows-[min-content,auto,min-content]
-        md:p-20
-        p-10
-        md:px-[80px]
-        py-20
-        md:py-40
-        bg-stone-50
-      "
-    >
+    <div class="grid grid-rows-[min-content,auto,min-content] bg-stone-50">
       <!-- header section -->
       <SectionHeading
         heading="every holiday has a highlight"
