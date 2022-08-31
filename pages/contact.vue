@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-stone-50 px-10 md:px-20 pb-10">
+  <div class="bg-stone-50 px-10 md:px-20 pb-10 md:pb-20 text-base">
     <SectionHeading
       heading="contact us"
       subheading="we'd love to hear from you"
@@ -18,11 +18,17 @@
           shadow
         "
       >
-        <fa-icon icon="fas fa-phone " />
-        <h4 class="font-semibold">phone</h4>
-        <div class="text-center">
-          <p>Tel: +27 (021) 762-0511</p>
-          <p>After hours: +27 (0)84 674-0246</p>
+        <div class="flex flex-col justify-center gap-5">
+          <fa-icon icon="fas fa-phone " />
+          <div class="text-center">
+            <a href="tel:270217620511">Tel: +27021762-0511</a>
+          </div>
+        </div>
+        <div class="flex flex-col justify-center gap-5">
+          <fa-icon class="text-2xl" icon="fab fa-whatsapp " />
+          <div class="text-center">
+            <a href="tel:270217620511">Tel: +27021762-0511</a>
+          </div>
         </div>
       </div>
       <div
@@ -37,12 +43,11 @@
           shadow
         "
       >
-        <fa-icon icon="fa fa-map-marker " />
-        <h4 class="font-semibold">address</h4>
+        <fa-icon icon="fa fa-map-marker mb-5" />
         <div class="text-center">
           <p>
-            59 Waterloo Road, Cnr. Waterloo Road and Wolfe Street, Wynberg,
-            7800.
+            59 Waterloo Road, <br />Cnr. Waterloo Road and Wolfe Street,<br />
+            Wynberg, 7800.
           </p>
         </div>
       </div>
@@ -58,84 +63,89 @@
           shadow
         "
       >
-        <fa-icon icon="fas fa-envelope " />
-        <h4 class="font-semibold">email</h4>
+        <fa-icon icon="fas fa-envelope " class="mb-5" />
         <div class="text-center">
           <p>info@computravel.co.za</p>
         </div>
       </div>
     </div>
-    <h3>get in touch with us directly here</h3>
-    <div class="md:flex flex-col items-center">
-      <div
-        class="
-          bg-green-avo
-          rounded-xl
-          p-10
-          flex flex-col
-          items-evenly
-          justify-evenly
-          w-none
-          md:w-[70vw]
-        "
-      >
-        <div
-          class="
-            flex flex-col
-            md:grid
-            md:grid-cols-2
-            md:grid-rows-2
-            md:gap-x-10
-            md:gap-y-10
-            md:mb-10
-          "
-        >
-          <Input
-            v-if="vl.full_name"
-            inputName="full_name"
-            label="Full Name"
-            type="text"
-            :validationObject="vl.full_name"
-            errorMessage="full name is required"
-            placeholder="full name"
-            @setValue="setValue"
-          />
-          <Input
-            v-if="vl.email"
-            inputName="email"
-            label="Email Address"
-            type="text"
-            :validationObject="vl.email"
-            errorMessage="email is required"
-            placeholder="email"
-            @setValue="setValue"
-          />
-          <Input
-            class="col-span-full"
-            v-if="vl.cell"
-            inputName="cell"
-            label="Cell Number"
-            type="text"
-            :validationObject="vl.cell"
-            errorMessage="cell no is required"
-            placeholder="number"
-            @setValue="setValue"
-          />
-        </div>
-        <TextArea
-          v-if="vl.message"
-          inputName="message"
-          label="Message"
-          :validationObject="vl.message"
-          errorMessage="date is required"
-          placeholder=""
-          @setValue="setValue"
+
+    <div class="w-full flex justify-center">
+      <div class="md:w-[70vw]">
+        <SectionHeading
+          heading="get in touch with us directly"
+          :inverted="false"
         />
 
-        <div class="flex justify-end">
-          <CompuButton @mousedown="send" class="bg-lime-500 px-10"
-            >send enquiry</CompuButton
+        <div
+          class="
+            bg-green-avo
+            rounded-xl
+            p-10
+            flex flex-col
+            items-evenly
+            justify-evenly
+            w-none
+          "
+        >
+          <div
+            class="
+              flex flex-col
+              md:grid
+              md:grid-cols-2
+              md:grid-rows-2
+              md:gap-x-10
+              md:gap-y-10
+              md:mb-10
+            "
           >
+            <Input
+              v-if="vl.full_name"
+              inputName="full_name"
+              label="Full Name"
+              type="text"
+              :validationObject="vl.full_name"
+              errorMessage="full name is required"
+              placeholder="full name"
+              @setValue="setValue"
+            />
+            <Input
+              v-if="vl.email"
+              inputName="email"
+              label="Email Address"
+              type="text"
+              :validationObject="vl.email"
+              errorMessage="email is required"
+              placeholder="email"
+              @setValue="setValue"
+            />
+            <Input
+              class="col-span-full"
+              v-if="vl.cell"
+              inputName="cell"
+              label="Cell Number"
+              type="text"
+              :validationObject="vl.cell"
+              errorMessage="cell no is required"
+              placeholder="number"
+              @setValue="setValue"
+            />
+          </div>
+          <TextArea
+            v-if="vl.message"
+            inputName="message"
+            label="Message"
+            :validationObject="vl.message"
+            errorMessage="date is required"
+            placeholder=""
+            @setValue="setValue"
+          />
+
+          <div class="flex justify-end">
+            <CompuButton @mousedown="send" class="bg-lime-500 px-10"
+              >send enquiry</CompuButton
+            >
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-black pt-20 pb-10 md:pt-40 md:pb-10 px-10 md:px-14"
+    class="text-black pt-20 pb-10 md:pt-32 md:pb-20 px-10 md:px-14"
     :class="bgColor"
   >
     <slot />

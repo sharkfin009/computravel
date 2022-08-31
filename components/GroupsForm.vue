@@ -3,7 +3,8 @@
     class="
       bg-green-avo
       rounded-xl
-      p-10
+      p-5
+      md:p-10
       flex flex-col
       items-evenly
       justify-evenly
@@ -167,9 +168,7 @@
     </div>
 
     <div class="flex justify-end">
-      <CompuButton @mousedown="send" class="px-10 bg-lime-500"
-        >send enquiry</CompuButton
-      >
+      <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
     </div>
   </div>
 </template>

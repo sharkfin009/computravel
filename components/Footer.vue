@@ -7,16 +7,15 @@
       bg-slate-800
       text-white
       px-10
-      md:px-20
-      xl:px-40
-      pt-20
-      xl:pt-0
+      md:px-14
+      pt-24
+      pb-12
     "
   >
     <div class="sm:grid sm:grid-cols-2 gap-3">
       <div class="flex flex-col justify-center gap-10 lg:pr-20">
         <h3 class="font-titillium text-5xl">about computravel</h3>
-        <p>
+        <p class="max-w-[400px]">
           Computravel serves as an online South African travel agent, boasting
           highly professional experts with years in the tourism and hospitality
           industries.
@@ -96,7 +95,7 @@
       </div>
     </div>
     <div class="bg-slate-800 flex justify-center p-5">
-      <div class="m-0 p-0 text-center">
+      <div class="text-center text-sm">
         Website custom coded by Ben Amato from <i>iSimon</i>, design by
         <i>hippl</i>
       </div>

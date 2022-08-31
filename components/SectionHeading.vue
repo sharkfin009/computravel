@@ -4,31 +4,48 @@
     <div v-if="inverted == false">
       <h2
         class="
-          text-4xl
-          md:text-5xl
+          text-3xl
+          md:text-4xl
           font-titillium font-medium
           md:font-semibold
           leading-none
-          mb-5
-          md:mb-10
+          mb-2
         "
       >
         {{ heading }}
       </h2>
-      <h3 class="text-3xl md:text-4xl font-extralight md:font-light mb-2">
+      <h3
+        class="
+          text-2xl
+          font-open-sans
+          md:text-3xl
+          font-extralight
+          md:font-light
+          mb-2
+        "
+      >
         {{ subheading }}
       </h3>
     </div>
 
     <!-- inverted -->
     <div v-if="inverted == true">
-      <h3 class="text-3xl md:text-4xl font-extralight md:font-light mb-2">
+      <h3
+        class="
+          text-2xl
+          font-open-sans
+          md:text-3xl
+          font-extralight
+          md:font-light
+          mb-2
+        "
+      >
         {{ subheading }}
       </h3>
       <h2
         class="
-          text-4xl
-          md:text-5xl
+          text-3xl
+          md:text-4xl
           font-titillium font-medium
           md:font-semibold
           leading-none

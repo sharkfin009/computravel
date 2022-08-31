@@ -115,7 +115,8 @@ table {
 }
 
 ul{
-  list-style-type:circle;
+  list-style-type:disc;
+  list-style-position: inside;
 }
 p{
   margin-bottom:10px;

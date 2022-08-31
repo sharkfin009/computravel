@@ -14,10 +14,10 @@
         v-if="titles.length > 0"
         @selectTab="setActiveTab"
         :titles="titles"
-        class="mb-5 md:mb-10"
+        class="mb-5"
       ></TabMenu>
 
-      <div class="relative h-[350px] overflow-hidden">
+      <div class="relative h-[400px] overflow-hidden">
         <HomeReason
           v-for="(reason, index) in reasons"
           :key="index"

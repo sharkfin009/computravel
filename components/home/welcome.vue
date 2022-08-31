@@ -42,9 +42,8 @@
           <div
             class="
               text-white text-shadow
-              font-medium font-titillium
-              xl:text-5xl
-              md:text-3xl
+              font-semibold font-titillium
+              md:text-4xl
               text-3xl
               md:w-[40vw]
               leading-none
@@ -59,13 +58,11 @@
               text-white
               font-open-sans font-medium
               text-2xl
-              md:text-2xl
-              xl:text-3xl
-              w-[250]
+              md:text-3xl
               text-shadow
             "
           >
-            Let us help book you <br />your perfect holiday!
+            Let us help you book <br />your perfect holiday!
           </h3>
         </div>
 

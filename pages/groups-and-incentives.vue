@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data" class="px-10 lg:px-20 bg-slate-50 pb-20">
+  <div v-if="data" class="px-10 md:px-14 bg-slate-50 pb-20">
     <SectionHeading
       :heading="data.data.groupsAndIncentivesContent.data.attributes.title"
       :subheading="
@@ -8,7 +8,7 @@
       :inverted="false"
     />
 
-    <div class="p-20 bg-green-avo rounded-xl">
+    <div class="p-5 md:p-20 bg-green-avo rounded-xl">
       <div class="grid xl:grid-cols-2 gap-5 xl:gap-40 xl:px-40 pb-10">
         <img
           :src="
@@ -27,7 +27,11 @@
         />
       </div>
       <div
-        class=""
+        style="
+          ul {
+            list-style-position: inside !important;
+          }
+        "
         v-html="data.data.groupsAndIncentivesContent.data.attributes.body"
       ></div>
     </div>
@@ -38,6 +42,11 @@
       "
       :inverted="false"
     />
+    <SectionHeading
+      heading="Send us your groups and incentives enquiry"
+      :inverted="false"
+    />
+
     <GroupsForm class="" />
   </div>
 </template>

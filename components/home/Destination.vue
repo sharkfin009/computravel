@@ -7,7 +7,7 @@
       lg:grid-rows-none
       grid-cols-none
       lg:grid-cols-[auto,320px]
-      py-10
+      py-5
     "
     v-if="props.destination.length > 0"
   >
