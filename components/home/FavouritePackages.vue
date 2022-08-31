@@ -6,7 +6,7 @@
         heading="holiday packages"
         subheading="our favourite"
         :inverted="true"
-        class="px-10 md:px-20"
+        class=""
       />
       <!-- desktop cards: -->
       <div class="hidden md:grid w-full grid-cols-[80px,auto,80px]">
