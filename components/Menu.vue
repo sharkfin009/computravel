@@ -14,7 +14,8 @@
         pt-40
         font-titillium
         bg-white
-        opacity-90
+        opacity-100
+        md:opacity-90
         relative
         pointer-events-auto
       "
@@ -50,8 +51,8 @@
             bg-opacity-80
             shadow
             flex
-            w-[30px]
-            h-[30px]
+            w-[45px]
+            h-[45px]
             md:w-[69px] md:h-[69px]
             cursor-pointer
             pointer-events-auto
@@ -60,10 +61,7 @@
             duration-300
           "
         >
-          <fa-icon
-            class="text-stone-600 text-xl md:text-4xl"
-            icon="fas fa-close"
-          />
+          <fa class="text-stone-600 text-xl md:text-4xl" icon="fas fa-close" />
         </div>
       </div>
     </div>

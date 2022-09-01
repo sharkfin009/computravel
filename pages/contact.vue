@@ -19,13 +19,13 @@
         "
       >
         <div class="flex flex-col justify-center gap-5">
-          <fa-icon icon="fas fa-phone " />
+          <fa icon="fas fa-phone " />
           <div class="text-center">
             <a href="tel:270217620511">Tel: +27021762-0511</a>
           </div>
         </div>
         <div class="flex flex-col justify-center gap-5">
-          <fa-icon class="text-2xl" icon="fab fa-whatsapp " />
+          <fa class="text-2xl" icon="fab fa-whatsapp " />
           <div class="text-center">
             <a href="tel:270217620511">Tel: +27021762-0511</a>
           </div>
@@ -43,7 +43,7 @@
           shadow
         "
       >
-        <fa-icon icon="fa fa-map-marker mb-5" />
+        <fa icon="fa fa-map-marker mb-5" />
         <div class="text-center">
           <p>
             59 Waterloo Road, <br />Cnr. Waterloo Road and Wolfe Street,<br />
@@ -63,7 +63,7 @@
           shadow
         "
       >
-        <fa-icon icon="fas fa-envelope " class="mb-5" />
+        <fa icon="fas fa-envelope " class="mb-5" />
         <div class="text-center">
           <p>info@computravel.co.za</p>
         </div>

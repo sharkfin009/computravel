@@ -23,11 +23,11 @@
         "
       />
       <!-- twitter: -->
-      <Meta property="twitter:card" :content="summary" />
-      <Meta property="twitter:site" :content="'https://computravel.co.za'" />
+      <Meta name="twitter:card" :content="summary_large_image" />
+      <Meta name="twitter:site" :content="'https://computravel.co.za'" />
 
       <Meta
-        property="twitter:image"
+        name="twitter:image"
         :content="
           'https://' + package_data.packages.data[0].attributes.image_url_lg
         "
