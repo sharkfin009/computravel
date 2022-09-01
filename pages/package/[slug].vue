@@ -4,7 +4,6 @@
     class="bg-slate-50 px-10 md:px-14"
   >
     <Head>
-      <Title> {{ package_data.packages.data[0].attributes.title }}</Title>
       <Meta
         property="og:description"
         :content="
@@ -14,13 +13,17 @@
         "
       />
       <Meta
+        property="og:title"
+        :content="package_data.packages.data[0].attributes.title"
+      />
+      <Meta
         property="og:image"
         :content="
           'https://' + package_data.packages.data[0].attributes.image_url_lg
         "
       />
       <!-- twitter: -->
-      <Meta property="twitter:card" :content="summary_large_image" />
+      <Meta property="twitter:card" :content="summary" />
       <Meta property="twitter:site" :content="'https://computravel.co.za'" />
 
       <Meta
