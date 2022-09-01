@@ -18,7 +18,7 @@
 <script setup>
 const nuxtApp = useNuxtApp();
 nuxtApp.vueApp.config.compilerOptions.isCustomElement = (tag) => {
-  return tag.startsWith("i");
+  return tag.startsWith("fa-icon");
 };
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();

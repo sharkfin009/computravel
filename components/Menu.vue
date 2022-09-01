@@ -60,7 +60,10 @@
             duration-300
           "
         >
-          <i class="text-stone-600 text-xl md:text-4xl" icon="fas fa-close" />
+          <fa-icon
+            class="text-stone-600 text-xl md:text-4xl"
+            icon="fas fa-close"
+          />
         </div>
       </div>
     </div>
