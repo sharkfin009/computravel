@@ -7,7 +7,11 @@
       <Title> {{ package_data.packages.data[0].attributes.title }}</Title>
       <Meta
         property="og:description"
-        :content="package_data.packages.data[0].attributes.price"
+        :content="
+          'R ' +
+          package_data.packages.data[0].attributes.price +
+          ' per person sharing'
+        "
       />
       <Meta
         property="og:image"
