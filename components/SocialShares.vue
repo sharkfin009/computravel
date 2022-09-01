@@ -40,7 +40,6 @@ const route = useRoute();
 console.log(route.fullPath);
 var fullPath = config.baseUrl + route.fullPath;
 const share = (provider) => {
-  alert(provider);
   let url = "";
 
   let pageTitle = "";
@@ -68,6 +67,7 @@ const share = (provider) => {
 };
 
 const socialWindow = (url, width, height) => {
+  let decode = decodeURIComponent(url);
   console.log(url);
   var left = (screen.width - width) / 2;
   var top = (screen.height - height) / 2;
