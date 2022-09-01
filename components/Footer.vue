@@ -21,8 +21,9 @@
           industries.
         </p>
       </div>
+
       <div class="flex justify-center items-center">
-        <img width="250" src="/public/asata-logo-full-500-sq-transp.png" />
+        <img width="250" src="/asata-logo-full-500-sq-transp.png" />
       </div>
     </div>
     <!-- 3rd row -->

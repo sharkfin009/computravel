@@ -1,5 +1,4 @@
 <template>
-
   <!-- <meta property="og:type" content="article" />
   <meta property="og:title" content="When Great Minds Don’t Think Alike" />
   <meta
@@ -17,6 +16,10 @@
   </div>
 </template>
 <script setup>
+const nuxtApp = useNuxtApp();
+nuxtApp.vueApp.config.compilerOptions.isCustomElement = (tag) => {
+  return tag.startsWith("fa-icon");
+};
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 onMounted(() => {
