@@ -38,8 +38,9 @@
 const config = useRuntimeConfig();
 const route = useRoute();
 console.log(route.fullPath);
-var fullPath = config.xsUrl + route.fullPath;
+var fullPath = config.baseUrl + route.fullPath;
 const share = (provider) => {
+  alert(provider);
   let url = "";
 
   let pageTitle = "";
