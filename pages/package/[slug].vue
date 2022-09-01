@@ -22,18 +22,7 @@
       <!-- twitter: -->
       <Meta property="twitter:card" :content="summary_large_image" />
       <Meta property="twitter:site" :content="'https://computravel.co.za'" />
-      <Meta
-        property="twitter:title"
-        :content="package_data.packages.data[0].attributes.title"
-      />
-      <Meta
-        property="twitter:description"
-        :content="
-          'R ' +
-          package_data.packages.data[0].attributes.price +
-          ' per person sharing'
-        "
-      />
+
       <Meta
         property="twitter:image"
         :content="

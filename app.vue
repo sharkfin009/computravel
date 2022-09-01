@@ -1,13 +1,15 @@
 <template>
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="When Great Minds Don’t Think Alike" />
+  <meta property="og:type" content="Holiday Package" />
+  <meta property="og:title" content="Computravel" />
   <meta
     property="og:description"
-    content="How much does culture influence creative thinking?"
+    content="Computravel serves as an online South African travel agent, boasting
+          highly professional experts with years in the tourism and hospitality
+          industries."
   />
   <meta
     property="og:image"
-    content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
+    content="https://res.cloudinary.com/sharkfin/image/upload/v1662040372/Screen_Shot_2022_09_01_at_12_47_02_60dcc9e618.png"
   />
   <div class="text-sm md:text-xl">
     <NuxtLayout>
