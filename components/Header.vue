@@ -75,7 +75,7 @@
             'opacity-0': showMenu == true,
           }"
         >
-          <fa-icon class="text-stone-600 text-xl" icon="fas fa-bars" />
+          <i class="text-stone-600 text-xl" icon="fas fa-bars" />
         </div>
       </div>
     </div>

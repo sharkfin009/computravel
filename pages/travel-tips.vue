@@ -32,12 +32,12 @@
           <div>
             {{ tip.attributes.title }}
           </div>
-          <fa-icon
+          <i
             v-if="!showMap[tip.attributes.title]"
             class="text-gray-500 text-2xl cursor-pointer hover:text-green-brand"
             icon="fas fa-plus"
           />
-          <fa-icon
+          <i
             v-if="showMap[tip.attributes.title]"
             class="text-gray-500 text-2xl cursor-pointer hover:text-green-brand"
             icon="fas fa-minus"
