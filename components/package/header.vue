@@ -20,7 +20,7 @@
             w-full
             font-titillium font-semibold
             text-2xl
-            md:text-5xl
+            md:text-4xl
             flex
             items-center
             justify-center
@@ -83,7 +83,7 @@
         >
           {{
             props.package_data.packages.data[0].attributes.subdestination
-          }},<br />
+          }},<br class="block md:hidden" />
           {{ props.package_data.packages.data[0].attributes.destination }}
         </div>
         <div

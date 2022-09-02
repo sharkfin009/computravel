@@ -31,7 +31,8 @@
           px-12
           md:px-10
           py-2
-          md:py-3 md:px-[40px]
+          md:py-3
+          lg:px-[40px]
           w-full
         "
         :class="{ 'shadow-lg': inputHasFocus }"
