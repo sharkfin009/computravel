@@ -269,51 +269,20 @@
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
-            <h3
-              class="
-                text-sm
-                md:text-xl
-                text-center
-                font-semibold font-titillium
-              "
-            >
-              includes:
-            </h3>
-
+            <PackageHeading> includes:</PackageHeading>
             <div class="rounded-xl bg-white">
               <p v-for="(line, index) in array" :key="index">
                 {{ line }}
               </p>
             </div>
-            <h3
-              class="
-                text-xs
-                md:text-xl
-                text-center
-                font-semibold font-titillium
-                p-5
-              "
-            >
-              excludes:
-            </h3>
+            <PackageHeading> excludes:</PackageHeading>
             <div class="rounded-xl bg-white">
               {{ props.package_data.packages.data[0].attributes.excludes }}
             </div>
           </div>
-          <h3
-            class="
-              block
-              md:hidden
-              text-xs
-              md:text-xl
-              text-center
-              font-semibold font-titillium
-              p-5
-            "
-          >
-            details
-          </h3>
+
           <div class="rounded-xl bg-white p-5 lg:p-12">
+            <PackageHeading class="pt-0"> details:</PackageHeading>
             <ul>
               <li>
                 <div>prices from:</div>
@@ -350,9 +319,7 @@
               </li>
             </ul>
             <div class="flex flex-col items-center mt-5">
-              <div class="text-sm md:text-xl text-center font-semibold mb-5">
-                need visas?
-              </div>
+              <PackageHeading> need visas?:</PackageHeading>
               <div class="grid grid-cols-[3fr,1fr,3fr,1fr] grid-rows-2 gap-2">
                 <span class="text-end">South Africa:</span>
                 <div>No</div>
@@ -364,16 +331,7 @@
                 <div>No</div>
               </div>
             </div>
-            <h3
-              class="
-                text-xl text-center
-                font-semibold font-titillium
-                mb-5
-                mt-20
-              "
-            >
-              terms and conditions:
-            </h3>
+            <PackageHeading> terms and conditions:</PackageHeading>
             <div
               class="
                 rounded-xl

@@ -30,7 +30,7 @@
         py-3
         md:px-5
         text-sm
-        md:text-xl
+        md:text-2xl
       "
       @click="manageClick(index)"
       v-on:mouseover="titleHover(index)"
