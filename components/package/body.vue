@@ -249,7 +249,7 @@
     <!-- content below pics: -->
     <div class="px-5">
       <!-- tabs header -->
-      <TabMenu @selectTab="setActiveTab" class="" :titles="items"></TabMenu>
+      <TabMenu @selectTab="setActiveTab" class="mb-5" :titles="items"></TabMenu>
       <!-- tabs content -->
 
       <div class="pb-10 tracking-wide leading-normal">
@@ -265,23 +265,19 @@
             duration-300
           "
         >
-          <h3
-            class="
-              block
-              md:hidden
-              text-xl text-center
-              font-semibold font-titillium
-              p-5
-            "
-          >
-            overview
-          </h3>
           <div class="rounded-xl bg-white p-5 md:p-12">
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
-            <h3 class="text-xl text-center font-semibold font-titillium">
-              Includes:
+            <h3
+              class="
+                text-sm
+                md:text-xl
+                text-center
+                font-semibold font-titillium
+              "
+            >
+              includes:
             </h3>
 
             <div class="rounded-xl bg-white">
@@ -289,8 +285,16 @@
                 {{ line }}
               </p>
             </div>
-            <h3 class="text-xl text-center font-semibold font-titillium p-5">
-              Excludes:
+            <h3
+              class="
+                text-xs
+                md:text-xl
+                text-center
+                font-semibold font-titillium
+                p-5
+              "
+            >
+              excludes:
             </h3>
             <div class="rounded-xl bg-white">
               {{ props.package_data.packages.data[0].attributes.excludes }}
@@ -300,7 +304,9 @@
             class="
               block
               md:hidden
-              text-xl text-center
+              text-xs
+              md:text-xl
+              text-center
               font-semibold font-titillium
               p-5
             "
@@ -310,7 +316,7 @@
           <div class="rounded-xl bg-white p-5 lg:p-12">
             <ul>
               <li>
-                <div>Prices from:</div>
+                <div>prices from:</div>
                 <div>
                   R
                   {{ props.package_data.packages.data[0].attributes.price }}
@@ -318,7 +324,7 @@
                 </div>
               </li>
               <li>
-                <div>Trip Reference:</div>
+                <div>trip reference:</div>
                 <div>
                   {{
                     props.package_data.packages.data[0].attributes.supplier_ref
@@ -326,25 +332,27 @@
                 </div>
               </li>
               <li>
-                <div>Flights:</div>
+                <div>flights:</div>
                 Not Included
               </li>
               <li>
-                <div>From:</div>
+                <div>from:</div>
                 {{ props.package_data.packages.data[0].attributes.from }}
               </li>
               <li>
-                <div>Duration:</div>
+                <div>duration:</div>
                 {{ props.package_data.packages.data[0].attributes.duration }}
                 nights
               </li>
               <li>
-                <div>Book before:</div>
+                <div>book before:</div>
                 {{ props.package_data.packages.data[0].attributes.valid_to }}
               </li>
             </ul>
             <div class="flex flex-col items-center mt-5">
-              <div class="text-center font-semibold">Need Visas?</div>
+              <div class="text-sm md:text-xl text-center font-semibold mb-5">
+                need visas?
+              </div>
               <div class="grid grid-cols-[3fr,1fr,3fr,1fr] grid-rows-2 gap-2">
                 <span class="text-end">South Africa:</span>
                 <div>No</div>
@@ -364,7 +372,7 @@
                 mt-20
               "
             >
-              Terms and Conditions:
+              terms and conditions:
             </h3>
             <div
               class="

@@ -29,11 +29,8 @@
         duration-700
         py-3
         md:px-5
-     
-
-        text-xs
-        lg:text-xl
-
+        text-sm
+        md:text-xl
       "
       @click="manageClick(index)"
       v-on:mouseover="titleHover(index)"
