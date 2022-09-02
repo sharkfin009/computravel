@@ -258,7 +258,7 @@
           v-if="activeTab === 0"
           class="
             block
-            md:grid md:grid-cols-2
+            md:grid md:grid-cols-[2fr,1fr]
             gap-4
             transition
             ease-in
