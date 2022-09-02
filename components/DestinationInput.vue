@@ -1,9 +1,8 @@
 <template>
   <div class="w-full h-full flex flex-col justify-between mb-5">
-    <label class="md:text-lg mb-5 md:pb-0">Destination </label>
+    <label class="md:text-lg mb-5 md:pb-0">Destination</label>
     <div class="relative">
       <input
-        id="findInput"
         name="search"
         type="text"
         v-model="searchStore.destinationQuery"
@@ -15,14 +14,24 @@
           relative
           input-outline
           hover:shadow-none
+          pointer-events-suto
         "
         @keyup="manageKeyUp"
         @focus="destinationSuggest.showSuggestions = true"
         @blur="destinationSuggest.showSuggestions = false"
         placeholder="Anywhere"
-        ref="findInput"
       />
-      <div class="absolute inset-0 flex items-center justify-end pr-2">
+      <div
+        class="
+          absolute
+          inset-0
+          flex
+          items-center
+          justify-end
+          pr-2
+          pointer-events-none
+        "
+      >
         <IconClose
           class="w-6 transition hover:rotate-180 cursor-pointer"
           @mousedown="
@@ -31,52 +40,52 @@
           "
         />
       </div>
-    </div>
-    <!-- autosuggest list-->
+      <!-- autosuggest list-->
 
-    <div
-      class="
-        absolute
-        top-[110%]
-        inset-x-0
-        unroll
-        z-30
-        shadow-2xl
-        bg-slate-50
-        rounded-xl
-        overflow-auto
-        h-min-[350px]
-        origin-top
-      "
-      v-show="
-        destinationSuggest.showSuggestions &&
-        destinationSuggest.suggestions.length > 0
-      "
-    >
-      <div class="bg-stone-100 rounded-xl overflow-hidden border">
-        <div class="grid">
-          <div
-            v-for="(item, index) in destinationSuggest.suggestions"
-            :key="index"
-            class="
-              flex
-              items-center
-              bg-light-300
-              py-2
-              px-3
-              hover:!bg-lime-500 hover:text-white
-            "
-            :class="{
-              '!bg-lime-100 text-black':
-                index == destinationSuggest.selectedSuggestion,
-            }"
-            @mousedown="
-              searchStore.destination = item.name;
-              searchStore.destinationType = item.type;
-              searchStore.destinationQuery = item.name;
-            "
-          >
-            <div class="">{{ item.name }}</div>
+      <div
+        class="
+          absolute
+          top-[115%]
+          inset-x-0
+          unroll
+          z-30
+          shadow-2xl
+          bg-slate-50
+          rounded-xl
+          overflow-auto
+          h-min-[350px]
+          origin-top
+        "
+        v-show="
+          destinationSuggest.showSuggestions &&
+          destinationSuggest.suggestions.length > 0
+        "
+      >
+        <div class="bg-stone-100 rounded-xl overflow-hidden border">
+          <div class="grid">
+            <div
+              v-for="(item, index) in destinationSuggest.suggestions"
+              :key="index"
+              class="
+                flex
+                items-center
+                bg-light-300
+                py-2
+                px-3
+                hover:!bg-lime-500 hover:text-white
+              "
+              :class="{
+                '!bg-lime-100 text-black':
+                  index == destinationSuggest.selectedSuggestion,
+              }"
+              @mousedown="
+                searchStore.destination = item.name;
+                searchStore.destinationType = item.type;
+                searchStore.destinationQuery = item.name;
+              "
+            >
+              <div class="">{{ item.name }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -96,15 +105,7 @@ import { useStore } from "@/stores/search";
 const searchStore = useStore();
 import { useDestinationSuggestStore } from "~~/stores/destinationSuggest";
 const destinationSuggest = useDestinationSuggestStore();
-onMounted(() => {
-  findInput.value.focus();
-  if (props.parent == "welcome") {
-    wrapperClass.value = "md:top-[64%]";
-  }
-  if (props.parent == "header") {
-    wrapperClass.value = "-top-[50%] md:top-[120%]";
-  }
-});
+
 const hoveredSuggestion = ref(0);
 
 // clear
@@ -125,8 +126,10 @@ const manageKeyUp = (e) => {
   // down Arrow:
   if (
     e.key === "ArrowDown" &&
-    destinationSuggest.selectedSuggestion < suggestions.value.length &&
-    destinationSuggest.selectedSuggestion < suggestions.value.length - 1
+    destinationSuggest.selectedSuggestion <
+      destinationSuggest.suggestions.length &&
+    destinationSuggest.selectedSuggestion <
+      destinationSuggest.suggestions.length - 1
   ) {
     destinationSuggest.selectedSuggestion++;
 
@@ -134,7 +137,8 @@ const manageKeyUp = (e) => {
   }
   if (
     e.key === "ArrowDown" &&
-    destinationSuggest.selectedSuggestion === suggestions.value.length - 1
+    destinationSuggest.selectedSuggestion ===
+      destinationSuggest.suggestions.length - 1
   ) {
     destinationSuggest.selectedSuggestion = 0;
 
@@ -154,8 +158,11 @@ const manageKeyUp = (e) => {
       return;
     }
     // if suggestion:
-    searchStore.destination =
+    let selection =
       destinationSuggest.suggestions[destinationSuggest.selectedSuggestion];
+    searchStore.destination = selection.name;
+    searchStore.destinationType = selection.type;
+    searchStore.destinationQuery = selection.name;
     clear();
 
     return;
