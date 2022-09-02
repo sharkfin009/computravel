@@ -249,18 +249,21 @@
     <!-- content below pics: -->
     <div class="px-5">
       <!-- tabs header -->
-      <TabMenu
-        @selectTab="setActiveTab"
-        class="hidden md:flex"
-        :titles="items"
-      ></TabMenu>
+      <TabMenu @selectTab="setActiveTab" class="" :titles="items"></TabMenu>
       <!-- tabs content -->
 
       <div class="pb-10 tracking-wide leading-normal">
         <!-- overview -->
         <div
-          v-if="belowMd || activeTab === 0"
-          class="grid md:grid-cols-2 gap-4 transition ease-in duration-300"
+          v-if="activeTab === 0"
+          class="
+            block
+            md:grid md:grid-cols-2
+            gap-4
+            transition
+            ease-in
+            duration-300
+          "
         >
           <h3
             class="
@@ -268,6 +271,7 @@
               md:hidden
               text-xl text-center
               font-semibold font-titillium
+              p-5
             "
           >
             overview
@@ -276,6 +280,21 @@
             <p v-for="(line, index) in descripLines" :key="index">
               {{ line }}.
             </p>
+            <h3 class="text-xl text-center font-semibold font-titillium">
+              Includes:
+            </h3>
+
+            <div class="rounded-xl bg-white">
+              <p v-for="(line, index) in array" :key="index">
+                {{ line }}
+              </p>
+            </div>
+            <h3 class="text-xl text-center font-semibold font-titillium p-5">
+              Excludes:
+            </h3>
+            <div class="rounded-xl bg-white">
+              {{ props.package_data.packages.data[0].attributes.excludes }}
+            </div>
           </div>
           <h3
             class="
@@ -283,6 +302,7 @@
               md:hidden
               text-xl text-center
               font-semibold font-titillium
+              p-5
             "
           >
             details
@@ -336,59 +356,39 @@
                 <div>No</div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- inc & exc -->
-        <div
-          v-if="belowMd || activeTab === 1"
-          class="
-            grid
-            gap-4
-            md:grid-cols-[2fr,1fr]
-            transform
-            translate-x-0
-            transition
-            ease-in
-            duration-300
-          "
-        >
-          <h3
-            class="
-              block
-              md:hidden
-              text-xl text-center
-              font-semibold font-titillium
-              mt-5
-            "
-          >
-            includes
-          </h3>
-
-          <div class="rounded-xl bg-white p-5 md:p-12">
-            <p v-for="(line, index) in array" :key="index">
-              {{ line }}
-            </p>
-          </div>
-          <h3
-            class="
-              block
-              md:hidden
-              text-xl text-center
-              font-semibold font-titillium
-              mt-5
-            "
-          >
-            excludes
-          </h3>
-          <div class="rounded-xl bg-white p-5 md:p-12">
-            {{ props.package_data.packages.data[0].attributes.excludes }}
+            <h3
+              class="
+                text-xl text-center
+                font-semibold font-titillium
+                mb-5
+                mt-20
+              "
+            >
+              Terms and Conditions:
+            </h3>
+            <div
+              class="
+                rounded-xl
+                bg-white
+                transform
+                translate-x-0
+                transition
+                ease-in
+                duration-300
+              "
+            >
+              <ul class="list-disc">
+                <li v-for="(line, index) in termsLines" :key="index">
+                  {{ line }}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <!-- about destination -->
         <div
-          v-if="(belowMd || activeTab === 2) && aboutCopy"
+          v-if="activeTab === 1 && aboutCopy"
           class="transform translate-x-0 transition ease-in duration-300"
         >
           <h3
@@ -407,41 +407,6 @@
             class="rounded-xl bg-white p-5 md:p-12"
             v-html="aboutCopy"
           ></div>
-        </div>
-
-        <!-- ts & cs -->
-        <h3
-          v-if="(belowMd || activeTab === 2) && termsLines.length"
-          class="
-            block
-            md:hidden
-            text-xl text-center
-            font-semibold font-titillium
-            my-5
-          "
-        >
-          terms and conditions
-        </h3>
-        <div
-          v-if="activeTab === 3"
-          class="
-            -0
-            rounded-xl
-            bg-white
-            p-5
-            md:p-12
-            transform
-            translate-x-0
-            transition
-            ease-in
-            duration-300
-          "
-        >
-          <ul class="list-disc">
-            <li v-for="(line, index) in termsLines" :key="index">
-              {{ line }}
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -524,7 +489,7 @@ let termsLines =
 let description = array[0];
 array.shift();
 
-const items = ["Overview", "Inc & Exc", "About This Destination", "Ts & Cs"];
+const items = ["overview", "about this destination"];
 if (aboutCopy == "") {
   items.splice(2, 1);
 }
