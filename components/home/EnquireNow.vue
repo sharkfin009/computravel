@@ -24,7 +24,7 @@
         w-[90vw]
       "
     >
-      <div class="text-center font-bold text-2xl pt-10">
+      <div class="text-center font-bold text-2xl py-10">
         Tell us a few things and we will get right back to you!
       </div>
       <div
@@ -37,6 +37,7 @@
           justify-evenly
           overflow-auto
           md:overflow-auto
+          pt-10
         "
       >
         <HomeEnquireForm />

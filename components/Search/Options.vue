@@ -20,7 +20,6 @@
     <!--  grid -->
     <div
       class="
-        h-[230px]
         grid grid-cols-1 grid-rows-1
         md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
@@ -192,25 +191,17 @@ const numberWithCommas = (x) => {
 const sort_options = ["Price low to high", "Price high to low"];
 
 const categories = [
-  "Adventure",
-  "All Inclusive",
+  "All Inclusive Holidays",
   "Beach Holidays",
-  "Boutique Hotels",
   "Bush Breaks",
   "City Breaks",
-  "Cruise Holidays",
-  "Family Holidays",
-  "Honeymoons",
+  "Family Holiday Packages",
+  "Honeymoon Packages",
   "Romantic Getaways",
-  "Private Small Trips",
-  "Pet Friendly Holidays",
-  "School Holidays",
-  "Self-Catering",
-  "Self-Drives",
-  "Spa Getaways",
-  "Sports Travel",
-  "Train Trips",
+  "Self Drive",
   "Weekend Getaways",
+  "Date Night",
+  "Country Escapes",
 ];
 
 const clearFilters = () => {

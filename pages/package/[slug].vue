@@ -92,7 +92,7 @@ graphql(query)
     package_data.value = response.data;
     store.package = response.data.packages.data[0];
     getDestinationContent(
-      response.data.packages.data[0].attributes.subdestination
+      response.data.packages.data[0].attributes.destination
     );
   })
 

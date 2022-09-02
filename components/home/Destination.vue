@@ -26,7 +26,7 @@
           </card>
         </div>
       </div>
-      <div class="flex justify-center gap-5 w-full">
+      <div class="flex justify-center gap-5 w-full z-40">
         <div v-for="(dot, index) in dots" class="cursor-pointer" :key="index">
           <IconActiveDot
             @click="manageClick(index)"

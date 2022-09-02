@@ -402,9 +402,7 @@
           >
             about this destination
           </h3>
-          <div class="rounded-xl bg-white p-5 md:p-12">
-            {{ aboutCopy }}
-          </div>
+          <div class="rounded-xl bg-white p-5 md:p-12" v-html="aboutCopy"></div>
         </div>
 
         <!-- ts & cs -->

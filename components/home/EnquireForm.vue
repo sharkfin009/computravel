@@ -11,7 +11,7 @@
     "
   >
     <div class="py-10 flex gap-5 flex-wrap items-center">
-      <div>Bookings I am interested in:</div>
+      <div v-if="packages.length">Bookings I am interested in:</div>
       <div
         class="
           bg-lime-200

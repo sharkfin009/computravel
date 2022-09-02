@@ -1,7 +1,9 @@
 <template>
   <div class="relative">
     <div class="h-full flex flex-col justify-between">
-      <label v-if="validationObject" class="tracking-wide">{{ label }} </label>
+      <label v-if="validationObject" class="tracking-wide pb-5"
+        >{{ label }}
+      </label>
       <input
         autocomplete="off"
         :id="inputName"
