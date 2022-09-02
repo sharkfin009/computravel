@@ -8,6 +8,7 @@
       flex flex-col
       items-evenly
       justify-evenly
+      pb-5
     "
   >
     <div class="py-10 flex gap-5 flex-wrap items-center">

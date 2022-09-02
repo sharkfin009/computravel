@@ -28,8 +28,9 @@
           lg:text-base
           rounded-full
           input-outline
+          px-12
+          md:px-10
           py-2
-          px-10
           md:py-3 md:px-[40px]
           w-full
         "

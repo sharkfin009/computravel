@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-full flex flex-col mb-5">
     <label class="pb-1 mb-0 md:mb-5">{{ label }}</label>
     <v-select
       :options="options"
