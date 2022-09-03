@@ -216,10 +216,10 @@
               <img class="w-full object-cover h-full" :src="pic[0]" />
             </div>
             <div class="grid grid-rows-2 gap-5 h-[500px]">
-              <div class="bg-green-400 overflow-hidden rounded-xl">
+              <div class="overflow-hidden rounded-xl">
                 <img class="w-full object-cover h-full" :src="pic[1]" />
               </div>
-              <div class="bg-green-400 overflow-hidden rounded-xl">
+              <div class="overflow-hidden rounded-xl">
                 <img class="w-full object-cover h-full" :src="pic[2]" />
               </div>
             </div>
@@ -231,10 +231,10 @@
             :style="`width:${picScrollWidth}px`"
           >
             <div class="grid grid-rows-2 gap-5 h-[500px]">
-              <div class="bg-green-400 overflow-hidden rounded-xl">
+              <div class="overflow-hidden rounded-xl">
                 <img class="w-full object-cover h-full" :src="pic[0]" />
               </div>
-              <div class="bg-green-400 overflow-hidden rounded-xl">
+              <div class="overflow-hidden rounded-xl">
                 <img class="w-full object-cover h-full" :src="pic[1]" />
               </div>
             </div>

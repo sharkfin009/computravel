@@ -17,7 +17,7 @@
     >
       <div>
         <div
-          class="h-full flex items-end bg-slate-50"
+          class="relative h-full flex items-end bg-slate-50"
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',
@@ -38,6 +38,10 @@
             "
           >
             {{ props.package.category }}
+          </div>
+          <!-- trashcan -->
+          <div class="absolute inset-0 flex justify-end items-start">
+            <fa class="text-white" icon="fas fa-trashcan" />
           </div>
         </div>
       </div>
@@ -123,7 +127,15 @@
 
 <script setup>
 const props = defineProps({
-  package: Object,
+  package: {
+    type: Object,
+  },
+  trashCan: {
+    type: Boolean,
+  },
+  moreLikeThis: {
+    type: Boolean,
+  },
 });
 
 import { useStore } from "@/stores/search";
@@ -184,3 +196,4 @@ onMounted(() => {
   }
 }
 </style>
+

@@ -191,7 +191,6 @@ const numberWithCommas = (x) => {
 const sort_options = ["Price low to high", "Price high to low"];
 
 const categories = [
-  "All Inclusive Holidays",
   "Beach Holidays",
   "Bush Breaks",
   "City Breaks",

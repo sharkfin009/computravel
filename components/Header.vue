@@ -103,9 +103,13 @@
     </transition>
     <transition name="fade">
       <ConfirmModal v-if="enquiry.showConfirmation">
-        <h3 class="text-6xl font-bold">Thankyou for your enquiry!</h3>
-        <p>One of our travel experts will be in touch soon.</p>
-        <div>
+        <h3 class="text-3xl md:text-6xl font-bold mb-5">
+          Thankyou for your enquiry!
+        </h3>
+        <p class="text-xl md:text-base">
+          One of our travel experts will be in touch soon.
+        </p>
+        <div class="text-xl md:text-base mb-5">
           Your enquiry reference is
           <span class="text-lime-500"> {{ enquiry.enquiryRef }} </span>
         </div>
