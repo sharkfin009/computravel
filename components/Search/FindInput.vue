@@ -75,7 +75,7 @@
               hover:bg-lime-500
             "
           >
-            <fa class="text-xs" icon="fas fa-search" />
+            <font-awesome-icon class="text-xs" icon="fas fa-search" />
           </div>
         </NuxtLink>
       </div>

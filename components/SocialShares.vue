@@ -10,24 +10,24 @@
       "
     >
       <SocialButton class="bg-blue-500 p-2 md-p-1" @click="share('facebook')">
-        <fa icon="fab fa-facebook  " />
+        <font-awesome-icon icon="fab fa-facebook " />
         <div class="text-xs md-text-lg">share</div>
       </SocialButton>
       <SocialButton class="bg-blue-200 p-2 md-p-1" @click="share('twitter')">
-        <fa icon="fab fa-twitter   " />
+        <font-awesome-icon icon="fab fa-twitter " />
         <div class="text-xs md-text-lg">share</div>
       </SocialButton>
 
       <SocialButton class="bg-gray-400 p-2 md-p-1" @click="share('email')">
-        <fa icon="far fa-envelope  " />
+        <font-awesome-icon icon="far fa-envelope " />
         <div class="text-xs md-text-lg">share</div>
       </SocialButton>
       <SocialButton class="bg-red-500 p-2 md-p-1" @click="share('pinterest')">
-        <fa icon="fab fa-pinterest " />
+        <font-awesome-icon icon="fab fa-pinterest " />
         <div class="text-xs md-text-lg">share</div>
       </SocialButton>
       <SocialButton class="bg-green-500 p-2 md-p-1" @click="share('whatsapp')">
-        <fa icon="fab fa-whatsapp  " />
+        <font-awesome-icon icon="fab fa-whatsapp " />
         <div class="text-xs md-text-lg">share</div>
       </SocialButton>
     </div>

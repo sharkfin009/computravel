@@ -46,7 +46,14 @@ export default defineNuxtConfig({
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
 
-
+vue:{
+      compilerOptions: {
+        isCustomElement : (tag) => {
+          return tag.startsWith("font-awesome-icon");
+        }
+    
+  }
+},
   strapi: {
     url: process.env.STRAPI_URL,
     prefix: '/api',
