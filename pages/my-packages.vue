@@ -16,12 +16,7 @@
     </div>
     <div class="flex justify-center gap-10">
       <div class="" v-for="(card, index) in myPackages" :key="index">
-        <Card
-          class="w-full"
-          :package="card.attributes"
-          :trashCan="true"
-          :moreLikeThis="true"
-        />
+        <Card class="w-full" :package="card.attributes" :trashCan="true" />
       </div>
     </div>
 

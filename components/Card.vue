@@ -41,7 +41,7 @@
           </div>
           <!-- trashcan -->
           <div class="absolute inset-0 flex justify-end items-start">
-            <fa class="text-white" icon="fas fa-trashcan" />
+            <i class="text-white" icon="fa-solid fa-trashcan" />
           </div>
         </div>
       </div>

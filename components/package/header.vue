@@ -119,7 +119,7 @@
         <!-- mobile -->
         <div class="text-xs order-none md:order-2 block md:hidden">add to</div>
         <NuxtLink to="/my-packages">
-          <font-awesome-icon
+          <i
             class="text-2xl md:text-3xl"
             icon="fa-regular
           fa-heart"

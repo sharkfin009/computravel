@@ -34,13 +34,21 @@
           </div>
           <i
             v-if="!showMap[tip.attributes.title]"
-            class="text-gray-500 text-2xl cursor-pointer hover:text-green-brand"
-            icon="fas fa-plus"
+            class="
+              fa-solid fa-plus
+              text-gray-500 text-2xl
+              cursor-pointer
+              hover:text-green-brand
+            "
           />
           <i
             v-if="showMap[tip.attributes.title]"
-            class="text-gray-500 text-2xl cursor-pointer hover:text-green-brand"
-            icon="fas fa-minus"
+            class="
+              fa-solid fa-minus
+              text-gray-500 text-2xl
+              cursor-pointer
+              hover:text-green-brand
+            "
           />
         </div>
         <transition name="fade">

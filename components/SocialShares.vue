@@ -9,26 +9,21 @@
         pointer-events-auto
       "
     >
-      <SocialButton class="bg-blue-500 p-2 md-p-1" @click="share('facebook')">
-        <font-awesome-icon icon="fab fa-facebook " />
-        <div class="text-xs md-text-lg">share</div>
+      <SocialButton class="bg-blue-500" @click="share('facebook')">
+        <i class="fa-brands fa-facebook" />
       </SocialButton>
-      <SocialButton class="bg-blue-200 p-2 md-p-1" @click="share('twitter')">
-        <font-awesome-icon icon="fab fa-twitter " />
-        <div class="text-xs md-text-lg">share</div>
+      <SocialButton class="bg-blue-200" @click="share('twitter')">
+        <i class="fa-brands fa-twitter" />
       </SocialButton>
 
-      <SocialButton class="bg-gray-400 p-2 md-p-1" @click="share('email')">
-        <font-awesome-icon icon="far fa-envelope " />
-        <div class="text-xs md-text-lg">share</div>
+      <SocialButton class="bg-gray-400" @click="share('email')">
+        <i class="far fa-envelope" />
       </SocialButton>
-      <SocialButton class="bg-red-500 p-2 md-p-1" @click="share('pinterest')">
-        <font-awesome-icon icon="fab fa-pinterest " />
-        <div class="text-xs md-text-lg">share</div>
+      <SocialButton class="bg-red-500" @click="share('pinterest')">
+        <i class="fa-brands fa-pinterest" />
       </SocialButton>
-      <SocialButton class="bg-green-500 p-2 md-p-1" @click="share('whatsapp')">
-        <font-awesome-icon icon="fab fa-whatsapp " />
-        <div class="text-xs md-text-lg">share</div>
+      <SocialButton class="bg-green-500" @click="share('whatsapp')">
+        <i class="fa-brands fa-whatsapp" />
       </SocialButton>
     </div>
   </div>

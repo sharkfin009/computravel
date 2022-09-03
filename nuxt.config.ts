@@ -2,6 +2,11 @@ import { defineNuxtConfig } from 'nuxt';
 export default defineNuxtConfig({
   
   meta: {
+    script:[{
+      src:"https://kit.fontawesome.com/7e89521fcf.js" ,
+      crossorigin:"anonymous"
+    }
+    ],
     link: [
       {
         rel: 'stylesheet',
@@ -15,6 +20,7 @@ export default defineNuxtConfig({
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
       },
+      
     ],
   },
   buildModules: [
@@ -59,16 +65,6 @@ vue:{
     prefix: '/api',
     version: 'v4',
   },
-  vue:{
-    vite:{
-          template: {
-            compilerOptions: {
-              isCustomElement : (tag) => {
-                return tag.startsWith("fa");
-              }
-            }
-          }
-        }
-  }
+
   
 });

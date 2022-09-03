@@ -61,9 +61,9 @@
             duration-300
           "
         >
-          <font-awesome-icon
+          <i
             class="text-stone-600 text-xl md:text-4xl"
-            icon="fas
+            icon="fa-solid
           fa-close"
           />
         </div>
