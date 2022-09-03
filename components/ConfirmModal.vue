@@ -35,7 +35,8 @@
             <div
               @click="goToSearch"
               class="
-                text-lime-700
+                text-lime-700 text-xl
+                md:text-base
                 underline
                 flex
                 items-end

@@ -52,4 +52,16 @@ export default defineNuxtConfig({
     prefix: '/api',
     version: 'v4',
   },
+  vue:{
+    vite:{
+          template: {
+            compilerOptions: {
+              isCustomElement : (tag) => {
+                return tag.startsWith("fa");
+              }
+            }
+          }
+        }
+  }
+  
 });

@@ -23,8 +23,8 @@
         "
       />
       <!-- twitter: -->
-      <Meta name="twitter:card" :content="summary_large_image" />
-      <Meta name="twitter:site" :content="'https://computravel.co.za'" />
+      <Meta name="twitter:card" content="summary_large_image" />
+      <Meta name="twitter:site" content="'https://computravel.co.za'" />
 
       <Meta
         name="twitter:image"
@@ -59,8 +59,9 @@ let query = `
                 data{
                   id
                   attributes{
-                      title
+                   title
                    image_url_lg
+                   image_url_md
                    includes
                    excludes
                    subdestination
