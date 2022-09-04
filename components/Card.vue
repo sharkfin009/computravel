@@ -162,11 +162,6 @@ for (let i = 0; i < props.package.star_rating; i++) {
 onMounted(() => {
   // console.log(props.package);
 });
-
-const emit = defineEmits(["removeFavorite"]);
-const remove = () => {
-  emit("removeFavorite");
-};
 </script>
 
 <style scoped>
