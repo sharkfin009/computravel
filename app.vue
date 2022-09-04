@@ -38,10 +38,6 @@
   </div>
 </template>
 <script setup>
-const nuxtApp = useNuxtApp();
-nuxtApp.vueApp.config.compilerOptions.isCustomElement = (tag) => {
-  return tag.startsWith("fa");
-};
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 onMounted(() => {

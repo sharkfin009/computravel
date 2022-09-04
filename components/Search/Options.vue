@@ -15,6 +15,7 @@
       md:p-10
       opacity-100
       font-medium
+      z-10
     "
   >
     <!--  grid -->

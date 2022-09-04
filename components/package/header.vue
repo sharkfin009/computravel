@@ -116,25 +116,75 @@
           gap-2
         "
       >
-        <!-- mobile -->
-        <div class="text-xs order-none md:order-2 block md:hidden">add to</div>
-        <NuxtLink to="/my-packages">
-          <i
-            class="text-2xl md:text-3xl"
-            icon="fa-regular
-          fa-heart"
-          />
-        </NuxtLink>
-        <div class="text-xs order-none block md:hidden md:order-3">
-          favorites
+        <div
+          v-if="!packageStore.alreadyAdded"
+          class="flex flex-col items-center"
+        >
+          <!-- mobile -->
+          <NuxtLink to="/my-packages">
+            <div class="text-xs order-none md:order-2 block md:hidden">
+              add to
+            </div>
+            <i class="text-2xl md:text-3xl fa-regular fa-heart" />
+            <div class="text-xs order-none block md:hidden md:order-3">
+              favorites
+            </div>
+
+            <!-- md up -->
+            <div class="text-xs text-center hidden md:block">
+              add to
+              <br />
+
+              favorites
+            </div>
+          </NuxtLink>
         </div>
+        <div
+          v-if="packageStore.alreadyAdded"
+          class="flex flex-col items-center"
+        >
+          <!-- mobile -->
+          <div class="text-xs order-none md:order-2 block md:hidden">
+            added to
+          </div>
+          <i class="text-lime-500 text-2xl md:text-3xl fa-regular fa-heart" />
 
-        <!-- md up -->
-        <div class="text-xs text-center hidden md:block">
-          add to
-          <br />
+          <NuxtLink to="/my-packages">
+            <div
+              class="
+                text-xs
+                order-none
+                block
+                md:hidden md:order-3
+                hover:scale-150
+                transition
+                duration-200
+              "
+            >
+              favorites
+            </div>
+          </NuxtLink>
 
-          favorites
+          <!-- md up -->
+          <div class="text-lime-500 text-xs text-center hidden md:block">
+            added to
+            <br />
+
+            <NuxtLink to="/my-packages">
+              <div
+                class="
+                  text-xs
+                  order-none
+                  block
+                  hover:scale-150
+                  transition
+                  duration-200
+                "
+              >
+                favorites
+              </div>
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -145,4 +195,6 @@
 const props = defineProps({
   package_data: Object,
 });
+import { useStore } from "@/stores/package";
+let packageStore = useStore();
 </script>

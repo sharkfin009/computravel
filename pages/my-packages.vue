@@ -1,55 +1,74 @@
 <template>
-  <div
-    class="
-      relative
-      bg-slate-50
-      flex flex-col
-      items-center
-      p-10
-      md:px-14justify-evenly
-    "
-  >
-    <div class="flex">
-      <h3 class="text-2xl font-bold font-titillium text-center w-full pb-10">
-        These are the packages I am interested in:
-      </h3>
-    </div>
-    <div class="flex justify-center gap-10">
-      <div class="" v-for="(card, index) in myPackages" :key="index">
-        <Card class="w-full" :package="card.attributes" :trashCan="true" />
+  <div>
+    <div
+      class="
+        relative
+        bg-slate-50
+        flex flex-col
+        items-center
+        p-10
+        md:px-14justify-evenly
+      "
+    >
+      <div class="flex">
+        <h3 class="text-2xl font-bold font-titillium text-center w-full pb-10">
+          These are the packages I am interested in:
+        </h3>
       </div>
-    </div>
-
-    <div class="flex flex-col items-center py-5 justify-center">
-      <CompuButton
-        class="bg-lime-500"
-        v-if="enquiryState.listDirtyState && enquiryState.enquirySent"
-        @click="updateList()"
-        >Send your updated list to us</CompuButton
-      >
-      <div v-if="enquireButtonLogic">
-        <CompuButton class="bg-lime-500" @click="enquire"
-          >submit your enquiry</CompuButton
+      <div class="flex justify-center gap-10">
+        <div
+          class="flex flex-col"
+          v-for="(card, index) in myPackages"
+          :key="index"
         >
-        <div class="py-5 text-xs text-center">
-          You may edit your favorites later
+          <Card class="w-full" :package="card.attributes" />
+          <div class="w-full flex justify-center py-5">
+            <i
+              class="
+                fa-regular fa-trash-can
+                pointer-events-auto
+                hover:scale-150
+                transition
+                duration-200
+                cursor-pointer
+              "
+              @click="removeFavorite(index)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center py-5 justify-center">
+        <CompuButton
+          class="bg-lime-500"
+          v-if="enquiryState.listDirtyState && enquiryState.enquirySent"
+          @click="updateList()"
+          >Send your updated list to us</CompuButton
+        >
+        <div v-if="enquireButtonLogic">
+          <CompuButton class="bg-lime-500" @click="enquire"
+            >submit your enquiry</CompuButton
+          >
+          <div class="py-5 text-xs text-center">
+            You may edit your favorites later
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <transition name="fade" v-if="enquiryState.showUpdateModal">
-    <ConfirmModal>
-      <h3 class="text-xl md:text-6xl font-bold">
-        Thankyou for your update to your list!
-      </h3>
-      <p>One of our travel experts will be in touch soon.</p>
-      <div>
-        Your enquiry reference is
-        <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
-      </div>
-    </ConfirmModal>
-  </transition>
+    <transition name="fade" v-if="enquiryState.showUpdateModal">
+      <ConfirmModal>
+        <h3 class="text-xl md:text-6xl font-bold">
+          Thankyou for your update to your list!
+        </h3>
+        <p>One of our travel experts will be in touch soon.</p>
+        <div>
+          Your enquiry reference is
+          <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
+        </div>
+      </ConfirmModal>
+    </transition>
+  </div>
 </template>
 
 <script setup>
@@ -85,13 +104,13 @@ onMounted(() => {
 
   localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
 });
-const remove = (index) => {
+const removeFavorite = (index) => {
   myPackages.value.splice(index, 1);
   localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
   enquiryState.listDirtyState = true;
 };
 const enquireButtonLogic = computed(() => {
-  return !enquiryState.showEnquireFormMyPackages && !enquiryState.enquirySent;
+  return !enquiryState.showEnquireNow && !enquiryState.enquirySent;
 });
 const graphql = useStrapiGraphQL();
 

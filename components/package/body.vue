@@ -249,13 +249,34 @@
     <!-- content below pics: -->
     <div class="px-5">
       <!-- tabs header -->
-      <TabMenu @selectTab="setActiveTab" class="mb-5" :titles="items"></TabMenu>
+      <TabMenu
+        @selectTab="setActiveTab"
+        class="hidden md:flex mb-5"
+        :titles="items"
+      ></TabMenu>
+
       <!-- tabs content -->
 
+      <!-- overview header for mobile only: -->
       <div class="pb-10 tracking-wide leading-normal">
+        <div
+          class="
+            block
+            md:hidden
+            w-full
+            pb-5
+            font-semibold
+            text-xl
+            flex
+            justify-center
+          "
+        >
+          overview
+        </div>
+
         <!-- overview -->
         <div
-          v-if="activeTab === 0"
+          v-if="belowMd || activeTab === 0"
           class="
             block
             md:grid md:grid-cols-[2fr,1fr]
@@ -354,7 +375,7 @@
 
         <!-- about destination -->
         <div
-          v-if="activeTab === 1 && aboutCopy"
+          v-if="belowMd || activeTab === 1"
           class="transform translate-x-0 transition ease-in duration-300"
         >
           <h3

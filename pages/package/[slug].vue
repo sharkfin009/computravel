@@ -46,10 +46,15 @@
 definePageMeta({
   layout: "home",
 });
+const favorites = ref(null);
+onMounted(() => {
+  favorites.value = JSON.parse(localStorage.getItem("my-packages"));
+});
 
 const route = useRoute();
 import { useStore } from "@/stores/package";
 let store = useStore();
+store.alreadyAdded = false;
 
 let query = `
             query{packages(
@@ -87,16 +92,26 @@ const error = ref(null);
 const destination_content = ref(null);
 
 const graphql = useStrapiGraphQL();
-
 graphql(query)
   .then((response) => {
     package_data.value = response.data;
     store.package = response.data.packages.data[0];
+
     getDestinationContent(
       response.data.packages.data[0].attributes.destination
     );
+    return response.data;
   })
-
+  .then(() => {
+    if (
+      favorites.value &&
+      favorites.value
+        .map((item) => item.attributes.supplier_ref)
+        .includes(store.package.attributes.supplier_ref)
+    ) {
+      store.alreadyAdded = true;
+    }
+  })
   .catch((error) => {
     error.value = error;
   });

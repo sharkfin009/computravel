@@ -32,7 +32,7 @@
 <script setup>
 const config = useRuntimeConfig();
 const route = useRoute();
-console.log(route.fullPath);
+// console.log(route.fullPath);
 var fullPath = encodeURIComponent(config.baseUrl + route.fullPath);
 const share = (provider) => {
   let url = "";

@@ -1,7 +1,6 @@
 <template>
   <NuxtLink
     :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
-    class=""
   >
     <div
       class="
@@ -38,10 +37,6 @@
             "
           >
             {{ props.package.category }}
-          </div>
-          <!-- trashcan -->
-          <div class="absolute inset-0 flex justify-end items-start">
-            <i class="text-white" icon="fa-solid fa-trashcan" />
           </div>
         </div>
       </div>
@@ -130,9 +125,7 @@ const props = defineProps({
   package: {
     type: Object,
   },
-  trashCan: {
-    type: Boolean,
-  },
+
   moreLikeThis: {
     type: Boolean,
   },
@@ -169,6 +162,11 @@ for (let i = 0; i < props.package.star_rating; i++) {
 onMounted(() => {
   // console.log(props.package);
 });
+
+const emit = defineEmits(["removeFavorite"]);
+const remove = () => {
+  emit("removeFavorite");
+};
 </script>
 
 <style scoped>
