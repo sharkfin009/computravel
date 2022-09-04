@@ -20,13 +20,10 @@
         flex flex-col
         justify-evenly
         md:p-10
-        h-[80vh]
-        w-[90vw]
+        h-[95vh]
+        w-[95vw]
       "
     >
-      <div class="text-center font-bold text-2xl pt-20 pb-10 px-10">
-        Tell us a few things and we will get right back to you!
-      </div>
       <div
         class="
           h-[80%]

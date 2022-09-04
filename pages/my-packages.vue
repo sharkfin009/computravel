@@ -7,7 +7,8 @@
         flex flex-col
         items-center
         p-10
-        md:px-14justify-evenly
+        md:px-14
+        justify-evenly
       "
     >
       <div class="flex">
@@ -15,7 +16,7 @@
           These are the packages I am interested in:
         </h3>
       </div>
-      <div class="flex justify-center gap-10">
+      <div class="flex justify-center flex-wrap gap-10 max-w-[80vw]">
         <div
           class="flex flex-col"
           v-for="(card, index) in myPackages"

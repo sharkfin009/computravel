@@ -116,12 +116,9 @@
           gap-2
         "
       >
-        <div
-          v-if="!packageStore.alreadyAdded"
-          class="flex flex-col items-center"
-        >
+        <div v-if="!packageStore.alreadyAdded" class="">
           <!-- mobile -->
-          <NuxtLink to="/my-packages">
+          <NuxtLink to="/my-packages" class="flex flex-col items-center">
             <div class="text-xs order-none md:order-2 block md:hidden">
               add to
             </div>
@@ -159,6 +156,7 @@
                 hover:scale-150
                 transition
                 duration-200
+                font-semibold
               "
             >
               favorites
@@ -179,6 +177,7 @@
                   hover:scale-150
                   transition
                   duration-200
+                  font-semibold
                 "
               >
                 favorites

@@ -11,6 +11,9 @@
       pb-5
     "
   >
+    <div class="text-center font-bold text-2xl pt-20 pb-10 px-10">
+      Tell us a few things and we will get right back to you!
+    </div>
     <div class="py-10 flex gap-5 flex-wrap items-center">
       <div v-if="packages.length">Bookings I am interested in:</div>
       <div
