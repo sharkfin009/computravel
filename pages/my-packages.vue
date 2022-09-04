@@ -46,13 +46,13 @@
           @click="updateList()"
           >Send your updated list to us</CompuButton
         >
-        <div v-if="enquireButtonLogic">
-          <CompuButton class="bg-lime-500" @click="enquire"
-            >submit your enquiry</CompuButton
-          >
-          <div class="py-5 text-xs text-center">
-            You may edit your favorites later
-          </div>
+        <div v-if="!enquiryState.enquirySent">
+          <NuxtLink to="/enquire-form">
+            <CompuButton class="bg-lime-500">submit your enquiry</CompuButton>
+            <div class="py-5 text-xs text-center">
+              You may edit your favorites later
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -82,7 +82,6 @@ import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
 let myPackages = ref([]);
-let showEnquireNow = ref(false);
 onMounted(() => {
   if (localStorage.getItem("enquirySent")) {
     enquiryState.enquirySent = true;
@@ -110,9 +109,7 @@ const removeFavorite = (index) => {
   localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
   enquiryState.listDirtyState = true;
 };
-const enquireButtonLogic = computed(() => {
-  return !enquiryState.showEnquireNow && !enquiryState.enquirySent;
-});
+
 const graphql = useStrapiGraphQL();
 
 const updateList = () => {
@@ -149,11 +146,4 @@ function ellipsis(text, length) {
     return cutText + "...";
   } else return text;
 }
-
-const enquire = () => {
-  enquiryState.showEnquireNow = true;
-  navigateTo({
-    path: "/",
-  });
-};
 </script>

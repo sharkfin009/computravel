@@ -61,11 +61,7 @@
             duration-300
           "
         >
-          <i
-            class="text-stone-600 text-xl md:text-4xl"
-            icon="fa-solid
-          fa-close"
-          />
+          <i class="text-stone-600 text-xl md:text-2xl fa-solid fa-close"></i>
         </div>
       </div>
     </div>

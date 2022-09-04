@@ -2,7 +2,6 @@
   <div
     v-if="searchStore"
     class="
-      md:sticky md:top-[90px]
       select-none
       rounded-3xl
       user-select-none
@@ -24,6 +23,8 @@
         grid grid-cols-1 grid-rows-1
         md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
+        lg:h-[350px]
+        xl:h-[220px]
         gap-10
         md-gap-1
         w-full

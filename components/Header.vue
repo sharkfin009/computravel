@@ -45,12 +45,13 @@
 
       <div class="grid grid-cols-[auto,auto] gap-4">
         <!--  enq now button: -->
-        <CompuButton
-          v-if="enquiry.showEnquireNow == false && enquiry.enquirySent == false"
-          @mousedown="enquiry.showEnquireNow = true"
-          class="bg-lime-500 !h-full"
-          >enquire now</CompuButton
-        >
+        <NuxtLink to="/enquire-form">
+          <CompuButton
+            v-if="enquiry.enquirySent == false"
+            class="bg-lime-500 !h-full"
+            >enquire now</CompuButton
+          >
+        </NuxtLink>
         <!-- hamburger -->
         <div
           @click="showMenu = true"
@@ -89,15 +90,6 @@
 
     <!-- MODALs -->
 
-    <transition name="fade">
-      <HomeEnquireNow
-        v-if="enquiry.showEnquireNow"
-        @success="
-          enquiry.showEnquireNow = false;
-          enquiry.showConfirmation = true;
-        "
-      />
-    </transition>
     <transition name="fade">
       <ConfirmModal v-if="enquiry.showConfirmation">
         <h3 class="text-3xl md:text-6xl font-bold mb-5">

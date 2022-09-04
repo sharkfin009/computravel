@@ -45,14 +45,20 @@
           </div>
 
           <div class="flex justify-start items-center">
-            <CompuButton
-              v-if="
-                enquiry.showEnquireNow == false && enquiry.enquirySent == false
-              "
-              @mousedown="enquiry.showEnquireNow = true"
-              class="bg-lime-500"
-              >enquire now</CompuButton
-            >
+            <NuxtLink to="/enquire-form">
+              <CompuButton
+                v-if="enquiry.enquirySent == false"
+                class="bg-lime-500"
+                >enquire now</CompuButton
+              >
+            </NuxtLink>
+            <NuxtLink to="/contact">
+              <CompuButton
+                v-if="enquiry.enquirySent == true"
+                class="bg-lime-500"
+                >contact us</CompuButton
+              >
+            </NuxtLink>
           </div>
           <div class="flex justify-start gap-5 items-center">
             <IconFacebook

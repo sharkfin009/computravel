@@ -140,7 +140,7 @@
       />
       <TextArea
         v-if="vl.conference_requirements"
-        inputName="conferemce_requirements"
+        inputName="conference_requirements"
         label="Conference Requirements"
         :validationObject="vl.conference_requirements"
         errorMessage="date is required"
@@ -167,8 +167,10 @@
       />
     </div>
 
-    <div class="flex justify-end">
-      <BookButton @mousedown="send" class="px-10">send enquiry</BookButton>
+    <div class="flex justify-center">
+      <CompuButton @mousedown="send" class="bg-lime-500 my-10"
+        >send enquiry</CompuButton
+      >
     </div>
   </div>
 </template>
@@ -257,7 +259,7 @@ const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 
   let query = `mutation{
-  createEnquiry(
+  createGroupEnquiry(
     data:{
       full_name:"${state.full_name}"
           email:"${state.email}"
@@ -266,7 +268,12 @@ const send = () => {
       when:"${state.when}"
       from_where:"${state.from_where}"
       no_of_adults:"${state.no_of_adults}"
-    
+      budget_per_person:"${state.budget_per_person}"
+      room_requirements:"${state.room_requirements}"
+      meal_plan:"${state.meal_plan}"
+      conference_requirements:"${state.conference_requirements}"
+      tours:"${state.tours}"
+      additional_info:"${state.additional_info}"
       ref:"${enquiryRef}"
       ${list}
     }
@@ -277,18 +284,16 @@ const send = () => {
     }
     }
     }`;
-  enquiryState.showEnquireNow = false;
   enquiryState.showConfirmation = true;
   graphql(query).then((response) => {
-    response.value = response.data;
-    enquiryState.enquiryId = response.data.createEnquiry.data.id;
-    localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);
-    enquiryState.enquiryRef = enquiryRef;
-    localStorage.setItem("enquiryRef", enquiryRef);
-    localStorage.setItem("enquirySent", true);
-    enquiryState.enquirySent = true;
-
-    enquiryState.listDirtyState = false;
+    // response.value = response.data;
+    // enquiryState.enquiryId = response.data.createEnquiry.data.id;
+    // localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);
+    // enquiryState.enquiryRef = enquiryRef;
+    // localStorage.setItem("enquiryRef", enquiryRef);
+    // localStorage.setItem("enquirySent", true);
+    // enquiryState.enquirySent = true;
+    // enquiryState.listDirtyState = false;
   });
 };
 </script>

@@ -18,13 +18,13 @@
           shadow
         "
       >
-        <div class="flex flex-col justify-center gap-5">
+        <div class="flex flex-col items-center justify-center gap-5">
           <i class="fa-solid fa-phone" />
           <div class="text-center">
             <a href="tel:270217620511">Tel: +27021762-0511</a>
           </div>
         </div>
-        <div class="flex flex-col justify-center gap-5">
+        <div class="flex flex-col items-center justify-center gap-5">
           <i class="text-2xl fa-brands fa-whatsapp" />
           <div class="text-center">
             <a href="tel:270217620511">Tel: +27021762-0511</a>
@@ -43,7 +43,7 @@
           shadow
         "
       >
-        <i icon="fa fa-map-marker mb-5" />
+        <i class="fa fa-map-marker mb-5" />
         <div class="text-center">
           <p>
             59 Waterloo Road, <br />Cnr. Waterloo Road and Wolfe Street,<br />
@@ -63,7 +63,7 @@
           shadow
         "
       >
-        <i icon="fa-solid fa-envelope " class="mb-5" />
+        <i class="fa-solid fa-envelope mb-5" />
         <div class="text-center">
           <p>info@computravel.co.za</p>
         </div>
@@ -141,8 +141,8 @@
             @setValue="setValue"
           />
 
-          <div class="flex justify-end">
-            <CompuButton @mousedown="send" class="bg-lime-500 px-10"
+          <div class="flex justify-center">
+            <CompuButton @mousedown="send" class="bg-lime-500 my-10"
               >send enquiry</CompuButton
             >
           </div>
@@ -187,16 +187,6 @@ const setValue = (inputName, value) => {
   state[inputName] = value;
 };
 
-const airports = [
-  "Johannesburg (O.R. Tambo International)",
-  "Johannesburg (Lanseria International)",
-  "Cape Town (Cape Town International)",
-  "Durban (King Shaka International)",
-  "Windhoek (Hosea Kutako International)",
-  "Lusaka (Lusaka International Airport)",
-  "Harare (Robert Gabriel Mugabe International Airport)",
-];
-
 const graphql = useStrapiGraphQL();
 const response = ref("");
 const packages = ref([]);
@@ -212,42 +202,29 @@ onMounted(() => {
     list = "packages: " + JSON.stringify(ids);
   }
 });
+const config = useRuntimeConfig();
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 
-  let query = `mutation{
-  createEnquiry(
-    data:{
-      full_name:"${state.full_name}"
-          email:"${state.email}"
-      cell:"${state.cell}"
-      destination:"${state.destination}"
-      when:"${state.when}"
-      from_where:"${state.from_where}"
-      no_of_adults:"${state.no_of_adults}"
-    
-      ref:"${enquiryRef}"
-      ${list}
-    }
-  )
-  {
-    data{
-     id
-    }
-    }
-    }`;
-  enquiryState.showEnquireNow = false;
+  return fetch(config.strapiUrl + "/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      data: {
+        full_name: state.full_name,
+        email: state.email,
+        cell: state.cell,
+        company: state.company,
+        message: state.message,
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
   enquiryState.showConfirmation = true;
-  graphql(query).then((response) => {
-    response.value = response.data;
-    enquiryState.enquiryId = response.data.createEnquiry.data.id;
-    localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);
-    enquiryState.enquiryRef = enquiryRef;
-    localStorage.setItem("enquiryRef", enquiryRef);
-    localStorage.setItem("enquirySent", true);
-    enquiryState.enquirySent = true;
-
-    enquiryState.listDirtyState = false;
-  });
 };
 </script>

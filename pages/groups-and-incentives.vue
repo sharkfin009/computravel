@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data" class="px-10 md:px-14 bg-slate-50 pb-20">
+  <div v-if="data" class="bg-slate-50 pb-20">
     <SectionHeading
       :heading="data.data.groupsAndIncentivesContent.data.attributes.title"
       :subheading="
