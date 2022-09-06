@@ -69,7 +69,7 @@ let query = `
                    image_url_md
                    includes
                    excludes
-                   subdestination
+                   region
                    destination
                    price
                    valid_to
@@ -90,19 +90,16 @@ let query = `
 const package_data = ref(null);
 const error = ref(null);
 const destination_content = ref(null);
-
+const responseCount = ref(0);
 const graphql = useStrapiGraphQL();
 graphql(query)
   .then((response) => {
     package_data.value = response.data;
     store.package = response.data.packages.data[0];
 
-    getDestinationContent(
-      response.data.packages.data[0].attributes.destination
-    );
     return response.data;
   })
-  .then(() => {
+  .then((data) => {
     if (
       favorites.value &&
       favorites.value
@@ -111,19 +108,27 @@ graphql(query)
     ) {
       store.alreadyAdded = true;
     }
+    return data;
   })
+  .then((data) => {
+    checkCountry(data.packages.data[0].attributes.region);
+    checkRegion(data.packages.data[0].attributes.region);
+    checkProvince(data.packages.data[0].attributes.destination);
+  })
+
   .catch((error) => {
     error.value = error;
   });
 
-const getDestinationContent = (dest) => {
-  let query = `query{destinationContents(filters:{
-      destination: {
+const checkCountry = (dest) => {
+  let query = `query{countries(filters:{
+      name: {
         eq:"${dest}"
       }
     }){
       data{
         attributes{
+          name
           copy
           images{
             data{
@@ -138,11 +143,115 @@ const getDestinationContent = (dest) => {
 
   graphql(query)
     .then((response) => {
-      destination_content.value = response.data;
+      store.location.country = response.data.countries.data;
+      responseCount.value++;
     })
 
     .catch((error) => {
       destination_content.value = error;
     });
 };
+const checkProvince = (dest) => {
+  let query = `query{provinces(filters:{
+      name: {
+        eq:"${dest}"
+      }
+    }){
+      data{
+        attributes{
+          name
+          copy
+          images{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+        }
+      }
+    }}`;
+
+  graphql(query)
+    .then((response) => {
+      store.location.province = response.data.provinces.data;
+      responseCount.value++;
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const checkRegion = (dest) => {
+  let query = `query{regions(filters:{
+      name: {
+        eq:"${dest}"
+      }
+    }){
+      data{
+        attributes{
+          name
+          copy
+          images{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+        }
+      }
+    }}`;
+
+  graphql(query)
+    .then((response) => {
+      store.location.region = response.data.regions.data;
+      responseCount.value++;
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+watch(
+  () => {
+    return responseCount.value;
+  },
+  () => {
+    if (responseCount.value == 3) {
+      if (store.location.province.length) {
+        destination_content.value = {
+          name: store.location.province[0].attributes.name,
+          copy: store.location.province[0].attributes.copy,
+
+          images: store.location.province[0].attributes.images.data.map(
+            (item) => item.url
+          ),
+        };
+        return;
+      }
+      if (store.location.country.length) {
+        destination_content.value = {
+          name: store.location.country[0].attributes.name,
+          copy: store.location.country[0].attributes.copy,
+          images: store.location.country[0].attributes.images.data.map(
+            (item) => item.url
+          ),
+        };
+        return;
+      }
+      if (store.location.region.length) {
+        destination_content.content.value = {
+          name: store.location.region[0].attributes.name,
+          copy: store.location.region[0].attributes.copy,
+          images: store.location.region[0].attributes.images.data.map(
+            (item) => item.url
+          ),
+        };
+        return;
+      }
+    }
+  }
+);
 </script>

@@ -9,7 +9,7 @@
       lg:grid-cols-[auto,320px]
       py-5
     "
-    v-if="props.destination.length > 0"
+    v-if="props.region.length > 0"
   >
     <slot />
 
@@ -17,7 +17,7 @@
       <div class="flex justify-center">
         <div class="relative mb-7 w-[320px] h-[400px]">
           <card
-            v-for="(tour, index) in props.destination"
+            v-for="(tour, index) in props.region"
             :key="index"
             :package="tour.attributes"
             class="absolute inset-0 transition-opacity duration-700 opacity-0"
@@ -46,7 +46,7 @@
 
 <script setup>
 const props = defineProps({
-  destination: Array,
+  region: Array,
 });
 const dots = [1, 2, 3];
 const selectedCard = ref(0);

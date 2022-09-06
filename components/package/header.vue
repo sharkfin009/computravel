@@ -81,10 +81,10 @@
             items-center
           "
         >
-          {{
-            props.package_data.packages.data[0].attributes.subdestination
-          }},<br class="block md:hidden" />
-          {{ props.package_data.packages.data[0].attributes.destination }}
+          {{ props.package_data.packages.data[0].attributes.destination }},<br
+            class="block md:hidden"
+          />
+          {{ props.package_data.packages.data[0].attributes.region }}
         </div>
         <div
           class="

@@ -387,7 +387,7 @@
               my-5
             "
           >
-            about this destination
+            about {{ props.destination_content.name }}
           </h3>
           <div
             id="about"
@@ -421,15 +421,10 @@ onMounted(() => {
   //   console.log(scrollPos.value)
   // })
 });
-let aboutCopy =
-  props.destination_content.destinationContents.data.length > 0
-    ? props.destination_content.destinationContents.data[0].attributes.copy
-    : "";
+let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 let images =
-  props.destination_content.destinationContents.data.length > 0
-    ? props.destination_content.destinationContents.data[0].attributes.images.data.map(
-        (item) => item.attributes.url
-      )
+  props.destination_content.images.length > 0
+    ? props.destination_content.images
     : [];
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -476,7 +471,7 @@ let termsLines =
 let description = array[0];
 array.shift();
 
-const items = ["overview", "about this destination"];
+const items = ["overview", "about " + props.destination_content.name];
 if (aboutCopy == "") {
   items.splice(2, 1);
 }

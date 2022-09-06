@@ -55,19 +55,19 @@
         </div>
         <div class="flex justify-center">
           <div
-            v-if="props.package.destination"
+            v-if="props.package.region"
             class="text-center text-sm font-extralight mr-1"
             :class="{ loadingStateClass: searchStore.loadingState }"
           >
-            {{ props.package.destination }},
+            {{ props.package.region }},
           </div>
           <!-- <div v-if="JSON.parse(props.package.countries)!==null" class="text-center text-sm font-extralight pb-5">{{JSON.parse(props.package.countries)[0].name.toUpperCase()}}</div> -->
           <div
-            v-if="props.package.subdestination"
+            v-if="props.package.destination"
             class="text-center text-sm font-extralight pb-1"
             :class="{ loadingStateClass: searchStore.loadingState }"
           >
-            {{ props.package.subdestination }}
+            {{ props.package.destination }}
           </div>
         </div>
         <div

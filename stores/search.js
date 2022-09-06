@@ -8,7 +8,7 @@ export const useStore = defineStore("search", {
     region: "",
     destinationQuery: ref(''),
     destination: ref(''),
-    destinationType:ref('subdestination'),
+    destinationType:ref('destination'),
     from_date: "",
     to_date: "",
     price_min: ref(0),
@@ -63,7 +63,7 @@ export const useStore = defineStore("search", {
                       slug
                       supplier_ref
                    description
-                   subdestination
+                   region
                    destination
                    price
                    valid_to
@@ -99,7 +99,7 @@ export const useStore = defineStore("search", {
                       title
                       slug
                    description
-                   subdestination
+                   region
                    destination
                    price
                    valid_to

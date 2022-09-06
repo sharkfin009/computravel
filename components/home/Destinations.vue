@@ -18,9 +18,9 @@
 
       <div class="relative h-[800px] lg:h-[500px] w-full">
         <HomeDestination
-          v-for="(destination, index) in packages"
+          v-for="(region, index) in packages"
           :key="index"
-          :destination="packages[index]"
+          :region="packages[index]"
           class="absolute inset-0 w-full"
           :class="{ 'opacity-0': index !== activeTab }"
         >
@@ -37,7 +37,7 @@
             v-if="picStyles.length > 0"
           >
             <div
-              v-for="(destination, index) in destinationsDictionary"
+              v-for="(region, index) in destinationsDictionary"
               :key="index"
               :style="picStyles[index]"
               class="absolute inset-0"
@@ -78,7 +78,7 @@ const { data, error } = useGraph(`query{
       attributes{
         destination
         title
-        subdestination
+        region
         from 
         to
         description
@@ -99,9 +99,9 @@ watch(
   () => data.value,
   () => {
     console.log(data.value);
-    destinationsDictionary.forEach((destination) => {
+    destinationsDictionary.forEach((region) => {
       const arrayOfThisDestination = data.value.packages.data.filter(
-        (tour) => tour.attributes.destination === destination
+        (tour) => tour.attributes.region === region
       );
       destinations.value.push(arrayOfThisDestination);
       let threeChoices = [];
@@ -124,9 +124,9 @@ watch(
 // get urls for destination pics:
 
 const { data: destinationPics, error: error2 } = useGraph(`query{
-  destinationContents(
+  regions(
     filters:{
-        destination:{
+        name:{
             in:
                 ["Africa","Europe","Indian Ocean Islands", "Middle East"]
             
@@ -136,7 +136,7 @@ const { data: destinationPics, error: error2 } = useGraph(`query{
     {
     data{
       attributes{
-        destination
+        name
        images{
          data{
            attributes{
@@ -155,15 +155,9 @@ const config = useRuntimeConfig();
 watch(
   () => destinationPics.value,
   (a, b) => {
-    picStyles.value = destinationsDictionary.map((item, index) => {
-      console.log(
-        destinationPics.value.destinationContents.data.find(
-          (dest) => dest.attributes.destination === item
-        ).attributes.images,
-        item
-      );
-      let url = destinationPics.value.destinationContents.data.find(
-        (dest) => dest.attributes.destination === item
+    picStyles.value = destinationsDictionary.map((item) => {
+      let url = destinationPics.value.regions.data.find(
+        (dest) => dest.attributes.name === item
       ).attributes.images.data[0].attributes.url;
 
       return {

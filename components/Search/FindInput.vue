@@ -395,14 +395,14 @@ const findInputFocus = () => {
   inputHasFocus.value = true;
 };
 
-const { result: subdestinationResult, search: subdestinationSearch } =
-  useSearch("subdestinations");
+const { result: regionResult, search: regionSearch } = useSearch("regions");
 const { result: destinationResult, search: destinationSearch } =
   useSearch("destinations");
+
 const getDestinationSuggestions = async () => {
-  let subdestinationSuggestions = [];
+  let regionSuggestions = [];
   let destinationSuggestions = [];
-  await subdestinationSearch({
+  await regionSearch({
     query: searchStore.findQuery,
     requestOptions: {
       hitsPerPage: 10,
@@ -412,9 +412,9 @@ const getDestinationSuggestions = async () => {
       return;
     }
     findSuggest.showSuggestions = true;
-    subdestinationSuggestions = result.hits.map((item) => ({
-      name: item.subdestination,
-      type: "subdestination",
+    regionSuggestions = result.hits.map((item) => ({
+      name: item.region,
+      type: "region",
     }));
   });
 
@@ -433,10 +433,7 @@ const getDestinationSuggestions = async () => {
       name: item.destination,
       type: "destination",
     }));
-    findSuggest.suggestions = [
-      ...destinationSuggestions,
-      ...subdestinationSuggestions,
-    ];
+    findSuggest.suggestions = [...destinationSuggestions, ...regionSuggestions];
   });
 };
 
