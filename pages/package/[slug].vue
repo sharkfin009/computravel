@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="package_data && destination_content"
+    v-if="package_data && responseCount == 3"
     class="bg-slate-50 px-10 md:px-14"
   >
     <Head>
@@ -226,7 +226,7 @@ watch(
           copy: store.location.province[0].attributes.copy,
 
           images: store.location.province[0].attributes.images.data.map(
-            (item) => item.url
+            (item) => item.attributes.url
           ),
         };
         return;
@@ -236,17 +236,20 @@ watch(
           name: store.location.country[0].attributes.name,
           copy: store.location.country[0].attributes.copy,
           images: store.location.country[0].attributes.images.data.map(
-            (item) => item.url
+            (item) => item.attributes.url
           ),
         };
         return;
       }
       if (store.location.region.length) {
-        destination_content.content.value = {
-          name: store.location.region[0].attributes.name,
+        destination_content.value = {
+          name:
+            store.location.region[0].attributes.name == "Mediterranean"
+              ? "the Mediterranean"
+              : store.location.region[0].attributes.name,
           copy: store.location.region[0].attributes.copy,
           images: store.location.region[0].attributes.images.data.map(
-            (item) => item.url
+            (item) => item.attributes.url
           ),
         };
         return;

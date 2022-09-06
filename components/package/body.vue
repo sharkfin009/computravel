@@ -422,10 +422,9 @@ onMounted(() => {
   // })
 });
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
-let images =
-  props.destination_content.images.length > 0
-    ? props.destination_content.images
-    : [];
+let images = props.destination_content.images.length
+  ? props.destination_content.images
+  : [];
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
   return array;
