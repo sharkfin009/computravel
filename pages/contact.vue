@@ -187,7 +187,7 @@ const setValue = (inputName, value) => {
   state[inputName] = value;
 };
 
-const graphql = useStrapiGraphQL();
+const { $graphql } = useNuxtApp();
 const response = ref("");
 const packages = ref([]);
 let ids = [];

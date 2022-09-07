@@ -110,8 +110,7 @@ const removeFavorite = (index) => {
   enquiryState.listDirtyState = true;
 };
 
-const graphql = useStrapiGraphQL();
-
+const { $graphql } = useNuxtApp();
 const updateList = () => {
   let list = "";
   if (localStorage.getItem("my-packages")) {
@@ -132,7 +131,7 @@ const updateList = () => {
         }
     }
         `;
-  graphql(query).then((response) => {
+  $graphql(query).then((response) => {
     response.value = response.data;
     enquiryState.listDirtyState = false;
     enquiryState.showUpdateModal = true;

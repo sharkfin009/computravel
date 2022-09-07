@@ -38,7 +38,7 @@
         pb-5
       "
     >
-      <div class="text-center font-bold text-2xl pt-20 pb-10 px-10">
+      <div class="text-center font-bold text-2xl pt-20 pb-10 md:pt-10 px-10">
         Tell us a few things and we will get right back to you!
       </div>
 
@@ -189,7 +189,7 @@ const airports = [
   "Harare (Robert Gabriel Mugabe International Airport)",
 ];
 
-const graphql = useStrapiGraphQL();
+const { $graphql } = useNuxtApp();
 const response = ref("");
 const packages = ref([]);
 let ids = [];
@@ -230,7 +230,7 @@ const send = () => {
     }
     }`;
   enquiryState.showConfirmation = true;
-  graphql(query).then((response) => {
+  $graphql(query).then((response) => {
     response.value = response.data;
     enquiryState.enquiryId = response.data.createEnquiry.data.id;
     localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);

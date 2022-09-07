@@ -93,7 +93,7 @@
     <transition name="fade">
       <ConfirmModal v-if="enquiry.showConfirmation">
         <h3 class="text-3xl md:text-6xl font-bold mb-5">
-          Thankyou for your enquiry!
+          Thank you for your enquiry!
         </h3>
         <p class="text-xl md:text-base">
           One of our travel experts will be in touch soon.

@@ -8,14 +8,13 @@ export const useStore = defineStore("reasons", {
 
   actions: {
     getReasons() {
-      const graphql = useStrapiGraphQL();
-      graphql(`
+      const { $graphql } = useNuxtApp();
+      $graphql(`
         query {
           reasons {
             data {
               id
               attributes {
-                
                 title
                 subtitle
                 content

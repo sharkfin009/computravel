@@ -91,8 +91,8 @@ const package_data = ref(null);
 const error = ref(null);
 const destination_content = ref(null);
 const responseCount = ref(0);
-const graphql = useStrapiGraphQL();
-graphql(query)
+const { $graphql } = useNuxtApp();
+$graphql(query)
   .then((response) => {
     package_data.value = response.data;
     store.package = response.data.packages.data[0];
@@ -141,7 +141,7 @@ const checkCountry = (dest) => {
       }
     }}`;
 
-  graphql(query)
+  $graphql(query)
     .then((response) => {
       store.location.country = response.data.countries.data;
       responseCount.value++;
@@ -172,7 +172,7 @@ const checkProvince = (dest) => {
       }
     }}`;
 
-  graphql(query)
+  $graphql(query)
     .then((response) => {
       store.location.province = response.data.provinces.data;
       responseCount.value++;
@@ -204,7 +204,7 @@ const checkRegion = (dest) => {
       }
     }}`;
 
-  graphql(query)
+  $graphql(query)
     .then((response) => {
       store.location.region = response.data.regions.data;
       responseCount.value++;

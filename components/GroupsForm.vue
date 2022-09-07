@@ -240,7 +240,7 @@ const airports = [
   "Harare (Robert Gabriel Mugabe International Airport)",
 ];
 
-const graphql = useStrapiGraphQL();
+const { $graphql } = useNuxtApp();
 const response = ref("");
 const packages = ref([]);
 let ids = [];
@@ -285,15 +285,6 @@ const send = () => {
     }
     }`;
   enquiryState.showConfirmation = true;
-  graphql(query).then((response) => {
-    // response.value = response.data;
-    // enquiryState.enquiryId = response.data.createEnquiry.data.id;
-    // localStorage.setItem("enquiryId", response.data.createEnquiry.data.id);
-    // enquiryState.enquiryRef = enquiryRef;
-    // localStorage.setItem("enquiryRef", enquiryRef);
-    // localStorage.setItem("enquirySent", true);
-    // enquiryState.enquirySent = true;
-    // enquiryState.listDirtyState = false;
-  });
+  $graphql(query).then((response) => {});
 };
 </script>

@@ -11,9 +11,9 @@ export const useStore = defineStore("favourites", {
 
   actions: {
     fetchPackages() {
-      const graphql = useStrapiGraphQL();
+      const { $graphqlql } = useNuxtApp();
 
-      graphql(`
+      $$graphqlql`
         query {
           favourites {
             data {

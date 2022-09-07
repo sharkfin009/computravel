@@ -6,9 +6,9 @@ export const useStore = defineStore("search", {
     activeInput: ref(""),
     results: [],
     region: "",
-    destinationQuery: ref(''),
-    destination: ref(''),
-    destinationType:ref('destination'),
+    destinationQuery: ref(""),
+    destination: ref(""),
+    destinationType: ref("destination"),
     from_date: "",
     to_date: "",
     price_min: ref(0),
@@ -17,21 +17,21 @@ export const useStore = defineStore("search", {
     sort_by: "Price low to high",
     loadingState: false,
     fallbackResults: ref([]),
-    firstLoad: ref(true)
+    firstLoad: ref(true),
   }),
   actions: {
     fireQuery() {
-      this.fallbackResults = []
+      this.fallbackResults = [];
       this.results = [];
       this.loadingState = true;
-      const graphql = useStrapiGraphQL();
+      const { $graphql } = useNuxtApp();
       let noDestinationFilter = false;
       let noRegionFilter = false;
-      let destinationFilterString
-      if (this.destination== '') {
-        destinationFilterString = '';
+      let destinationFilterString;
+      if (this.destination == "") {
+        destinationFilterString = "";
       } else {
-        destinationFilterString = `${this.destinationType}:{ eq:"${this.destination}"}`
+        destinationFilterString = `${this.destinationType}:{ eq:"${this.destination}"}`;
       }
 
       let DatesFilter = true;
@@ -39,15 +39,15 @@ export const useStore = defineStore("search", {
         DatesFilter = false;
       }
       let hashMap = new Map([
-        ["Price high to low","price:desc"],
-        ["Price low to high","price:asc"]
-      ])
-      
-      let sortString = hashMap.get(this.sort_by)
+        ["Price high to low", "price:desc"],
+        ["Price low to high", "price:asc"],
+      ]);
+
+      let sortString = hashMap.get(this.sort_by);
       let dateFilterString = DatesFilter
         ? ` from:{ between:["${this.from_date}","${this.to_date}"]}`
         : "";
-      
+
       let priceFilterString = ` price:{between:[${this.price_min},${this.price_max}]}`;
       let categoryFilterString =
         this.category !== "All" ? ` category:{eq:"${this.category}"}` : "";
@@ -75,19 +75,19 @@ export const useStore = defineStore("search", {
                 }
               }}
             `;
-      graphql(query)
+      $graphql(query)
         .then((response) => {
           this.results = response.data.packages.data;
-          console.log(this.results)
+          console.log(this.results);
           this.loadingState = false;
         })
         .catch((error) => {
-          console.log(error)
+          console.log(error);
         });
     },
     fireDefaultQuery() {
       this.findQuery = "";
-      const graphql = useStrapiGraphQL();
+      const { $graphql } = useNuxtApp();
       this.loadingState = true;
       let query = `
             query{packages(
@@ -112,14 +112,14 @@ export const useStore = defineStore("search", {
                 }
               }}
             `;
-      graphql(query)
+      $graphql(query)
         .then((response) => {
           function shuffle(array) {
             array.sort(() => Math.random() - 0.5);
-            return array
+            return array;
           }
           this.fallbackResults = shuffle(response.data.packages.data);
-          
+
           this.loadingState = false;
           this.noResults = true;
         })
@@ -128,5 +128,4 @@ export const useStore = defineStore("search", {
         });
     },
   },
-  
 });
