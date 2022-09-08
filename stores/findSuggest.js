@@ -3,9 +3,8 @@ import { defineStore } from "pinia";
 export const useFindSuggestStore = defineStore("findSuggest", {
     state: () => ({
         suggestions: ref([]),
-        query:ref(''),
         showSuggestions: ref(false),
-        selectedSuggestion: ref(0)
+        this.selectedSuggestion: ref(0)
     }),
     actions: {
         manageKeyUp: (e) => {
@@ -19,33 +18,33 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             // down Arrow:
             if (
               e.key === "ArrowDown" &&
-              selectedSuggestion.value < suggestions.value.length &&
-              selectedSuggestion.value < suggestions.value.length - 1
+              this.this.selectedSuggestion < this.suggestions.length &&
+              this.this.selectedSuggestion < this.suggestions.length - 1
             ) {
-              selectedSuggestion.value++;
+              this.this.selectedSuggestion++;
           
               return;
             }
             if (
               e.key === "ArrowDown" &&
-              selectedSuggestion.value === suggestions.value.length - 1
+              this.selectedSuggestion === this.suggestions.length - 1
             ) {
-              selectedSuggestion.value = 0;
+              this.selectedSuggestion = 0;
           
               return;
             }
             // up arrow:
             if (e.key === "ArrowUp") {
-              if (selectedSuggestion.value >= 0) {
-                selectedSuggestion.value--;
+              if (this.selectedSuggestion >= 0) {
+                this.selectedSuggestion--;
               }
               return;
             }
             // enter
             if (e.key === "Enter") {
               // if no selection:
-              if (selectedSuggestion.value === -1) {
-                showFindSuggestions.value = false;
+              if (this.selectedSuggestion === -1) {
+                this.showSuggestions = false;
           
                 searchDestination(searchStore.findQuery);
                 return;
@@ -53,25 +52,29 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           
               // if suggestion:
               viewPackage(
-                suggestions.value[selectedSuggestion.value].slug,
-                suggestions.value[selectedSuggestion.value].supplier_ref
+                suggestions[this.selectedSuggestion].slug,
+                suggestions[this.selectedSuggestion].supplier_ref
               );
               clear();
-              showFindSuggestions.value = false;
+              showFindSuggestions = false;
               return;
             }
           
             //     // backspace
             if (e.key === "Backspace") {
-              showFindSuggestions.value = false;
-              suggestions.value = [];
-              selectedSuggestion.value = -1;
-              if (suggestQuery.value == "") {
+              showFindSuggestions = false;
+              suggestions = [];
+              this.selectedSuggestion = -1;
+              if (suggestQuery == "") {
                 return;
               }
             }
           
           };
+        getSuggestions:() =>{
+            packageSuggestionQuery()
+            destinationSuggestionQuery()
+        }
         packageSuggestionQuery: async () => {
             await findSearch({
               query: searchStore.findQuery,
@@ -83,7 +86,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
                 return;
               }
           
-              suggestions.value = result.hits.map((item) => ({
+              suggestions = result.hits.map((item) => ({
                 titleShort: ellipsis(item.title, 70),
                 title: item.title,
                 description: ellipsis(item.description, 150),
@@ -95,10 +98,10 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           
              
           
-              if (suggestions.value.length === 0) {
-                showFindSuggestions.value = false;
+              if (suggestions.length === 0) {
+                showFindSuggestions = false;
               } else {
-                showFindSuggestions.value = true;
+                showFindSuggestions = true;
               }
             });
           };
@@ -141,6 +144,23 @@ export const useFindSuggestStore = defineStore("findSuggest", {
                 ...destinationSuggestions,
                 ...regionSuggestions,
               ];
+            });
+          };
+        searchDestination: (destination) => {
+            searchStore.destinationQuery = destination;
+            searchStore.destination = destination;
+            searchStore.findQuery = "";
+            searchStore.fireQuery();
+            if (route.path != "/search") {
+              navigateTo({
+                path: "/search",
+              });
+            }
+          };
+          
+        viewPackage : (slug, supplier_ref) => {
+            navigateTo({
+              path: "/package/" + slug + "_ref=" + supplier_ref,
             });
           };
 
