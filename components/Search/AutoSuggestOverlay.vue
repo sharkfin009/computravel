@@ -223,24 +223,6 @@ const searchStore = useStore();
 
 import { useFindSuggestStore } from "~~/stores/findSuggest";
 const suggestStore = useFindSuggestStore();
-
-const searchDestination = (destination) => {
-  searchStore.destinationQuery = destination;
-  searchStore.destination = destination;
-  searchStore.findQuery = "";
-  searchStore.fireQuery();
-  if (route.path != "/search") {
-    navigateTo({
-      path: "/search",
-    });
-  }
-};
-
-const viewPackage = (slug, supplier_ref) => {
-  navigateTo({
-    path: "/package/" + slug + "_ref=" + supplier_ref,
-  });
-};
 </script>
 <style scoped>
 </style>

@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 
 export const useFindSuggestStore = defineStore("findSuggest", {
     state: () => ({
-        suggestions: ref([]),
+        packageSuggestions: ref([]),
+        destinationSuggestions: ref([]), 
         showSuggestions: ref(false),
         this.selectedSuggestion: ref(0)
     }),
@@ -99,9 +100,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
              
           
               if (suggestions.length === 0) {
-                showFindSuggestions = false;
+                this.showSuggestions = false;
               } else {
-                showFindSuggestions = true;
+                this.showSuggestions = true;
               }
             });
           };
@@ -134,13 +135,13 @@ export const useFindSuggestStore = defineStore("findSuggest", {
               if (result === null || result === undefined) {
                 return;
               }
-              suggestStore.showSuggestions = true;
+              this.showSuggestions = true;
           
               destinationSuggestions = result.hits.map((item) => ({
                 name: item.destination,
                 type: "destination",
               }));
-              suggestStore.suggestions = [
+              this.suggestions = [
                 ...destinationSuggestions,
                 ...regionSuggestions,
               ];
