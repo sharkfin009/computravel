@@ -11,7 +11,8 @@
         pointer-events-none
       "
       :class="{
-        'opacity-40': suggestions.length > 0 && showFindSuggestions,
+        'opacity-40':
+          suggestStore.suggestions.length > 0 && suggestStore.Suggestions,
       }"
     />
 
@@ -27,7 +28,9 @@
         w-full
       "
       :class="wrapperClass"
-      v-show="showFindSuggestions && suggestions.length > 0"
+      v-show="
+        suggestStore.showSuggestions && suggestStore.suggestions.length > 0
+      "
     >
       <div
         class="
@@ -51,7 +54,7 @@
       >
         <div class="hidden md:block w-full">
           <div
-            v-for="(suggestion, index) in suggestions"
+            v-for="(suggestion, index) in suggestStore.packageSuggestions"
             :class="{
               ' !bg-opacity-90  rounded-3xl bg-lime-600 text-lime-200':
                 index === selectedSuggestion,
@@ -120,7 +123,7 @@
           <div class="mb-2">related searches:</div>
           <div class="grid ld:grid-cols-2 gap-2">
             <div
-              v-for="(item, index) in suggestStore.suggestions"
+              v-for="(item, index) in suggestStore.destinationSuggestions"
               :key="index"
               class="
                 flex
@@ -130,7 +133,7 @@
                 p-1
                 hover:bg-lime-500 hover:text-lime-200
               "
-              @mousedown="searchDestination(item.name)"
+              @mousedown="suggestStore.searchDestination(item.name)"
             >
               <IconSearch class="h-4" />
               <div class="">{{ item.name }}</div>
@@ -142,7 +145,7 @@
           <div class="mb-2">related searches:</div>
           <div class="grid gap-2">
             <div
-              v-for="(item, index) in suggestStore.suggestions"
+              v-for="(item, index) in suggestStore.destinationSuggestions"
               :key="index"
               class="
                 flex
@@ -181,18 +184,7 @@ onMounted(() => {
     wrapperClass.value = "top-[120%]";
   }
 });
-const suggestQuery = ref("");
-const selectedSuggestion = ref(-1);
-const suggestions = ref([]);
 const hoveredSuggestion = ref(0);
-const destinationSuggestions = ref([]);
-const clear = () => {
-  searchStore.destinationQuery = "";
-  searchStore.findQuery = "";
-  showFindSuggestions.value = false;
-  suggestions.value = [];
-  selectedSuggestion.value = -1;
-};
 
 const mouseOver = (index) => {
   hoveredSuggestion.value = index + 1;
@@ -201,23 +193,6 @@ const mouseOver = (index) => {
 const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
-
-const { result: findResult, search: findSearch } = useSearch(
-  "production_api::package.package"
-);
-
-const inputHasFocus = ref(false);
-const findInputFocus = () => {
-  if (suggestions.value.length > 0) {
-    showFindSuggestions.value = true;
-  }
-  inputHasFocus.value = true;
-};
-
-const { result: regionResult, search: regionSearch } = useSearch("regions");
-const { result: destinationResult, search: destinationSearch } =
-  useSearch("destinations");
-
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
 
