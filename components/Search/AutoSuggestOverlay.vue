@@ -206,48 +206,6 @@ const { result: findResult, search: findSearch } = useSearch(
   "production_api::package.package"
 );
 
-const fireSuggestionQuery = async () => {
-  await findSearch({
-    query: searchStore.findQuery,
-    requestOptions: {
-      hitsPerPage: 5,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-
-    suggestions.value = result.hits.map((item) => ({
-      titleShort: ellipsis(item.title, 70),
-      title: item.title,
-      description: ellipsis(item.description, 150),
-      destination: item.destination,
-      slug: item.slug,
-      supplier_ref: item.supplier_ref,
-    }));
-
-    getDestinationSuggestions(searchStore.findQuery);
-
-    function ellipsis(text, length) {
-      if (text.length > length) {
-        let cutTextChars = text.substring(0, length);
-        let lastWord = cutTextChars.split(" ").pop(-1);
-        let cutText = cutTextChars.slice(
-          0,
-          cutTextChars.length - lastWord.length
-        );
-        return cutText + "...";
-      } else return text;
-    }
-
-    if (suggestions.value.length === 0) {
-      showFindSuggestions.value = false;
-    } else {
-      showFindSuggestions.value = true;
-    }
-  });
-};
-
 const inputHasFocus = ref(false);
 const findInputFocus = () => {
   if (suggestions.value.length > 0) {
@@ -259,47 +217,6 @@ const findInputFocus = () => {
 const { result: regionResult, search: regionSearch } = useSearch("regions");
 const { result: destinationResult, search: destinationSearch } =
   useSearch("destinations");
-
-const getDestinationSuggestions = async () => {
-  let regionSuggestions = [];
-  let destinationSuggestions = [];
-  await regionSearch({
-    query: searchStore.findQuery,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    suggestStore.showSuggestions = true;
-    regionSuggestions = result.hits.map((item) => ({
-      name: item.region,
-      type: "region",
-    }));
-  });
-
-  await destinationSearch({
-    query: searchStore.findQuery,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    suggestStore.showSuggestions = true;
-
-    destinationSuggestions = result.hits.map((item) => ({
-      name: item.destination,
-      type: "destination",
-    }));
-    suggestStore.suggestions = [
-      ...destinationSuggestions,
-      ...regionSuggestions,
-    ];
-  });
-};
 
 import { useStore } from "@/stores/search";
 const searchStore = useStore();

@@ -11,9 +11,9 @@ export const useStore = defineStore("favourites", {
 
   actions: {
     fetchPackages() {
-      const { $graphqlql } = useNuxtApp();
+      const { $graphql } = useNuxtApp();
 
-      $$graphqlql`
+      $graphql`
         query {
           favourites {
             data {
