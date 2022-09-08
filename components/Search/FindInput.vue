@@ -19,11 +19,11 @@
         w-full
       "
       :class="{ 'shadow-lg': inputHasFocus }"
-      @keyup="manageKeyUp"
+      @keyup="suggestStore.manageKeyUp"
       @focus="findInputFocus"
       placeholder="Where to?"
       @blur="
-        showFindSuggestions = false;
+        suggestStore.showFindSuggestions = false;
         inputHasFocus = false;
       "
       ref="findInput"
@@ -66,7 +66,6 @@ const route = useRoute();
 const props = defineProps({
   parent: String,
 });
-const showFindSuggestions = ref(false);
 
 const findInput = ref(null);
 const wrapperClass = ref("");
@@ -79,17 +78,14 @@ onMounted(() => {
     wrapperClass.value = "top-[120%]";
   }
 });
-const suggestQuery = ref("");
-const selectedSuggestion = ref(-1);
-const suggestions = ref([]);
 const hoveredSuggestion = ref(0);
-const destinationSuggestions = ref([]);
 const clear = () => {
   searchStore.destinationQuery = "";
   searchStore.findQuery = "";
-  showFindSuggestions.value = false;
-  suggestions.value = [];
-  selectedSuggestion.value = -1;
+  suggestStore.showSuggestions = false;
+  suggestStore.packageSuggestions = [];
+  suggestStore.destinationSuggestions = [];
+  suggestStore.selectedSuggestion = -1;
 };
 
 const mouseOver = (index) => {
@@ -100,10 +96,6 @@ const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
 
-const { result: findResult, search: findSearch } = useSearch(
-  "production_api::package.package"
-);
-
 const inputHasFocus = ref(false);
 const findInputFocus = () => {
   if (suggestions.value.length > 0) {
@@ -111,10 +103,6 @@ const findInputFocus = () => {
   }
   inputHasFocus.value = true;
 };
-
-const { result: regionResult, search: regionSearch } = useSearch("regions");
-const { result: destinationResult, search: destinationSearch } =
-  useSearch("destinations");
 </script>
 <style scoped>
 </style>

@@ -7,7 +7,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         packageSuggestions: ref([]),
         destinationSuggestions: ref([]), 
         showSuggestions: ref(false),
-        this.selectedSuggestion: ref(0)
+        selectedSuggestion: ref(0)
     }),
     actions: {
         manageKeyUp: (e) => {
@@ -78,6 +78,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             destinationSuggestionQuery()
         }
         packageSuggestionQuery: async () => {
+            const { result: findResult, search: findSearch } = useSearch(
+                "production_api::package.package"
+              );
             const { $ellipsis } = useNuxtApp()
             await findSearch({
               query: searchStore.findQuery,
@@ -110,6 +113,8 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           };
 
         destinationSuggestionQuery: async () => {
+            const { result: regionResult, search: regionSearch } = useSearch("regions");
+            const { result: destinationResult, search: destinationSearch } = useSearch("destinations");
             let regionSuggestions = [];
             let destinationSuggestions = [];
             await regionSearch({
