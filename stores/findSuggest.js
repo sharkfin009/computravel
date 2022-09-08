@@ -45,25 +45,24 @@ export const useFindSuggestStore = defineStore("findSuggest", {
               // if no selection:
               if (this.selectedSuggestion === -1) {
                 this.showSuggestions = false;
-          
                 searchDestination(searchStore.findQuery);
                 return;
               }
           
               // if suggestion:
               viewPackage(
-                suggestions[this.selectedSuggestion].slug,
-                suggestions[this.selectedSuggestion].supplier_ref
+                this.suggestions[this.selectedSuggestion].slug,
+                this.suggestions[this.selectedSuggestion].supplier_ref
               );
               clear();
-              showFindSuggestions = false;
+              this.showSuggestions = false;
               return;
             }
           
             //     // backspace
             if (e.key === "Backspace") {
-              showFindSuggestions = false;
-              suggestions = [];
+              this.showSuggestions = false;
+              this.suggestions = [];
               this.selectedSuggestion = -1;
               if (suggestQuery == "") {
                 return;
@@ -76,6 +75,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             destinationSuggestionQuery()
         }
         packageSuggestionQuery: async () => {
+            const { $ellipsis } = useNuxtApp()
             await findSearch({
               query: searchStore.findQuery,
               requestOptions: {
@@ -87,9 +87,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
               }
           
               suggestions = result.hits.map((item) => ({
-                titleShort: ellipsis(item.title, 70),
+                titleShort: $ellipsis(item.title, 70),
                 title: item.title,
-                description: ellipsis(item.description, 150),
+                description:$ellipsis(item.description, 150),
                 destination: item.destination,
                 slug: item.slug,
                 supplier_ref: item.supplier_ref,
