@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-stone-50 px-10 md:px-20 pb-10 md:pb-20 text-base">
+  <div class="bg-slate-50 px-10 md:px-20 pb-10 md:pb-20 text-base">
     <SectionHeading
       heading="contact us"
       subheading="we'd love to hear from you"

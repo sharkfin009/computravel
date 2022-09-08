@@ -43,16 +43,20 @@
         />
       </div>
 
-      <div class="grid grid-cols-[auto,auto] gap-4">
+      <div class="grid grid-cols-[auto,auto]">
         <!--  enq now button: -->
-        <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
-          <CompuButton class="bg-lime-500 !h-full">enquire now</CompuButton>
-        </NuxtLink>
-        <NuxtLink to="/my-packages" v-if="enquiry.enquirySent">
-          <CompuButton class="bg-lime-500 !h-full"
-            >view my favorites</CompuButton
-          >
-        </NuxtLink>
+        <div class="relative w-[190px] flex justify-center mr-5">
+          <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
+            <CompuButton class="!text-center inset-0 bg-lime-500 !h-full"
+              >enquire now</CompuButton
+            >
+          </NuxtLink>
+          <NuxtLink to="/my-packages" v-if="enquiry.enquirySent">
+            <CompuButton class="inset-0 bg-lime-500 !h-full"
+              >view my favorites</CompuButton
+            >
+          </NuxtLink>
+        </div>
 
         <!-- hamburger -->
         <div
