@@ -71,11 +71,81 @@ export const useFindSuggestStore = defineStore("findSuggest", {
               }
             }
           
-            fireSuggestionQuery();
           };
-      
+        packageSuggestionQuery: async () => {
+            await findSearch({
+              query: searchStore.findQuery,
+              requestOptions: {
+                hitsPerPage: 5,
+              },
+            }).then((result) => {
+              if (result === null || result === undefined) {
+                return;
+              }
+          
+              suggestions.value = result.hits.map((item) => ({
+                titleShort: ellipsis(item.title, 70),
+                title: item.title,
+                description: ellipsis(item.description, 150),
+                destination: item.destination,
+                slug: item.slug,
+                supplier_ref: item.supplier_ref,
+              }));
+          
+          
+             
+          
+              if (suggestions.value.length === 0) {
+                showFindSuggestions.value = false;
+              } else {
+                showFindSuggestions.value = true;
+              }
+            });
+          };
+
+        destinationSuggestionQuery: async () => {
+            let regionSuggestions = [];
+            let destinationSuggestions = [];
+            await regionSearch({
+              query: searchStore.findQuery,
+              requestOptions: {
+                hitsPerPage: 10,
+              },
+            }).then((result) => {
+              if (result === null || result === undefined) {
+                return;
+              }
+              suggestStore.showSuggestions = true;
+              regionSuggestions = result.hits.map((item) => ({
+                name: item.region,
+                type: "region",
+              }));
+            });
+          
+            await destinationSearch({
+              query: searchStore.findQuery,
+              requestOptions: {
+                hitsPerPage: 10,
+              },
+            }).then((result) => {
+              if (result === null || result === undefined) {
+                return;
+              }
+              suggestStore.showSuggestions = true;
+          
+              destinationSuggestions = result.hits.map((item) => ({
+                name: item.destination,
+                type: "destination",
+              }));
+              suggestStore.suggestions = [
+                ...destinationSuggestions,
+                ...regionSuggestions,
+              ];
+            });
+          };
 
     },
+    
     getters: {
 
     }
