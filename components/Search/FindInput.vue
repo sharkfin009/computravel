@@ -57,6 +57,11 @@
   </div>
 </template>
 <script setup>
+import { useStore } from "@/stores/search";
+const searchStore = useStore();
+
+import { useFindSuggestStore } from "~~/stores/findSuggest";
+const suggestStore = useFindSuggestStore();
 const route = useRoute();
 const props = defineProps({
   parent: String,
@@ -85,71 +90,6 @@ const clear = () => {
   showFindSuggestions.value = false;
   suggestions.value = [];
   selectedSuggestion.value = -1;
-};
-const manageKeyUp = (e) => {
-  // escape:
-  if (e.key === "Escape") {
-    clear();
-
-    return;
-  }
-
-  // down Arrow:
-  if (
-    e.key === "ArrowDown" &&
-    selectedSuggestion.value < suggestions.value.length &&
-    selectedSuggestion.value < suggestions.value.length - 1
-  ) {
-    selectedSuggestion.value++;
-
-    return;
-  }
-  if (
-    e.key === "ArrowDown" &&
-    selectedSuggestion.value === suggestions.value.length - 1
-  ) {
-    selectedSuggestion.value = 0;
-
-    return;
-  }
-  // up arrow:
-  if (e.key === "ArrowUp") {
-    if (selectedSuggestion.value >= 0) {
-      selectedSuggestion.value--;
-    }
-    return;
-  }
-  // enter
-  if (e.key === "Enter") {
-    // if no selection:
-    if (selectedSuggestion.value === -1) {
-      showFindSuggestions.value = false;
-
-      searchDestination(searchStore.findQuery);
-      return;
-    }
-
-    // if suggestion:
-    viewPackage(
-      suggestions.value[selectedSuggestion.value].slug,
-      suggestions.value[selectedSuggestion.value].supplier_ref
-    );
-    clear();
-    showFindSuggestions.value = false;
-    return;
-  }
-
-  //     // backspace
-  if (e.key === "Backspace") {
-    showFindSuggestions.value = false;
-    suggestions.value = [];
-    selectedSuggestion.value = -1;
-    if (suggestQuery.value == "") {
-      return;
-    }
-  }
-
-  fireSuggestionQuery();
 };
 
 const mouseOver = (index) => {
@@ -236,7 +176,7 @@ const getDestinationSuggestions = async () => {
     if (result === null || result === undefined) {
       return;
     }
-    findSuggest.showSuggestions = true;
+    suggestStore.showSuggestions = true;
     regionSuggestions = result.hits.map((item) => ({
       name: item.region,
       type: "region",
@@ -252,21 +192,18 @@ const getDestinationSuggestions = async () => {
     if (result === null || result === undefined) {
       return;
     }
-    findSuggest.showSuggestions = true;
+    suggestStore.showSuggestions = true;
 
     destinationSuggestions = result.hits.map((item) => ({
       name: item.destination,
       type: "destination",
     }));
-    findSuggest.suggestions = [...destinationSuggestions, ...regionSuggestions];
+    suggestStore.suggestions = [
+      ...destinationSuggestions,
+      ...regionSuggestions,
+    ];
   });
 };
-
-import { useStore } from "@/stores/search";
-const searchStore = useStore();
-
-import { useFindSuggestStore } from "~~/stores/findSuggest";
-const findSuggest = useFindSuggestStore();
 
 const searchDestination = (destination) => {
   searchStore.destinationQuery = destination;
