@@ -45,13 +45,15 @@
 
       <div class="grid grid-cols-[auto,auto] gap-4">
         <!--  enq now button: -->
-        <NuxtLink to="/enquire-form">
-          <CompuButton
-            v-if="enquiry.enquirySent == false"
-            class="bg-lime-500 !h-full"
-            >enquire now</CompuButton
+        <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
+          <CompuButton class="bg-lime-500 !h-full">enquire now</CompuButton>
+        </NuxtLink>
+        <NuxtLink to="/my-packages" v-if="enquiry.enquirySent">
+          <CompuButton class="bg-lime-500 !h-full"
+            >view my favorites</CompuButton
           >
         </NuxtLink>
+
         <!-- hamburger -->
         <div
           @click="showMenu = true"

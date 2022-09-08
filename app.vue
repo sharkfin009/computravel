@@ -38,6 +38,11 @@
   </div>
 </template>
 <script setup>
+const nuxtApp = useNuxtApp();
+
+nuxtApp.hook("page:finish", () => {
+  window.scrollTo(0, 0);
+});
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 onMounted(() => {

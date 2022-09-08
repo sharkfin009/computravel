@@ -1,44 +1,57 @@
 <template>
-  <div
-    v-if="package_data && responseCount == 3"
-    class="bg-slate-50 px-10 md:px-14"
-  >
-    <Head>
-      <Meta
-        property="og:description"
-        :content="
-          'R ' +
-          package_data.packages.data[0].attributes.price +
-          ' per person sharing'
+  <div class="">
+    <div
+      v-show="responseCount < 3"
+      class="h-screen flex justify-center items-center"
+    >
+      <IconTick
+        class="
+          animate__animated animate__zoomIn animate__infinite animate__slow
         "
+        style="color: #8fc15a"
       />
-      <Meta
-        property="og:title"
-        :content="package_data.packages.data[0].attributes.title"
-      />
-      <Meta
-        property="og:image"
-        :content="
-          'https://' + package_data.packages.data[0].attributes.image_url_lg
-        "
-      />
-      <!-- twitter: -->
-      <Meta name="twitter:card" content="summary_large_image" />
-      <Meta name="twitter:site" content="'https://computravel.co.za'" />
+    </div>
+    <div
+      v-if="package_data && responseCount == 3"
+      class="bg-slate-50 px-10 md:px-14"
+    >
+      <Head>
+        <Meta
+          property="og:description"
+          :content="
+            'R ' +
+            package_data.packages.data[0].attributes.price +
+            ' per person sharing'
+          "
+        />
+        <Meta
+          property="og:title"
+          :content="package_data.packages.data[0].attributes.title"
+        />
+        <Meta
+          property="og:image"
+          :content="
+            'https://' + package_data.packages.data[0].attributes.image_url_lg
+          "
+        />
+        <!-- twitter: -->
+        <Meta name="twitter:card" content="summary_large_image" />
+        <Meta name="twitter:site" content="'https://computravel.co.za'" />
 
-      <Meta
-        name="twitter:image"
-        :content="
-          'https://' + package_data.packages.data[0].attributes.image_url_lg
-        "
-      />
-    </Head>
+        <Meta
+          name="twitter:image"
+          :content="
+            'https://' + package_data.packages.data[0].attributes.image_url_lg
+          "
+        />
+      </Head>
 
-    <div class="w-full">
-      <PackageBody
-        :package_data="package_data"
-        :destination_content="destination_content"
-      />
+      <div class="w-full">
+        <PackageBody
+          :package_data="package_data"
+          :destination_content="destination_content"
+        />
+      </div>
     </div>
   </div>
 </template>
