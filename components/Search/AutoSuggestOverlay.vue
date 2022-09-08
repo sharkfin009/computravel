@@ -240,18 +240,12 @@ const fireSuggestionQuery = async () => {
       } else return text;
     }
 
-    if (suggestions.length === 0) {
+    if (suggestions.value.length === 0) {
       showFindSuggestions.value = false;
     } else {
       showFindSuggestions.value = true;
     }
   });
-
-  if (suggestions.value.length === 0) {
-    showFindSuggestions.value = false;
-  } else {
-    showFindSuggestions.value = true;
-  }
 };
 
 const inputHasFocus = ref(false);
