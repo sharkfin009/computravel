@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import { useStore } from "@/stores/search";
+const searchStore = useStore();
 
 export const useFindSuggestStore = defineStore("findSuggest", {
     state: () => ({
@@ -87,7 +89,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
                 return;
               }
           
-              suggestions = result.hits.map((item) => ({
+              this.packageSuggestions = result.hits.map((item) => ({
                 titleShort: $ellipsis(item.title, 70),
                 title: item.title,
                 description:$ellipsis(item.description, 150),
@@ -99,7 +101,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           
              
           
-              if (suggestions.length === 0) {
+              if (this.packageSuggestions.length === 0) {
                 this.showSuggestions = false;
               } else {
                 this.showSuggestions = true;
@@ -119,7 +121,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
               if (result === null || result === undefined) {
                 return;
               }
-              suggestStore.showSuggestions = true;
+              this.showSuggestions = true;
               regionSuggestions = result.hits.map((item) => ({
                 name: item.region,
                 type: "region",
@@ -141,7 +143,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
                 name: item.destination,
                 type: "destination",
               }));
-              this.suggestions = [
+              this.destinationSuggestions = [
                 ...destinationSuggestions,
                 ...regionSuggestions,
               ];
