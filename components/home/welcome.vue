@@ -77,7 +77,7 @@
             items-center
           "
         >
-          <SearchBar class="mb-20 w-full sm:w-[400px]" :parent="'welcome'" />
+          <SearchBar class="mb-20 w-full sm:w-[400px]" parent="welcome" />
         </div>
       </div>
     </div>

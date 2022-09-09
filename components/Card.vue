@@ -16,7 +16,7 @@
     >
       <div>
         <div
-          class="relative h-full flex items-end bg-slate-50"
+          class="relative h-full flex items-end bg-gray-100"
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',

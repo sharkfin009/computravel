@@ -57,40 +57,30 @@
         />
       </div>
       <div class="absolute inset-0 flex items-center pl-3 pointer-events-none">
-        <NuxtLink to="/search">
-          <div
-            class="
-              pointer-events-auto
-              bg-green-avo
-              rounded-full
-              p-2
-              flex
-              justify-center
-              item-center
-              hover:bg-lime-500
-            "
-          >
-            <i class="text-xs fa-solid fa-search" />
-          </div>
-        </NuxtLink>
+        <div
+          class="
+            pointer-events-auto
+            bg-green-avo
+            rounded-full
+            p-2
+            flex
+            justify-center
+            item-center
+            hover:bg-lime-500
+          "
+          @click="searchIconClick"
+        >
+          <i class="text-xs fa-solid fa-search" />
+        </div>
       </div>
     </div>
-    <!-- autosuggest list-->
   </div>
 </template>
 <script setup>
 const props = defineProps({
   parent: String,
 });
-onMounted(() => {
-  findInput.value.focus();
-  if (props.parent == "welcome") {
-    wrapperClass.value = "top-[64%]";
-  }
-  if (props.parent == "header") {
-    wrapperClass.value = "top-[120%]";
-  }
-});
+
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
 
@@ -117,6 +107,18 @@ const findInputFocus = () => {
     suggestStore.showSuggestions = true;
   }
   inputHasFocus.value = true;
+};
+const searchIconClick = () => {
+  if (suggestStore.destinationSuggestions.length) {
+    suggestStore.searchDestination(suggestStore.destinationSuggestions[0]);
+  } else {
+    clear();
+    if (route.path != "/search") {
+      navigateTo({
+        path: "/search",
+      });
+    }
+  }
 };
 </script>
 <style scoped>
