@@ -3,11 +3,12 @@
     class="
       absolute
       inset-0
-      bg-black bg-opacity-40
+      bg-gray-400
       flex
       justify-center
       items-start
-      pt-[110px]
+      pt-[170px]
+      md:pt-[110px]
       px-20
     "
     v-if="suggestStore.showSuggestions"
@@ -27,7 +28,7 @@
       <!-- destinations -->
       <div class="font-semibold ml-10">destinations:</div>
       <div class="ml-10 py-5">
-        <div class="flex gap-5">
+        <div class="flex flex-wrap gap-5">
           <div
             v-for="(item, index) in suggestStore.destinationSuggestions"
             :key="index"

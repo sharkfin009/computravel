@@ -7,6 +7,8 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     destinationSuggestions: ref([]),
     showSuggestions: ref(false),
     selectedSuggestion: ref(0),
+    packagesFromRegionQuery: [],
+    packagesFromDestinationQuery: [],
   }),
   actions: {
     manageKeyUp(e) {
@@ -83,15 +85,15 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const searchStore = useStore();
       const { $ellipsis } = useNuxtApp();
       const { result: regionResult, search: regionSearch } =
-        useSearch("regions");
+        useSearch("prod-regions");
       const { result: destinationResult, search: destinationSearch } =
-        useSearch("destinations");
+        useSearch("prod-destinations");
       let regionSuggestions = [];
       let destinationSuggestions = [];
       await regionSearch({
         query: searchStore.findQuery,
         requestOptions: {
-          hitsPerPage: 10,
+          hitsPerPage: 50,
         },
       }).then((result) => {
         if (result === null || result === undefined) {
@@ -102,6 +104,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           name: item.region,
           type: "region",
         }));
+        this.packagesFromRegionQuery = result.hits;
       });
 
       await destinationSearch({
@@ -129,8 +132,12 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         });
         this.destinationSuggestions = deduped;
 
-        // build packages from same results:
-        this.packageSuggestions = result.hits
+        // build packages from same results with destination dupes:
+        this.packagesFromDestinationQuery = result.hits;
+        this.packageSuggestions = [
+          ...this.packagesFromDestinationQuery,
+          ...this.packagesFromRegionQuery,
+        ]
           .map((item) => ({
             titleShort: $ellipsis(item.title, 70),
             title: item.title,
@@ -140,7 +147,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             supplier_ref: item.supplier_ref,
           }))
           .filter((item, index) => {
-            return index <= 10;
+            return index <= 50;
           });
       });
     },
