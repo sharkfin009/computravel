@@ -45,7 +45,7 @@
 
       <div class="grid grid-cols-[auto,auto]">
         <!--  enq now button: -->
-        <div class="relative w-[190px] flex justify-center mr-5">
+        <div class="relative md:w-[190px] flex justify-center mr-5">
           <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
             <CompuButton class="!text-center inset-0 bg-lime-500 !h-full"
               >enquire now</CompuButton

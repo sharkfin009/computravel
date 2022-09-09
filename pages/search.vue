@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-50 px-10 md:px-14">
+  <div class="bg-slate-50">
     <SearchOptions />
     <div
       class="w-full h-[500px] flex justify-center items-center"
