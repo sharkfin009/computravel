@@ -75,45 +75,13 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       this.getSuggestions();
     },
     getSuggestions() {
-      this.packageSuggestionQuery();
-      this.destinationSuggestionQuery();
-    },
-    async packageSuggestionQuery() {
-      const searchStore = useStore();
-      const { result: findResult, search: findSearch } = useSearch(
-        "production_api::package.package"
-      );
-      const { $ellipsis } = useNuxtApp();
-      await findSearch({
-        query: searchStore.findQuery,
-        requestOptions: {
-          hitsPerPage: 5,
-        },
-      }).then((result) => {
-        if (result === null || result === undefined) {
-          return;
-        }
-
-        this.packageSuggestions = result.hits.map((item) => ({
-          titleShort: $ellipsis(item.title, 70),
-          title: item.title,
-          description: $ellipsis(item.description, 150),
-          destination: item.destination,
-          slug: item.slug,
-          supplier_ref: item.supplier_ref,
-        }));
-
-        if (this.packageSuggestions.length === 0) {
-          this.showSuggestions = false;
-        } else {
-          this.showSuggestions = true;
-        }
-      });
+      this.suggestionQuery();
     },
 
-    async destinationSuggestionQuery() {
+    async suggestionQuery() {
       //  get both countries and provinces (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
       const searchStore = useStore();
+      const { $ellipsis } = useNuxtApp();
       const { result: regionResult, search: regionSearch } =
         useSearch("regions");
       const { result: destinationResult, search: destinationSearch } =
@@ -160,14 +128,30 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           }
         });
         this.destinationSuggestions = deduped;
+
+        // build packages from same results:
+        this.packageSuggestions = result.hits
+          .map((item) => ({
+            titleShort: $ellipsis(item.title, 70),
+            title: item.title,
+            description: $ellipsis(item.description, 120),
+            destination: item.destination,
+            slug: item.slug,
+            supplier_ref: item.supplier_ref,
+          }))
+          .filter((item, index) => {
+            return index <= 10;
+          });
       });
     },
     searchDestination(destination) {
+      const route = useRoute();
       const searchStore = useStore();
       searchStore.destinationQuery = destination;
       searchStore.destination = destination;
       searchStore.findQuery = "";
       searchStore.fireQuery();
+      this.showSuggestions = false;
       if (route.path != "/search") {
         navigateTo({
           path: "/search",
@@ -176,6 +160,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     },
 
     viewPackage(slug, supplier_ref) {
+      this.showSuggestions = false;
       navigateTo({
         path: "/package/" + slug + "_ref=" + supplier_ref,
       });

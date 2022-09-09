@@ -7,15 +7,27 @@
       flex
       justify-center
       items-start
-      pt-[180px]
+      pt-[110px]
       px-20
     "
     v-if="suggestStore.showSuggestions"
   >
-    <div class="rounded-lala bg-gray-200 p-10 opacity-100 flex flex-col gap-5">
-      <div class="font-semibold ml-20">destinations:</div>
-      <div class="ml-20">
-        <div class="flex gap-2">
+    <div
+      class="
+        rounded-lala
+        bg-gray-200
+        px-5
+        pt-10
+        pb-5
+        opacity-100
+        flex flex-col
+        gap-5
+      "
+    >
+      <!-- destinations -->
+      <div class="font-semibold ml-10">destinations:</div>
+      <div class="ml-10 py-5">
+        <div class="flex gap-5">
           <div
             v-for="(item, index) in suggestStore.destinationSuggestions"
             :key="index"
@@ -31,38 +43,41 @@
               hover:bg-lime-500 hover:text-lime-200
               cursor-pointer
             "
-            @mousedown="suggestStore.searchDestination(item.name)"
+            @click="suggestStore.searchDestination(item.name)"
           >
             <IconSearch class="h-4 text-black" />
             <div class="">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="font-semibold ml-20">packages:</div>
+      <!-- packages -->
+      <div class="font-semibold ml-10">packages:</div>
       <div class="w-full">
         <div
           v-for="(suggestion, index) in suggestStore.packageSuggestions"
           :class="{
-            ' !bg-opacity-90  rounded-3xl bg-lime-600 text-lime-200':
+            ' !bg-opacity-90  bg-lime-600 text-lime-200':
               index === selectedSuggestion,
           }"
           :key="index"
           class=""
         >
           <div
-            class="grid grid-cols-[auto,200px] rounded-full"
+            class="grid grid-cols-[auto,200px] rounded-lala"
             :class="{
               '!bg-lime-500 !bg-opacity-80 !text-white':
                 index === hoveredSuggestion - 1,
             }"
             v-on:mouseover="mouseOver(index)"
             @mouseleave="mouseLeave"
-            @mousedown="viewPackage(suggestion.slug, suggestion.supplier_ref)"
+            @mousedown="
+              suggestStore.viewPackage(suggestion.slug, suggestion.supplier_ref)
+            "
           >
             <div class="">
               <div
                 class="
-                  pl-20
+                  pl-10
                   py-6
                   w-full
                   rounded-l-full
@@ -88,11 +103,15 @@
             <div
               class="
                 flex
+                justify-end
+                items-center
+                h-full
                 text-lime-700
                 items-center
-                justify-end
                 font-medium
                 pr-20
+                text-end
+                w-full
               "
               :class="{
                 ' !text-lime-200': index === hoveredSuggestion - 1,
