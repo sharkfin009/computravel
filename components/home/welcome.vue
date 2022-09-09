@@ -1,18 +1,7 @@
 <template>
   <section class="relative">
     <!-- slider -->
-    <div
-      class="
-        relative
-        w-full
-        h-[98vh]
-        pt-20
-        px-20
-        flex flex-col
-        justify-end
-        overflow-hidden
-      "
-    >
+    <div class="relative w-full h-[98vh] pt-20 px-20 flex flex-col justify-end">
       <Transition name="fade">
         <div v-if="imageStyles.length > 0">
           <div class="w-full h-full absolute inset-0">
@@ -77,7 +66,14 @@
             items-center
           "
         >
-          <SearchBar class="mb-20 w-full sm:w-[400px]" parent="welcome" />
+          <div
+            class="relative w-full flex flex-col items-center justify-center"
+          >
+            <SearchBar class="sm:w-[400px]" />
+            <div class="relative w-full mt-5">
+              <SearchAutoSuggestOverlay />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const searchStore = useStore();
       // escape:
       if (e.key === "Escape") {
-        clear();
+        suggestStore.clear();
 
         return;
       }
@@ -165,6 +165,10 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       searchStore.destinationType = destination.type;
       searchStore.findQuery = "";
       searchStore.fireQuery();
+      this.packageSuggestions = [];
+      this.destinationSuggestions = [];
+      this.selectedSuggestion = -1;
+
       this.showSuggestions = false;
       if (route.path != "/search") {
         navigateTo({
@@ -178,6 +182,11 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       navigateTo({
         path: "/package/" + slug + "_ref=" + supplier_ref,
       });
+    },
+    clear() {
+      this.destinationQuery = "";
+      this.findQuery = "";
+      this.showSuggestions = false;
     },
   },
 

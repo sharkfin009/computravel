@@ -53,7 +53,7 @@
       >
         <IconClose
           class="w-6 transition hover:rotate-180"
-          @mousedown="clear()"
+          @mousedown="suggestStore.clear()"
         />
       </div>
       <div class="absolute inset-0 flex items-center pl-3 pointer-events-none">
@@ -92,14 +92,6 @@ const findInput = ref(null);
 const wrapperClass = ref("");
 
 const hoveredSuggestion = ref(0);
-const clear = () => {
-  searchStore.destinationQuery = "";
-  searchStore.findQuery = "";
-  suggestStore.showSuggestions = false;
-  suggestStore.packageSuggestions = [];
-  suggestStore.destinationSuggestions = [];
-  suggestStore.selectedSuggestion = -1;
-};
 
 const inputHasFocus = ref(false);
 const findInputFocus = () => {
@@ -112,7 +104,7 @@ const searchIconClick = () => {
   if (suggestStore.destinationSuggestions.length) {
     suggestStore.searchDestination(suggestStore.destinationSuggestions[0]);
   } else {
-    clear();
+    suggestStore.clear();
     if (route.path != "/search") {
       navigateTo({
         path: "/search",

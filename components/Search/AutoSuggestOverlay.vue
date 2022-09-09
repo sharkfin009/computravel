@@ -1,16 +1,7 @@
 <template>
   <div
-    class="
-      absolute
-      inset-0
-      bg-slate-50
-      flex
-      justify-center
-      items-start
-      pt-[170px]
-      md:pt-[110px]
-      px-10
-    "
+    class="absolute inset-0 bg-blue-300 flex justify-center items-start px-10"
+    :class="{ 'pt-[170px] md:pt-[110px]': route.path != '/' }"
     v-if="
       suggestStore.showSuggestions &&
       suggestStore.destinationSuggestions.length &&
