@@ -6,7 +6,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     packageSuggestions: ref([]),
     destinationSuggestions: ref([]),
     showSuggestions: ref(false),
-    selectedSuggestion: ref(0),
+    selectedSuggestion: ref(-1),
     packagesFromRegionQuery: [],
     packagesFromDestinationQuery: [],
   }),
@@ -23,8 +23,11 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       // down Arrow:
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion < this.suggestions.length &&
-        this.selectedSuggestion < this.suggestions.length - 1
+        this.selectedSuggestion <
+          this.packageSuggestions.length -
+            1 +
+            this.destinationSuggestions.length -
+            1
       ) {
         this.selectedSuggestion++;
 
@@ -32,7 +35,11 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       }
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion === this.suggestions.length - 1
+        this.selectedSuggestion ===
+          his.packageSuggestions.length -
+            1 +
+            this.destinationSuggestions.length -
+            1
       ) {
         this.selectedSuggestion = 0;
 
@@ -50,14 +57,13 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         // if no selection:
         if (this.selectedSuggestion === -1) {
           this.showSuggestions = false;
-          searchDestination(searchStore.findQuery);
+          searchDestination(this.destinationSuggestions[0]);
           return;
         }
 
         // if suggestion:
-        viewPackage(
-          this.suggestions[this.selectedSuggestion].slug,
-          this.suggestions[this.selectedSuggestion].supplier_ref
+        this.searchDestination(
+          this.destinationSuggestions[this.selectedSuggestion]
         );
         clear();
         this.showSuggestions = false;
@@ -147,15 +153,16 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             supplier_ref: item.supplier_ref,
           }))
           .filter((item, index) => {
-            return index <= 50;
+            return index <= 25;
           });
       });
     },
     searchDestination(destination) {
       const route = useRoute();
       const searchStore = useStore();
-      searchStore.destinationQuery = destination;
-      searchStore.destination = destination;
+      searchStore.destinationQuery = destination.name;
+      searchStore.destination = destination.name;
+      searchStore.destinationType = destination.type;
       searchStore.findQuery = "";
       searchStore.fireQuery();
       this.showSuggestions = false;

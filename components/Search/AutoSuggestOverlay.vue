@@ -11,7 +11,11 @@
       md:pt-[110px]
       px-10
     "
-    v-if="suggestStore.showSuggestions"
+    v-if="
+      suggestStore.showSuggestions &&
+      suggestStore.destinationSuggestions.length &&
+      suggestStore.packageSuggestions.length
+    "
   >
     <div
       class="
@@ -48,7 +52,11 @@
               text-lime-700
               hover:bg-lime-500 hover:text-lime-200
             "
-            @click="suggestStore.searchDestination(item.name)"
+            @click="suggestStore.searchDestination(item)"
+            :class="{
+              ' !bg-opacity-90  bg-lime-600 text-lime-200':
+                index === suggestStore.selectedSuggestion,
+            }"
           >
             <IconSearch class="h-4 text-black" />
             <div class="">{{ item.name }}</div>

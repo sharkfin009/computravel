@@ -1,6 +1,9 @@
 <template>
   <div class="relative">
-    <div class="sticky top-[142px] md:top-[88px] bg-slate-50 mb-5 z-10">
+    <div
+      v-if="!suggestStore.showSuggestions"
+      class="sticky top-[142px] md:top-[90px] bg-slate-50 mb-5 z-10"
+    >
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -401,6 +404,8 @@
 </template>
 
 <script setup>
+import { useFindSuggestStore } from "@/stores/findSuggest";
+const suggestStore = useFindSuggestStore();
 const props = defineProps({
   package_data: Object,
   destination_content: Object,
