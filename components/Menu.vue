@@ -22,7 +22,7 @@
     >
       <ul class="list-none">
         <li v-for="(item, index) of items" :key="index" class="mb-5">
-          <NuxtLink @click="hideMenu" :to="item.url">
+          <NuxtLink @click="globalStore.showMenu = false" :to="item.url">
             {{ item.name }}
           </NuxtLink>
         </li>
@@ -41,7 +41,7 @@
         "
       >
         <div
-          @click="hideMenu"
+          @click="globalStore.showMenu = false"
           class="
             flex
             justify-center
@@ -106,8 +106,6 @@ let items = [
     url: "/contact",
   },
 ];
-const emit = defineEmits(["hideMenu"]);
-const hideMenu = () => {
-  emit("hideMenu");
-};
+import { useGlobalStore } from "@/stores/global";
+const globalStore = useGlobalStore();
 </script>

@@ -60,7 +60,7 @@
 
         <!-- hamburger -->
         <div
-          @click="showMenu = true"
+          @click.stop="showMenu"
           class="
             flex
             justify-center
@@ -79,7 +79,7 @@
             duration-300
           "
           :class="{
-            'opacity-0': showMenu == true,
+            'opacity-0': globalStore.showMenu == true,
           }"
         >
           <i class="text-stone-600 text-xl fa-solid fa-bars" />
@@ -111,7 +111,7 @@
       </ConfirmModal>
     </transition>
     <transition name="fade">
-      <Menu v-if="showMenu" @hideMenu="showMenu = false" />
+      <Menu v-if="globalStore.showMenu" />
     </transition>
 
     <SocialShares />
@@ -119,8 +119,12 @@
 </template>
 
 <script setup>
+import { useGlobalStore } from "@/stores/global";
+const globalStore = useGlobalStore();
 const route = useRoute();
 import { useenquiry } from "@/stores/enquiry";
 const enquiry = useenquiry();
-const showMenu = ref(false);
+const showMenu = () => {
+  globalStore.showMenu = true;
+};
 </script>

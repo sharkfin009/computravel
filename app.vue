@@ -31,7 +31,7 @@
     />
   </Head>
 
-  <div class="text-sm md:text-xl">
+  <div class="text-sm md:text-xl" @click="globalStore.showMenu = false">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -39,6 +39,8 @@
 </template>
 <script setup>
 const nuxtApp = useNuxtApp();
+import { useGlobalStore } from "@/stores/global";
+const globalStore = useGlobalStore();
 
 nuxtApp.hook("page:finish", () => {
   window.scrollTo(0, 0);

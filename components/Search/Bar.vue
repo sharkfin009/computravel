@@ -114,7 +114,7 @@ const clear = () => {
 const inputHasFocus = ref(false);
 const findInputFocus = () => {
   if (suggestStore.packageSuggestions.length > 0) {
-    suggestStore.showSuggestions.value = true;
+    suggestStore.showSuggestions = true;
   }
   inputHasFocus.value = true;
 };

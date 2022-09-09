@@ -245,7 +245,7 @@ const send = () => {
 
 const removeFavorite = (index) => {
   packages.value.splice(index, 1);
-  localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
+  localStorage.setItem("my-packages", JSON.stringify(packages.value));
   enquiryState.listDirtyState = true;
 };
 </script>

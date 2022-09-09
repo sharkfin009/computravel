@@ -141,7 +141,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           .map((item) => ({
             titleShort: $ellipsis(item.title, 70),
             title: item.title,
-            description: $ellipsis(item.description, 120),
+            description: $ellipsis(item.description, 200),
             destination: item.destination,
             slug: item.slug,
             supplier_ref: item.supplier_ref,
