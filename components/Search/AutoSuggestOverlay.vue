@@ -1,11 +1,11 @@
 <template>
   <div
-    class="absolute inset-0 bg-blue-300 flex justify-center items-start px-10"
+    class="absolute inset-0 bg-slate-50 flex justify-center items-start px-10"
     :class="{ 'pt-[170px] md:pt-[110px]': route.path != '/' }"
     v-if="
       suggestStore.showSuggestions &&
       suggestStore.destinationSuggestions.length &&
-      suggestStore.packageSuggestions.length
+      suggestStore.searchBarQueryString.length
     "
   >
     <div
@@ -77,7 +77,7 @@
             }"
           >
             <div
-              class="grid grid-cols-[auto,100px] grid-row-2 mb-2 gap-2"
+              class="grid grid-cols-[auto,100px] mb-2 gap-2"
               @mouseleave="mouseLeave"
               @mousedown="
                 suggestStore.viewPackage(
@@ -117,6 +117,8 @@
               >
                 {{ suggestion.destination }}
               </div>
+            </div>
+            <div class="flex md:grid md:grid-cols-[auto,100px]">
               <div class="font-light">
                 {{ suggestion.description }}
               </div>

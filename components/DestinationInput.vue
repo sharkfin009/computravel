@@ -5,7 +5,7 @@
       <input
         name="search"
         type="text"
-        v-model="searchStore.destinationQuery"
+        v-model="suggestStore.destinationInputQueryString"
         class="
           w-full
           rounded-xl
@@ -14,11 +14,14 @@
           relative
           input-outline
           hover:shadow-none
-          pointer-events-suto
+          pointer-events-auto
         "
-        @keyup="manageKeyUp"
-        @focus="destinationSuggest.showSuggestions = true"
-        @blur="destinationSuggest.showSuggestions = false"
+        @keyup="suggestStore.manageKeyUp"
+        @focus="
+          suggestStore.showSuggestions = true;
+          suggestStore.searchBarQueryString = '';
+        "
+        @blur="suggestStore.showSuggestions = false"
         placeholder="Anywhere"
       />
       <div
@@ -33,11 +36,14 @@
         "
       >
         <IconClose
-          class="w-6 transition hover:rotate-180 cursor-pointer"
-          @mousedown="
-            searchStore.destinationQuery = '';
-            clear();
+          class="
+            w-6
+            transition
+            hover:rotate-180
+            cursor-pointer
+            pointer-events-auto
           "
+          @mousedown="suggestStore.clear()"
         />
       </div>
       <!-- autosuggest list-->
@@ -57,14 +63,15 @@
           origin-top
         "
         v-show="
-          destinationSuggest.showSuggestions &&
-          destinationSuggest.suggestions.length > 0
+          suggestStore.showSuggestions &&
+          suggestStore.destinationSuggestions.length &&
+          suggestStore.destinationInputQueryString.length
         "
       >
         <div class="bg-stone-100 rounded-xl overflow-hidden border">
           <div class="grid">
             <div
-              v-for="(item, index) in destinationSuggest.suggestions"
+              v-for="(item, index) in suggestStore.destinationSuggestions"
               :key="index"
               class="
                 flex
@@ -76,12 +83,14 @@
               "
               :class="{
                 '!bg-lime-100 text-black':
-                  index == destinationSuggest.selectedSuggestion,
+                  index == suggestStore.selectedSuggestion,
               }"
               @mousedown="
                 searchStore.destination = item.name;
                 searchStore.destinationType = item.type;
                 searchStore.destinationQuery = item.name;
+
+                suggestStore.searchDestination(item);
               "
             >
               <div class="">{{ item.name }}</div>
@@ -103,126 +112,14 @@ const findInput = ref(null);
 const wrapperClass = ref("");
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
-import { useDestinationSuggestStore } from "~~/stores/destinationSuggest";
-const destinationSuggest = useDestinationSuggestStore();
-
+import { useFindSuggestStore } from "~~/stores/findSuggest";
+const suggestStore = useFindSuggestStore();
 const hoveredSuggestion = ref(0);
 
-// clear
-const clear = () => {
-  destinationSuggest.showSuggestions = false;
-  destinationSuggest.suggestions = [];
-  destinationSuggest.selectedSuggestion = 0;
-};
-
-const manageKeyUp = (e) => {
-  // escape:
-  if (e.key === "Escape") {
-    clear();
-
-    return;
-  }
-
-  // down Arrow:
-  if (
-    e.key === "ArrowDown" &&
-    destinationSuggest.selectedSuggestion <
-      destinationSuggest.suggestions.length &&
-    destinationSuggest.selectedSuggestion <
-      destinationSuggest.suggestions.length - 1
-  ) {
-    destinationSuggest.selectedSuggestion++;
-
-    return;
-  }
-  if (
-    e.key === "ArrowDown" &&
-    destinationSuggest.selectedSuggestion ===
-      destinationSuggest.suggestions.length - 1
-  ) {
-    destinationSuggest.selectedSuggestion = 0;
-
-    return;
-  }
-  // up arrow:
-  if (e.key === "ArrowUp") {
-    if (destinationSuggest.selectedSuggestion >= 0) {
-      destinationSuggest.selectedSuggestion--;
-    }
-    return;
-  }
-  // enter
-  if (e.key === "Enter") {
-    // if no selection:
-    if (destinationSuggest.selectedSuggestion === -1) {
-      return;
-    }
-    // if suggestion:
-    let selection =
-      destinationSuggest.suggestions[destinationSuggest.selectedSuggestion];
-    searchStore.destination = selection.name;
-    searchStore.destinationType = selection.type;
-    searchStore.destinationQuery = selection.name;
-    clear();
-
-    return;
-  }
-
-  // backspace
-  if (e.key === "Backspace") {
-    destinationSuggest.showSuggestions = false;
-    destinationSuggest.suggestions = [];
-    destinationSuggest.selectedSuggestion = -1;
-    if (searchStore.destinationQuery == "") {
-      return;
-    }
-  }
-
-  getDestinationSuggestions(searchStore.destinationQuery);
-};
 const { result: regionResult, search: regionSearch } = useSearch("regions");
 const { result: destinationResult, search: destinationSearch } =
   useSearch("destinations");
-const getDestinationSuggestions = async () => {
-  let regionSuggestions = [];
-  let destinationSuggestions = [];
-  await regionSearch({
-    query: searchStore.destinationQuery,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    destinationSuggest.showSuggestions = true;
-    regionSuggestions = result.hits.map((item) => ({
-      name: item.region,
-      type: "region",
-    }));
-  });
 
-  await destinationSearch({
-    query: searchStore.destinationQuery,
-    requestOptions: {
-      hitsPerPage: 10,
-    },
-  }).then((result) => {
-    if (result === null || result === undefined) {
-      return;
-    }
-    destinationSuggest.showSuggestions = true;
-
-    destinationSuggestions = result.hits.map((item) => ({
-      name: item.destination,
-      type: "destination",
-    }));
-    destinationSuggest.suggestions = [
-      ...destinationSuggestions,
-      ...regionSuggestions,
-    ];
-  });
-};
 const mouseOver = (index) => {
   hoveredSuggestion.value = index + 1;
 };
@@ -230,11 +127,4 @@ const mouseOver = (index) => {
 const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
-
-watch(
-  () => searchStore.destination,
-  (a, b) => {
-    searchStore.fireQuery();
-  }
-);
 </script>

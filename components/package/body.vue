@@ -180,7 +180,8 @@
               transition-all
             "
             v-if="
-              scrollPos < Math.floor(images.length / 3) - (images.length % 3)
+              scrollPos <
+              Math.floor(images.length / 3) - (images.length % 3) - 1
             "
           >
             <IconChevronRight

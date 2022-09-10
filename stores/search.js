@@ -2,12 +2,10 @@ import { defineStore } from "pinia";
 
 export const useStore = defineStore("search", {
   state: () => ({
-    findQuery: ref(""),
     activeInput: ref(""),
     results: [],
     region: "",
     destinationQuery: ref(""),
-    destination: ref(""),
     destinationType: ref("destination"),
     from_date: "",
     to_date: "",
@@ -31,7 +29,7 @@ export const useStore = defineStore("search", {
       if (this.destination == "") {
         destinationFilterString = "";
       } else {
-        destinationFilterString = `${this.destinationType}:{ eq:"${this.destination}"}`;
+        destinationFilterString = `${this.destinationType}:{ eq:"${this.destinationQuery}"}`;
       }
 
       let DatesFilter = true;
@@ -86,7 +84,6 @@ export const useStore = defineStore("search", {
         });
     },
     fireDefaultQuery() {
-      this.findQuery = "";
       const { $graphql } = useNuxtApp();
       this.loadingState = true;
       let query = `

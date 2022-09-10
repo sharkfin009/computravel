@@ -5,7 +5,6 @@
       <slot />
     </div>
     <Footer />
-    <!-- <div class="absolute inset-0 bg-blue-400" /> -->
     <SearchAutoSuggestOverlay />
   </div>
 </template>

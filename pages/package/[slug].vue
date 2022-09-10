@@ -124,7 +124,7 @@ $graphql(query)
     return data;
   })
   .then((data) => {
-    checkCountry(data.packages.data[0].attributes.region);
+    checkCountry(data.packages.data[0].attributes.destination);
     checkRegion(data.packages.data[0].attributes.region);
     checkProvince(data.packages.data[0].attributes.destination);
   })

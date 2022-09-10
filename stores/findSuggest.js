@@ -3,6 +3,8 @@ import { useStore } from "@/stores/search";
 
 export const useFindSuggestStore = defineStore("findSuggest", {
   state: () => ({
+    searchBarQueryString: ref(""),
+    destinationInputQueryString: ref(""),
     packageSuggestions: ref([]),
     destinationSuggestions: ref([]),
     showSuggestions: ref(false),
@@ -15,7 +17,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const searchStore = useStore();
       // escape:
       if (e.key === "Escape") {
-        suggestStore.clear();
+        this.clear();
 
         return;
       }
@@ -23,11 +25,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       // down Arrow:
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion <
-          this.packageSuggestions.length -
-            1 +
-            this.destinationSuggestions.length -
-            1
+        this.selectedSuggestion < this.destinationSuggestions.length - 1
       ) {
         this.selectedSuggestion++;
 
@@ -35,11 +33,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       }
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion ===
-          his.packageSuggestions.length -
-            1 +
-            this.destinationSuggestions.length -
-            1
+        this.selectedSuggestion === this.destinationSuggestions.length - 1
       ) {
         this.selectedSuggestion = 0;
 
@@ -62,10 +56,18 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         }
 
         // if suggestion:
+        if (this.destinationInputQueryString !== "") {
+          this.destinationInputQueryString =
+            this.destinationSuggestions[this.selectedSuggestion];
+        }
+        if (this.searchBarQueryString !== "") {
+          this.searchBarQueryString =
+            this.destinationSuggestions[this.selectedSuggestion];
+        }
         this.searchDestination(
           this.destinationSuggestions[this.selectedSuggestion]
         );
-        clear();
+        this.clear();
         this.showSuggestions = false;
         return;
       }
@@ -76,17 +78,17 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         this.packageSuggestions = [];
         this.destinationSuggestions = [];
         this.selectedSuggestion = -1;
-        if (searchStore.findQuery == "") {
+        if (
+          this.searchBarQueryString == "" ||
+          this.destinationInputQueryString == ""
+        ) {
           return;
         }
       }
-      this.getSuggestions();
-    },
-    getSuggestions() {
-      this.suggestionQuery();
+      this.suggestionQuery(e.target.value);
     },
 
-    async suggestionQuery() {
+    async suggestionQuery(string) {
       //  get both countries and provinces (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
       const searchStore = useStore();
       const { $ellipsis } = useNuxtApp();
@@ -97,7 +99,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       let regionSuggestions = [];
       let destinationSuggestions = [];
       await regionSearch({
-        query: searchStore.findQuery,
+        query: string,
         requestOptions: {
           hitsPerPage: 50,
         },
@@ -114,7 +116,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       });
 
       await destinationSearch({
-        query: searchStore.findQuery,
+        query: string,
         requestOptions: {
           hitsPerPage: 10,
         },
@@ -129,7 +131,6 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           type: "destination",
         }));
         let withDupes = [...destinationSuggestions, ...regionSuggestions];
-        console.log(withDupes);
         let deduped = [];
         withDupes.forEach((item) => {
           if (!deduped.map((item) => item.name).includes(item.name)) {
@@ -163,7 +164,8 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       searchStore.destinationQuery = destination.name;
       searchStore.destination = destination.name;
       searchStore.destinationType = destination.type;
-      searchStore.findQuery = "";
+      this.destinationInputQueryString = destination.name;
+      this.searchBarQueryString = "";
       searchStore.fireQuery();
       this.packageSuggestions = [];
       this.destinationSuggestions = [];
@@ -185,7 +187,11 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     },
     clear() {
       this.destinationQuery = "";
-      this.findQuery = "";
+      this.searchBarQueryString = "";
+      this.destinationInputQueryString = "";
+      this.selectedSuggestion = "";
+      this.destinationSuggestions = [];
+      this.packageSuggestions = [];
       this.showSuggestions = false;
     },
   },
