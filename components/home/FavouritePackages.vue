@@ -20,7 +20,7 @@
         <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
           <div ref="" class="flex gap-8 pb-8">
             <div
-              v-for="(fave, index) in favourites.favourites.data.map(
+              v-for="(fave, index) in favourites.data.favourites.data.map(
                 (item) => item.attributes.package.data.attributes
               )"
               :key="index"
@@ -43,7 +43,7 @@
       <div class="flex justify-center md:hidden relative w-full pt-10">
         <div class="relative w-[320px] h-[400px]">
           <card
-            v-for="(fave, index) in favourites.favourites.data.map(
+            v-for="(fave, index) in favourites.data.favourites.data.map(
               (item) => item.attributes.package.data.attributes
             )"
             :key="index"
@@ -109,12 +109,7 @@ const { data: favourites, error } = useGraph(`
           }
         }`);
 const faves = ref([]);
-watch(
-  () => favourites.value,
-  () => {
-    console.log(favourites.value);
-  }
-);
+
 const cardRow = ref(null);
 
 cardRow.scrollBehavior = "smooth";

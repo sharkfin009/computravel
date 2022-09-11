@@ -19,6 +19,7 @@
           md:h-[500px]
           lg:h-none
         "
+        v-if="data"
       >
         <div class="absolute inset-0 flex justify-center items-center lg:px-20">
           <div
@@ -29,6 +30,7 @@
               bg-lime-300
               opacity-50
               rounded-lala
+              pointer-events-none
             "
           ></div>
         </div>
@@ -40,11 +42,18 @@
             lg:grid-cols-[300px,auto,300px]
           "
         >
-          <div class="flex items-center justify-center">
-            <IconChevronLeft
-              class="cursor-pointer hover:scale-110"
-              @click="scrollLeft"
-            />
+          <div
+            class="
+              flex
+              items-center
+              justify-center
+              cursor-pointer
+              hover:scale-110
+              pointer-events-auto
+              z-50
+            "
+          >
+            <IconChevronLeft class="" @click="scrollLeft" />
           </div>
           <div
             class="
@@ -59,15 +68,25 @@
               px-10
             "
           >
-            "We had a fantastic time and made lifetime memories. J Ubud is a
-            must as the hotel was the best I've stayed at. Once again, thanks
-            for your terrific assistance."
+            <div
+              v-for="(item, index) in data.data.testimonials.data"
+              :key="index"
+              v-html="item.attributes.copy"
+              class="absolute inset-0 opacity-0 transition duration-700"
+              :class="{ '!opacity-100': index == pointer }"
+            ></div>
           </div>
-          <div class="flex items-center justify-center">
-            <IconChevronRight
-              class="cursor-pointer hover:scale-110"
-              @click="scrollRight"
-            />
+          <div
+            class="
+              flex
+              items-center
+              justify-center
+              cursor-pointer
+              hover:scale-110
+              z-50
+            "
+          >
+            <IconChevronRight class="" @click="scrollRight" />
           </div>
         </div>
       </div>
@@ -99,3 +118,25 @@
     </div>
   </HomeSectionLayout>
 </template>
+<script setup>
+import { useGraph } from "@/composables/useGraph";
+let pointer = ref(0);
+const { data, error } = useGraph(`query{
+  testimonials{
+    data{
+      attributes{
+        copy
+        name
+        }}}}
+        `);
+const scrollLeft = () => {
+  if (pointer.value > 0) {
+    pointer.value--;
+  }
+};
+const scrollRight = () => {
+  if (pointer.value < data.value.data.testimonials.data.length - 1) {
+    pointer.value++;
+  }
+};
+</script>

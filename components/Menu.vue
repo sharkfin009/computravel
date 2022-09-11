@@ -99,7 +99,7 @@ let items = [
   },
   {
     name: "Blog",
-    url: "/blog",
+    url: "/blog-archive",
   },
   {
     name: "Contact",

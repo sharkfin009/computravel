@@ -11,10 +11,7 @@
         style="color: #8fc15a"
       />
     </div>
-    <div
-      v-if="package_data && responseCount == 3"
-      class="bg-slate-50 px-10 md:px-14"
-    >
+    <div v-if="package_data && responseCount == 3" class="bg-slate-50">
       <Head>
         <Meta
           property="og:description"

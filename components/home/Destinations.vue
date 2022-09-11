@@ -100,7 +100,7 @@ watch(
   () => {
     console.log(data.value);
     destinationsDictionary.forEach((region) => {
-      const arrayOfThisDestination = data.value.packages.data.filter(
+      const arrayOfThisDestination = data.value.data.packages.data.filter(
         (tour) => tour.attributes.region === region
       );
       destinations.value.push(arrayOfThisDestination);
@@ -156,7 +156,7 @@ watch(
   () => destinationPics.value,
   (a, b) => {
     picStyles.value = destinationsDictionary.map((item) => {
-      let url = destinationPics.value.regions.data.find(
+      let url = destinationPics.value.data.regions.data.find(
         (dest) => dest.attributes.name === item
       ).attributes.images.data[0].attributes.url;
 

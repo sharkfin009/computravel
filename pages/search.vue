@@ -48,14 +48,14 @@
       v-if="
         resultsReady &&
         searchStore.results.length == 0 &&
-        searchStore.fallbackResults.length > 0
+        searchStore.randomResults.length > 0
       "
       class="w-full py-10 px-10 flex justify-center"
     >
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div
           class=""
-          v-for="(card, index) in searchStore.fallbackResults"
+          v-for="(card, index) in searchStore.randomResults"
           :key="index"
         >
           <Card class="w-full" :package="card.attributes" />
@@ -73,7 +73,7 @@ import { useStore } from "@/stores/search";
 const resultsReady = ref(false);
 const searchStore = useStore();
 onMounted(() => {
-  searchStore.fireDefaultQuery();
+  searchStore.randomQuery();
   searchStore.firstLoad = true;
 });
 
@@ -85,7 +85,7 @@ watch(
   () => {
     searchStore.firstLoad = false;
     if (searchStore.results.length == 0) {
-      searchStore.fireDefaultQuery();
+      searchStore.randomQuery();
     }
     if (searchStore.results.length > 0) {
       resultsReady.value = true;
@@ -95,7 +95,7 @@ watch(
   }
 );
 watch(
-  () => searchStore.fallbackResults,
+  () => searchStore.randomResults,
   () => {
     resultsReady.value = true;
   }

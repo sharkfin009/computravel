@@ -103,13 +103,15 @@ watch(
   () => images.value,
   () => {
     imageStyles.value =
-      images.value.homePageCarousel.data.attributes.pics.data.map((item) => {
-        let url = item.attributes.url;
-        return {
-          backgroundImage: `url(${url})`,
-          backgroundSize: "cover",
-        };
-      });
+      images.value.data.homePageCarousel.data.attributes.pics.data.map(
+        (item) => {
+          let url = item.attributes.url;
+          return {
+            backgroundImage: `url(${url})`,
+            backgroundSize: "cover",
+          };
+        }
+      );
     console.log(imageStyles.value);
   }
 );

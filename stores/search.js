@@ -14,12 +14,12 @@ export const useStore = defineStore("search", {
     category: "All",
     sort_by: "Price low to high",
     loadingState: false,
-    fallbackResults: ref([]),
+    randomResults: ref([]),
     firstLoad: ref(true),
   }),
   actions: {
     fireQuery() {
-      this.fallbackResults = [];
+      this.randomResults = [];
       this.results = [];
       this.loadingState = true;
       const { $graphql } = useNuxtApp();
@@ -83,7 +83,7 @@ export const useStore = defineStore("search", {
           console.log(error);
         });
     },
-    fireDefaultQuery() {
+    randomQuery() {
       const { $graphql } = useNuxtApp();
       this.loadingState = true;
       let query = `
@@ -115,7 +115,7 @@ export const useStore = defineStore("search", {
             array.sort(() => Math.random() - 0.5);
             return array;
           }
-          this.fallbackResults = shuffle(response.data.packages.data);
+          this.randomResults = shuffle(response.data.packages.data);
 
           this.loadingState = false;
           this.noResults = true;
