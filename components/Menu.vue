@@ -95,7 +95,10 @@ let items = [
     name: "Find A Car",
     url: "/car-bookings",
   },
-
+  {
+    name: "Insurance",
+    url: "https://www.tic.co.za/systematic/travelinsuranceshop.html?ref=89",
+  },
   {
     name: "Blog",
     url: "/blog-archive",

@@ -1,8 +1,11 @@
 <template>
-    <div class="w-full h-screen flex justify-center items-center">car bookings</div>
+  <iframe
+    src="https://booking.autoeurope.com/?pucode=za&pucity=johannesburg&outform=y&action=2&aff=lindsayquail"
+  >
+  </iframe>
 </template>
 <script setup>
 definePageMeta({
-    layout:'home'
-})
+  layout: "home",
+});
 </script>

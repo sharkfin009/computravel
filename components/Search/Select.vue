@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex flex-col justify-between">
+  <div class="h-full flex flex-col justify-between h-[50px]">
     <label class="mb-5">{{ label }}</label>
     <v-select
       :options="options"

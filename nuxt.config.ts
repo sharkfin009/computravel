@@ -6,11 +6,6 @@ export default defineNuxtConfig({
         src: "https://kit.fontawesome.com/7e89521fcf.js",
         crossorigin: "anonymous",
       },
-      {
-        src: "https://code.jquery.com/jquery-3.6.1.min.js",
-
-        crossorigin: "anonymous",
-      },
     ],
     link: [
       {

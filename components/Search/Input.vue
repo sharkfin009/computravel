@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="h-full flex flex-col justify-between">
+    <div class="flex flex-col justify-between">
       <label v-if="validationObject" class="tracking-wide pb-5"
         >{{ label }}
       </label>

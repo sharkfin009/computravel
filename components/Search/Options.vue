@@ -23,19 +23,20 @@
         grid grid-cols-1 grid-rows-1
         md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
+        h-[380px]
         lg:h-[350px]
         xl:h-[220px]
-        gap-10
+        gap-5
         md-gap-1
         w-full
       "
     >
       <!-- destination autosuggest input -->
-      <div class="">
+      <div class="hidden md:block">
         <DestinationInput @setValue="setValue" />
       </div>
       <SearchSelect
-        label="Category"
+        label="Category~"
         inputName="category"
         :options="categories"
         placeholder="All"
@@ -43,7 +44,30 @@
       />
 
       <!-- dates -->
+      <!-- mobile: -->
+      <div class="block md:hidden w-full flex justify-center gap-5">
+        <SearchInput
+          inputName="from_date"
+          label="Show Packages From"
+          type="date"
+          :validationObject="{}"
+          errorMessage=""
+          placeholder="Anytime"
+          @setValue="setValue"
+        />
+        <SearchInput
+          inputName="to_date"
+          label="To"
+          type="date"
+          :validationObject="{}"
+          errorMessage=""
+          placeholder="Anytime"
+          @setValue="setValue"
+        />
+      </div>
+
       <SearchInput
+        class="hidden md:block"
         inputName="from_date"
         label="Show Packages From"
         type="date"
@@ -53,6 +77,7 @@
         @setValue="setValue"
       />
       <SearchInput
+        class="hidden md:block"
         inputName="to_date"
         label="To"
         type="date"
