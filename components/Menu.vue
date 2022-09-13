@@ -96,7 +96,7 @@ let items = [
     url: "/car-bookings",
   },
   {
-    name: "Insurance",
+    name: "Travel Insurance",
     url: "https://www.tic.co.za/systematic/travelinsuranceshop.html?ref=89",
   },
   {

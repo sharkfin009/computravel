@@ -20,10 +20,11 @@
     <!--  grid -->
     <div
       class="
-        grid grid-cols-1 grid-rows-1
-        md:grid-cols-2 md:grid-rows-3
+        flex flex-col
+        justify-evenly
+        md:grid md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
-        h-[380px]
+        h-[400px]
         lg:h-[350px]
         xl:h-[220px]
         gap-5
@@ -36,7 +37,7 @@
         <DestinationInput @setValue="setValue" />
       </div>
       <SearchSelect
-        label="Category~"
+        label="Category"
         inputName="category"
         :options="categories"
         placeholder="All"
