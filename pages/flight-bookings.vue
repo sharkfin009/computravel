@@ -179,7 +179,7 @@ onMounted(() => {
 }
 
 iframe {
-  height: 100vh !important;
+  height: 60vh !important;
   width: 100%;
 }
 </style>

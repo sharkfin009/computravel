@@ -19,9 +19,9 @@
       <SocialButton class="bg-gray-400" @click="share('email')">
         <i class="far fa-envelope" />
       </SocialButton>
-      <SocialButton class="bg-red-500" @click="share('pinterest')">
+      <!-- <SocialButton class="bg-red-500" @click="share('pinterest')">
         <i class="fa-brands fa-pinterest" />
-      </SocialButton>
+      </SocialButton> -->
       <SocialButton class="bg-green-500" @click="share('whatsapp')">
         <i class="fa-brands fa-whatsapp" />
       </SocialButton>
@@ -30,50 +30,7 @@
 </template>
 
 <script setup>
-const config = useRuntimeConfig();
-const route = useRoute();
-// console.log(route.fullPath);
-var fullPath = encodeURIComponent(config.baseUrl + route.fullPath);
-const share = (provider) => {
-  let url = "";
+import { useSocialSharing } from "@/composables/socialSharing";
 
-  let pageTitle = "";
-
-  if (provider == "facebook") {
-    url = "https://www.facebook.com/sharer.php?u=" + fullPath;
-    socialWindow(url, 570, 570);
-  }
-
-  if (provider == "twitter") {
-    url =
-      "https://twitter.com/intent/tweet?url=" + fullPath + "&text=" + pageTitle;
-    socialWindow(url, 570, 300);
-  }
-
-  if (provider == "whatsapp") {
-    url = "whatsapp://send?text=" + "package" + "%20" + fullPath;
-    socialWindow(url, 570, 450);
-  }
-
-  if (provider == "email") {
-    url = "/mailto:" + fullPath;
-    window.location.href = "mailto:?subject=Hi!&body=" + fullPath;
-  }
-};
-
-const socialWindow = (url, width, height) => {
-  console.log(url);
-  var left = (screen.width - width) / 2;
-  var top = (screen.height - height) / 2;
-  var params =
-    "menubar=no,toolbar=no,status=no,width=" +
-    width +
-    ",height=" +
-    height +
-    ",top=" +
-    top +
-    ",left=" +
-    left;
-  window.open(url, "", params);
-};
+const { share } = useSocialSharing();
 </script>
