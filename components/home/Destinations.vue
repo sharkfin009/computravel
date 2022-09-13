@@ -22,7 +22,7 @@
           :key="index"
           :region="packages[index]"
           class="absolute inset-0 w-full"
-          :class="{ 'opacity-0': index !== activeTab }"
+          :class="{ '!opacity-0 !pointer-events-none': index !== activeTab }"
         >
           <!-- unnamed slot for destination pic on left: -->
           <div
@@ -41,7 +41,9 @@
               :key="index"
               :style="picStyles[index]"
               class="absolute inset-0"
-              :class="{ 'opacity-0': index !== activeTab }"
+              :class="{
+                '!opacity-0 ': index !== activeTab,
+              }"
             ></div>
           </div>
         </HomeDestination>
@@ -132,7 +134,7 @@ const { data: destinationPics, error: error2 } = useGraph(`query{
             
         }
     }
-    )
+    ) 
     {
     data{
       attributes{

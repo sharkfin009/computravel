@@ -18,6 +18,8 @@
         md:opacity-90
         relative
         pointer-events-auto
+        text-lg
+        md:text-lg
       "
     >
       <ul class="list-none">
@@ -93,10 +95,7 @@ let items = [
     name: "Find A Car",
     url: "/car-bookings",
   },
-  {
-    name: "Accomodation",
-    url: "/accomodation",
-  },
+
   {
     name: "Blog",
     url: "/blog-archive",

@@ -20,9 +20,9 @@
         }"
       ></div>
       <div class="flex flex-col justify-evenly items-center px-5">
-        <div class="w-full text-center text-gray-300">
+        <div class="w-full text-center text-base text-gray-300">
           {{
-            new Date(props.article.attributes.publishedAt).toLocaleDateString(
+            new Date(props.article.attributes.date).toLocaleDateString(
               "eng-GB",
               {
                 year: "numeric",

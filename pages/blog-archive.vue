@@ -7,6 +7,7 @@
           subheading="feel inspired"
           :inverted="true"
         />
+        <!-- <pre>{{ data }}</pre> -->
         <div v-if="data" class="flex flex-wrap justify-center gap-5">
           <div
             v-for="(item, index) of data.data.blogArticles.data"
@@ -33,7 +34,7 @@ const { data, error } = useGraph(`query{
             attributes{
                 title
                 body 
-                publishedAt
+                date
                 slug
                 featured_image{
                     data{

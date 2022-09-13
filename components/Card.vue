@@ -8,7 +8,6 @@
         h-[400px]
         grid grid-rows-2
         overflow-hidden
-        h-full
         shadow
         hover:shadow-none
         rounded-lala

@@ -40,6 +40,7 @@
             grid grid-cols-[20px,auto,20px]
             md:grid-cols-[50px,auto,50px]
             lg:grid-cols-[300px,auto,300px]
+            h-full
           "
         >
           <div
@@ -63,7 +64,6 @@
               italic
               leading-6
               font-light
-              flex
               text-center
               px-10
             "
@@ -71,10 +71,19 @@
             <div
               v-for="(item, index) in data.data.testimonials.data"
               :key="index"
-              v-html="item.attributes.copy"
-              class="absolute inset-0 opacity-0 transition duration-700"
+              class="
+                absolute
+                inset-0
+                opacity-0
+                transition
+                duration-700
+                flex
+                items-center
+              "
               :class="{ '!opacity-100': index == pointer }"
-            ></div>
+            >
+              <div v-html="item.attributes.copy" />
+            </div>
           </div>
           <div
             class="

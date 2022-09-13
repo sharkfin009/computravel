@@ -21,7 +21,10 @@
             :key="index"
             :package="tour.attributes"
             class="absolute inset-0 transition-opacity duration-700 opacity-0"
-            :class="{ '!opacity-100': index == selectedCard }"
+            :class="{
+              '!opacity-100': index == selectedCard,
+              '!pointer-events-none': index !== selectedCard,
+            }"
           >
           </card>
         </div>
