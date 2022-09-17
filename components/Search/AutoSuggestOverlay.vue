@@ -1,6 +1,15 @@
 <template>
   <div
-    class="absolute inset-0 bg-slate-50 flex justify-center items-start px-10"
+    class="
+      absolute
+      inset-0
+      bg-slate-50
+      ring
+      flex
+      justify-center
+      items-start
+      px-10
+    "
     :class="{ 'pt-[170px] md:pt-[110px]': route.path != '/' }"
     v-if="
       suggestStore.showSuggestions &&
@@ -63,7 +72,7 @@
           v-for="(suggestion, index) in suggestStore.packageSuggestions"
           :class="{
             ' !bg-opacity-90  bg-lime-600 text-lime-200':
-              index === selectedSuggestion,
+              index === suggestStore.selectedSuggestion,
           }"
           :key="index"
           class=""
@@ -79,7 +88,7 @@
             <div
               class="grid grid-cols-[auto,100px] mb-2 gap-2"
               @mouseleave="mouseLeave"
-              @mousedown="
+              @click="
                 suggestStore.viewPackage(
                   suggestion.slug,
                   suggestion.supplier_ref
@@ -94,7 +103,8 @@
                     class="font-semibold text-lime-600"
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
-                      ' text-lime-200': index === selectedSuggestion,
+                      ' text-lime-200':
+                        index === suggestStore.selectedSuggestion,
                     }"
                   >
                     {{ suggestion.titleShort }}
@@ -112,7 +122,7 @@
                 "
                 :class="{
                   ' !text-lime-200': index === hoveredSuggestion - 1,
-                  '  !text-lime-200': index === selectedSuggestion,
+                  '  !text-lime-200': index === suggestStore.selectedSuggestion,
                 }"
               >
                 {{ suggestion.destination }}

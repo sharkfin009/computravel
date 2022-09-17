@@ -43,7 +43,10 @@
             cursor-pointer
             pointer-events-auto
           "
-          @mousedown="suggestStore.clear()"
+          @mousedown="
+            suggestStore.clear();
+            searchStore.$reset();
+          "
         />
       </div>
       <!-- autosuggest list-->

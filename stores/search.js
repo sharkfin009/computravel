@@ -26,7 +26,7 @@ export const useStore = defineStore("search", {
       let noDestinationFilter = false;
       let noRegionFilter = false;
       let destinationFilterString;
-      if (this.destination == "") {
+      if (this.destinationQuery == "") {
         destinationFilterString = "";
       } else {
         destinationFilterString = `${this.destinationType}:{ eq:"${this.destinationQuery}"}`;
@@ -48,7 +48,9 @@ export const useStore = defineStore("search", {
 
       let priceFilterString = ` price:{between:[${this.price_min},${this.price_max}]}`;
       let categoryFilterString =
-        this.category !== "All" ? ` category:{eq:"${this.category}"}` : "";
+        this.category !== "All" && this.category !== null
+          ? ` category:{eq:"${this.category}"}`
+          : "";
       let query = `
             query{packages(
               sort: "${sortString}",
@@ -105,6 +107,7 @@ export const useStore = defineStore("search", {
                    image_url_md
                    star_rating
                    from
+                   category
                   }
                 }
               }}

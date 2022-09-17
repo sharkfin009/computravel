@@ -50,8 +50,9 @@
         searchStore.results.length == 0 &&
         searchStore.randomResults.length > 0
       "
-      class="w-full py-10 px-10 flex justify-center"
+      class="w-full py-10 px-10 flex flex-col items-center justify-center"
     >
+      <div class="text-xs mb-5">suggested packages...</div>
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div
           class=""
@@ -83,7 +84,6 @@ if (searchStore.results.length > 0) {
 watch(
   () => searchStore.results,
   () => {
-    searchStore.firstLoad = false;
     if (searchStore.results.length == 0) {
       searchStore.randomQuery();
     }

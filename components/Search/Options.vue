@@ -151,20 +151,18 @@
           </div>
         </div>
       </div>
-      <div
-        @click="clearFilters"
-        class="
-          cursor-pointer
-          absolute
-          top-0
-          right-0
-          m-5
-          text-lime-600
-          hover:text-lime-500
-        "
-      >
-        clear filters
-      </div>
+    </div>
+    <div
+      @click="clearFilters"
+      class="
+        cursor-pointer
+        w-full
+        mt-10
+        text-center text-lime-600
+        hover:text-lime-500
+      "
+    >
+      clear filters
     </div>
   </div>
 </template>
