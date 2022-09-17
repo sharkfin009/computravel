@@ -14,7 +14,7 @@ export const useGraph = (query) => {
   })
     .then((response) => response.json())
     .then((res) => (data.value = res))
-    .catch((error) => (error.value = err));
+    .catch((error) => (error.value = error));
   return {
     data,
     error,

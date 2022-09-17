@@ -1,7 +1,15 @@
 <template>
   <div
     ref="parent"
-    class="w-full flex justify-evenly text-center font-semibold relative"
+    class="
+      w-full
+      flex
+      justify-evenly
+      text-center
+      font-semibold
+      relative
+      font-titillium
+    "
   >
     <div
       ref="marker"
