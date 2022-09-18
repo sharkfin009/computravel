@@ -1,16 +1,6 @@
 <template>
   <div
-    class="
-      absolute
-      inset-0
-      bg-slate-50
-      ring
-      flex
-      justify-center
-      items-start
-      px-10
-    "
-    :class="{ 'pt-[170px] md:pt-[110px]': route.path != '/' }"
+    class="absolute inset-0 flex justify-center items-start z-50"
     v-if="
       suggestStore.showSuggestions &&
       suggestStore.destinationSuggestions.length &&
@@ -19,12 +9,10 @@
   >
     <div
       class="
-        rounded-lala
+        rounded-3xl
         bg-gray-100
         px-0
-        md:px-5
-        pt-10
-        pb-5
+        md:px-5 md:pt-10 md:pb-5
         opacity-100
         flex flex-col
         gap-5
@@ -33,10 +21,19 @@
       "
     >
       <!-- destinations -->
-      <div class="text-3xl font-semibold font-titillium tracking-wide ml-10">
+      <div
+        class="
+          hidden
+          md:block
+          text-3xl
+          font-semibold font-titillium
+          tracking-wide
+          md:ml-10
+        "
+      >
         destinations:
       </div>
-      <div class="ml-10 py-5">
+      <div class="m-0 px-5 py-5">
         <div class="flex flex-wrap gap-5">
           <div
             v-for="(item, index) in suggestStore.destinationSuggestions"
@@ -64,10 +61,19 @@
         </div>
       </div>
       <!-- packages -->
-      <div class="font-semibold font-titillium tracking-wide text-3xl ml-10">
+      <div
+        class="
+          hidden
+          md:block
+          font-semibold font-titillium
+          tracking-wide
+          text-3xl
+          ml-10
+        "
+      >
         packages:
       </div>
-      <div class="w-full">
+      <div class="hidden md:block w-full">
         <div
           v-for="(suggestion, index) in suggestStore.packageSuggestions"
           :class="{
@@ -76,6 +82,9 @@
           }"
           :key="index"
           class=""
+          @click="
+            suggestStore.viewPackage(suggestion.slug, suggestion.supplier_ref)
+          "
         >
           <div
             class="rounded-lala px-10 py-6"
@@ -88,12 +97,6 @@
             <div
               class="grid grid-cols-[auto,100px] mb-2 gap-2"
               @mouseleave="mouseLeave"
-              @click="
-                suggestStore.viewPackage(
-                  suggestion.slug,
-                  suggestion.supplier_ref
-                )
-              "
             >
               <div class="">
                 <div

@@ -23,7 +23,7 @@
           inset-0
           grid grid-rows-[1fr,1fr]
           p-10
-          md:pt-[85px] md:pl-20
+          md:pt-[85px] md:px-20
           xl:pl-40
         "
       >
@@ -70,7 +70,7 @@
             class="relative w-full flex flex-col items-center justify-center"
           >
             <SearchBar class="sm:w-[400px]" />
-            <div class="relative w-full mt-5">
+            <div class="relative w-full mt-5 bg-green-400">
               <SearchAutoSuggestOverlay />
             </div>
           </div>
