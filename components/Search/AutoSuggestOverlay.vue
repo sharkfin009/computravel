@@ -4,7 +4,7 @@
     v-if="
       suggestStore.showSuggestions &&
       suggestStore.destinationSuggestions.length &&
-      suggestStore.searchBarQueryString.length
+      suggestStore.queryString.length
     "
   >
     <div

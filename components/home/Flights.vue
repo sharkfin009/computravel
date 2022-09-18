@@ -28,7 +28,7 @@
                   </td>
                   <td class="flex justify-center items-center py-5">
                     <CompuButton class="bg-lime-500">
-                      book &nbsp
+                      book &nbsp;
                       <span class="hidden md:inline"> with our experts</span>
                     </CompuButton>
                   </td>

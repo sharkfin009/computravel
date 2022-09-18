@@ -5,7 +5,7 @@
       <input
         name="search"
         type="text"
-        v-model="suggestStore.destinationInputQueryString"
+        v-model="suggestStore.queryString"
         class="
           w-full
           rounded-xl
@@ -19,9 +19,9 @@
         @keyup="suggestStore.manageKeyUp"
         @focus="
           suggestStore.showSuggestions = true;
-          suggestStore.searchBarQueryString = '';
+          suggestStore.queryString = '';
         "
-        @blur="suggestStore.showSuggestions = false"
+        @blur="suggestStore.showDestinationDropdown = false"
         placeholder="Anywhere"
       />
       <div
@@ -45,7 +45,8 @@
           "
           @mousedown="
             suggestStore.clear();
-            searchStore.$reset();
+            searchStore.destinationQuery = '';
+            searchStore.fireQuery();
           "
         />
       </div>
@@ -68,7 +69,7 @@
         v-show="
           suggestStore.showSuggestions &&
           suggestStore.destinationSuggestions.length &&
-          suggestStore.destinationInputQueryString.length
+          suggestStore.queryString.length
         "
       >
         <div class="bg-stone-100 rounded-xl overflow-hidden border">
@@ -115,8 +116,8 @@ const findInput = ref(null);
 const wrapperClass = ref("");
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
-import { useFindSuggestStore } from "~~/stores/findSuggest";
-const suggestStore = useFindSuggestStore();
+import { useDestination } from "@/stores/destinationInput";
+const suggestStore = useDestination();
 const hoveredSuggestion = ref(0);
 
 const { result: regionResult, search: regionSearch } = useSearch("regions");

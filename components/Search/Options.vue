@@ -1,25 +1,45 @@
 <template>
   <div
-    v-if="searchStore"
     class="
       select-none
       rounded-3xl
       user-select-none
       bg-green-avo
       shadow-xl
+      hover:shadow-none
       flex flex-col
-      items-center
+      items-start
       justify-between
       p-5
-      md:p-10
+      md:px-10
       opacity-100
       font-medium
       z-10
     "
   >
-    <!--  grid -->
+    <!--  toggle -->
+    <div class="flex w-full cursor-pointer">
+      <div
+        @click="showFilters = true"
+        v-if="!showFilters"
+        class="w-full text-lime-600 hover:text-lime-500"
+      >
+        show filters
+        <i class="fa fa-chevron-right" />
+      </div>
+      <div
+        @click="showFilters = false"
+        v-if="showFilters"
+        class="w-full text-lime-600 hover:text-lime-500"
+      >
+        hide filters
+        <i class="fa fa-chevron-down" />
+      </div>
+    </div>
+    <!-- grid -->
     <div
       class="
+        mt-5
         flex flex-col
         justify-evenly
         md:grid md:grid-cols-2 md:grid-rows-3
@@ -27,15 +47,17 @@
         h-[400px]
         lg:h-[350px]
         xl:h-[220px]
-        gap-5
+        gap-10
         md-gap-1
         w-full
       "
+      v-if="showFilters"
     >
       <!-- destination autosuggest input -->
       <div class="hidden md:block">
         <DestinationInput @setValue="setValue" />
       </div>
+
       <SearchSelect
         label="Category"
         inputName="category"
@@ -152,7 +174,9 @@
         </div>
       </div>
     </div>
+
     <div
+      v-if="showFilters"
       @click="clearFilters"
       class="
         cursor-pointer

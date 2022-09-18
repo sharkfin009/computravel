@@ -1,16 +1,12 @@
 import { defineStore } from "pinia";
 import { useStore } from "@/stores/search";
 
-export const useFindSuggestStore = defineStore("findSuggest", {
+export const useDestination = defineStore("destinationInput", {
   state: () => ({
     queryString: ref(""),
-    packageSuggestions: ref([]),
     destinationSuggestions: ref([]),
     showSuggestions: ref(false),
-
     selectedSuggestion: ref(-1),
-    packagesFromRegionQuery: [],
-    packagesFromDestinationQuery: [],
   }),
   actions: {
     manageKeyUp(e) {
@@ -72,7 +68,6 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       //     // backspace
       if (e.key === "Backspace") {
         this.showSuggestions = false;
-        this.packageSuggestions = [];
         this.destinationSuggestions = [];
         this.selectedSuggestion = -1;
         if (this.queryString == "") {
@@ -106,7 +101,6 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           name: item.region,
           type: "region",
         }));
-        this.packagesFromRegionQuery = result.hits;
       });
 
       await destinationSearch({
@@ -132,24 +126,6 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           }
         });
         this.destinationSuggestions = deduped;
-
-        // build packages from same results with destination dupes:
-        this.packagesFromDestinationQuery = result.hits;
-        this.packageSuggestions = [
-          ...this.packagesFromDestinationQuery,
-          ...this.packagesFromRegionQuery,
-        ]
-          .map((item) => ({
-            titleShort: $ellipsis(item.title, 70),
-            title: item.title,
-            description: $ellipsis(item.description, 200),
-            destination: item.destination,
-            slug: item.slug,
-            supplier_ref: item.supplier_ref,
-          }))
-          .filter((item, index) => {
-            return index <= 25;
-          });
       });
     },
     searchDestination(destination) {
@@ -159,8 +135,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       searchStore.destination = destination.name;
       searchStore.destinationType = destination.type;
       this.queryString = destination.name;
+
       searchStore.fireQuery();
-      this.packageSuggestions = [];
+
       this.destinationSuggestions = [];
       this.selectedSuggestion = -1;
 
@@ -172,18 +149,10 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       }
     },
 
-    viewPackage(slug, supplier_ref) {
-      this.showSuggestions = false;
-      navigateTo({
-        path: "/package/" + slug + "_ref=" + supplier_ref,
-      });
-    },
     clear() {
-      this.destinationQuery = "";
       this.queryString = "";
       this.selectedSuggestion = "";
       this.destinationSuggestions = [];
-      this.packageSuggestions = [];
       this.showSuggestions = false;
     },
   },

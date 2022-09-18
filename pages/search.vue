@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-50">
+  <div class="bg-slate-50 pt-5">
     <SearchOptions />
     <div
       class="w-full h-[500px] flex justify-center items-center"
@@ -52,7 +52,7 @@
       "
       class="w-full py-10 px-10 flex flex-col items-center justify-center"
     >
-      <div class="text-xs mb-5">suggested packages...</div>
+      <div class="text-xs mb-8">suggested packages...</div>
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div
           class=""

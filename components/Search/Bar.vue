@@ -16,7 +16,7 @@
         id="findInput"
         name="search"
         type="text"
-        v-model="suggestStore.searchBarQueryString"
+        v-model="suggestStore.queryString"
         class="
           h-full
           text-sm
@@ -100,7 +100,7 @@ const findInputFocus = () => {
     suggestStore.showSuggestions = true;
   }
   inputHasFocus.value = true;
-  suggestStore.destinationInputQueryString = "";
+  suggestStore.queryString = "";
 };
 const searchIconClick = () => {
   if (suggestStore.destinationSuggestions.length) {
