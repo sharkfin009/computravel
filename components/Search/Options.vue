@@ -44,7 +44,7 @@
         justify-evenly
         md:grid md:grid-cols-2 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
-        h-[400px]
+        h-none
         lg:h-[350px]
         xl:h-[220px]
         gap-10
