@@ -3,8 +3,8 @@
     <div class="backdrop-blur h-full">
       <div
         class="
-          w-full
           h-full
+          w-[100vw]
           md:w-[50vw]
           lg:w-[24vw]
           flex flex-col
@@ -23,7 +23,6 @@
           md:text-lg
           backdrop-blur-lg
         "
-        style="backdrop-filter: blur(8px)"
       >
         <ul class="list-none">
           <li
