@@ -62,7 +62,8 @@
             pointer-events-auto
             bg-green-avo
             rounded-full
-            p-2
+            p-1
+            md:p-2
             flex
             justify-center
             item-center

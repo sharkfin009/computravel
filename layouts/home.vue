@@ -7,7 +7,7 @@
     >
       <SearchAutoSuggestOverlay />
     </div>
-    <div class="px-10 md:px-14 bg-slate-50 pb-10 md:pb-14">
+    <div class="px-5 md:px-10 md:px-14 bg-slate-50 pb-10 md:pb-14">
       <slot v-if="!suggestStore.showSuggestions" />
     </div>
     <Footer />
