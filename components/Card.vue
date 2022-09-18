@@ -2,20 +2,18 @@
   <NuxtLink
     :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
   >
-    <div
-      class="
-        w-[320px]
-        h-[400px]
-        grid grid-rows-2
-        overflow-hidden
-        shadow
-        hover:shadow-none
-        rounded-3xl
-      "
-    >
+    <div class="w-[320px] h-[400px] grid grid-rows-2 hover:shadow-none">
       <div>
         <div
-          class="relative h-full flex items-end bg-gray-100"
+          class="
+            relative
+            h-full
+            flex
+            items-end
+            bg-gray-100
+            rounded-lala-t
+            shadow
+          "
           :style="{
             backgroundImage: `url(https://${props.package.image_url_md})`,
             backgroundSize: 'cover',
@@ -39,7 +37,9 @@
           </div>
         </div>
       </div>
-      <div class="p-8 bg-white flex flex-col justify-evenly">
+      <div
+        class="p-8 bg-white flex flex-col justify-evenly rounded-lala-b shadow"
+      >
         <div class="w-full font-titillium font-semibold text-xl">
           <h3 class="text-center mb-3">{{ titleFirstBit }}</h3>
           <div class="flex items-center justify-center mb-3">

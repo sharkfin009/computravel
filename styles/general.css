@@ -90,6 +90,12 @@ transform: translate2d(0, 0);
 .rounded-lala{
   border-radius: 50px
 }
+.rounded-lala-b{
+border-radius: 0px 0px 50px 50px;
+}
+.rounded-lala-t{
+  border-radius: 50px 50px 0px 0px;
+}
 
 /* table styles */
 th,
