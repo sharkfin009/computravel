@@ -10,7 +10,7 @@
         overflow-hidden
         shadow
         hover:shadow-none
-        rounded-lala
+        rounded-3xl
       "
     >
       <div>

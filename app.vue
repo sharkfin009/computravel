@@ -8,6 +8,10 @@
       "
   />
   <Head>
+    <Meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+    />
     <Meta name="pinterest-rich-pin" content="false" />
     <Meta property="og:type" content="Holiday Package" />
     <Meta property="og:title" content="Computravel Travel Experts" />
