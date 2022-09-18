@@ -2,7 +2,7 @@
   <NuxtLink
     :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
   >
-    <div class="w-[320px] h-[400px] grid grid-rows-2 hover:shadow-none">
+    <div class="w-[320px] h-[400px] grid grid-rows-2">
       <div>
         <div
           class="
@@ -41,7 +41,7 @@
         class="p-8 bg-white flex flex-col justify-evenly rounded-lala-b shadow"
       >
         <div class="w-full font-titillium font-semibold text-xl">
-          <h3 class="text-center mb-3">{{ titleFirstBit }}</h3>
+          <h3 class="text-center mb-3">{{ cutTitle }}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"
@@ -145,13 +145,17 @@ const route = useRoute();
 
 let text = props.package.title;
 
-let cutTextTitle = text.substring(0, 30);
+let titleFirstBit = text.split(" - ")[0];
+
+let cutTextTitle = titleFirstBit.substring(0, 50);
 let lastWord = cutTextTitle.split(" ").pop(-1);
 let cutTitle = cutTextTitle.slice(0, cutTextTitle.length - lastWord.length);
-if (cutTitle[cutTitle.length - 1] == "-") {
+if (
+  cutTitle[cutTitle.length - 1] == "-" ||
+  cutTitle[cutTitle.length - 1] == "&"
+) {
   cutTitle.pop();
 }
-let titleFirstBit = text.split(" - ")[0];
 
 let stars = [];
 for (let i = 0; i < props.package.star_rating; i++) {
