@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useStore } from "@/stores/search";
+import { useDestination } from "@/stores/destinationInput";
 
 export const useFindSuggestStore = defineStore("findSuggest", {
   state: () => ({
@@ -155,6 +156,8 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     searchDestination(destination) {
       const route = useRoute();
       const searchStore = useStore();
+      const destinationInputStore = useDestination();
+      destinationInputStore.queryString = destination.name;
       searchStore.destinationQuery = destination.name;
       searchStore.destination = destination.name;
       searchStore.destinationType = destination.type;
@@ -185,6 +188,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       this.destinationSuggestions = [];
       this.packageSuggestions = [];
       this.showSuggestions = false;
+      const searchStore = useStore();
+      searchStore.$reset();
+      window.scrollTo(0, 0);
     },
   },
 

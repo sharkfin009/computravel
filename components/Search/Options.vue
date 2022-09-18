@@ -203,7 +203,7 @@ const enquiry = useenquiry();
 
 const chooseDates = ref(false);
 
-const showFilters = ref(true);
+const showFilters = ref(false);
 
 const selectInput = (input) => {
   searchStore.activeInput = input;

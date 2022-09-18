@@ -2,13 +2,16 @@
   <div class="bg-slate-50 font-open-sans w-screen">
     <Header />
     <div
-      v-if="suggestStore.showSuggestions"
-      class="relative h-[5000px] bg-slate-50 mx-5"
+      v-if="
+        suggestStore.showSuggestions &&
+        suggestStore.destinationSuggestions.length
+      "
+      class="relative h-[4500px] bg-slate-50 mx-5"
     >
       <SearchAutoSuggestOverlay />
     </div>
     <div class="px-5 md:px-10 md:px-14 bg-slate-50 pb-10 md:pb-14">
-      <slot v-if="!suggestStore.showSuggestions" />
+      <slot v-if="!suggestStore.destinationSuggestions.length" />
     </div>
     <Footer />
   </div>

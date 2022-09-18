@@ -38,7 +38,7 @@
       v-if="resultsReady && searchStore.results.length > 0"
       class="w-full py-10 px-10 flex justify-center"
     >
-      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+      <div class="flex flex-wrap justify-center gap-10 max-w-[1300px]">
         <div v-for="(card, index) in searchStore.results" :key="index">
           <Card :package="card.attributes" />
         </div>
