@@ -38,9 +38,13 @@
       v-if="resultsReady && searchStore.results.length > 0"
       class="w-full py-10 px-10 flex justify-center"
     >
-      <div class="flex flex-wrap justify-center gap-10 max-w-[1300px]">
-        <div v-for="(card, index) in searchStore.results" :key="index">
-          <Card :package="card.attributes" />
+      <div class="flex flex-wrap justify-center max-w-[1300px]">
+        <div
+          class="mb-10"
+          v-for="(card, index) in searchStore.results"
+          :key="index"
+        >
+          <Card :package="card.attributes" class="" />
         </div>
       </div>
     </div>
@@ -53,9 +57,9 @@
       class="w-full py-10 px-10 flex flex-col items-center justify-center"
     >
       <div class="text-sm font-titillium mb-8">suggested packages:</div>
-      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+      <div class="grid md:grid-cols-2 xl:grid-cols-3">
         <div
-          class=""
+          class="mb-10"
           v-for="(card, index) in searchStore.randomResults"
           :key="index"
         >
