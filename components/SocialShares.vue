@@ -3,20 +3,20 @@
     <div
       class="
         flex flex-col
-        gap-5
+        gap-0
         md:gap-2 md:w-50
         text-3x text-white
         pointer-events-auto
       "
     >
-      <SocialButton class="bg-blue-500" @click="share('facebook')">
+      <SocialButton class="bg-blue-500 mb-3" @click="share('facebook')">
         <i class="fa-brands fa-facebook" />
       </SocialButton>
-      <SocialButton class="bg-blue-200" @click="share('twitter')">
+      <SocialButton class="bg-blue-200 mb-3" @click="share('twitter')">
         <i class="fa-brands fa-twitter" />
       </SocialButton>
 
-      <SocialButton class="bg-gray-400" @click="share('email')">
+      <SocialButton class="bg-gray-400 mb-3" @click="share('email')">
         <i class="far fa-envelope" />
       </SocialButton>
       <!-- <SocialButton class="bg-red-500" @click="share('pinterest')">
