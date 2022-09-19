@@ -69,21 +69,8 @@
             </div>
           </div>
         </div>
-        <div
-          class="
-            order-2
-            md:order-none
-            p-0
-            md:p-2
-            text-center
-            w-full
-            flex
-            items-center
-          "
-        >
-          {{ props.package_data.packages.data[0].attributes.destination }},<br
-            class="block md:hidden"
-          />
+        <div class="order-2 md:order-none p-0 md:p-2 w-full">
+          {{ props.package_data.packages.data[0].attributes.destination }},
           {{ props.package_data.packages.data[0].attributes.region }}
         </div>
         <div

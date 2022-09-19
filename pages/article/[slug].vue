@@ -1,8 +1,17 @@
 <template>
   <div class="flex justify-center">
     <div class="lg:grid lg:grid-cols-[auto,320px] gap-20 pt-10 max-w-[1300px]">
-      <div class="">
-        <div v-if="data" class="p-10 bg-green-avo rounded-lala">
+      <div class="flex justify-center">
+        <div
+          v-if="data"
+          class="w-[320px] md:w-full p-10 bg-green-avo rounded-lala"
+        >
+          <Head>
+            <Meta name="tags" :content="tags" />
+            <Title>
+              {{ data.data.blogArticles.data[0].attributes.title }}</Title
+            >
+          </Head>
           <div class="max-h-[500px] rounded-3xl overflow-hidden mb-5">
             <img
               :src="
@@ -56,7 +65,7 @@
       </div>
       <div class="">
         <div v-if="packages">
-          <Heading class="py-5">Suggested Packages</Heading>
+          <Heading class="my-10 pl-5">Suggested Packages</Heading>
           <div
             class="
               flex flex-wrap
@@ -136,4 +145,15 @@ const date = computed(() => {
     });
   } else return "";
 });
-</script>
+
+const tags = computed(() => {
+  if (data.value !== null) {
+    let tags = data.value.data.blogArticles.data[0].attributes.tags.data.map(
+      (item) => item.attributes.name
+    );
+    return tags.join(",");
+  }
+});
+
+const metaData = ref({});
+</script> 

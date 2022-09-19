@@ -20,7 +20,9 @@
             shadow-lg
             flex
             justify-between
+            items-center
             cursor-pointer
+            text-xl
           "
           key="index"
           @click="

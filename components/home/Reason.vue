@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="reason !== undefined"
-    class="h-[400px] lg:grid lg:grid-cols-2 gap-x-10"
-  >
+  <div v-if="reason !== undefined" class="lg:grid lg:grid-cols-2 gap-x-10">
     <div class="flex justify-end items-center">
       <div
         class="hidden lg:block rounded-lala h-[400px] w-[400px]"

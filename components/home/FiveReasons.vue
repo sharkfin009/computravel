@@ -1,7 +1,7 @@
 <template>
   <HomeSectionLayout bgColor="bg-green-avo">
     <div
-      class="bg-green-avo flex flex-col text-2xl justify-evenly"
+      class="bg-green-avo flex flex-col text-2xl justify-evenly md:mx-0 pb-5"
       v-if="reasons.length > 0"
     >
       <SectionHeading
@@ -17,7 +17,7 @@
         class="mb-5"
       ></TabMenu>
 
-      <div class="relative h-[400px] overflow-hidden">
+      <div class="relative h-[280px] md:h-[400px] overflow-hidden">
         <HomeReason
           v-for="(reason, index) in reasons"
           :key="index"

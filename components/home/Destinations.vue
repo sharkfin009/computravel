@@ -21,13 +21,14 @@
           v-for="(region, index) in packages"
           :key="index"
           :region="packages[index]"
-          class="absolute inset-0 w-full"
+          class="absolute inset-0 w-full flex flex-col items-center"
           :class="{ '!opacity-0 !pointer-events-none': index !== activeTab }"
         >
           <!-- unnamed slot for destination pic on left: -->
           <div
             class="
               relative
+              w-[320px]
               rounded-lala
               overflow-hidden
               shadow-2xl

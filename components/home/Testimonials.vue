@@ -107,12 +107,13 @@
             md:text-4xl
             font-titillium font-semibold
             text-center
-            mb-5
+            my-10
+            md:mb-5
           "
         >
           Join us on social media
         </div>
-        <div class="flex justify-center gap-20">
+        <div class="flex justify-center gap-20 mb-10">
           <IconFacebook
             class="hover:scale-150 transition-transform ease-out duration-500"
           />

@@ -1,4 +1,41 @@
 <template>
+  <Head>
+    <!-- viewport: -->
+    <Meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+    />
+    <Title>Computravel</Title>
+    <!-- social: -->
+    <Meta name="pinterest-rich-pin" content="false" />
+    <Meta property="og:type" content="Holiday Package" />
+    <Meta property="og:title" content="Computravel Travel Experts" />
+    <Meta
+      property="og:description"
+      content="Computravel serves as an online South African travel agent, boasting
+          highly professional experts with years in the tourism and hospitality
+          industries."
+    />
+    <Meta
+      property="description"
+      content="Computravel serves as an online South African travel agent, boasting
+          highly professional experts with years in the tourism and hospitality
+          industries."
+    />
+    <Meta
+      property="og:image"
+      content="https://res.cloudinary.com/sharkfin/image/upload/v1662040372/Screen_Shot_2022_09_01_at_12_47_02_60dcc9e618.png"
+    />
+    <Meta name="twitter:card" content="summary_large_image" />
+    <Meta name="twitter:site" content="'https://computravel.co.za'" />
+
+    <Meta
+      name="twitter:image"
+      content=" https://res.cloudinary.com/sharkfin/image/upload/v1662040372/Screen_Shot_2022_09_01_at_12_47_02_60dcc9e618.png
+      "
+    />
+  </Head>
+
   <div class="text-sm md:text-xl" @click="globalStore.showMenu = false">
     <NuxtLayout>
       <NuxtPage />

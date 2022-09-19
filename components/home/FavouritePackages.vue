@@ -40,7 +40,7 @@
       </div>
 
       <!-- mobile cards: -->
-      <div class="flex justify-center md:hidden relative w-full pt-10">
+      <div class="flex justify-center md:hidden relative pt-10">
         <div class="relative w-[320px] h-[400px]">
           <card
             v-for="(fave, index) in favourites.data.favourites.data.map(
