@@ -4,7 +4,7 @@
     <div :class="{ 'opacity-0': suggestStore.showSuggestions }">
       <HomeFavouritePackages />
       <HomeDestinations />
-      <FlSpecials />
+      <HomeFlSpecials />
       <HomeTestimonials />
       <HomeFiveReasons />
       <Footer />

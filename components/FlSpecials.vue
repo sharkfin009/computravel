@@ -1,5 +1,5 @@
 <template>
-  <HomeSectionLayout v-if="data" bgColor="bg-green-avo">
+  <HomeSectionLayout bgColor="">
     <div class="text-black flex flex-col justify-around">
       <div>
         <SectionHeading
@@ -19,93 +19,16 @@
               overflow-hidden
             "
           >
-            <table class="w-full font-open-sans font-extralight">
-              <tbody class="overflow-auto">
-                <tr
-                  v-for="(special, index) in data.data.flightSpecials.data"
-                  :key="index"
-                >
-                  <td class="">
-                    {{ special.attributes.from }} to {{ special.attributes.to }}
-                  </td>
-                  <td class="">
-                    {{ special.attributes.price }}
-                  </td>
-                  <td class="flex justify-center items-center py-5">
-                    <NuxtLink
-                      :to="`/flight-booking-form/${special.attributes.reference}`"
-                    >
-                      <CompuButton class="bg-lime-500">
-                        <span class="hidden md:inline"
-                          >book with our experts</span
-                        >
-                        <span class="inline md:hidden">book </span>
-                      </CompuButton>
-                    </NuxtLink>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <FlightsTable />
           </div>
         </div>
       </div>
+    </div>
+    <NuxtLink to="/flight-bookings">
       <div class="flex justify-center">
         <CompuButton class="bg-black"> view all flights </CompuButton>
       </div>
-    </div>
+    </NuxtLink>
   </HomeSectionLayout>
 </template>
 
-<script setup>
-import { useGraph } from "@/composables/useGraph";
-
-const { data, error } = useGraph(`
-query{
-  flightSpecials{
-    data{
-      attributes{
-        from
-        to
-        price
-        airline
-        trip_type
-        date
-        reference
-      }
-    }
-  }
-}
-`);
-const specials = [
-  {
-    flight_route: "Johannesburg to Istanbul",
-    airline: "Turkish Airlines",
-    trip_type: "Return",
-    price_from: "R5429",
-  },
-  {
-    flight_route: "Johannesburg to Dubai",
-    airline: "Qatar Airlines",
-    trip_type: "Return",
-    price_from: "R5419",
-  },
-  {
-    flight_route: "Cape Town to London",
-    airline: "KLM Airlines",
-    trip_type: "Return",
-    price_from: "R8239",
-  },
-  {
-    flight_route: "Johannesburg to London",
-    airline: "KLM Airlines",
-    trip_type: "Return",
-    price_from: "R7739",
-  },
-  {
-    flight_route: "Johannesburg to Amsterdam",
-    airline: "Qatar Airlines",
-    trip_type: "Return",
-    price_from: "R6899",
-  },
-];
-</script>

@@ -29,10 +29,10 @@
     >
       <div class="p-20">
         <div
-          class="block md:grid md:grid-cols-[4fr,5fr] font-titillium text-3xl"
+          class="block lg:grid lg:grid-cols-[4fr,5fr] font-titillium text-3xl"
         >
           <!-- left pane -->
-          <div class="grid p-5">
+          <div class="grid p-5 lg:px-20">
             <slot />
             <div
               @click="goToSearch"
@@ -52,7 +52,7 @@
           </div>
           <img
             src="https://res.cloudinary.com/sharkfin/image/upload/v1660814652/computravel/lala_pic_co0zya.png"
-            class="hidden md:block object-cover rounded-3xl"
+            class="hidden lg:block object-cover rounded-3xl"
           />
         </div>
       </div>

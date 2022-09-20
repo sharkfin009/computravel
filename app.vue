@@ -36,7 +36,10 @@
     />
   </Head>
 
-  <div class="text-sm md:text-xl" @click="globalStore.showMenu = false">
+  <div
+    class="text-sm md:text-xl tracking-wide"
+    @click="globalStore.showMenu = false"
+  >
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

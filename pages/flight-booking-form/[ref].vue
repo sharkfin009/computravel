@@ -3,21 +3,61 @@
     <transition name="fade" v-if="bookingSent">
       <ConfirmModal>
         <h3 class="text-xl md:text-6xl font-bold">
-          Thankyou for your flight booking!
+          Thank you for your flight enquiry!
         </h3>
-        <p>One of our travel experts will be in touch soon.</p>
+        <p class="text-md">One of our travel experts will be in touch soon.</p>
       </ConfirmModal>
     </transition>
-    <div v-if="!bookingSent">
-      <div class="text-center font-titillium font-bold text-2xl mb-10">
-        <div class="mb-5 font-light">
-          reference code: {{ route.params.ref }}
+    <div v-if="!bookingSent && data">
+      <div class="text-center font-titillium">
+        <div class="mb-5 font-bold">Flight Information:</div>
+        <div class="mb-5 text-2xl font-bold">
+          {{ data.data.flightSpecials.data[0].attributes.name }}
         </div>
-        To book your flight, please fill in these details and submit
       </div>
+      <div
+        class="
+          grid grid-cols-[1fr,2fr]
+          md:grid-cols-2
+          gap-5
+          font-light
+          text-xl
+          mb-10
+        "
+      >
+        <div class="text-end font-medium">airline:</div>
+        <div class="">
+          {{ data.data.flightSpecials.data[0].attributes.airline }}
+        </div>
+        <div class="text-end font-medium">departing Airport:</div>
+        <div class="">
+          {{ data.data.flightSpecials.data[0].attributes.departing_airport }}
+        </div>
+        <div class="text-end font-medium">destination Airport:</div>
+        <div class="">
+          {{ data.data.flightSpecials.data[0].attributes.destination_airport }}
+        </div>
+        <div class="text-end font-medium">ticket By:</div>
+        <div class="">
+          {{ data.data.flightSpecials.data[0].attributes.ticket_by }}
+        </div>
+        <div class="text-end font-medium">duration:</div>
+        <div>
+          {{ data.data.flightSpecials.data[0].attributes.duration }}
+        </div>
+        <div class="text-end font-medium">valid from:</div>
+        <div>
+          {{ data.data.flightSpecials.data[0].attributes.valid_from }}
+        </div>
+        <div class="text-end font-medium">valid to:</div>
+        <div>
+          {{ data.data.flightSpecials.data[0].attributes.valid_to }}
+        </div>
+      </div>
+
       <div class="flex justify-center w-full">
         <div
-          class="w-[1000px] bg-green-avo rounded-xl pt-10 pb-10 md:pt-10 px-10"
+          class="w-[700px] bg-green-avo rounded-xl pt-10 pb-10 md:pt-10 px-10"
         >
           <div class="mb-5 w-full flex flex-col gap-5">
             <Input
@@ -55,19 +95,51 @@
       </div>
       <div class="mt-10 flex justify-center">
         <CompuButton @mousedown="send" class="bg-lime-500"
-          >submit booking</CompuButton
+          >request call back</CompuButton
         >
+      </div>
+
+      <div class="flex w-full flex-col items-center py-10">
+        <div class="text-center font-titillium">
+          <div class="mb-5 font-bold">Fare Rules:</div>
+        </div>
+        <div
+          class="font-light"
+          v-html="data.data.flightSpecials.data[0].attributes.fare_rules"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useGraph } from "@/composables/useGraph";
+
+const route = useRoute();
+const { data, error } = useGraph(`
+query{
+  flightSpecials(filters:{reference:{eq:"${route.params.ref}"} }){
+    data{
+      attributes{
+        name
+        ticket_by
+        duration
+        departing_airport
+        destination_airport
+        valid_from
+        valid_to
+        price
+        airline
+        fare_rules
+      }
+    }
+  } 
+}
+`);
 definePageMeta({
   layout: "home",
 });
 const bookingSent = ref(false);
-const route = useRoute();
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 
