@@ -1,5 +1,5 @@
 <template>
-  <table v-if="data" class="w-full font-open-sans font-extralight">
+  <table v-if="data" class="w-full font-open-sans font-light text-xl">
     <tbody class="overflow-auto">
       <tr
         v-for="(special, index) in data.data.flightSpecials.data"
@@ -8,7 +8,7 @@
         <td class="">
           {{ special.attributes.name }}
         </td>
-        <td class="hidden lg:block">
+        <td class="hidden lg:table-cell h-full items-center justify-center">
           {{
             new Date(special.attributes.valid_from).toLocaleDateString(
               "eng-GB",
@@ -34,7 +34,7 @@
             :to="`/flight-booking-form/${special.attributes.reference}`"
           >
             <CompuButton class="bg-lime-500">
-              <span class="inline md:hidden">view </span>
+              <span class="">view </span>
             </CompuButton>
           </NuxtLink>
         </td>
