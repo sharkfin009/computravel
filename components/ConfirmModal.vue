@@ -9,12 +9,14 @@
       justify-center
       items-center
       bg-black
+      z-10
     "
   >
     <div
       class="
         bg-lime-100
         w-[90vw]
+        mt-20
         lg-w-[70vw]
         flex flex-col
         items-center
@@ -54,13 +56,7 @@
           />
         </div>
       </div>
-      <CloseRow
-        class="absolute w-full h-20 inset-0 z-50"
-        @click="
-          enquiry.showConfirmation = false;
-          enquiry.showUpdateModal = false;
-        "
-      />
+      <CloseRow class="absolute w-full h-20 inset-0 z-50" @click="goToSearch" />
     </div>
   </div>
 </template>

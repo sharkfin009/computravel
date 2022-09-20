@@ -9,14 +9,8 @@
         transition
         hover:rotate-180
       "
-      @mousedown="closeModal"
     />
   </div>
 </template>
 <script setup>
-const emit = defineEmits("closeModal");
-
-const closeModal = () => {
-  emit("closeModal");
-};
 </script>

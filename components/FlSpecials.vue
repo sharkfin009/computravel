@@ -32,7 +32,9 @@
                     {{ special.attributes.price }}
                   </td>
                   <td class="flex justify-center items-center py-5">
-                    <NuxtLink to="flight-enquire-form">
+                    <NuxtLink
+                      :to="`/flight-booking-form/${special.attributes.reference}`"
+                    >
                       <CompuButton class="bg-lime-500">
                         <span class="hidden md:inline"
                           >book with our experts</span
