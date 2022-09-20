@@ -26,26 +26,20 @@
         >
           <!-- unnamed slot for destination pic on left: -->
           <div
-            class="
-              relative
-              w-[320px]
-              rounded-lala
-              overflow-hidden
-              shadow-2xl
-              h-[250px]
-              lg:h-[450px] lg:mr-10
-            "
+            class="w-[320px] md:w-full h-[250px] lg:h-[450px]"
             v-if="picStyles.length > 0"
           >
-            <div
-              v-for="(region, index) in destinationsDictionary"
-              :key="index"
-              :style="picStyles[index]"
-              class="absolute inset-0"
-              :class="{
-                '!opacity-0 ': index !== activeTab,
-              }"
-            ></div>
+            <div class="relative h-full lg:mr-10">
+              <div
+                v-for="(region, index) in destinationsDictionary"
+                :key="index"
+                :style="picStyles[index]"
+                class="absolute inset-0 rounded-lala shadow-2xl"
+                :class="{
+                  '!opacity-0 ': index !== activeTab,
+                }"
+              ></div>
+            </div>
           </div>
         </HomeDestination>
       </div>

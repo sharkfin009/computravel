@@ -1,5 +1,5 @@
 <template>
-  <HomeSectionLayout bgColor="bg-green-avo">
+  <HomeSectionLayout v-if="data" bgColor="bg-green-avo">
     <div class="text-black flex flex-col justify-around">
       <div>
         <SectionHeading
@@ -21,16 +21,25 @@
           >
             <table class="w-full font-open-sans font-extralight">
               <tbody class="overflow-auto">
-                <tr v-for="(special, index) in specials" :key="index">
-                  <td class="">{{ special.flight_route }}</td>
+                <tr
+                  v-for="(special, index) in data.data.flightSpecials.data"
+                  :key="index"
+                >
                   <td class="">
-                    {{ special.price_from }}
+                    {{ special.attributes.from }} to {{ special.attributes.to }}
+                  </td>
+                  <td class="">
+                    {{ special.attributes.price }}
                   </td>
                   <td class="flex justify-center items-center py-5">
-                    <CompuButton class="bg-lime-500">
-                      book &nbsp;
-                      <span class="hidden md:inline"> with our experts</span>
-                    </CompuButton>
+                    <NuxtLink to="flight-enquire-form">
+                      <CompuButton class="bg-lime-500">
+                        <span class="hidden md:inline"
+                          >book with our experts</span
+                        >
+                        <span class="inline md:hidden">book </span>
+                      </CompuButton>
+                    </NuxtLink>
                   </td>
                 </tr>
               </tbody>
@@ -46,6 +55,25 @@
 </template>
 
 <script setup>
+import { useGraph } from "@/composables/useGraph";
+
+const { data, error } = useGraph(`
+query{
+  flightSpecials{
+    data{
+      attributes{
+        from
+        to
+        price
+        airline
+        trip_type
+        date
+        reference
+      }
+    }
+  }
+}
+`);
 const specials = [
   {
     flight_route: "Johannesburg to Istanbul",
