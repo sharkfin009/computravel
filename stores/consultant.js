@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 
-
 export const useConsultantStore = defineStore("consultant", {
   state: () => ({
     id: ref(""),
@@ -11,7 +10,7 @@ export const useConsultantStore = defineStore("consultant", {
     token: ref(""),
     enquiries: ref([]),
     consultantSessionKey: ref(""),
-    currentEnquiry:ref()
+    enquiry: ref(),
   }),
   actions: {
     frontGetPortalToken() {
@@ -30,6 +29,7 @@ export const useConsultantStore = defineStore("consultant", {
         .then((data) => {
           console.log(data);
           this.token = data.jwt;
+          return data.jwt;
         });
     },
 
@@ -53,9 +53,7 @@ export const useConsultantStore = defineStore("consultant", {
       })
         .then((response) => response.json())
         .then((response) => {
-
           if (response.result == "success") {
-          
             //  populate consultant into store
             (this.id = response.id),
               (this.email = response.email),
@@ -75,7 +73,6 @@ export const useConsultantStore = defineStore("consultant", {
             return false;
           }
         });
-       
     },
     getConsultantSessionKey() {
       // hit  key login endpoint:
@@ -105,7 +102,7 @@ export const useConsultantStore = defineStore("consultant", {
     getEnquiries() {
       const config = useRuntimeConfig();
       fetch(
-        config.strapiUrl + "/api/getmyenquiries/" + this.consultantSessionKey,
+        config.strapiUrl + "/api/get-my-enquiries/" + this.consultantSessionKey,
         {
           headers: {
             Authorization: "Bearer " + this.token,
@@ -114,6 +111,28 @@ export const useConsultantStore = defineStore("consultant", {
       )
         .then((response) => response.json())
         .then((data) => (this.enquiries = data));
+    },
+    getEnquiry(id) {
+      const config = useRuntimeConfig();
+      fetch(config.strapiUrl + "/api/get-my-enquiry/" + id, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => (this.enquiry = data));
+    },
+    updateEnquiry(id) {
+      const config = useRuntimeConfig();
+      fetch(config.strapiUrl + "/api/update-my-enquiry/" + id, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+        body: JSON.stringify(this.enquiry.notes),
+      })
+        .then((response) => response.json())
+        .then((data) => (this.enquiry = data));
     },
     // vanilla strapi endpoint:
     toggleActive() {
@@ -136,14 +155,13 @@ export const useConsultantStore = defineStore("consultant", {
         })
         .catch((error) => console.log(error));
     },
-    acceptEnquiry(enquiryId){
-      const config = useRuntimeConfig()
+    acceptEnquiry(enquiryId) {
+      const config = useRuntimeConfig();
       fetch(config.strapiUrl + "/api/accept-enquiry/" + enquiryId, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.token,
-
         },
         body: JSON.stringify({
           data: {
@@ -159,14 +177,13 @@ export const useConsultantStore = defineStore("consultant", {
         })
         .catch((error) => console.log(error));
     },
-    passOnEnquiry(enquiryId){
-      const config = useRuntimeConfig()
+    passOnEnquiry(enquiryId) {
+      const config = useRuntimeConfig();
       fetch(config.strapiUrl + "/api/pass-on-enquiry/" + enquiryId, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.token,
-
         },
         body: JSON.stringify({
           data: {
@@ -181,6 +198,6 @@ export const useConsultantStore = defineStore("consultant", {
           this.getEnquiries();
         })
         .catch((error) => console.log(error));
-    }
+    },
   },
 });

@@ -1,5 +1,8 @@
 <template>
-  <table v-if="data" class="w-full font-open-sans font-light text-xl">
+  <table
+    v-if="data"
+    class="w-full font-open-sans font-light text-xs md:text-sm"
+  >
     <tbody class="overflow-auto">
       <tr
         v-for="(special, index) in data.data.flightSpecials.data"

@@ -13,6 +13,7 @@
       text-center
       flex
       items-center
+      justify-center
       px-4
       py-3
       md:px-8 md:py-5

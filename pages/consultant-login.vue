@@ -1,25 +1,16 @@
 <template>
-  <div
-    class="
-      w-screen
-      h-screen
-      fixed
-      inset-0
-      flex
-      justify-center
-      items-center
-      bg-green-avo
-    "
-  >
+  <div class="flex justify-center items-center">
     <div
       class="
-        w-[90vw]
-        h-[70vh]
-        bg-white
+        bg-green-avo
         rounded-3xl
-        p-20
+        mx-5
+        px-10
+        md:px-10
+        py-20
         flex flex-col
         items-center
+        w-[1000px]
       "
     >
       <div class="flex justify-evenly w-full items-baseline mb-5">
@@ -27,7 +18,7 @@
           consultant portal login
         </h3>
       </div>
-      <div class="w-[50%] h-full flex flex-col justify-evenly">
+      <div class="w-full flex gap-5 flex-col justify-evenly">
         <Input
           v-if="vl.email"
           inputName="email"
@@ -48,16 +39,17 @@
           placeholder="user name"
           @setValue="setValue"
         />
-        <div class="h-20 flex items-center">
-          <div
-            class="text-center w-full"
-            v-if="!successful_login && state_dirty"
-          >
+        <div v-if="!successful_login && state_dirty" class="flex items-center">
+          <div class="text-center w-full">
             Unsuccesfull login. Your login details may be incorrect. Please try
             again
           </div>
         </div>
-        <CompuButton class="bg-green-500" @click="send">Log In</CompuButton>
+        <div class="flex justify-center">
+          <CompuButton class="bg-lime-700" @click="send">
+            <span> Log In </span>
+          </CompuButton>
+        </div>
       </div>
     </div>
   </div>
@@ -95,6 +87,7 @@ const successful_login = ref(true);
 const state_dirty = ref(false);
 console.log(state);
 const send = async () => {
+  let token = await consultantStore.frontGetPortalToken();
   successful_login.value = await consultantStore.logIn(state);
   state_dirty.value = true;
   if (successful_login.value === true) {

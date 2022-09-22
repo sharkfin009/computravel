@@ -1,20 +1,8 @@
 <template>
-  <div
-    class="
-      w-screen
-      h-screen
-      fixed
-      inset-0
-      flex
-      justify-center
-      items-center
-      bg-green-avo
-    "
-  >
+  <div class="flex justify-center items-center">
     <div
       class="
         w-[90vw]
-        h-[70vh]
         bg-slate-50
         rounded-3xl
         py-20
@@ -25,15 +13,16 @@
     >
       <div
         class="
-          flex
+          flex flex-wrap
           justify-between
           px-10
           w-full
           items-center
           bg-white
+          shadow
           rounded-3xl
           mb-5
-          h-[150px]
+          py-10
         "
       >
         <div class="w-[50px]">
@@ -60,7 +49,7 @@
         <h3 class="text-4xl font-bold font-titillium">my consultant portal</h3>
         <h3 class="text-2xl font-bold font-titillium">my enquiries</h3>
       </div>
-      <div class="w-full rounded-3xl overflow-auto">
+      <div class="w-full rounded-3xl overflow-x-auto text-sm shadow">
         <table class="w-full font-open-sans font-extralight">
           <thead>
             <tr>
@@ -84,12 +73,17 @@
 
               <td>{{ enquiry.when }}</td>
 
-              <td>
-                <CompuButton bg-lime-500 @click="view(index)">view</CompuButton>
+              <td class="flex justify-center">
+                <NuxtLink
+                  v-if="enquiry.accepted"
+                  :to="`/consultant-enquiry-view/${enquiry.id}`"
+                >
+                  <CompuButton class="bg-lime-700">view</CompuButton>
+                </NuxtLink>
               </td>
               <td>
                 <CompuButton
-                  class="bg-lime-500"
+                  class="bg-lime-700 flex justify-centerer"
                   v-if="!enquiry.accepted"
                   @click="accept(enquiry.id)"
                   >accept</CompuButton
@@ -98,18 +92,51 @@
               </td>
               <td>
                 <CompuButton
-                  class="bg-lime-500"
-                  v-if="!enquiry.passed_on"
-                  @click="passOn(enquiry.id)"
+                  class="bg-lime-700"
+                  @click="confirmPassOn(enquiry.id)"
                   >pass on</CompuButton
                 >
-                <div v-if="enquiry.passed_on" class="text-center">
-                  passed on
-                </div>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <div
+      v-if="passOnConfirmMode"
+      class="fixed inset-0 flex justify-center items-center"
+    >
+      <div
+        class="
+          bg-white
+          rounded-3xl
+          p-10
+          border
+          shadow
+          flex flex-col
+          items-center
+        "
+      >
+        <div class="w-full flex justify-end">
+          <IconClose
+            class="
+              h-7
+              text-black
+              cursor-pointer
+              transform
+              transition
+              hover:rotate-180
+            "
+            @click="passOnConfirmMode = false"
+          />
+        </div>
+        <div class="my-10">
+          Please confirm that you wish to pass on this enquiry to another
+          consultant
+        </div>
+        <CompuButton class="bg-lime-700" @click="passOn(enquiryId)"
+          >pass on</CompuButton
+        >
       </div>
     </div>
   </div>
@@ -120,8 +147,6 @@ definePageMeta({
 });
 import { useConsultantStore } from "@/stores/consultant";
 const consultantStore = useConsultantStore();
-
-var consultant_key = 0;
 
 onMounted(async () => {
   await consultantStore.frontGetPortalToken();
@@ -150,15 +175,15 @@ const toggleActive = () => {
 const accept = async (enquiryId) => {
   consultantStore.acceptEnquiry(enquiryId);
 };
+const passOnConfirmMode = ref(false);
+const enquiryId = ref(0);
+const confirmPassOn = async (id) => {
+  enquiryId.value = id;
+  passOnConfirmMode.value = true;
+};
 const passOn = async (enquiryId) => {
   consultantStore.passOnEnquiry(enquiryId);
-};
-
-const view = async (enquiryIndex) => {
-  consultantStore.currentEnquiry = enquiryIndex;
-  navigateTo({
-    path: "consultant-single-enquiry",
-  });
+  passOnConfirmMode.value = false;
 };
 </script>
 
