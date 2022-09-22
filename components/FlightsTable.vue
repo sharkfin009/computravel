@@ -1,7 +1,7 @@
 <template>
   <table
     v-if="data"
-    class="w-full font-open-sans font-light text-xs md:text-sm"
+    class="w-full font-open-sans font-light text-xs md:text-xl"
   >
     <tbody class="overflow-auto">
       <tr
