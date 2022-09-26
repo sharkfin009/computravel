@@ -130,30 +130,21 @@ $graphql(query)
     error.value = error;
   });
 
-const checkCountry = (dest) => {
-  let query = `query{countries(filters:{
-      name: {
-        eq:"${dest}"
-      }
-    }){
-      data{
-        attributes{
-          name
-          copy
-          images{
-            data{
-              attributes{
-                url
-              }
-            }
-          }
-        }
-      }
-    }}`;
+const config = useRuntimeConfig();
+const checkCountry = async (dest) => {
+  const { result: countryResult, search: countrySearch } = useSearch(
+    "production_api::country.country"
+  );
 
-  $graphql(query)
-    .then((response) => {
-      store.location.country = response.data.countries.data;
+  await countrySearch({
+    query: dest,
+    requestOptions: {
+      hitsPerPage: 1,
+    },
+  })
+    .then((result) => {
+      console.log(result);
+      store.location.country = result.hits[0];
       responseCount.value++;
     })
 
@@ -161,30 +152,19 @@ const checkCountry = (dest) => {
       destination_content.value = error;
     });
 };
-const checkProvince = (dest) => {
-  let query = `query{provinces(filters:{
-      name: {
-        eq:"${dest}"
-      }
-    }){
-      data{
-        attributes{
-          name
-          copy
-          images{
-            data{
-              attributes{
-                url
-              }
-            }
-          }
-        }
-      }
-    }}`;
+const checkProvince = async (dest) => {
+  const { result: provinceResult, search: provinceSearch } = useSearch(
+    "production_api::province.province"
+  );
 
-  $graphql(query)
-    .then((response) => {
-      store.location.province = response.data.provinces.data;
+  await provinceSearch({
+    query: dest,
+    requestOptions: {
+      hitsPerPage: 1,
+    },
+  })
+    .then((result) => {
+      store.location.province = result.hits[0];
       responseCount.value++;
     })
 
@@ -193,30 +173,19 @@ const checkProvince = (dest) => {
     });
 };
 
-const checkRegion = (dest) => {
-  let query = `query{regions(filters:{
-      name: {
-        eq:"${dest}"
-      }
-    }){
-      data{
-        attributes{
-          name
-          copy
-          images{
-            data{
-              attributes{
-                url
-              }
-            }
-          }
-        }
-      }
-    }}`;
+const checkRegion = async (dest) => {
+  const { result: regionResult, search: regionSearch } = useSearch(
+    "production_api::region.region"
+  );
 
-  $graphql(query)
-    .then((response) => {
-      store.location.region = response.data.regions.data;
+  await regionSearch({
+    query: dest,
+    requestOptions: {
+      hitsPerPage: 1,
+    },
+  })
+    .then((result) => {
+      store.location.region = result.hits[0];
       responseCount.value++;
     })
 
@@ -230,37 +199,31 @@ watch(
   },
   () => {
     if (responseCount.value == 3) {
-      if (store.location.province.length) {
+      if (store.location.province !== undefined) {
         destination_content.value = {
-          name: store.location.province[0].attributes.name,
-          copy: store.location.province[0].attributes.copy,
+          name: store.location.province.name,
+          copy: store.location.province.copy,
 
-          images: store.location.province[0].attributes.images.data.map(
-            (item) => item.attributes.url
-          ),
+          images: store.location.province.images.map((item) => item.url),
         };
         return;
       }
-      if (store.location.country.length) {
+      if (store.location.country !== undefined) {
         destination_content.value = {
-          name: store.location.country[0].attributes.name,
-          copy: store.location.country[0].attributes.copy,
-          images: store.location.country[0].attributes.images.data.map(
-            (item) => item.attributes.url
-          ),
+          name: store.location.country.name,
+          copy: store.location.country.copy,
+          images: store.location.country.images.map((item) => item.url),
         };
         return;
       }
-      if (store.location.region.length) {
+      if (store.location.region !== undefined) {
         destination_content.value = {
           name:
-            store.location.region[0].attributes.name == "Mediterranean"
+            store.location.region.name == "Mediterranean"
               ? "the Mediterranean"
-              : store.location.region[0].attributes.name,
-          copy: store.location.region[0].attributes.copy,
-          images: store.location.region[0].attributes.images.data.map(
-            (item) => item.attributes.url
-          ),
+              : store.location.region.name,
+          copy: store.location.region.copy,
+          images: store.location.region.images.map((item) => item.url),
         };
         return;
       }

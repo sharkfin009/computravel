@@ -1,17 +1,22 @@
  <template>
-  <iframe
-    src="https://www.travelstart.co.za/?search=false&show_banners=false&log=false&affId=1217489&language=&affCampaign=&utm_source=affiliate&utm_medium=1217489&isiframe=true&landing_page=false&iframeVersion=11&host=https:%2F%2Fcomputravel.co.za"
-    frameBorder="0"
-    scrolling="auto"
-    style="
-      padding: 0px;
-      border: 0px;
-      height: 0px;
-      background-color: #fafafa;
-      z-index: -50;
-    "
-  >
-  </iframe>
+  <div class="flex justify-center py-10">
+    <div class="md:w-[50%]">
+      <iframe
+        src="https://www.travelstart.co.za/?search=false&show_banners=false&log=false&affId=1217489&language=&affCampaign=&utm_source=affiliate&utm_medium=1217489&isiframe=true&landing_page=false&iframeVersion=11&host=https:%2F%2Fcomputravel.co.za"
+        frameBorder="0"
+        scrolling="auto"
+        style="
+          margin: 0px;
+          padding: 0px;
+          border: 0px;
+          height: 830px;
+          background-color: rgb(250, 250, 250);
+          width: 100%;
+        "
+      >
+      </iframe>
+    </div>
+  </div>
 </template>
 
 <script setup>

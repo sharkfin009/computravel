@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     strapiUrl: process.env.STRAPI_URL,
     baseUrl: process.env.BASE_URL,
     strapiUser: process.env.STRAPI_USER,
+    algolia_index_prefix: process.env.ALGOLIA_INDEX_PREFIX,
   },
   algolia: {
     apiKey: "c0e3a53fd96cb2d0a385e82faf323317",

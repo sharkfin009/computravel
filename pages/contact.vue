@@ -27,7 +27,7 @@
         <div class="flex flex-col items-center justify-center gap-5">
           <i class="text-2xl fa-brands fa-whatsapp" />
           <div class="text-center">
-            <a href="tel:270217620511">Tel: +27021762-0511</a>
+            <a href="tel:27680424843">Tel: +27680424843</a>
           </div>
         </div>
       </div>
