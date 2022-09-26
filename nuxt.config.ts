@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@pinia/nuxt"],
   publicRuntimeConfig: {
-    strapiUrl: process.env.STRAPI_URL,
+    strapiUrl: 'https://computravel-admin-ooniq.ondigitalocean.app',
     baseUrl: process.env.BASE_URL,
     strapiUser: process.env.STRAPI_USER,
     algolia_index_prefix: process.env.ALGOLIA_INDEX_PREFIX,
