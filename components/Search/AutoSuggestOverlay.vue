@@ -73,7 +73,7 @@
       >
         packages:
       </div>
-      <div class="hidden md:block w-full">
+      <div class="md:block w-full">
         <div
           v-for="(suggestion, index) in suggestStore.packageSuggestions"
           :class="{
