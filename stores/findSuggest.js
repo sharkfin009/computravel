@@ -175,9 +175,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       }
     },
 
-    async viewPackage(slug, supplier_ref) {
+    viewPackage(slug, supplier_ref) {
       this.showSuggestions = false;
-      await navigateTo({
+      navigateTo({
         path: "/package/" + slug + "_ref=" + supplier_ref,
       });
     },

@@ -1,12 +1,14 @@
 <template>
   <div
-    class="absolute inset-0 flex justify-center items-start z-50"
+    class="absolute inset-0 flex justify-center items-start z-50 bg-blue-100"
     v-if="
       suggestStore.showSuggestions &&
       suggestStore.destinationSuggestions.length &&
       suggestStore.queryString.length
     "
   >
+    <div @click="test" to="/blog-archive">test</div>
+
     <div
       class="
         rounded-3xl
@@ -166,6 +168,12 @@ const mouseOver = (index) => {
 
 const mouseLeave = () => {
   hoveredSuggestion.value = null;
+};
+const test = () => {
+  suggestStore.showSuggestions = false;
+  navigateTo({
+    path: "/blog-archive",
+  });
 };
 </script>
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <div class="relative h-full w-full bg-slate-300">
     <HomeWelcome />
-    <div :class="{ 'opacity-0': suggestStore.showSuggestions }">
+    <div :class="{ '': suggestStore.showSuggestions }">
       <HomeFavouritePackages />
       <HomeDestinations />
       <HomeFlSpecials />
