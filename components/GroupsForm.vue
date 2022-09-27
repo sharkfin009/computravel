@@ -172,6 +172,14 @@
         >send enquiry</CompuButton
       >
     </div>
+    <transition name="fade">
+      <ConfirmModal v-if="showConfirmation">
+        <template #header> Thank you for your group enquiry! </template>
+        <template #body>
+          One of our travel experts will be in touch soon.</template
+        >
+      </ConfirmModal>
+    </transition>
   </div>
 </template>
 
@@ -255,6 +263,7 @@ onMounted(() => {
     list = "packages: " + JSON.stringify(ids);
   }
 });
+const showConfirmation = ref(false);
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 
@@ -284,7 +293,7 @@ const send = () => {
     }
     }
     }`;
-  enquiryState.showConfirmation = true;
+  showConfirmation.value = true;
   $graphql(query).then((response) => {});
 };
 </script>

@@ -1,11 +1,9 @@
 <template>
   <div class="px-5 lg:p-10 flex flex-col items-evenly justify-evenly pb-5">
     <transition name="fade" v-if="bookingSent">
-      <ConfirmModal>
-        <h3 class="text-xl md:text-6xl font-bold">
-          Thank you for your flight enquiry!
-        </h3>
-        <p class="text-2xl">One of our travel experts will be in touch soon.</p>
+      <ConfirmModal :showRef="false">
+        <template #header> Thank you for your flight enquiry! </template>
+        <template>One of our travel experts will be in touch soon.</template>
       </ConfirmModal>
     </transition>
     <div v-if="!bookingSent && data">

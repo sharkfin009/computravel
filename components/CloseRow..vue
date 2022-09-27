@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute w-full flex justify-end p-5 md:p-12">
+  <div class="absolute w-full flex items-center justify-end p-3 md:p-10">
     <IconClose
       class="
         h-7

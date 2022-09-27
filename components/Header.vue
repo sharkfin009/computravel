@@ -51,7 +51,7 @@
               >enquire now</CompuButton
             >
           </NuxtLink>
-          <NuxtLink to="/my-packages" v-if="enquiry.enquirySent">
+          <NuxtLink to="/my-packages" v-if="checkFavorites">
             <CompuButton class="inset-0 bg-lime-500 !h-full"
               >view my favorites</CompuButton
             >
@@ -97,17 +97,11 @@
     <!-- MODALs -->
 
     <transition name="fade">
-      <ConfirmModal v-if="enquiry.showConfirmation">
-        <h3 class="text-3xl md:text-6xl font-bold mb-5">
-          Thank you for your enquiry!
-        </h3>
-        <p class="text-xl md:text-2xl">
-          One of our travel experts will be in touch soon.
-        </p>
-        <div class="text-xl md:text-base mb-5">
-          Your enquiry reference is
-          <span class="text-lime-500"> {{ enquiry.enquiryRef }} </span>
-        </div>
+      <ConfirmModal :showRef="true" v-if="enquiry.showConfirmation">
+        <template #header> Thank you for your enquiry! </template>
+        <template #body>
+          One of our travel experts will be in touch soon.</template
+        >
       </ConfirmModal>
     </transition>
     <transition name="fade">
@@ -127,4 +121,15 @@ const enquiry = useenquiry();
 const showMenu = () => {
   globalStore.showMenu = true;
 };
+let userFavoritePackages = ref([]);
+onMounted(() => {
+  userFavoritePackages.value = JSON.parse(localStorage.getItem("my-packages"));
+  enquiry.myPackages = userFavoritePackages.value;
+  console.log(userFavoritePackages.value.length);
+});
+const checkFavorites = computed(() => {
+  if (userFavoritePackages.value.length > 0 && enquiry.enquirySent) {
+    return true;
+  } else return false;
+});
 </script>

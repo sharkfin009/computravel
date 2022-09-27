@@ -19,7 +19,7 @@
       <div class="flex justify-center flex-wrap gap-10 max-w-[80vw]">
         <div
           class="flex flex-col"
-          v-for="(card, index) in myPackages"
+          v-for="(card, index) in enquiryState.myPackages"
           :key="index"
         >
           <Card class="w-full" :package="card.attributes" />
@@ -58,15 +58,11 @@
     </div>
 
     <transition name="fade" v-if="enquiryState.showUpdateModal">
-      <ConfirmModal>
-        <h3 class="text-xl md:text-6xl font-bold">
-          Thank you for your update!
-        </h3>
-        <p class="text-2xl">One of our travel experts will be in touch soon.</p>
-        <div>
-          Your enquiry reference is
-          <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>
-        </div>
+      <ConfirmModal :showRef="true">
+        <template #header> Thank you for your update </template>
+        <template #body
+          >One of our travel experts will be in touch soon.</template
+        >
       </ConfirmModal>
     </transition>
   </div>
@@ -81,32 +77,37 @@ let store = useStore();
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
-let myPackages = ref([]);
 onMounted(() => {
   if (localStorage.getItem("enquirySent")) {
     enquiryState.enquirySent = true;
   }
 
   if (localStorage.getItem("my-packages")) {
-    myPackages.value = JSON.parse(localStorage.getItem("my-packages"));
+    enquiryState.myPackages.value = JSON.parse(
+      localStorage.getItem("my-packages")
+    );
   }
-  console.log("myPacks:", myPackages.value);
 
   if (
     store.package.attributes &&
-    !myPackages.value
+    !enquiryState.myPackages.value
       .map((item) => item.attributes.supplier_ref)
       .includes(store.package.attributes.supplier_ref)
   ) {
-    myPackages.value.push(store.package);
+    enquiryState.myPackages.push(store.package);
     enquiryState.listDirtyState = true;
   }
 
-  localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
+  localStorage.setItem(
+    "my-packages",
+    JSON.stringify(enquiryState.myPackages.value)
+  );
 });
 const removeFavorite = (index) => {
-  myPackages.value.splice(index, 1);
-  localStorage.setItem("my-packages", JSON.stringify(myPackages.value));
+  let array = enquiryState.myPackages;
+  array.splice(index, 1);
+  localStorage.setItem("my-packages", JSON.stringify(array));
+  enquiryState.myPackages = array;
   enquiryState.listDirtyState = true;
 };
 
