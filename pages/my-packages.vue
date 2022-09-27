@@ -83,14 +83,12 @@ onMounted(() => {
   }
 
   if (localStorage.getItem("my-packages")) {
-    enquiryState.myPackages.value = JSON.parse(
-      localStorage.getItem("my-packages")
-    );
+    enquiryState.myPackages = JSON.parse(localStorage.getItem("my-packages"));
   }
 
   if (
     store.package.attributes &&
-    !enquiryState.myPackages.value
+    !enquiryState.myPackages
       .map((item) => item.attributes.supplier_ref)
       .includes(store.package.attributes.supplier_ref)
   ) {
@@ -98,10 +96,7 @@ onMounted(() => {
     enquiryState.listDirtyState = true;
   }
 
-  localStorage.setItem(
-    "my-packages",
-    JSON.stringify(enquiryState.myPackages.value)
-  );
+  // localStorage.setItem("my-packages", JSON.stringify(enquiryState.myPackages));
 });
 const removeFavorite = (index) => {
   let array = enquiryState.myPackages;

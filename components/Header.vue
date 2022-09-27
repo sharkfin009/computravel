@@ -121,14 +121,14 @@ const enquiry = useenquiry();
 const showMenu = () => {
   globalStore.showMenu = true;
 };
-let userFavoritePackages = ref([]);
+
 onMounted(() => {
-  userFavoritePackages.value = JSON.parse(localStorage.getItem("my-packages"));
-  enquiry.myPackages = userFavoritePackages.value;
-  console.log(userFavoritePackages.value.length);
+  if (localStorage.getItem("my-packages")) {
+    enquiry.myPackages = JSON.parse(localStorage.getItem("my-packages"));
+  }
 });
 const checkFavorites = computed(() => {
-  if (userFavoritePackages.value.length > 0 && enquiry.enquirySent) {
+  if (enquiry.myPackages.length && enquiry.enquirySent) {
     return true;
   } else return false;
 });
