@@ -60,9 +60,9 @@
     <transition name="fade" v-if="enquiryState.showUpdateModal">
       <ConfirmModal>
         <h3 class="text-xl md:text-6xl font-bold">
-          Thankyou for your update to your list!
+          Thank you for your update!
         </h3>
-        <p>One of our travel experts will be in touch soon.</p>
+        <p class="text-2xl">One of our travel experts will be in touch soon.</p>
         <div>
           Your enquiry reference is
           <span class="text-lime-500"> {{ enquiryState.enquiryRef }} </span>

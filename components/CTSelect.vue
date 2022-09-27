@@ -1,10 +1,17 @@
 <template>
-  <div class="h-full flex flex-col mb-5">
+  <div class="h-full flex flex-col items-between justify-between mb-5">
     <label class="pb-1 mb-0 md:mb-5">{{ label }}</label>
     <v-select
       :options="options"
       v-model="inputValue"
-      class="bg-white rounded-xl select-padding input-outline hover:shadow-none"
+      class="
+        bg-white
+        rounded-xl
+        select-padding
+        input-outline
+        hover:shadow-none
+        font-medium font-open-sans
+      "
       :placeholder="placeholder"
     >
       <template v-slot:option="option">
@@ -99,5 +106,9 @@ watch(
   padding-bottom: 10px !important;
   padding-left: 11px !important;
   padding-right: 1px !important;
+}
+.vs__search::placeholder {
+  color: #9ca6c1;
+  font-size: 17px;
 }
 </style>

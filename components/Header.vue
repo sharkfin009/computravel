@@ -101,7 +101,7 @@
         <h3 class="text-3xl md:text-6xl font-bold mb-5">
           Thank you for your enquiry!
         </h3>
-        <p class="text-xl md:text-base">
+        <p class="text-xl md:text-2xl">
           One of our travel experts will be in touch soon.
         </p>
         <div class="text-xl md:text-base mb-5">

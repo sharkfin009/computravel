@@ -5,7 +5,7 @@
         <h3 class="text-xl md:text-6xl font-bold">
           Thank you for your flight enquiry!
         </h3>
-        <p class="text-md">One of our travel experts will be in touch soon.</p>
+        <p class="text-2xl">One of our travel experts will be in touch soon.</p>
       </ConfirmModal>
     </transition>
     <div v-if="!bookingSent && data">

@@ -21,8 +21,11 @@
           suggestStore.showSuggestions = true;
           suggestStore.queryString = '';
         "
-        @blur="suggestStore.showDestinationDropdown = false"
-        placeholder="Anywhere"
+        @blur="
+          suggestStore.showDestinationDropdown = false;
+          suggestStore.showSuggestions = false;
+        "
+        placeholder="anywhere"
       />
       <div
         class="
@@ -89,13 +92,7 @@
                 '!bg-lime-100 text-black':
                   index == suggestStore.selectedSuggestion,
               }"
-              @mousedown="
-                searchStore.destination = item.name;
-                searchStore.destinationType = item.type;
-                searchStore.destinationQuery = item.name;
-
-                suggestStore.searchDestination(item);
-              "
+              @mousedown="clickMethod(item)"
             >
               <div class="">{{ item.name }}</div>
             </div>
@@ -131,4 +128,23 @@ const mouseOver = (index) => {
 const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
+const clickMethod = (item) => {
+  // if this is not the destination input on the search page:
+  if (props.parent !== "enquiryForm") {
+    searchStore.destination = item.name;
+    searchStore.destinationType = item.type;
+    searchStore.destinationQuery = item.name;
+    suggestStore.searchDestination(item);
+  } else {
+    suggestStore.queryString = item.name;
+    suggestStore.showSuggestions = false;
+  }
+};
+const emit = defineEmits(["setValue"]);
+watch(
+  () => suggestStore.queryString,
+  (a, b) => {
+    emit("setValue", "destination", suggestStore.queryString);
+  }
+);
 </script>

@@ -42,10 +42,10 @@
       "
       :inverted="false"
     />
-    <SectionHeading
+    <!-- <SectionHeading
       heading="Send us your groups and incentives enquiry"
       :inverted="false"
-    />
+    /> -->
 
     <GroupsForm class="" />
   </div>
