@@ -14,63 +14,64 @@
       class="
         flex flex-col
         grid-rows-3
-        md:grid md:grid-cols-2 md:grid-rows-4 md:gap-10 md:mb-10
+        md:grid md:grid-cols-2 md:gap-10 md:mb-10
       "
     >
       <Input
-        v-if="vl.full_name"
+        v-if="$v.full_name"
         inputName="full_name"
         label="Full Name"
         type="text"
-        :validationObject="vl.full_name"
+        :validationObject="$v.full_name"
         errorMessage="full name is required"
         placeholder="full name"
         @setValue="setValue"
       />
       <Input
-        v-if="vl.email"
+        v-if="$v.email"
         inputName="email"
         label="Email Address"
         type="text"
-        :validationObject="vl.email"
-        errorMessage="email is required"
+        :validationObject="$v.email"
+        errorMessage="valid email required"
         placeholder="email"
         @setValue="setValue"
       />
       <Input
-        v-if="vl.cell"
+        v-if="$v.cell"
         inputName="cell"
         label="Cell Number"
         type="text"
-        :validationObject="vl.cell"
-        errorMessage="cell no is required"
+        :validationObject="$v.cell"
+        errorMessage="please add valid cell no"
         placeholder="number"
         @setValue="setValue"
       />
       <Input
-        v-if="vl.company"
+        v-if="$v.company"
         inputName="company"
         label="Company Name"
         type="text"
-        :validationObject="vl.company"
-        errorMessage="company name is required"
-        placeholder="number"
+        :validationObject="$v.company"
+        errorMessage=""
+        placeholder=""
         @setValue="setValue"
       />
       <Input
-        v-if="vl.group"
+        v-if="$v.group"
         inputName="group"
         label="Group Name"
         type="text"
-        :validationObject="vl.group"
-        errorMessage="group name is required"
-        placeholder="number"
+        :validationObject="$v.group"
+        errorMessage=""
+        placeholder=""
         @setValue="setValue"
       />
 
-      <DestinationInput @setValue="setValue" />
+      <DestinationInput @setValue="setValue" parent="enquiryForm" />
 
       <CTSelect
+        class="col-span-full"
         label="Departing From"
         inputName="from_where"
         :options="airports"
@@ -79,12 +80,12 @@
       />
 
       <Input
-        v-if="vl.when"
+        v-if="$v.when"
         inputName="when"
         label="Approximate date"
         type="date"
-        :validationObject="vl.when"
-        errorMessage="date is required"
+        :validationObject="$v.when"
+        errorMessage=""
         placeholder="anytime"
         @setValue="setValue"
       />
@@ -103,11 +104,11 @@
       />
 
       <Input
-        v-if="vl.budget_per_person"
+        v-if="$v.budget_per_person"
         inputName="budget_per_person"
         label="Budget per person"
         type="text"
-        :validationObject="vl.budget_per_person"
+        :validationObject="$v.budget_per_person"
         placeholder="eg R5000 per person"
         @setValue="setValue"
       />
@@ -115,56 +116,59 @@
     <!-- textareas -->
     <div class="flex flex-col md:gap-5">
       <TextArea
-        v-if="vl.room_requirements"
+        v-if="$v.room_requirements"
         inputName="room_requirements"
         label="Room Requirements"
-        :validationObject="vl.room_requirements"
-        errorMessage="date is required"
+        :validationObject="$v.room_requirements"
+        errorMessage=""
         placeholder=""
         @setValue="setValue"
       />
       <TextArea
-        v-if="vl.meal_plan"
+        v-if="$v.meal_plan"
         inputName="meal_plan"
         label="Meal Plan"
-        :validationObject="vl.meal_plan"
-        errorMessage="date is required"
+        :validationObject="$v.meal_plan"
+        errorMessage=""
         placeholder=""
         @setValue="setValue"
       />
       <TextArea
-        v-if="vl.conference_requirements"
+        v-if="$v.conference_requirements"
         inputName="conference_requirements"
         label="Conference Requirements"
-        :validationObject="vl.conference_requirements"
+        :validationObject="$v.conference_requirements"
         errorMessage="date is required"
         placeholder=""
         @setValue="setValue"
       />
 
       <TextArea
-        v-if="vl.tours"
+        v-if="$v.tours"
         inputName="tours"
         label="Tours"
-        :validationObject="vl.tours"
+        :validationObject="$v.tours"
         errorMessage="date is required"
         placeholder=""
         @setValue="setValue"
       />
       <TextArea
-        v-if="vl.additional_info"
+        v-if="$v.additional_info"
         inputName="additional_info"
         label="Additional Information"
-        :validationObject="vl.additional_info"
+        :validationObject="$v.additional_info"
         placeholder=""
         @setValue="setValue"
       />
     </div>
 
-    <div class="flex justify-center">
-      <CompuButton @mousedown="send" class="bg-lime-500 my-10"
+    <div class="flex flex-col items-center justify-center">
+      <CompuButton @mousedown="validate" class="bg-lime-500 my-10"
         >send enquiry</CompuButton
       >
+      <div v-if="showPrompt" class="font-medium text-xl text-red-700">
+        Please fill in all required fields
+      </div>
     </div>
     <transition name="fade">
       <ConfirmModal v-if="showConfirmation">
@@ -190,15 +194,15 @@ import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
 const state = reactive({
-  full_name: "dude",
-  email: "ben.amato@gmail.com",
-  cell: "1234",
+  full_name: "",
+  email: "",
+  cell: "",
   company: "",
   group: "",
   destination: "",
-  from_where: "joh",
-  when: "2023-12-03",
-  no_of_adults: "1",
+  from_where: "",
+  when: "",
+  no_of_adults: "",
   budget_per_person: "",
   room_requirements: "",
   meal_plan: "",
@@ -209,7 +213,6 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
-    alpha,
   },
   email: {
     required,
@@ -219,23 +222,23 @@ const rules = {
     required,
     numeric,
   },
-  company: { alphaNum },
-  group: { alphaNum },
+  company: {},
+  group: {},
   destination: { alphaNum },
   from_where: { alphaNum },
-  budget_per_person: { alphaNum },
+  budget_per_person: {},
   room_requirements: { alphaNum },
-  no_of_adults: { alphaNum },
-  meal_plan: { alphaNum },
+  no_of_adults: { numeric },
+  meal_plan: {},
   when: {
     alphaNum,
   },
-  conference_requirements: { alphaNum },
-  tours: { alphaNum },
-  additional_info: { alphaNum },
+  conference_requirements: {},
+  tours: {},
+  additional_info: {},
 };
-const vl = useVuelidate(rules, state);
-
+const $v = useVuelidate(rules, state);
+console.log($v);
 const setValue = (inputName, value) => {
   state[inputName] = value;
 };
@@ -266,6 +269,15 @@ onMounted(() => {
   }
 });
 const showConfirmation = ref(false);
+const showPrompt = ref(false);
+const validate = async function () {
+  const isFormCorrect = await $v.value.$validate();
+  if (!isFormCorrect) {
+    showPrompt.value = true;
+    return;
+  }
+  send();
+};
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 
@@ -275,6 +287,8 @@ const send = () => {
       full_name:"${state.full_name}"
           email:"${state.email}"
       cell:"${state.cell}"
+      company:"${company}"
+      group":${group}"
       destination:"${state.destination}"
       when:"${state.when}"
       from_where:"${state.from_where}"
@@ -285,8 +299,6 @@ const send = () => {
       conference_requirements:"${state.conference_requirements}"
       tours:"${state.tours}"
       additional_info:"${state.additional_info}"
-  
-
     }
   )
   {

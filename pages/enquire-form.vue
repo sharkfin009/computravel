@@ -86,6 +86,7 @@
             <DestinationInput @setValue="setValue" parent="enquiryForm" />
 
             <CTSelect
+              class="col-span-full"
               label="Departing From"
               inputName="from_where"
               :options="airports"
@@ -124,10 +125,13 @@
             />
           </div>
 
-          <div class="flex justify-center py-10">
-            <CompuButton @mousedown="send" class="bg-lime-500"
+          <div class="flex flex-col items-center justify-center">
+            <CompuButton @mousedown="validate" class="bg-lime-500 my-10"
               >send enquiry</CompuButton
             >
+            <div v-if="showPrompt" class="font-medium text-xl text-red-700">
+              Please fill in all required fields
+            </div>
           </div>
         </div>
       </div>
@@ -151,15 +155,15 @@ import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
 const state = reactive({
-  full_name: "dude",
-  email: "ben.amato@gmail.com",
-  cell: "1234",
+  full_name: "",
+  email: "",
+  cell: "",
   destination: "",
-  from_where: "joh",
-  when: "2023-12-03",
-  no_of_adults: "1",
-  no_of_minors: "2",
-  no_of_infants: "3",
+  from_where: "",
+  when: "",
+  no_of_adults: "",
+  no_of_minors: "",
+  no_of_infants: "",
 });
 const rules = {
   full_name: {
@@ -184,7 +188,6 @@ const rules = {
   no_of_infants: { numeric },
 
   when: {
-    required,
     alphaNum,
   },
 };
@@ -220,6 +223,16 @@ onMounted(() => {
     list = "packages: " + JSON.stringify(ids);
   }
 });
+
+const showPrompt = ref(false);
+const validate = async function () {
+  const isFormCorrect = await vl.value.$validate();
+  if (!isFormCorrect) {
+    showPrompt.value = true;
+    return;
+  }
+  send();
+};
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 

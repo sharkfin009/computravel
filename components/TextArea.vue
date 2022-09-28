@@ -28,16 +28,17 @@
       v-show="validationObject.$error"
       class="
         absolute
-        left-[80%]
-        top-[10%]
+        left-[40%]
+        top-[0%]
+        font-medium
         flex
         items-center
         w-full
         animate__animated animate__headShake
-        text-xs text-left text-red-900
+        text-xl text-left text-red-700
       "
     >
-      <div class="text-red-900">
+      <div class="">
         {{ errorMessage }}
       </div>
     </div>

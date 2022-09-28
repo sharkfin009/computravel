@@ -136,15 +136,18 @@
             inputName="message"
             label="Message"
             :validationObject="vl.message"
-            errorMessage="date is required"
+            errorMessage="please enter a message"
             placeholder=""
             @setValue="setValue"
           />
 
-          <div class="flex justify-center">
-            <CompuButton @mousedown="send" class="bg-lime-500 my-10"
-              >send enquiry</CompuButton
+          <div class="flex flex-col items-center justify-center">
+            <CompuButton @mousedown="validate" class="bg-lime-500 my-10"
+              >submit</CompuButton
             >
+            <div v-if="showPrompt" class="font-medium text-xl text-red-700">
+              Please fill in all required fields
+            </div>
           </div>
         </div>
       </div>
@@ -164,20 +167,14 @@ definePageMeta({
   layout: "home",
 });
 import useVuelidate from "@vuelidate/core";
-import {
-  required,
-  email,
-  alpha,
-  alphaNum,
-  numeric,
-} from "@vuelidate/validators";
+import { required, email, alpha, numeric } from "@vuelidate/validators";
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
 const state = reactive({
-  full_name: "dude",
-  email: "ben.amato@gmail.com",
-  cell: "1234",
+  full_name: "",
+  email: "",
+  cell: "",
   company: "",
   message: "",
 });
@@ -194,8 +191,8 @@ const rules = {
     required,
     numeric,
   },
-  company: { alphaNum },
-  message: { alphaNum },
+
+  message: { required },
 };
 const vl = useVuelidate(rules, state);
 
@@ -208,7 +205,6 @@ const response = ref("");
 const packages = ref([]);
 let ids = [];
 const titles = ref([]);
-let list = "";
 onMounted(() => {
   if (localStorage.getItem("my-packages")) {
     packages.value = JSON.parse(localStorage.getItem("my-packages"));
@@ -220,6 +216,15 @@ onMounted(() => {
 });
 const config = useRuntimeConfig();
 const showConfirmation = ref(false);
+const showPrompt = ref(false);
+const validate = async function () {
+  const isFormCorrect = await vl.value.$validate();
+  if (!isFormCorrect) {
+    showPrompt.value = true;
+    return;
+  }
+  send();
+};
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 

@@ -93,11 +93,17 @@ watch(
   border-color: rgba(176, 175, 175, 0.706) !important;
   border-radius: 10px !important;
 }
-
-.select-padding {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+vs__dropdown-toggle {
+  padding: 0 !important;
+}
+vs__selected {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+/* .select-padding {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
   padding-left: 11px !important;
   padding-right: 1px !important;
-}
+} */
 </style>
