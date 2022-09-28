@@ -178,6 +178,7 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
+    alpha,
   },
   email: {
     required,
@@ -185,9 +186,10 @@ const rules = {
   },
   cell: {
     required,
+    numeric,
   },
-  company: {},
-  message: {},
+  company: { alphaNumeric },
+  message: { alphaNumeric },
 };
 const vl = useVuelidate(rules, state);
 

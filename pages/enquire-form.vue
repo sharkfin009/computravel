@@ -158,6 +158,7 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
+    alpha,
   },
   email: {
     required,
@@ -165,16 +166,20 @@ const rules = {
   },
   cell: {
     required,
+    numeric,
   },
-  destination: {},
-  from_where: {},
+  destination: {
+    alphaNum,
+  },
+  from_where: { alphaNum },
 
-  no_of_adults: {},
-  no_of_minors: {},
-  no_of_infants: {},
+  no_of_adults: { numeric },
+  no_of_minors: { numeric },
+  no_of_infants: { numeric },
 
   when: {
     required,
+    alphaNum,
   },
 };
 const vl = useVuelidate(rules, state);

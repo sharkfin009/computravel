@@ -209,6 +209,7 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
+    alpha,
   },
   email: {
     required,
@@ -216,21 +217,22 @@ const rules = {
   },
   cell: {
     required,
+    numeric,
   },
-  company: {},
-  group: {},
-  destination: {},
-  from_where: {},
-  budget_per_person: {},
-  room_requirements: {},
-  no_of_adults: {},
-  meal_plan: {},
+  company: { alphaNum },
+  group: { aplhaNum },
+  destination: { alphaNum },
+  from_where: { alphaNum },
+  budget_per_person: { alhpaNum },
+  room_requirements: { alphaNum },
+  no_of_adults: { alphaNum },
+  meal_plan: { alphaNum },
   when: {
-    required,
+    alphaNum,
   },
-  conference_requirements: {},
-  tours: {},
-  additional_info: {},
+  conference_requirements: { alphaNum },
+  tours: { alphaNum },
+  additional_info: { alphaNUm },
 };
 const vl = useVuelidate(rules, state);
 
