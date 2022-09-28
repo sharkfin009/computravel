@@ -1,7 +1,9 @@
 import { defineNuxtPlugin } from "#app";
+import { useGlobalStore } from "@/stores/global";
 
 export default defineNuxtPlugin(function (nuxtApp) {
   const config = useRuntimeConfig();
+  const globalState = useGlobalStore();
   const graphql = (queryString) => {
     return new Promise((resolve, reject) => {
       fetch(config.strapiUrl + "/graphql", {

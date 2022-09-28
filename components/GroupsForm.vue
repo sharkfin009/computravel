@@ -283,8 +283,8 @@ const send = () => {
       conference_requirements:"${state.conference_requirements}"
       tours:"${state.tours}"
       additional_info:"${state.additional_info}"
-      ref:"${enquiryRef}"
-      ${list}
+  
+
     }
   )
   {

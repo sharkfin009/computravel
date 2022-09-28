@@ -149,6 +149,14 @@
         </div>
       </div>
     </div>
+    <transition name="fade">
+      <ConfirmModal v-if="showConfirmation">
+        <template #header> Thank you for your message! </template>
+        <template #body>
+          One of our travel experts will be in touch soon.</template
+        >
+      </ConfirmModal>
+    </transition>
   </div>
 </template>
 <script setup>
@@ -203,6 +211,7 @@ onMounted(() => {
   }
 });
 const config = useRuntimeConfig();
+const showConfirmation = ref(false);
 const send = () => {
   let enquiryRef = Math.floor(Math.random() * 10000);
 
@@ -221,9 +230,12 @@ const send = () => {
       },
     }),
   })
-    .then((response) => response.json())
+    .then((response) => response)
     .then((data) => {
-      console.log(data);
+      // console.log(data);
+      if (data.ok) {
+        showConfirmation.value = true;
+      }
     });
   enquiryState.showConfirmation = true;
 };
