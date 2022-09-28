@@ -140,7 +140,13 @@ definePageMeta({
   layout: "home",
 });
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import {
+  required,
+  email,
+  alpha,
+  alphaNum,
+  numeric,
+} from "@vuelidate/validators";
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 

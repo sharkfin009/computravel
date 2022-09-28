@@ -14,13 +14,7 @@
       class="
         flex flex-col
         grid-rows-3
-        md:grid
-        md:grid-cols-3
-        md:grid-rows-4
-        md:gap-x-10
-        md:gap-y-10
-        md:mb-10
-        md:h-[500px]
+        md:grid md:grid-cols-2 md:grid-rows-4 md:gap-10 md:mb-10
       "
     >
       <Input
@@ -185,7 +179,13 @@
 
 <script setup>
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import {
+  required,
+  email,
+  alpha,
+  alphaNum,
+  numeric,
+} from "@vuelidate/validators";
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
@@ -220,10 +220,10 @@ const rules = {
     numeric,
   },
   company: { alphaNum },
-  group: { aplhaNum },
+  group: { alphaNum },
   destination: { alphaNum },
   from_where: { alphaNum },
-  budget_per_person: { alhpaNum },
+  budget_per_person: { alphaNum },
   room_requirements: { alphaNum },
   no_of_adults: { alphaNum },
   meal_plan: { alphaNum },
@@ -232,7 +232,7 @@ const rules = {
   },
   conference_requirements: { alphaNum },
   tours: { alphaNum },
-  additional_info: { alphaNUm },
+  additional_info: { alphaNum },
 };
 const vl = useVuelidate(rules, state);
 

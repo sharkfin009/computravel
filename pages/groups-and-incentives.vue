@@ -35,19 +35,22 @@
         v-html="data.data.groupsAndIncentivesContent.data.attributes.body"
       ></div>
     </div>
-    <SectionHeading
-      :heading="data.data.groupsAndIncentivesContent.data.attributes.form_title"
-      :subheading="
-        data.data.groupsAndIncentivesContent.data.attributes.form_subtitle
-      "
-      :inverted="false"
-    />
-    <!-- <SectionHeading
-      heading="Send us your groups and incentives enquiry"
-      :inverted="false"
-    /> -->
+    <div class="w-full flex justify-center">
+      <div class="md:w-[70vw]">
+        <SectionHeading
+          class="my-5 md:my-10"
+          :heading="
+            data.data.groupsAndIncentivesContent.data.attributes.form_title
+          "
+          :subheading="
+            data.data.groupsAndIncentivesContent.data.attributes.form_subtitle
+          "
+          :inverted="false"
+        />
 
-    <GroupsForm class="" />
+        <GroupsForm />
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
