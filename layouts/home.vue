@@ -6,16 +6,14 @@
         suggestStore.showSuggestions &&
         suggestStore.destinationSuggestions.length
       "
-      class="relative bg-none mx-5"
+      class="relative bg-none"
     >
       <SearchAutoSuggestOverlay />
     </div>
     <div class="px-5 md:px-10 md:px-14 bg-slate-50 pb-10 md:pb-14">
-      <div :class="{ 'opacity-0!': suggestStore.showSuggestions }">
-        <slot />
-        <Footer />
-      </div>
+      <slot />
     </div>
+    <Footer />
   </div>
 </template>
 <script setup>
