@@ -183,13 +183,7 @@
 
 <script setup>
 import useVuelidate from "@vuelidate/core";
-import {
-  required,
-  email,
-  alpha,
-  alphaNum,
-  numeric,
-} from "@vuelidate/validators";
+import { required, email, numeric } from "@vuelidate/validators";
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 
@@ -224,13 +218,13 @@ const rules = {
   },
   company: {},
   group: {},
-  destination: { alphaNum },
-  from_where: { alphaNum },
+  destination: {},
+  from_where: {},
   budget_per_person: {},
-  room_requirements: { alphaNum },
-  no_of_adults: { numeric },
+  room_requirements: {},
+  no_of_adults: {},
   meal_plan: {},
-  when: {},
+  when: { required },
   conference_requirements: {},
   tours: {},
   additional_info: {},
@@ -285,8 +279,8 @@ const send = () => {
       full_name:"${state.full_name}"
           email:"${state.email}"
       cell:"${state.cell}"
-      company:"${company}"
-      group":${group}"
+      company:"${state.company}"
+      group:"${state.group}"
       destination:"${state.destination}"
       when:"${state.when}"
       from_where:"${state.from_where}"

@@ -97,7 +97,7 @@
             <Input
               v-if="vl.when"
               inputName="when"
-              label="approximate departure date"
+              label="approximate departure"
               type="date"
               :validationObject="vl.when"
               errorMessage="date is required"
@@ -178,14 +178,12 @@ const rules = {
     required,
     numeric,
   },
-  destination: {
-    alphaNum,
-  },
-  from_where: { alphaNum },
+  destination: {},
+  from_where: {},
 
-  no_of_adults: { numeric },
-  no_of_minors: { numeric },
-  no_of_infants: { numeric },
+  no_of_adults: {},
+  no_of_minors: {},
+  no_of_infants: {},
 
   when: { required },
 };
@@ -225,6 +223,7 @@ onMounted(() => {
 const showPrompt = ref(false);
 const validate = async function () {
   const isFormCorrect = await vl.value.$validate();
+  console.log(vl.value);
   if (!isFormCorrect) {
     showPrompt.value = true;
     return;
