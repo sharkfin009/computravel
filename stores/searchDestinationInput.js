@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { useStore } from "@/stores/search";
 
-export const useDestination = defineStore("destinationInput", {
+export const useSearchDestination = defineStore("searchDestinationInput", {
   state: () => ({
     queryString: ref(""),
     destinationSuggestions: ref([]),
@@ -45,19 +45,22 @@ export const useDestination = defineStore("destinationInput", {
       // enter
       if (e.key === "Enter") {
         // if no selection:
-        // if (this.selectedSuggestion === -1) {
-        //   this.showSuggestions = false;
-        //   searchDestination(this.destinationSuggestions[0]);
-        //   return;
-        // }
+        if (this.selectedSuggestion === -1) {
+          this.showSuggestions = false;
+          searchDestination(this.destinationSuggestions[0]);
+          return;
+        }
 
-        this.queryString =
-          this.destinationSuggestions[this.selectedSuggestion].name;
+        // if suggestion:
+        if (this.queryString !== "") {
+          this.queryString =
+            this.destinationSuggestions[this.selectedSuggestion];
+        }
 
-        // this.searchDestination(
-        //   this.destinationSuggestions[this.selectedSuggestion]
-        // );
-        // this.clear();
+        this.searchDestination(
+          this.destinationSuggestions[this.selectedSuggestion]
+        );
+        this.clear();
         this.showSuggestions = false;
         return;
       }

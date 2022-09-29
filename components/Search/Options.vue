@@ -55,7 +55,7 @@
     >
       <!-- destination autosuggest input -->
       <div class="hidden md:block">
-        <DestinationInput @setValue="setValue" />
+        <DestinationInput @setValue="setValue" parent="search" />
       </div>
 
       <SearchSelect

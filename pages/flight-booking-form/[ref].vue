@@ -64,7 +64,7 @@
               label="Full Name"
               type="text"
               :validationObject="vl.full_name"
-              errorMessage="full name is required"
+              errorMessage="valid full name is required"
               placeholder="full name"
               @setValue="setValue"
             />
@@ -74,7 +74,7 @@
               label="Email Address"
               type="text"
               :validationObject="vl.email"
-              errorMessage="email is required"
+              errorMessage="valid email is required"
               placeholder="email"
               @setValue="setValue"
             />
@@ -84,17 +84,20 @@
               label="Cell Number"
               type="text"
               :validationObject="vl.cell"
-              errorMessage="cell no is required"
+              errorMessage="valid cell no is required"
               placeholder="number"
               @setValue="setValue"
             />
           </div>
         </div>
       </div>
-      <div class="mt-10 flex justify-center">
-        <CompuButton @mousedown="send" class="bg-lime-500"
-          >request call back</CompuButton
+      <div class="flex flex-col items-center justify-center">
+        <CompuButton @mousedown="validate" class="bg-lime-500 my-10"
+          >send enquiry</CompuButton
         >
+        <div v-if="showPrompt" class="font-medium text-xl text-red-700">
+          Please fill in all required fields
+        </div>
       </div>
 
       <div class="flex w-full flex-col items-center py-10">
@@ -107,6 +110,15 @@
         />
       </div>
     </div>
+    <!-- conf modal -->
+    <transition name="fade">
+      <ConfirmModal v-if="showConfirmation">
+        <template #header> Thank you for your group enquiry! </template>
+        <template #body>
+          One of our travel experts will be in touch soon.</template
+        >
+      </ConfirmModal>
+    </transition>
   </div>
 </template>
 
@@ -139,12 +151,12 @@ definePageMeta({
 });
 const bookingSent = ref(false);
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required, email, numeric } from "@vuelidate/validators";
 
 const state = reactive({
-  full_name: "dude",
-  email: "ben.amato@gmail.com",
-  cell: "1234",
+  full_name: "",
+  email: "",
+  cell: "",
 });
 const rules = {
   full_name: {
@@ -156,6 +168,7 @@ const rules = {
   },
   cell: {
     required,
+    numeric,
   },
 };
 const vl = useVuelidate(rules, state);
@@ -167,16 +180,23 @@ const setValue = (inputName, value) => {
 const { $graphql } = useNuxtApp();
 const response = ref("");
 const packages = ref([]);
-
+const showPrompt = ref(false);
+const validate = async function () {
+  const isFormCorrect = await vl.value.$validate();
+  if (!isFormCorrect) {
+    showPrompt.value = true;
+    return;
+  }
+  send();
+};
 const send = () => {
   let query = `mutation{
-  createFlightBooking(
+  createFlightSpecialEnquiry(
     data:{
-      Name:"${state.full_name}"
-          email:"${state.email}"
+      full_name:"${state.full_name}"
+      email:"${state.email}"
       cell:"${state.cell}"
-    
-      ref:"${route.params.ref}"
+      reference:"${route.params.ref}"
     }
   )
   {

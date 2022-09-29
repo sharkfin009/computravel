@@ -78,10 +78,6 @@
       <div class="md:block w-full">
         <div
           v-for="(suggestion, index) in suggestStore.packageSuggestions"
-          :class="{
-            ' !bg-opacity-90  bg-lime-600 text-lime-200':
-              index === suggestStore.selectedSuggestion,
-          }"
           :key="index"
           class=""
           @click="
@@ -108,8 +104,6 @@
                     class="font-semibold text-lime-600"
                     :class="{
                       ' !text-lime-200': index === hoveredSuggestion - 1,
-                      ' text-lime-200':
-                        index === suggestStore.selectedSuggestion,
                     }"
                   >
                     {{ suggestion.titleShort }}

@@ -5,7 +5,7 @@
       <input
         name="search"
         type="text"
-        v-model="suggestStore.queryString"
+        v-model="destinationStore.queryString"
         class="
           w-full
           rounded-xl
@@ -16,14 +16,14 @@
           hover:shadow-none
           pointer-events-auto
         "
-        @keyup="suggestStore.manageKeyUp"
+        @keyup="destinationStore.manageKeyUp"
         @focus="
-          suggestStore.showSuggestions = true;
-          suggestStore.queryString = '';
+          destinationStore.showSuggestions = true;
+          destinationStore.queryString = '';
         "
         @blur="
-          suggestStore.showDestinationDropdown = false;
-          suggestStore.showSuggestions = false;
+          destinationStore.showDestinationDropdown = false;
+          destinationStore.showSuggestions = false;
         "
         placeholder="anywhere"
       />
@@ -47,7 +47,7 @@
             pointer-events-auto
           "
           @mousedown="
-            suggestStore.clear();
+            destinationStore.clear();
             searchStore.destinationQuery = '';
             searchStore.fireQuery();
           "
@@ -70,15 +70,15 @@
           origin-top
         "
         v-show="
-          suggestStore.showSuggestions &&
-          suggestStore.destinationSuggestions.length &&
-          suggestStore.queryString.length
+          destinationStore.showSuggestions &&
+          destinationStore.destinationSuggestions.length &&
+          destinationStore.queryString.length
         "
       >
         <div class="bg-stone-100 rounded-xl overflow-hidden border">
           <div class="grid">
             <div
-              v-for="(item, index) in suggestStore.destinationSuggestions"
+              v-for="(item, index) in destinationStore.destinationSuggestions"
               :key="index"
               class="
                 flex
@@ -90,7 +90,7 @@
               "
               :class="{
                 '!bg-lime-100 text-black':
-                  index == suggestStore.selectedSuggestion,
+                  index == destinationStore.selectedSuggestion,
               }"
               @mousedown="clickMethod(item)"
             >
@@ -114,7 +114,9 @@ const wrapperClass = ref("");
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
 import { useDestination } from "@/stores/destinationInput";
-const suggestStore = useDestination();
+import { useSearchDestination } from "@/stores/searchDestinationInput";
+const destinationStore =
+  props.parent == "search" ? useSearchDestination() : useDestination();
 const hoveredSuggestion = ref(0);
 
 const { result: regionResult, search: regionSearch } = useSearch("regions");
@@ -134,17 +136,17 @@ const clickMethod = (item) => {
     searchStore.destination = item.name;
     searchStore.destinationType = item.type;
     searchStore.destinationQuery = item.name;
-    suggestStore.searchDestination(item);
+    destinationStore.searchDestination(item);
   } else {
-    suggestStore.queryString = item.name;
-    suggestStore.showSuggestions = false;
+    destinationStore.queryString = item.name;
+    destinationStore.showSuggestions = false;
   }
 };
 const emit = defineEmits(["setValue"]);
 watch(
-  () => suggestStore.queryString,
+  () => destinationStore.queryString,
   (a, b) => {
-    emit("setValue", "destination", suggestStore.queryString);
+    emit("setValue", "destination", destinationStore.queryString);
   }
 );
 </script>
