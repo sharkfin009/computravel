@@ -36,12 +36,12 @@
           type="text"
           :validationObject="vl.password"
           errorMessage="password is required"
-          placeholder="user name"
+          placeholder="password"
           @setValue="setValue"
         />
         <div v-if="!successful_login && state_dirty" class="flex items-center">
           <div class="text-center w-full">
-            Unsuccesfull login. Your login details may be incorrect. Please try
+            Unsuccessful login. Your login details may be incorrect. Please try
             again
           </div>
         </div>
@@ -62,8 +62,8 @@ import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 
 const state = reactive({
-  email: "ben.amato@gmail.com",
-  password: "qwerty1234",
+  email: "",
+  password: "",
 });
 
 const rules = {
@@ -88,6 +88,7 @@ const state_dirty = ref(false);
 console.log(state);
 const send = async () => {
   let token = await consultantStore.frontGetPortalToken();
+  console.log(token);
   successful_login.value = await consultantStore.logIn(state);
   state_dirty.value = true;
   if (successful_login.value === true) {
