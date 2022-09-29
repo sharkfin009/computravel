@@ -230,9 +230,7 @@ const rules = {
   room_requirements: { alphaNum },
   no_of_adults: { numeric },
   meal_plan: {},
-  when: {
-    alphaNum,
-  },
+  when: {},
   conference_requirements: {},
   tours: {},
   additional_info: {},

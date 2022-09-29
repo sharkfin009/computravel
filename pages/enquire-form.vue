@@ -187,9 +187,7 @@ const rules = {
   no_of_minors: { numeric },
   no_of_infants: { numeric },
 
-  when: {
-    alphaNum,
-  },
+  when: {},
 };
 const vl = useVuelidate(rules, state);
 
