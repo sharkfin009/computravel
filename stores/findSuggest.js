@@ -192,6 +192,8 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const searchStore = useStore();
       searchStore.$reset();
       window.scrollTo(0, 0);
+      const destinationInputStore = useSearchDestination();
+      destinationInputStore.queryString = "";
     },
   },
 
