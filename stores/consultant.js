@@ -70,7 +70,6 @@ export const useConsultantStore = defineStore("consultant", {
 
             return true;
           } else {
-            alert();
             return false;
           }
         });
