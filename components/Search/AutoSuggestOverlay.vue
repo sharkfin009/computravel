@@ -7,8 +7,6 @@
       suggestStore.queryString.length
     "
   >
-    <div @click="test" to="/blog-archive">test</div>
-
     <div
       class="
         rounded-3xl

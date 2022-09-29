@@ -187,7 +187,7 @@ const rules = {
   no_of_minors: { numeric },
   no_of_infants: { numeric },
 
-  when: {},
+  when: { required },
 };
 const vl = useVuelidate(rules, state);
 
