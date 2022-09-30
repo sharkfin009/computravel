@@ -311,7 +311,7 @@
               "
             />
             <PackageHeading> includes:</PackageHeading>
-            <ul class="list-disc rounded-xl bg-white px-10">
+            <ul class="list-item rounded-xl bg-white px-10">
               <li
                 v-for="(line, index) in array"
                 :key="index"
