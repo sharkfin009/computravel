@@ -68,7 +68,7 @@
               label="Email Address"
               type="text"
               :validationObject="vl.email"
-              errorMessage="email is required"
+              errorMessage="valid email address required"
               placeholder="email"
               @setValue="setValue"
             />
@@ -78,7 +78,7 @@
               label="Cell Number"
               type="text"
               :validationObject="vl.cell"
-              errorMessage="cell no is required"
+              errorMessage="valid cell no is required"
               placeholder="number"
               @setValue="setValue"
             />
@@ -168,7 +168,6 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
-    alpha,
   },
   email: {
     required,

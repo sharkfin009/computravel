@@ -62,10 +62,11 @@
               <th class="">pass On</th>
             </tr>
           </thead>
-          <tbody class="overflow-auto">
+          <tbody class="overflow-auto border-none">
             <tr
               v-for="(enquiry, index) in consultantStore.enquiries"
               :key="index"
+              class="border-none"
             >
               <td>{{ enquiry.createdAt }}</td>
               <td>{{ enquiry.full_name }}</td>
@@ -73,7 +74,7 @@
 
               <td>{{ enquiry.when }}</td>
 
-              <td class="flex justify-center">
+              <td class="w-full h-full flex border-none justify-center">
                 <NuxtLink
                   v-if="enquiry.accepted"
                   :to="`/consultant-enquiry-view/${enquiry.id}`"
