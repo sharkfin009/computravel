@@ -233,13 +233,9 @@
                 v-if="package_data.packages.data[0].attributes.video_url"
                 class="overflow-hidden rounded-xl"
               >
-                <video controls class="" width="507">
-                  <source
-                    type="video/mp4"
-                    crossorigin="anonymous"
-                    :src="package_data.packages.data[0].attributes.video_url"
-                  />
-                </video>
+                <iframe height="200" width="507">
+                  :src="package_data.packages.data[0].attributes.video_url"
+                </iframe>
               </div>
             </div>
           </div>
