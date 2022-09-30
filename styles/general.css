@@ -120,10 +120,10 @@ table {
   width: 100%;
 }
 
-ul{
+/* ul{
   list-style-type:disc;
   list-style-position: inside;
-}
+} */
 p{
   margin-bottom:10px;
 }

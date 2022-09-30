@@ -77,6 +77,7 @@ let query = `
                    title
                    image_url_lg
                    image_url_md
+                   description
                    includes
                    excludes
                    region

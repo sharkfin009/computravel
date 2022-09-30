@@ -305,24 +305,29 @@
           "
         >
           <div class="rounded-xl bg-white p-5 md:p-12">
-            <p v-for="(line, index) in descripLines" :key="index">
-              {{ line }}.
-            </p>
+            <p
+              v-html="
+                props.package_data.packages.data[0].attributes.description
+              "
+            />
             <PackageHeading> includes:</PackageHeading>
-            <div class="rounded-xl bg-white">
-              <p v-for="(line, index) in array" :key="index">
-                {{ line }}
-              </p>
-            </div>
+            <ul class="list-disc rounded-xl bg-white px-10">
+              <li
+                v-for="(line, index) in array"
+                :key="index"
+                v-html="line"
+              ></li>
+            </ul>
             <PackageHeading> excludes:</PackageHeading>
-            <div class="rounded-xl bg-white">
-              {{ props.package_data.packages.data[0].attributes.excludes }}
-            </div>
+            <div
+              class="rounded-xl bg-white"
+              v-html="props.package_data.packages.data[0].attributes.excludes"
+            ></div>
           </div>
 
           <div class="rounded-xl bg-white p-5 lg:p-12">
             <PackageHeading class="pt-0"> details:</PackageHeading>
-            <ul>
+            <ul id="details">
               <li>
                 <div>prices from:</div>
                 <div>
@@ -382,8 +387,8 @@
                 duration-300
               "
             >
-              <ul class="list-disc">
-                <li v-for="(line, index) in termsLines" :key="index">
+              <ul class="list-disc list-item">
+                <li class="" v-for="(line, index) in termsLines" :key="index">
                   {{ line }}
                 </li>
               </ul>
@@ -488,14 +493,23 @@ const browseRight = () => {
     });
   }
 };
+// text data:
+
+let descripLines = props.package_data.packages.data[0].attributes.description;
 
 let array = props.package_data.packages.data[0].attributes.includes.split("\n");
-let descripLines = array[0].split(". ");
-let termsLines =
-  props.package_data.packages.data[0].attributes.terms.split("\n");
-let description = array[0];
-array.shift();
+let includes = array[0].split(". ");
+if (
+  props.package_data.packages.data[0].attributes.supplier_ref.substring(0, 2) ==
+  "TH"
+) {
+  includes.shift();
+  array;
+}
 
+let termsLines =
+  props.package_data.packages.data[0].attributes.terms.split(". ");
+console.log(termsLines);
 const items = ["overview", "about " + props.destination_content.name];
 if (aboutCopy == "") {
   items.splice(2, 1);
@@ -522,18 +536,18 @@ const belowMd = computed(() => {
 </script>
 
 <style scoped>
-li div:nth-child(1) {
+#details > li div:nth-child(1) {
   width: 50%;
   text-align: right;
   font-weight: 800;
   padding-right: 10px;
 }
 
-li div:nth-child(2) {
+#details li div:nth-child(2) {
   text-align: left;
 }
 
-li {
+#details li {
   display: flex;
 }
 
