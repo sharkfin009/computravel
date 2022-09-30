@@ -126,6 +126,7 @@ let query = `query{
                     }
                 }
             }
+            
         }
        }
     }

@@ -91,6 +91,15 @@ let query = `
                    terms
                    slug
                    supplier_ref
+                   video_url
+                   uploaded_images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                   }
+
                   }
                 }
               }

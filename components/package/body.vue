@@ -223,8 +223,23 @@
               <div class="overflow-hidden rounded-xl">
                 <img class="w-full object-cover h-full" :src="pic[1]" />
               </div>
-              <div class="overflow-hidden rounded-xl">
+              <div
+                v-if="!package_data.packages.data[0].attributes.video_url"
+                class="overflow-hidden rounded-xl"
+              >
                 <img class="w-full object-cover h-full" :src="pic[2]" />
+              </div>
+              <div
+                v-if="package_data.packages.data[0].attributes.video_url"
+                class="overflow-hidden rounded-xl"
+              >
+                <video controls class="" width="507">
+                  <source
+                    type="video/mp4"
+                    crossorigin="anonymous"
+                    :src="package_data.packages.data[0].attributes.video_url"
+                  />
+                </video>
               </div>
             </div>
           </div>
@@ -428,9 +443,15 @@ onMounted(() => {
   // })
 });
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
-let images = props.destination_content.images.length
-  ? props.destination_content.images
-  : [];
+console.log(props.package_data);
+let images = [
+  ...props.destination_content.images,
+  ...props.package_data.packages.data[0].attributes.uploaded_images.data.map(
+    (item) => item.attributes.url
+  ),
+];
+console.log(images);
+
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
   return array;
