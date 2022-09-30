@@ -233,8 +233,11 @@
                 v-if="package_data.packages.data[0].attributes.video_url"
                 class="overflow-hidden rounded-xl"
               >
-                <iframe height="200" width="507">
+                <iframe
+                  height="200"
+                  width="507"
                   :src="package_data.packages.data[0].attributes.video_url"
+                >
                 </iframe>
               </div>
             </div>
