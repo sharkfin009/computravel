@@ -49,10 +49,32 @@
             "
           >
             <div
+              v-if="package_data.packages.data[0].attributes.video_url"
+              :class="{ '!opacity-100': 1 == mobilePicPointer }"
+              class="
+                overflow-hidden
+                rounded-xl
+                flex flex-col
+                w-full
+                h-full
+                bg-red-300
+              "
+            >
+              <iframe
+                class="grow"
+                :src="package_data.packages.data[0].attributes.video_url"
+                title="Sugar Beach Golf & Spa Resort, Mauritius - Overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div
               v-for="(image, index) of images"
               :key="index"
               class="absolute inset-0 transition-opacity duration-300 opacity-0"
-              :class="{ '!opacity-100': index == mobilePicPointer }"
+              :class="{
+                '!opacity-100': index + videoCheck == mobilePicPointer,
+              }"
             >
               <img class="w-full h-full object-cover" :src="image" />
             </div>
@@ -231,24 +253,19 @@
               </div>
               <div
                 v-if="package_data.packages.data[0].attributes.video_url"
-                class="overflow-hidden rounded-xl"
+                class="
+                  overflow-hidden
+                  rounded-xl
+                  flex flex-col
+                  w-full
+                  h-full
+                  bg-red-300
+                "
               >
                 <iframe
-                  height="200"
-                  width="507"
+                  class="grow"
                   :src="package_data.packages.data[0].attributes.video_url"
-                  referrerpolicy="strict-origin"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                >
-                  title="YouTube video player" frameborder="0" >
-                </iframe>
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/zdmQQQUZtLI"
-                  title="YouTube video player"
-                  frameborder="0"
+                  title="Sugar Beach Golf & Spa Resort, Mauritius - Overview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
@@ -564,6 +581,8 @@ function removePTag(string) {
   }
   return string;
 }
+let videoCheck = 0;
+if (props.package_data.packages.data[0].attributes.video_url) videoCheck = 1;
 
 //  template methods:
 const activeTab = ref(0);
