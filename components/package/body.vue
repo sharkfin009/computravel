@@ -51,14 +51,7 @@
             <div
               v-if="package_data.packages.data[0].attributes.video_url"
               :class="{ '!opacity-100': 1 == mobilePicPointer }"
-              class="
-                overflow-hidden
-                rounded-xl
-                flex flex-col
-                w-full
-                h-full
-                bg-red-300
-              "
+              class="overflow-hidden rounded-xl flex flex-col w-full h-full"
             >
               <iframe
                 class="grow"
@@ -253,14 +246,7 @@
               </div>
               <div
                 v-if="package_data.packages.data[0].attributes.video_url"
-                class="
-                  overflow-hidden
-                  rounded-xl
-                  flex flex-col
-                  w-full
-                  h-full
-                  bg-red-300
-                "
+                class="overflow-hidden rounded-xl flex flex-col w-full h-full"
               >
                 <iframe
                   class="grow"
