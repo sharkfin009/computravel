@@ -311,7 +311,8 @@
               "
             />
             <PackageHeading> includes:</PackageHeading>
-            <ul class="list-disc rounded-xl bg-white px-10">
+
+            <ul v-if="supplier == 'TH'" class="rounded-xl px-5">
               <li
                 v-for="(line, index) in includes"
                 :key="index"
@@ -319,10 +320,20 @@
                 class=""
               ></li>
             </ul>
+            <div v-if="supplier != 'TH'" v-html="includes" class="px-5" />
             <PackageHeading> excludes:</PackageHeading>
+            <ul v-if="supplier == 'TH'" class="rounded-xl px-5">
+              <li
+                v-for="(line, index) in excludes"
+                :key="index"
+                v-html="line"
+                class=""
+              ></li>
+            </ul>
             <div
-              class="rounded-xl bg-white"
-              v-html="props.package_data.packages.data[0].attributes.excludes"
+              v-if="supplier != 'TH'"
+              class="rounded-xl bg-white px-5"
+              v-html="excludes"
             ></div>
           </div>
 
@@ -388,11 +399,20 @@
                 duration-300
               "
             >
-              <ul class="list-disc list-item">
-                <li class="" v-for="(line, index) in termsLines" :key="index">
+              <ul v-if="supplier == 'TH'" class="">
+                <li
+                  class=""
+                  v-for="(line, index) in termsListItems"
+                  :key="index"
+                >
                   {{ line }}
                 </li>
               </ul>
+              <div
+                v-if="supplier !== 'TH'"
+                v-html="package_data.packages.data[0].attributes.terms"
+                class="list-disc"
+              />
             </div>
           </div>
         </div>
@@ -448,14 +468,12 @@ onMounted(() => {
   // })
 });
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
-console.log(props.package_data);
 let images = [
   ...props.destination_content.images,
   ...props.package_data.packages.data[0].attributes.uploaded_images.data.map(
     (item) => item.attributes.url
   ),
 ];
-console.log(images);
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -497,25 +515,42 @@ const browseRight = () => {
 // text data:
 
 let descripLines = props.package_data.packages.data[0].attributes.description;
+let includes = props.package_data.packages.data[0].attributes.includes;
+let excludes = props.package_data.packages.data[0].attributes.excludes;
+// includes
 
-let array = props.package_data.packages.data[0].attributes.includes.split("\n");
-let includes = array[0].split(". ");
-let terms = props.package_data.packages.data[0].attributes.terms;
+let supplier = "";
+// Thompsons API package:
 if (
   props.package_data.packages.data[0].attributes.supplier_ref.substring(0, 2) ==
   "TH"
 ) {
-  includes.shift();
-  terms.splice(0, 3);
-  console.log(terms);
+  supplier = "TH";
+  includes = includes.split("\n");
+  includes.splice(0, 1);
+  includes = includes.filter((item) => item !== "");
+  excludes = excludes.split(". ");
+  excludes = excludes.filter((item) => item !== "");
 }
-console.log(includes);
+let termsListItems =
+  props.package_data.packages.data[0].attributes.terms.split("\n");
+// terms
 
 const items = ["overview", "about " + props.destination_content.name];
 if (aboutCopy == "") {
   items.splice(2, 1);
 }
 
+function removePTag(string) {
+  if (string.endsWith("</p>")) {
+    string = string.replace("<p>", "");
+    string = string.replace("</p>", "");
+    console.log(string);
+  }
+  return string;
+}
+
+//  template methods:
 const activeTab = ref(0);
 const setActiveTab = (tab) => {
   activeTab.value = tab;

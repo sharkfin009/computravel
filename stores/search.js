@@ -110,6 +110,8 @@ export const useStore = defineStore("search", {
                    category
                   }
                 }
+console.log(includes);
+
               }}
             `;
       $graphql(query)

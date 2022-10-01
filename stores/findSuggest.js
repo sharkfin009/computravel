@@ -16,6 +16,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
   }),
   actions: {
     manageKeyUp(e) {
+      window.scrollTo(0, 0);
       const searchStore = useStore();
       // escape:
       if (e.key === "Escape") {

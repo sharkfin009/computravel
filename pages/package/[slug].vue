@@ -153,7 +153,6 @@ const checkCountry = async (dest) => {
     },
   })
     .then((result) => {
-      console.log(result);
       store.location.country = result.hits[0];
       responseCount.value++;
     })
