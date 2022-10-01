@@ -311,11 +311,12 @@
               "
             />
             <PackageHeading> includes:</PackageHeading>
-            <ul class="list-item rounded-xl bg-white px-10">
+            <ul class="list-disc rounded-xl bg-white px-10">
               <li
-                v-for="(line, index) in array"
+                v-for="(line, index) in includes"
                 :key="index"
                 v-html="line"
+                class=""
               ></li>
             </ul>
             <PackageHeading> excludes:</PackageHeading>
@@ -499,17 +500,17 @@ let descripLines = props.package_data.packages.data[0].attributes.description;
 
 let array = props.package_data.packages.data[0].attributes.includes.split("\n");
 let includes = array[0].split(". ");
+let terms = props.package_data.packages.data[0].attributes.terms;
 if (
   props.package_data.packages.data[0].attributes.supplier_ref.substring(0, 2) ==
   "TH"
 ) {
   includes.shift();
-  array;
+  terms.splice(0, 3);
+  console.log(terms);
 }
+console.log(includes);
 
-let termsLines =
-  props.package_data.packages.data[0].attributes.terms.split(". ");
-console.log(termsLines);
 const items = ["overview", "about " + props.destination_content.name];
 if (aboutCopy == "") {
   items.splice(2, 1);

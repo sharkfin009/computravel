@@ -98,7 +98,7 @@ const { data: favourites, error } = useGraph(`
                       description
                       terms
                       supplier_ref
-                      supplier
+                      
                      image_url_md 
                       valid_to
                     }

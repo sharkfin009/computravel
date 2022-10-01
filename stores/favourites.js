@@ -36,7 +36,7 @@ export const useStore = defineStore("favourites", {
                       description
                       terms
                       supplier_ref
-                      supplier
+                      
                       images
                       valid_to
                     }

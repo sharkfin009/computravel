@@ -103,7 +103,7 @@ export const useStore = defineStore("search", {
                    price
                    valid_to
                    supplier_ref
-                   supplier
+                   
                    image_url_md
                    star_rating
                    from
