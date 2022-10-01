@@ -237,9 +237,21 @@
                   height="200"
                   width="507"
                   :src="package_data.packages.data[0].attributes.video_url"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerpolicy="strict-origin"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
                 >
+                  title="YouTube video player" frameborder="0" >
                 </iframe>
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/zdmQQQUZtLI"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </div>
             </div>
           </div>
