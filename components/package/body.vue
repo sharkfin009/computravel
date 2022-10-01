@@ -481,9 +481,11 @@ function shuffle(array) {
 }
 
 images = shuffle(images);
-images.unshift(
-  "https://" + props.package_data.packages.data[0].attributes.image_url_lg
-);
+if (props.package_data.packages.data[0].attributes.image_url_lg) {
+  images.unshift(
+    "https://" + props.package_data.packages.data[0].attributes.image_url_lg
+  );
+}
 let threeImagesArray = [];
 for (let i = 0; i < images.length - (images.length % 3); i++) {
   if (i % 3 == 0) {
