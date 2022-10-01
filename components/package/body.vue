@@ -237,7 +237,7 @@
                   height="200"
                   width="507"
                   :src="package_data.packages.data[0].attributes.video_url"
-                  referrerpolicy="origin"
+                  referrerpolicy="no-referrer-when-downgrade"
                 >
                 </iframe>
               </div>
