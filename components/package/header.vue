@@ -111,7 +111,7 @@
             </div>
             <i class="text-2xl md:text-3xl fa-regular fa-heart" />
             <div class="text-xs order-none block md:hidden md:order-3">
-              favorites
+              favourites
             </div>
 
             <!-- md up -->
