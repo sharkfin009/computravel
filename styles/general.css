@@ -121,7 +121,7 @@ table {
 }
 
 ul{
-  list-style-type:disc!important;
+  list-style-type:disc;
   /* list-style-position: inside; */
 }
 p{

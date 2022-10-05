@@ -86,7 +86,6 @@ const { data: favourites, error } = useGraph(`
                       slug
                       title
                      region 
-                      starts
                       destination
                       price
                       includes

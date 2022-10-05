@@ -535,6 +535,8 @@ const browseRight = () => {
 let descripLines = props.package_data.packages.data[0].attributes.description;
 let includes = props.package_data.packages.data[0].attributes.includes;
 let excludes = props.package_data.packages.data[0].attributes.excludes;
+let terms = props.package_data.packages.data[0].attributes.excludes;
+let termsListItems;
 // includes
 
 let supplier = "";
@@ -549,9 +551,10 @@ if (
   includes = includes.filter((item) => item !== "");
   excludes = excludes.split(". ");
   excludes = excludes.filter((item) => item !== "");
+  termsListItems = props.package_data.packages.data[0].attributes.terms
+    .split("\n")
+    .filter((item) => item.length > 1);
 }
-let termsListItems =
-  props.package_data.packages.data[0].attributes.terms.split("\n");
 // terms
 
 const items = ["overview", "about " + props.destination_content.name];
