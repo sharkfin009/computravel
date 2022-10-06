@@ -114,15 +114,9 @@
           Join us on social media
         </div>
         <div class="flex justify-center gap-20 mb-10">
-          <IconFacebook
-            class="hover:scale-150 transition-transform ease-out duration-500"
-          />
-          <IconInstagram
-            class="hover:scale-150 transition-transform ease-out duration-500"
-          />
-          <IconLinkedin
-            class="hover:scale-150 transition-transform ease-out duration-500"
-          />
+          <i class="fa-brands fa-facebook fa-2x" @click="share('facebook')" />
+          <i class="fa-brands fa-twitter fa-2x" @click="share('twitter')" />
+          <i class="fa-brands fa-whatsapp fa-2x" @click="share('whatsapp')" />
         </div>
       </div>
     </div>
@@ -149,4 +143,7 @@ const scrollRight = () => {
     pointer.value++;
   }
 };
+import { useSocialSharing } from "@/composables/socialSharing";
+
+const { share } = useSocialSharing();
 </script>

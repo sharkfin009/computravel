@@ -61,15 +61,9 @@
             </NuxtLink>
           </div>
           <div class="flex justify-start gap-5 items-center">
-            <IconFacebook
-              class="hover:scale-150 transition-transform ease-out duration-500"
-            />
-            <IconInstagram
-              class="hover:scale-150 transition-transform ease-out duration-500"
-            />
-            <IconLinkedin
-              class="hover:scale-150 transition-transform ease-out duration-500"
-            />
+            <i class="fa-brands fa-facebook fa-3x" @click="share('facebook')" />
+            <i class="fa-brands fa-twitter fa-3x" @click="share('twitter')" />
+            <i class="fa-brands fa-whatsapp fa-3x" @click="share('whatsapp')" />
           </div>
         </div>
       </div>
@@ -113,4 +107,8 @@
 <script setup>
 import { useenquiry } from "@/stores/enquiry";
 const enquiry = useenquiry();
+
+import { useSocialSharing } from "@/composables/socialSharing";
+
+const { share } = useSocialSharing();
 </script>
