@@ -88,10 +88,6 @@ const login = async function () {
     adminUserStore.login(state);
   }
 };
-const test = ref(null);
-onMounted(() => {
-  console.log(test.value.outerHTML);
-});
 </script>
 
 <style>

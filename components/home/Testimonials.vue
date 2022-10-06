@@ -114,9 +114,18 @@
           Join us on social media
         </div>
         <div class="flex justify-center gap-20 mb-10">
-          <i class="fa-brands fa-facebook fa-2x" @click="share('facebook')" />
-          <i class="fa-brands fa-twitter fa-2x" @click="share('twitter')" />
-          <i class="fa-brands fa-whatsapp fa-2x" @click="share('whatsapp')" />
+          <i
+            class="fa-brands fa-facebook fa-2x cursor-pointer"
+            @click="share('facebook')"
+          />
+          <i
+            class="fa-brands fa-twitter fa-2x cursor-pointer"
+            @click="share('twitter')"
+          />
+          <i
+            class="fa-brands fa-whatsapp fa-2x cursor-pointer"
+            @click="share('whatsapp')"
+          />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center email-bg rounded pt-10">
+  <div class="flex justify-center email-bg rounded pt-10" ref="email">
     <div v-if="newsletter" class="max-w-[750px] flex flex-col items-center">
       <div
         class="
@@ -61,14 +61,26 @@
           </p>
           <CompuButton class="bg-lime-500">Enquire Now</CompuButton>
           <div class="flex justify-center gap-20 mb-10">
-            <i class="fa-brands fa-facebook fa-3x" @click="share('facebook')" />
-            <i class="fa-brands fa-twitter fa-3x" @click="share('twitter')" />
-            <i class="fa-brands fa-whatsapp fa-3x" @click="share('whatsapp')" />
+            <i
+              class="fa-brands fa-facebook fa-3x cursor-pointer"
+              @click="share('facebook')"
+            />
+            <i
+              class="fa-brands fa-twitter fa-3x cursor-pointer"
+              @click="share('twitter')"
+            />
+            <i
+              class="fa-brands fa-whatsapp fa-3x cursor-pointer"
+              @click="share('whatsapp')"
+            />
           </div>
         </div>
         <div class="p-10" v-html="newsletter.Small_Print" />
         <div class="flex justify-center items-center">
-          <img width="400" src="/asata-logo-full-500-sq-transp.png" />
+          <img
+            width="400"
+            src="https://res.cloudinary.com/sharkfin/image/upload/v1665051291/asata_logo_full_500_sq_transp_c89f6e45bf.png"
+          />
         </div>
         <p class="text-center">
           We are accredited members of ASATA whose pivotal role is to ensure and
@@ -91,9 +103,11 @@
 definePageMeta({
   layout: "home",
 });
+const config = useRuntimeConfig();
 import { useAdminUserStore } from "@/stores/adminUser";
 const adminUserStore = useAdminUserStore();
 let jwt = "";
+
 onMounted(async () => {
   if (
     document.cookie
@@ -105,10 +119,24 @@ onMounted(async () => {
     console.log(jwt);
   }
 
-  $graphql(query, jwt).then((response) => {
-    newsletter.value = response.data.newsletters.data[0].attributes;
-  });
+  $graphql(query, jwt)
+    .then((response) => {
+      newsletter.value = response.data.newsletters.data[0].attributes;
+    })
+    .then(() => {
+      let mailTemplate = document.createElement("tagName");
+      mailTemplate.innerHTML = email.value.outerHTML;
+      //   append tailwind CDN script tag
+      var tailwindCDN = document.createElement("script");
+      tailwindCDN.src = "https://cdn.tailwindcss.com";
+      mailTemplate.appendChild(tailwindCDN);
+      let generalStyle = document.createElement("style");
+      generalStyle.appendChild(document.createTextNode(general));
+      mailTemplate.appendChild(generalStyle);
+      console.log(mailTemplate.outerHTML);
+    });
 });
+
 const newsletter = ref(null);
 let query = `
 query{
@@ -169,4 +197,138 @@ const { $graphql } = useNuxtApp();
 import { useSocialSharing } from "@/composables/socialSharing";
 
 const { share } = useSocialSharing();
+const email = ref(null);
+let general = `
+.fade-in {
+  animation: 1s fade-in ease-out
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
+
+}
+  .unroll {
+    animation: 0.2s unroll ease-out
+  }
+  
+  @keyframes unroll {
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+  
+ html{
+    font-size:14px;
+  }
+
+ .font-titillium { 
+ font-family: 'Titillium Web', sans-serif;
+ }
+
+
+ .font-open-sans{ 
+  font-family: 'Open Sans', sans-serif;
+ }
+
+
+
+  .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.svg-shadow {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, 0.537));
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, 0.505));
+  /* Similar syntax to box-shadow */
+}
+
+.input-outline {
+  outline: 2px #96969c4d solid;
+}
+
+em {
+  font-weight: 600;
+  font-style: normal;
+  color: rgb(121, 121, 121) !important;
+}
+
+.hide-scroll {
+  padding-right: 50px;
+  box-sizing: content-box;
+  /* So the width will be 100% + 25px */
+}
+
+*{
+  -webkit-transform: translate2d(0, 0);
+-moz-transform: translate2d(0, 0);
+-ms-transform: translate2d(0, 0);
+-o-transform: translate2d(0, 0);
+transform: translate2d(0, 0);
+}
+
+.scroll{
+  -webkit-overflow-scrolling: touch; /* adds momentum scrolling for iOS*/ 
+
+}
+.rounded-lala{
+  border-radius: 50px
+}
+.rounded-lala-b{
+border-radius: 0px 0px 50px 50px;
+}
+.rounded-lala-t{
+  border-radius: 50px 50px 0px 0px;
+}
+
+/* table styles */
+th,
+td {
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+}
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: #E2EBE8;
+}
+th {
+  position: sticky;
+  top: 0;
+  background-color: rgb(193, 218, 193);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ul{
+  list-style-type:disc;
+  /* list-style-position: inside; */
+}
+p{
+  margin-bottom:10px;
+}
+.email-bg{
+  background-color: #EBF1EF;
+}`;
 </script>
