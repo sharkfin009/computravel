@@ -100,6 +100,7 @@ onMounted(async () => {
       .split(";")
       .some((item) => item.trim().startsWith("computravel_admin="))
   ) {
+    console.log(document.cookie);
     jwt = document.cookie.slice(18);
     console.log(jwt);
   }
