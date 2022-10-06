@@ -91,6 +91,23 @@
 definePageMeta({
   layout: "home",
 });
+import { useAdminUserStore } from "@/stores/adminUser";
+const adminUserStore = useAdminUserStore();
+let jwt = "";
+onMounted(async () => {
+  if (
+    document.cookie
+      .split(";")
+      .some((item) => item.trim().startsWith("computravel_admin="))
+  ) {
+    jwt = document.cookie.slice(18);
+    console.log(jwt);
+  }
+
+  $graphql(query, jwt).then((response) => {
+    newsletter.value = response.data.newsletters.data[0].attributes;
+  });
+});
 const newsletter = ref(null);
 let query = `
 query{
@@ -109,7 +126,6 @@ query{
                 }
                 Subtitle
                 Body
-                Packages_Title
                 packages{
                     data{
                         attributes{
@@ -140,8 +156,6 @@ query{
                         }
                     }
                 }
-                CTA_Title
-                CTA_Body
                 Small_Print
 
             }
@@ -150,9 +164,7 @@ query{
 }
 `;
 const { $graphql } = useNuxtApp();
-$graphql(query).then((response) => {
-  newsletter.value = response.data.newsletters.data[0].attributes;
-});
+
 import { useSocialSharing } from "@/composables/socialSharing";
 
 const { share } = useSocialSharing();

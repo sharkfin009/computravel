@@ -31,7 +31,7 @@ export const useAdminUserStore = defineStore("adminUser", {
             this.email = json.user.email;
             this.logged_in = true;
           }
-          document.cookie = `trureview_access=${json.jwt}; max-age=${
+          document.cookie = `computravel_admin=${json.jwt}; max-age=${
             60 * 60 * 24 * 365000
           }; Path=/`;
           navigateTo({
