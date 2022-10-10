@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center email-bg rounded pt-10" ref="email">
+  <div class="flex justify-center email-bg rounded pt-10" ref="render">
     <div v-if="newsletter" class="max-w-[750px] flex flex-col items-center">
       <div
         class="
@@ -96,6 +96,9 @@
           <div>Tel: 021 762-0511</div>
         </div>
       </div>
+      <CompuButton @click="send" class="bg-lime-500 my-10">
+        {{ buttonContent }}
+      </CompuButton>
     </div>
   </div>
 </template>
@@ -107,7 +110,8 @@ const config = useRuntimeConfig();
 import { useAdminUserStore } from "@/stores/adminUser";
 const adminUserStore = useAdminUserStore();
 let jwt = "";
-
+let email = ref({});
+let render = ref(null);
 onMounted(async () => {
   if (
     document.cookie
@@ -124,8 +128,8 @@ onMounted(async () => {
       newsletter.value = response.data.newsletters.data[0].attributes;
     })
     .then(() => {
-      let mailTemplate = document.createElement("tagName");
-      mailTemplate.innerHTML = email.value.outerHTML;
+      let mailTemplate = document.createElement("div");
+      mailTemplate.innerHTML = render.value.outerHTML;
       //   append tailwind CDN script tag
       var tailwindCDN = document.createElement("script");
       tailwindCDN.src = "https://cdn.tailwindcss.com";
@@ -133,7 +137,8 @@ onMounted(async () => {
       let generalStyle = document.createElement("style");
       generalStyle.appendChild(document.createTextNode(general));
       mailTemplate.appendChild(generalStyle);
-      console.log(mailTemplate.outerHTML);
+      email.value = mailTemplate;
+      console.log(email.value.outerHTML);
     });
 });
 
@@ -197,7 +202,26 @@ const { $graphql } = useNuxtApp();
 import { useSocialSharing } from "@/composables/socialSharing";
 
 const { share } = useSocialSharing();
-const email = ref(null);
+const buttonContent = ref("Send Email");
+const send = () => {
+  fetch(config.strapiUrl + "/send-newsletter", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + jwt,
+    },
+    body: JSON.stringify({
+      data: email.value.outerHTML,
+    }),
+  })
+    .then((response) => (buttonContent.value = "Email Sent"))
+    .catch(
+      (error) =>
+        (buttonContent.value =
+          "Sorry there was a problem with sending the email. Try pressing again... else 'Better call Ben';)")
+    );
+};
+
 let general = `
 .fade-in {
   animation: 1s fade-in ease-out
