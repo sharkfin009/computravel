@@ -61,9 +61,15 @@
             </NuxtLink>
           </div>
           <div class="flex justify-start gap-5 items-center">
-            <i class="fa-brands fa-facebook fa-2x" @click="share('facebook')" />
-            <i class="fa-brands fa-twitter fa-3x" @click="share('twitter')" />
-            <i class="fa-brands fa-whatsapp fa-3x" @click="share('whatsapp')" />
+            <a href="https://www.facebook.com/Computravel/">
+              <i class="fa-brands fa-facebook fa-2x cursor-pointer"
+            /></a>
+            <a href="https://twitter.com/computravel">
+              <i class="fa-brands fa-twitter fa-2x cursor-pointer" />
+            </a>
+            <a href="https://www.instagram.com/computravel/?hl=en">
+              <i class="fa-brands fa-instagram fa-2x cursor-pointer" />
+            </a>
           </div>
         </div>
       </div>
