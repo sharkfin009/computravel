@@ -82,7 +82,13 @@ const { data, error } = useGraph(`query{
         supplier_ref
         valid_to
         price
-        
+       uploaded_images{
+        data{
+          attributes{
+            url
+          }
+        }
+       } 
         image_url_md
         star_rating
         slug

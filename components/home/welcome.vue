@@ -71,7 +71,7 @@
           >
             <SearchBar class="sm:w-[400px]" />
             <div class="relative w-full mt-5 bg-green-400">
-              <SearchAutoSuggestOverlay />
+              <SearchAutoSuggestOverlay parent="welcome" />
             </div>
           </div>
         </div>

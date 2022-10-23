@@ -13,7 +13,7 @@ export const useStore = defineStore("favourites", {
     fetchPackages() {
       const { $graphql } = useNuxtApp();
 
-      $graphql`
+      $graphql(`
         query {
           favourites {
             data {
@@ -36,7 +36,13 @@ export const useStore = defineStore("favourites", {
                       description
                       terms
                       supplier_ref
-                      
+                      uploaded_images{
+                        data{
+                          attributes{
+                            url
+                          }
+                        }
+                      } 
                       images
                       valid_to
                     }

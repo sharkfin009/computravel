@@ -15,7 +15,11 @@
             shadow
           "
           :style="{
-            backgroundImage: `url(https://${props.package.image_url_md})`,
+            backgroundImage: `url(${
+              props.package.image_url_md
+                ? props.package.image_url_md
+                : props.package.uploaded_images.data[0].attributes.url
+            })`,
             backgroundSize: 'cover',
           }"
         >

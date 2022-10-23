@@ -7,7 +7,10 @@
       suggestStore.queryString.length
     "
   >
-    <div class="w-full flex justify-center items-start bg-slate-50 pb-10">
+    <div
+      class="flex justify-center items-start pb-10"
+      :class="{ 'bg-slate-50': parent != 'welcome' }"
+    >
       <div
         class="
           rounded-3xl

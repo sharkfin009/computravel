@@ -36,10 +36,13 @@
           </div>
 
           <div>
-            <a class="cursor-pointer" href="mailto:info@computravel.co.za"
+            <a to="" class="cursor-pointer" href="mailto:info@computravel.co.za"
               >info@computravel.co.za</a
             ><br />
-            <a class="cursor-pointer" href="mailto:enquiry@computravel.co.za"
+            <a
+              to=""
+              class="cursor-pointer"
+              href="mailto:enquiry@computravel.co.za"
               >enquiry@computravel.co.za</a
             >
           </div>
@@ -79,11 +82,21 @@
             <h4 class="font-bold mb-5">legal</h4>
           </div>
           <ul class="list-none text-base">
-            <li>sacoronavirus.co.za</li>
-            <li>Terms And Conditions</li>
-            <li>Disclaimer</li>
-            <li>Fraud Disclaimer Policy</li>
-            <li>Section 51 PAIA Manual</li>
+            <NuxtLink to="/covid-19">
+              <li>sacoronavirus.co.za</li>
+            </NuxtLink>
+            <NuxtLink to="/terms-and-conditions">
+              <li>Terms And Conditions</li>
+            </NuxtLink>
+            <NuxtLink to="/disclaimer">
+              <li>Disclaimer</li>
+            </NuxtLink>
+            <NuxtLink to="/fraud-prevention-policy">
+              <li>Fraud Prevention Policy</li>
+            </NuxtLink>
+            <!-- <NuxtLink to="section-51-PAIA-manual">
+              <li>Section 51 PAIA Manual</li>
+            </NuxtLink> -->
           </ul>
         </div>
         <div class="">
@@ -91,11 +104,21 @@
             <h4 class="font-bold mb-5">data, privacy and more</h4>
           </div>
           <ul class="list-none text-base">
-            <li>Privacy Policy</li>
-            <li>Cookie Policy</li>
-            <li>Careers</li>
-            <li>FAQs</li>
-            <li>Travel Tips</li>
+            <NuxtLink to="/privacy-policy">
+              <li>Privacy Policy</li>
+            </NuxtLink>
+            <NuxtLink to="cookie-policy">
+              <li>Cookie Policy</li>
+            </NuxtLink>
+            <!-- <NuxtLink to="careers">
+              <li>Careers</li>
+            </NuxtLink> -->
+            <NuxtLink to="faqs">
+              <li>FAQs</li>
+            </NuxtLink>
+            <NuxtLink to="/travel-tips">
+              <li>Travel Tips</li>
+            </NuxtLink>
           </ul>
         </div>
         <div class=""></div>

@@ -83,6 +83,10 @@ let items = [
     url: "/travel-tips",
   },
   {
+    name: "Frequently Asked Questions (FAQs)",
+    url: "/FAQs",
+  },
+  {
     name: "COVID-19",
     url: "/covid-19",
   },

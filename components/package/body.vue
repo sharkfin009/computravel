@@ -391,7 +391,7 @@
               </li>
             </ul>
             <div class="flex flex-col items-center mt-5">
-              <PackageHeading> need visas?:</PackageHeading>
+              <PackageHeading> need visas?</PackageHeading>
               <div class="grid grid-cols-[3fr,1fr,3fr,1fr] grid-rows-2 gap-2">
                 <span class="text-end">South Africa:</span>
                 <div>No</div>

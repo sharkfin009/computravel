@@ -97,7 +97,13 @@ const { data: favourites, error } = useGraph(`
                       description
                       terms
                       supplier_ref
-                      
+                     uploaded_images{
+                      data{
+                        attributes{
+                          url
+                        }
+                      }
+                     } 
                      image_url_md 
                       valid_to
                     }
