@@ -89,7 +89,13 @@ const { data, error } = useGraph(`query{
           }
         }
        } 
-        image_url_md
+       images{
+        data{
+          attributes{
+            url
+          }
+        }
+       } 
         star_rating
         slug
       }

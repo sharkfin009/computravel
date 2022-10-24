@@ -18,8 +18,20 @@ export const useRandomPackages = () => {
                    price
                    valid_to
                    supplier_ref
-                   
-                   image_url_md
+                   uploaded_images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                   } 
+                   images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                   }  
                    star_rating
                    from
                   }

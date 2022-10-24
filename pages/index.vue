@@ -3,11 +3,11 @@
     <HomeWelcome />
     <div :class="{ '': suggestStore.showSuggestions }">
       <HomeFavouritePackages />
-      <!-- <HomeDestinations />
+      <HomeDestinations />
       <HomeFlSpecials />
       <HomeTestimonials />
       <HomeFiveReasons />
-      <Footer /> -->
+      <Footer />
     </div>
     <div class="absolute inset-0 pointer-events-none">
       <Header class="pointer-events-auto" />

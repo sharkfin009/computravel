@@ -17,7 +17,7 @@
       <Meta
         property="og:image"
         :content="
-          'https://' + package_data.packages.data[0].attributes.image_url_lg
+          package_data.packages.data[0].attributes.images.data[0].attributes.url
         "
       />
       <!-- twitter: -->
@@ -27,7 +27,7 @@
       <Meta
         name="twitter:image"
         :content="
-          'https://' + package_data.packages.data[0].attributes.image_url_lg
+          package_data.packages.data[0].attributes.images.data[0].attributes.url
         "
       />
     </Head>
@@ -75,8 +75,7 @@ let query = `
                   id
                   attributes{
                    title
-                   image_url_lg
-                   image_url_md
+                 
                    description
                    includes
                    excludes
@@ -94,6 +93,13 @@ let query = `
                    supplier_ref
                    video_url
                    uploaded_images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                    }
+                   images{
                     data{
                       attributes{
                         url

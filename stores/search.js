@@ -67,7 +67,20 @@ export const useStore = defineStore("search", {
                    destination
                    price
                    valid_to
-                   image_url_md
+                   uploaded_images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                   } 
+                   images{
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                   } 
                    star_rating
                    category
                    from
@@ -89,30 +102,39 @@ export const useStore = defineStore("search", {
       const { $graphql } = useNuxtApp();
       this.loadingState = true;
       let query = `
-            query{packages(
-       
-                pagination:{page:1,pageSize:30}
-                ){
-                data{
-                    attributes{
-                      title
-                      slug
-                   description
-                   region
-                   destination
-                   price
-                   valid_to
-                   supplier_ref
-                   
-                   image_url_md
-                   star_rating
-                   from
-                   category
-                  }
+      query{packages(
+      pagination:{page:1,pageSize:32}
+      ){
+          data{
+            attributes{
+                title
+                slug
+                supplier_ref
+             description
+             region
+             destination
+             price
+             valid_to
+             uploaded_images{
+              data{
+                attributes{
+                  url
                 }
-console.log(includes);
-
-              }}
+              }
+             } 
+             images{
+              data{
+                attributes{
+                  url
+                }
+              }
+             } 
+             star_rating
+             category
+             from
+            }
+          }
+        }}
             `;
       $graphql(query)
         .then((response) => {

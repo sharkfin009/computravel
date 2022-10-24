@@ -15,11 +15,7 @@
             shadow
           "
           :style="{
-            backgroundImage: `url(${
-              props.package.image_url_md
-                ? props.package.image_url_md
-                : props.package.uploaded_images.data[0].attributes.url
-            })`,
+            backgroundImage: `url(${images[0]})`,
             backgroundSize: 'cover',
           }"
         >
@@ -135,6 +131,11 @@ const props = defineProps({
 });
 
 import { useStore } from "@/stores/search";
+
+let images = [
+  ...props.package.images.data.map((item) => item.attributes.url),
+  ...props.package.uploaded_images.data.map((item) => item.attributes.url),
+];
 
 const slugify = (str) =>
   str

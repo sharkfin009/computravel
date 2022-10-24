@@ -486,22 +486,27 @@ onMounted(() => {
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 let images = [
   ...props.destination_content.images,
+  ...props.package_data.packages.data[0].attributes.images.data.map(
+    (item) => item.attributes.url
+  ),
   ...props.package_data.packages.data[0].attributes.uploaded_images.data.map(
     (item) => item.attributes.url
   ),
 ];
+
+console.log(props.package_data);
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
   return array;
 }
 
-images = shuffle(images);
-if (props.package_data.packages.data[0].attributes.image_url_lg) {
-  images.unshift(
-    "https://" + props.package_data.packages.data[0].attributes.image_url_lg
-  );
-}
+// images = shuffle(images);
+// if (props.package_data.packages.data[0].attributes.image_url_lg) {
+//   images.unshift(
+//     "https://" + props.package_data.packages.data[0].attributes.image_url_lg
+//   );
+// }
 let threeImagesArray = [];
 for (let i = 0; i < images.length - (images.length % 3); i++) {
   if (i % 3 == 0) {
