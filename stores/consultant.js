@@ -21,7 +21,7 @@ export const useConsultantStore = defineStore("consultant", {
         },
         method: "POST",
         body: JSON.stringify({
-          identifier: "ben.amato@gmail.com",
+          identifier: "front",
           password: config.strapiUser,
         }),
       })
