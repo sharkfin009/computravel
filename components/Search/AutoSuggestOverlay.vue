@@ -136,9 +136,7 @@
                 </div>
               </div>
               <div class="flex md:grid md:grid-cols-[auto,100px]">
-                <div class="font-light">
-                  {{ suggestion.description }}
-                </div>
+                <div class="font-light" v-html="suggestion.description"></div>
                 <div />
               </div>
             </div>
