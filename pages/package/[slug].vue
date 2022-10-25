@@ -1,36 +1,6 @@
 <template>
   <div class="">
-    <Head v-if="package_data">
-      <Meta
-        property="og:description"
-        :content="
-          'R ' +
-          package_data.packages.data[0].attributes.price +
-          ' per person sharing'
-        "
-      />
-
-      <Meta
-        property="og:title"
-        :content="package_data.packages.data[0].attributes.title"
-      />
-      <Meta
-        property="og:image"
-        :content="
-          package_data.packages.data[0].attributes.images.data[0].attributes.url
-        "
-      />
-      <!-- twitter: -->
-      <Meta name="twitter:card" content="summary_large_image" />
-      <Meta name="twitter:site" content="'https://computravel.co.za'" />
-
-      <Meta
-        name="twitter:image"
-        :content="
-          package_data.packages.data[0].attributes.images.data[0].attributes.url
-        "
-      />
-    </Head>
+    <Head v-if="package_data"> </Head>
     <div
       v-show="responseCount < 3"
       class="h-screen flex justify-center items-center"
@@ -246,3 +216,35 @@ watch(
   }
 );
 </script>
+
+<style>
+/* head og tags:  */
+
+/* <Meta
+        property="og:description"
+        :content="
+          'R ' +
+          package_data.packages.data[0].attributes.price +
+          ' per person sharing'
+        "
+      />
+
+      <Meta
+        property="og:title"
+        :content="package_data.packages.data[0].attributes.title"
+      />
+      <Meta
+        property="og:image"
+        :content="
+          package_data.packages.data[0].attributes.images.data[0].attributes.url
+        "
+      />
+      <!-- twitter: -->
+      <Meta name="twitter:card" content="summary_large_image" />
+      <Meta name="twitter:site" content="'https://computravel.co.za'" />
+
+      <Meta
+        name="twitter:image"
+     
+      /> */
+</style>
