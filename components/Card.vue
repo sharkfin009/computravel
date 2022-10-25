@@ -38,7 +38,15 @@
         </div>
       </div>
       <div
-        class="p-8 bg-white flex flex-col justify-evenly rounded-lala-b shadow"
+        class="
+          px-8
+          py-3
+          bg-white
+          flex flex-col
+          justify-evenly
+          rounded-lala-b
+          shadow
+        "
       >
         <div class="w-full font-titillium font-semibold text-xl">
           <h3 class="text-center mb-3">{{ titleFirstBit }}</h3>

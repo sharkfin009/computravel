@@ -19,7 +19,7 @@
           md:px-5 md:pt-10 md:pb-5
           opacity-100
           flex flex-col
-          gap-5
+          layout-gap
           max-w-[900px]
           cursor-pointer
         "
@@ -38,7 +38,7 @@
           destinations:
         </div>
         <div class="m-0 px-5 py-5">
-          <div class="flex flex-wrap gap-5">
+          <div class="flex flex-wrap dest-pills">
             <div
               v-for="(item, index) in suggestStore.destinationSuggestions"
               :key="index"
@@ -137,7 +137,7 @@
               </div>
               <div class="flex md:grid md:grid-cols-[auto,100px]">
                 <div class="font-light" v-html="suggestion.description"></div>
-                <div />
+                <div class="text-end">R {{ suggestion.price }}</div>
               </div>
             </div>
           </div>
@@ -177,5 +177,11 @@ const test = () => {
   });
 };
 </script>
-<style scoped>
+<style>
+.dest-pills > * + * {
+  margin-left: 2rem;
+}
+.layout-gap > * + * {
+  margin-top: 1rem;
+}
 </style>

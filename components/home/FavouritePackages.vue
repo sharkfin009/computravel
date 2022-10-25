@@ -18,7 +18,7 @@
         </div>
 
         <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
-          <div ref="" class="flex gap-8 pb-8">
+          <div ref="" class="card-grid flex pb-8">
             <div
               v-for="(fave, index) in favourites.data.favourites.data.map(
                 (item) => item.attributes.package.data.attributes
@@ -154,3 +154,9 @@ const browseRight = () => {
   } else browsePointer.value = 0;
 };
 </script>
+
+<style>
+.card-grid > * + * {
+  margin-left: 2rem;
+}
+</style>
