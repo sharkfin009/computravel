@@ -149,6 +149,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             destination: item.destination,
             slug: item.slug,
             supplier_ref: item.supplier_ref,
+            price: item.price,
           }))
           .filter((item, index) => {
             return index <= 25;
