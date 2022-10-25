@@ -40,13 +40,13 @@ query{
   flightSpecials{
     data{
       attributes{
-        from
-        to
+        departing_airport
+        destination_airport
+        valid_from
+        valid_to
         price
-        airline
-        trip_type
-        date
         reference
+        name
       }
     }
   }
