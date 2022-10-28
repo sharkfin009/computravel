@@ -447,7 +447,7 @@
               my-5
             "
           >
-            about {{ props.destination_content.name }}
+            about {{ destination_content ? destination_content.name : "" }}
           </h3>
           <div
             id="about"
@@ -485,7 +485,7 @@ onMounted(() => {
 });
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 let images = [
-  ...props.destination_content.images,
+  ...(props.destination_content ? props.destination_content.images : []),
   ...props.package_data.packages.data[0].attributes.images.data.map(
     (item) => item.attributes.url
   ),
@@ -562,7 +562,10 @@ if (
 }
 // terms
 
-const items = ["overview", "about " + props.destination_content.name];
+const items = [
+  "overview",
+  "about " + (props.destination_content ? props.destination_content.name : ""),
+];
 if (aboutCopy == "") {
   items.splice(2, 1);
 }
