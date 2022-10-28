@@ -13,6 +13,7 @@
   >
     <div class="relative">
       <input
+        autocomplete="off"
         id="findInput"
         name="search"
         type="text"
