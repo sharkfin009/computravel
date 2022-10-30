@@ -17,9 +17,9 @@
       <div class="flex justify-center">
         <div class="relative mb-7 w-[320px] h-[400px]">
           <card
-            v-for="(tour, index) in props.region"
+            v-for="(pack, index) in props.region"
             :key="index"
-            :package="tour.attributes"
+            :package="pack.attributes"
             class="absolute inset-0 transition-opacity duration-700 opacity-0"
             :class="{
               '!opacity-100': index == selectedCard,

@@ -25,13 +25,7 @@ export const useRandomPackages = () => {
                       }
                     }
                    } 
-                   images{
-                    data{
-                      attributes{
-                        url
-                      }
-                    }
-                   }  
+                   image_urls 
                    star_rating
                    from
                   }

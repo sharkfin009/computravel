@@ -104,13 +104,7 @@ const { data: favourites, error } = useGraph(`
                         }
                       }
                       }
-                     images{
-                      data{
-                        attributes{
-                          url
-                        }
-                      }
-                     }
+                     image_urls
                      
                       valid_to
                     }

@@ -486,9 +486,7 @@ onMounted(() => {
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 let images = [
   ...(props.destination_content ? props.destination_content.images : []),
-  ...props.package_data.packages.data[0].attributes.images.data.map(
-    (item) => item.attributes.url
-  ),
+  ...JSON.parse(props.package_data.packages.data[0].attributes.image_urls),
   ...props.package_data.packages.data[0].attributes.uploaded_images.data.map(
     (item) => item.attributes.url
   ),

@@ -43,7 +43,7 @@ export const useStore = defineStore("favourites", {
                           }
                         }
                       } 
-                      images
+                      image_urls
                       valid_to
                     }
                   }

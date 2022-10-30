@@ -89,13 +89,7 @@ const { data, error } = useGraph(`query{
           }
         }
        } 
-       images{
-        data{
-          attributes{
-            url
-          }
-        }
-       } 
+       image_urls
         star_rating
         slug
       }
@@ -112,6 +106,7 @@ watch(
       const arrayOfThisDestination = data.value.data.packages.data.filter(
         (tour) => tour.attributes.region === region
       );
+      console.log(arrayOfThisDestination);
       destinations.value.push(arrayOfThisDestination);
       let threeChoices = [];
       for (let i = 1; i <= 3; i++) {
@@ -125,7 +120,7 @@ watch(
           (randomIndexNumber) => destinations.value[index][randomIndexNumber]
         );
       });
-      // console.log(packages.value)
+      console.log(packages.value);
     });
   }
 );

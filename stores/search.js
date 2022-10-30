@@ -74,13 +74,7 @@ export const useStore = defineStore("search", {
                       }
                     }
                    } 
-                   images{
-                    data{
-                      attributes{
-                        url
-                      }
-                    }
-                   } 
+                   image_urls 
                    star_rating
                    category
                    from
@@ -122,13 +116,7 @@ export const useStore = defineStore("search", {
                 }
               }
              } 
-             images{
-              data{
-                attributes{
-                  url
-                }
-              }
-             } 
+             image_urls
              star_rating
              category
              from

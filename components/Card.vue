@@ -141,7 +141,7 @@ const props = defineProps({
 import { useStore } from "@/stores/search";
 
 let images = [
-  ...props.package.images.data.map((item) => item.attributes.url),
+  ...JSON.parse(props.package.image_urls),
   ...props.package.uploaded_images.data.map((item) => item.attributes.url),
 ];
 

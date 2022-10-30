@@ -45,7 +45,6 @@ let query = `
                   id
                   attributes{
                    title
-                 
                    description
                    includes
                    excludes
@@ -69,13 +68,8 @@ let query = `
                       }
                     }
                     }
-                   images{
-                    data{
-                      attributes{
-                        url
-                      }
-                    }
-                   }
+                   image_urls
+                   
 
                   }
                 }
