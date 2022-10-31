@@ -1,12 +1,12 @@
 <template>
   <div class="relative h-full w-full bg-slate-300">
-    <!-- <HomeWelcome /> -->
+    <HomeWelcome />
     <div :class="{ '': suggestStore.showSuggestions }">
       <HomeFavouritePackages />
       <HomeDestinations />
-      <!-- <HomeFlSpecials />
+      <HomeFlSpecials />
       <HomeTestimonials />
-      <HomeFiveReasons /> -->
+      <HomeFiveReasons />
       <Footer />
     </div>
     <div class="absolute inset-0 pointer-events-none">
