@@ -141,7 +141,6 @@ const props = defineProps({
 import { useStore } from "@/stores/search";
 let imageUrls =
   props.package.image_urls !== null ? props.package.image_urls : [];
-// console.log(imageUrls);
 let images = [
   ...imageUrls,
   ...props.package.uploaded_images.data.map((item) => item.attributes.url),
@@ -166,7 +165,6 @@ let cutTextTitle = titleFirstBit.substring(0, 150);
 // cutTextTitle = cutTextTitle.split(" ").pop(-1);
 
 if (cutTextTitle.charAt(1) == "*") {
-  console.log(cutTextTitle);
   cutTextTitle = cutTextTitle.substring(2);
 }
 

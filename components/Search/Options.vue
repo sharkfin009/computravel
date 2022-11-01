@@ -149,6 +149,7 @@
               id="min"
             >
               <input
+                autocomplete="off"
                 class=""
                 v-model.number="searchStore.price_min"
                 type="range"
@@ -160,6 +161,7 @@
 
             <div class="h-full flex items-center gap-4 cursor-pointer" id="max">
               <input
+                autocomplete="off"
                 v-model.number="searchStore.price_max"
                 type="range"
                 min="0"

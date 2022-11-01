@@ -78,7 +78,7 @@
         >
           packages:
         </div>
-        <div class="md:block w-full">
+        <div class="md:block">
           <div
             v-for="(suggestion, index) in suggestStore.packageSuggestions"
             :key="index"
@@ -88,11 +88,11 @@
             "
           >
             <div
-              class="rounded-lala px-10 py-6"
+              class="rounded-3xl px-10 py-6"
               v-on:mouseover="mouseOver(index)"
               :class="{
                 '!bg-lime-500 !bg-opacity-80 !text-white':
-                  index === hoveredSuggestion - 1,
+                  index === hoveredSuggestion - 1 && !mobile,
               }"
             >
               <div
@@ -136,7 +136,7 @@
                   {{ suggestion.destination }}
                 </div>
               </div>
-              <div class="flex md:grid md:grid-cols-[auto,100px]">
+              <div class="flex grid md:grid md:grid-cols-[auto,100px]">
                 <div class="font-light" v-html="suggestion.description"></div>
                 <div class="text-end">R {{ suggestion.price }}</div>
               </div>
@@ -148,6 +148,9 @@
   </div>
 </template>
 <script setup>
+onMounted(() => {
+  let mobile = window.matchMedia("(min-width: 600px");
+});
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
 

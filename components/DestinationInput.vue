@@ -3,6 +3,7 @@
     <label class="md:text-lg mb-5 md:pb-0">Destination</label>
     <div class="relative">
       <input
+        autocomplete="off"
         name="search"
         type="text"
         v-model="destinationStore.queryString"
