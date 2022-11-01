@@ -22,6 +22,11 @@ export const useStore = defineStore("search", {
       this.randomResults = [];
       this.results = [];
       this.loadingState = true;
+      let destinationMap = {
+        region: `region:{ eq:"${this.destinationQuery}"}`,
+        destination: `destination:{ eq:"${this.destinationQuery}"}`,
+        city: `city:{name:{eq:"${this.destinationQuery}"}}`,
+      };
       const { $graphql } = useNuxtApp();
       let noDestinationFilter = false;
       let noRegionFilter = false;
@@ -29,7 +34,7 @@ export const useStore = defineStore("search", {
       if (this.destinationQuery == "") {
         destinationFilterString = "";
       } else {
-        destinationFilterString = `${this.destinationType}:{ eq:"${this.destinationQuery}"}`;
+        destinationFilterString = destinationMap[this.destinationType];
       }
 
       let DatesFilter = true;

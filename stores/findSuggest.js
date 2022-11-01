@@ -162,15 +162,15 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       });
     },
 
-    searchDestination(destination) {
+    searchDestination(searchObj) {
       const route = useRoute();
       const searchStore = useStore();
       const destinationInputStore = useSearchDestination();
-      destinationInputStore.queryString = destination.name;
-      searchStore.destinationQuery = destination.name;
-      searchStore.destination = destination.name;
-      searchStore.destinationType = destination.type;
-      this.queryString = destination.name;
+      destinationInputStore.queryString = searchObj.name;
+      searchStore.destinationQuery = searchObj.name;
+      searchStore.destination = searchObj.name;
+      searchStore.destinationType = searchObj.type;
+      this.queryString = searchObj.name;
       searchStore.fireQuery();
       this.packageSuggestions = [];
       this.destinationSuggestions = [];
