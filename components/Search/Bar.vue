@@ -104,8 +104,8 @@ const findInputFocus = () => {
   suggestStore.queryString = "";
 };
 const searchIconClick = () => {
-  if (suggestStore.destinationSuggestions.length) {
-    suggestStore.searchDestination(suggestStore.destinationSuggestions[0]);
+  if (suggestStore.searchSuggestions.length) {
+    suggestStore.searchDestination(suggestStore.searchSuggestions[0]);
   } else {
     suggestStore.clear();
     if (route.path != "/search") {

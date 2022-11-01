@@ -49,7 +49,7 @@
         "
       >
         <div class="w-full font-titillium font-semibold text-xl">
-          <h3 class="text-center mb-3">{{ titleFirstBit }}</h3>
+          <h3 class="text-center mb-3">{{ cutTextTitle }}</h3>
           <div class="flex items-center justify-center mb-3">
             <div
               v-for="(star, index) in parseInt(props.package.star_rating)"
@@ -163,13 +163,11 @@ let text = props.package.title;
 let titleFirstBit = text.split(" - ")[0];
 
 let cutTextTitle = titleFirstBit.substring(0, 150);
-let lastWord = cutTextTitle.split(" ").pop(-1);
-let cutTitle = cutTextTitle.slice(0, cutTextTitle.length - lastWord.length);
-if (
-  cutTitle[cutTitle.length - 1] == "-" ||
-  cutTitle[cutTitle.length - 1] == "&"
-) {
-  cutTitle.pop();
+// cutTextTitle = cutTextTitle.split(" ").pop(-1);
+
+if (cutTextTitle.charAt(1) == "*") {
+  console.log(cutTextTitle);
+  cutTextTitle = cutTextTitle.substring(2);
 }
 
 let stars = [];
