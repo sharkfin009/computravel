@@ -25,7 +25,7 @@
           rounded-full
           input-outline
           px-12
-          md:px-10
+          md:px-1
           py-2
           md:py-3
           lg:px-[40px]

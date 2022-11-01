@@ -7,7 +7,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
   state: () => ({
     queryString: ref(""),
     packageSuggestions: ref([]),
-    destinationSuggestions: ref([]),
+    searchSuggestions: ref([]),
     showSuggestions: ref(false),
 
     selectedSuggestion: ref(-1),
@@ -86,67 +86,48 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     },
 
     async suggestionQuery(string) {
-      //  get both countries and provinces (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
+      //  get both countries and provinces and (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
       const searchStore = useStore();
       const { $ellipsis } = useNuxtApp();
       const { result: regionResult, search: regionSearch } =
         useSearch("prod-regions");
-      const { result: destinationResult, search: destinationSearch } =
+      const { result: destinationResult, search: countryOrProvinceSearch } =
         useSearch("prod-destinations");
-      const { result: citiesResult, search: citySearch } =
-        useSearch("api::city.city");
-      let regionSuggestions = [];
-      let destinationSuggestions = [];
-      let citySuggestions = [];
+      const { result: citiesResult, search: citySearch } = useSearch(
+        "production_api::city.city"
+      );
 
-      regionSearch({
-        query: string,
-        requestOptions: {
-          hitsPerPage: 15,
-        },
-      }).then((result) => {
-        if (result === null || result === undefined) {
+      Promise.all([
+        regionSearch({
+          query: string,
+          requestOptions: {
+            hitsPerPage: 15,
+          },
+        }),
+        countryOrProvinceSearch({
+          query: string,
+          requestOptions: {
+            hitsPerPage: 10,
+          },
+        }),
+        citySearch({
+          query: string,
+          requestOptions: {
+            hitsPerPage: 10,
+          },
+        }),
+      ]).then((values) => {
+        console.log(values);
+        // if no results dont show overlay, we are done - return
+        if (values === null || values === undefined) {
           return;
         }
-        this.showSuggestions = true;
-        regionSuggestions = result.hits.map((item) => ({
-          name: item.region,
-          type: "region",
-        }));
-        this.packagesFromRegionQuery = result.hits;
-      });
-
-      destinationSearch({
-        query: string,
-        requestOptions: {
-          hitsPerPage: 10,
-        },
-      }).then((result) => {
-        if (result === null || result === undefined) {
-          return;
-        }
+        // else show overlay and generate suggestions:
         this.showSuggestions = true;
 
-        destinationSuggestions = result.hits.map((item) => ({
-          name: item.destination,
-          type: "destination",
-        }));
-        let withDupes = [...destinationSuggestions, ...regionSuggestions];
-        let deduped = [];
-        withDupes.forEach((item) => {
-          if (!deduped.map((item) => item.name).includes(item.name)) {
-            deduped.push(item);
-          }
-        });
-        this.destinationSuggestions = deduped;
-
-        // build packages from same results with destination dupes:
-        this.packagesFromDestinationQuery = result.hits;
-        this.packageSuggestions = [
-          ...this.packagesFromDestinationQuery,
-          ...this.packagesFromRegionQuery,
-        ]
-          .map((item) => ({
+        // get
+        this.packageSuggestions = [...values[0].hits, ...values[1].hits].map(
+          (item) => ({
             titleShort: $ellipsis(item.title, 70),
             title: item.title,
             description: $ellipsis(item.description, 200),
@@ -154,10 +135,30 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             slug: item.slug,
             supplier_ref: item.supplier_ref,
             price: item.price,
-          }))
-          .filter((item, index) => {
-            return index <= 25;
-          });
+          })
+        );
+        let regionSuggestions = values[0].hits.map((item) => ({
+          name: item.region,
+          type: "region",
+        }));
+
+        let countryOrProvinceSuggestions = values[1].hits.map((item) => ({
+          name: item.destination,
+          type: "destination",
+        }));
+        let citySuggestions = values[2].hits.map((item) => ({
+          name: item.name,
+          type: "city",
+        }));
+        let searchSuggestions = [
+          ...citySuggestions,
+          ...regionSuggestions,
+          ...countryOrProvinceSuggestions,
+        ];
+        this.searchSuggestions = searchSuggestions.filter(
+          (obj, index, array) =>
+            index === array.findIndex((match) => match.name === obj.name)
+        );
       });
     },
 

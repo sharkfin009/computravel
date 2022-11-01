@@ -3,7 +3,7 @@
     class="absolute inset-0 z-40"
     v-if="
       suggestStore.showSuggestions &&
-      suggestStore.destinationSuggestions.length &&
+      suggestStore.searchSuggestions.length &&
       suggestStore.queryString.length
     "
   >
@@ -40,7 +40,7 @@
         <div class="m-0 px-5 py-5">
           <div class="flex flex-wrap dest-pills">
             <div
-              v-for="(item, index) in suggestStore.destinationSuggestions"
+              v-for="(item, index) in suggestStore.searchSuggestions"
               :key="index"
               class="
                 flex
