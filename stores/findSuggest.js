@@ -93,12 +93,16 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         useSearch("prod-regions");
       const { result: destinationResult, search: destinationSearch } =
         useSearch("prod-destinations");
+      const { result: citiesResult, search: citySearch } =
+        useSearch("api::city.city");
       let regionSuggestions = [];
       let destinationSuggestions = [];
-      await regionSearch({
+      let citySuggestions = [];
+
+      regionSearch({
         query: string,
         requestOptions: {
-          hitsPerPage: 50,
+          hitsPerPage: 15,
         },
       }).then((result) => {
         if (result === null || result === undefined) {
@@ -112,7 +116,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         this.packagesFromRegionQuery = result.hits;
       });
 
-      await destinationSearch({
+      destinationSearch({
         query: string,
         requestOptions: {
           hitsPerPage: 10,
@@ -156,6 +160,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           });
       });
     },
+
     searchDestination(destination) {
       const route = useRoute();
       const searchStore = useStore();
