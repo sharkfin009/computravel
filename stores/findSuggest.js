@@ -168,9 +168,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const destinationInputStore = useSearchDestination();
       destinationInputStore.queryString = searchObj.name;
       searchStore.destinationQuery = searchObj.name;
-      searchStore.destination = searchObj.name;
       searchStore.destinationType = searchObj.type;
-      this.queryString = searchObj.name;
       searchStore.fireQuery();
       this.packageSuggestions = [];
       this.destinationSuggestions = [];

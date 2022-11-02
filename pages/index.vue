@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-full w-full bg-slate-300">
+  <div class="relative h-full w-full bg-slate-300 select-none">
     <HomeWelcome />
     <div :class="{ '': suggestStore.showSuggestions }">
       <HomeFavouritePackages />

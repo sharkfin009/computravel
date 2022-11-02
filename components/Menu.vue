@@ -1,12 +1,14 @@
 <template>
-  <div class="fixed inset-0 flex justify-end z-50 pointer-events-none">
+  <div
+    class="fixed select-none inset-0 flex justify-end z-50 pointer-events-none"
+  >
     <div class="backdrop-blur h-full">
       <div
         class="
           h-full
           w-[100vw]
           md:w-[50vw]
-          lg:w-[24vw]
+          lg:w-[30vw]
           flex flex-col
           gap-5
           justify-start
@@ -24,17 +26,69 @@
           backdrop-blur-lg
         "
       >
-        <ul class="list-none">
-          <li
-            v-for="(item, index) of items"
-            :key="index"
-            class="mb-5 hover:text-lime-500"
-          >
-            <NuxtLink @click="globalStore.showMenu = false" :to="item.url">
-              {{ item.name }}
-            </NuxtLink>
-          </li>
-        </ul>
+        <div class="overflow-auto pb-[700px] w-full">
+          <ul class="list-none">
+            <li
+              v-for="(item, index) of items"
+              :key="index"
+              class="mb-3 hover:text-lime-500"
+            >
+              <NuxtLink @click="globalStore.showMenu = false" :to="item.url">
+                {{ item.name }}
+              </NuxtLink>
+            </li>
+            <div v-if="menuData" class="pl-3 grid grid-cols-[100px,auto]">
+              <li
+                class="mb-3 hover:text-lime-500 relative"
+                @mouseover="thisListOnly('regions')"
+              >
+                Region
+              </li>
+
+              <MenuList
+                :list="menuData.regions"
+                :state="listState.regions"
+                type="region"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('countries')"
+              >
+                Country
+              </li>
+              <MenuList
+                :list="menuData.countries"
+                :state="listState.countries"
+                type="destination"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('provinces')"
+              >
+                SA Province
+              </li>
+              <MenuList
+                :list="menuData.provinces"
+                :state="listState.provinces"
+                type="destination"
+              />
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('cities')"
+              >
+                City
+              </li>
+
+              <MenuList
+                :list="menuData.cities"
+                :state="listState.cities"
+                type="city"
+              />
+            </div>
+          </ul>
+        </div>
         <div
           class="
             absolute
@@ -118,7 +172,32 @@ let items = [
     name: "Contact",
     url: "/contact",
   },
+  {
+    name: "Search packages by:",
+    url: "/contact",
+  },
 ];
 import { useGlobalStore } from "@/stores/global";
 const globalStore = useGlobalStore();
+const { menuData } = useMenuData();
+console.log(menuData.value);
+const listState = reactive({
+  regions: false,
+  countries: false,
+  provinces: false,
+  cities: false,
+});
+const thisListOnly = (item) => {
+  listState.regions = false;
+  listState.countries = false;
+  listState.provinces = false;
+  listState.cities = false;
+  listState[item] = true;
+};
 </script>
+
+<style scoped>
+li {
+  cursor: pointer;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-50 font-open-sans w-screen">
+  <div class="bg-slate-50 font-open-sans w-screen select-none">
     <Header />
     <div class="relative bg-none">
       <SearchAutoSuggestOverlay parent="homelayout" />
