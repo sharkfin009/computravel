@@ -130,3 +130,14 @@ p{
 .email-bg{
   background-color: #EBF1EF;
 }
+.policies div {
+  padding:45px !important
+}
+.policies h3{
+
+    font-family: 'Titillium Web', sans-serif;
+    font-size:25px;
+    margin-bottom:20px;
+  
+   
+}
