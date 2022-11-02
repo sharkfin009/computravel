@@ -72,7 +72,7 @@
           "
           @click="searchIconClick"
         >
-          <i class="text-xs fa-solid fa-search" />
+          <i class="text-xs fas fa-search" />
         </div>
       </div>
     </div>

@@ -51,12 +51,22 @@ export const useMenuData = () => {
     }
   }}
   `;
+  let categoryQuery = `
+  query{categories{
+    data{
+        attributes{
+            name
+        }
+    }
+  }}
+  `;
 
   Promise.all([
     graph(regionQuery),
     graph(countryQuery),
     graph(provinceQuery),
     graph(cityQuery),
+    graph(categoryQuery),
   ])
     .then((values) => {
       menuData.value = {
@@ -64,6 +74,9 @@ export const useMenuData = () => {
         countries: values[1].countries.data.map((item) => item.attributes.name),
         provinces: values[2].provinces.data.map((item) => item.attributes.name),
         cities: values[3].cities.data.map((item) => item.attributes.name),
+        categories: values[4].categories.data.map(
+          (item) => item.attributes.name
+        ),
       };
     })
     .catch((error) => console.log(error));

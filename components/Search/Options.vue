@@ -242,18 +242,18 @@ const numberWithCommas = (x) => {
 
 const sort_options = ["Price low to high", "Price high to low"];
 
-const categories = [
-  "Beach Holidays",
-  "Bush Breaks",
-  "City Breaks",
-  "Family Holiday Packages",
-  "Honeymoon Packages",
-  "Romantic Getaways",
-  "Self Drive",
-  "Weekend Getaways",
-  "Date Night",
-  "Country Escapes",
-];
+let categoryQuery = `
+  query{categories{
+    data{
+        attributes{
+            name
+        }
+    }
+  }}
+  `;
+const { graphql } = useGraph();
+
+const { data: categories, categoryError } = graphql(categoryQuery);
 
 const clearFilters = () => {
   searchStore.$reset();

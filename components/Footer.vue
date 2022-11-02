@@ -21,10 +21,11 @@
           industries.
         </p>
       </div>
-
-      <div class="flex justify-center items-center">
-        <img width="250" src="/asata-logo-full-500-sq-transp.png" />
-      </div>
+      <a href="public/Asata_Member_Certificate.pdf">
+        <div class="flex justify-center items-center">
+          <img width="250" src="/asata-logo-full-500-sq-transp.png" />
+        </div>
+      </a>
     </div>
     <!-- 3rd row -->
     <div class="grid sm:grid sm:grid-cols-2 gap-3">

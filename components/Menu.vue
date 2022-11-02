@@ -86,6 +86,18 @@
                 :state="listState.cities"
                 type="city"
               />
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('cities')"
+              >
+                Category
+              </li>
+
+              <MenuList
+                :list="menuData.categories"
+                :state="listState.categories"
+                type="city"
+              />
             </div>
           </ul>
         </div>
@@ -186,12 +198,14 @@ const listState = reactive({
   countries: false,
   provinces: false,
   cities: false,
+  categories: false,
 });
 const thisListOnly = (item) => {
   listState.regions = false;
   listState.countries = false;
   listState.provinces = false;
   listState.cities = false;
+  listState.categories = false;
   listState[item] = true;
 };
 </script>
