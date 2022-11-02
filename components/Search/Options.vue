@@ -251,9 +251,7 @@ let categoryQuery = `
     }
   }}
   `;
-const { graphql } = useGraph();
-
-const { data: categories, categoryError } = graphql(categoryQuery);
+const { data: categories, categoryError } = useGraph(categoryQuery);
 
 const clearFilters = () => {
   searchStore.$reset();

@@ -181,7 +181,6 @@ const state = reactive({
 const rules = {
   full_name: {
     required,
-    alpha,
   },
   email: {
     required,
