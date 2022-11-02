@@ -19,13 +19,14 @@ export const useStore = defineStore("search", {
   }),
   actions: {
     fireQuery() {
+      this.firstLoad = false;
       this.randomResults = [];
       this.results = [];
       this.loadingState = true;
       let destinationMap = {
         region: `region:{ eq:"${this.destinationQuery}"}`,
         destination: `destination:{ eq:"${this.destinationQuery}"}`,
-        city: `city:{name:{eq:"${this.destinationQuery}"}}`,
+        city: `city:{name:eq:"${this.destinationQuery}"}`,
       };
       const { $graphql } = useNuxtApp();
       let noDestinationFilter = false;
