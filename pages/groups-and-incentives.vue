@@ -27,24 +27,15 @@
         />
       </div>
       <div
-        style="
-          ul {
-            list-style-position: inside !important;
-          }
-        "
+        class="groups px-3"
         v-html="data.data.groupsAndIncentivesContent.data.attributes.body"
       ></div>
     </div>
+
     <div class="w-full flex justify-center">
-      <div class="md:w-[70vw]">
+      <div class="w-full md:max-w-[800px]">
         <SectionHeading
-          class="my-5 md:my-10"
-          :heading="
-            data.data.groupsAndIncentivesContent.data.attributes.form_title
-          "
-          :subheading="
-            data.data.groupsAndIncentivesContent.data.attributes.form_subtitle
-          "
+          heading="Send us your group enquiry"
           :inverted="false"
         />
 

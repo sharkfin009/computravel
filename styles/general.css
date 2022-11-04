@@ -130,9 +130,9 @@ p{
 .email-bg{
   background-color: #EBF1EF;
 }
-.policies ul {
+.policies .terms .groups ul {
 
-  list-style-position:inside;
+  list-style-position:inside !important;
 }
 .policies h3{
 

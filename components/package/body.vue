@@ -415,12 +415,8 @@
                 duration-300
               "
             >
-              <ul v-if="supplier == 'TH'" class="">
-                <li
-                  class=""
-                  v-for="(line, index) in termsListItems"
-                  :key="index"
-                >
+              <ul v-if="supplier == 'TH'" class="terms px-3">
+                <li v-for="(line, index) in termsListItems" :key="index">
                   {{ line }}
                 </li>
               </ul>
