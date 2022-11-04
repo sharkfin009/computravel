@@ -20,7 +20,7 @@
           }"
         >
           <div
-            v-if="props.package.category"
+            v-if="props.package.category.data.attributes.name"
             class="
               bg-black
               text-white
@@ -33,7 +33,7 @@
               rounded-r-xl
             "
           >
-            {{ props.package.category }}
+            {{ props.package.category.data.attributes.name }}
           </div>
         </div>
       </div>

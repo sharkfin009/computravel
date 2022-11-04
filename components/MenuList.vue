@@ -34,7 +34,10 @@ import { useStore } from "@/stores/search";
 const searchStore = useStore();
 import { useSearchDestination } from "@/stores/searchDestinationInput";
 const destinationInputStore = useSearchDestination();
+import { useGlobalStore } from "@/stores/global";
+const globalStore = useGlobalStore();
 const fireSearch = (item) => {
+  globalStore.showMenu = false;
   searchStore.destinationType = props.type;
   destinationInputStore.queryString = item;
   searchStore.destinationQuery = item;

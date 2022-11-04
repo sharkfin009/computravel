@@ -25,21 +25,29 @@
           md:text-lg
           backdrop-blur-lg
         "
+        ref="menu"
       >
-        <div class="overflow-auto pb-[700px] w-full">
+        <div class="overflow-auto pb-[800px] w-full">
           <ul class="list-none">
             <li
               v-for="(item, index) of items"
               :key="index"
               class="mb-3 hover:text-lime-500"
             >
-              <NuxtLink @click="globalStore.showMenu = false" :to="item.url">
-                {{ item.name }}
+              <NuxtLink
+                @click="globalStore.showMenu = false"
+                class="w-full"
+                :to="item.url"
+              >
+                <div class="w-full">
+                  {{ item.name }}
+                </div>
               </NuxtLink>
             </li>
             <div v-if="menuData" class="pl-3 grid grid-cols-[100px,auto]">
               <li
                 class="mb-3 hover:text-lime-500 relative"
+                @click="thisListOnly('regions')"
                 @mouseover="thisListOnly('regions')"
               >
                 Region
@@ -53,6 +61,7 @@
 
               <li
                 class="mb-3 hover:text-lime-500"
+                @click="thisListOnly('countries')"
                 @mouseover="thisListOnly('countries')"
               >
                 Country
@@ -74,21 +83,22 @@
                 :state="listState.provinces"
                 type="destination"
               />
+
               <li
                 class="mb-3 hover:text-lime-500"
                 @mouseover="thisListOnly('cities')"
               >
                 City
               </li>
-
               <MenuList
                 :list="menuData.cities"
                 :state="listState.cities"
                 type="city"
               />
+
               <li
                 class="mb-3 hover:text-lime-500"
-                @mouseover="thisListOnly('cities')"
+                @mouseover="thisListOnly('categories')"
               >
                 Category
               </li>
@@ -208,6 +218,12 @@ const thisListOnly = (item) => {
   listState.categories = false;
   listState[item] = true;
 };
+const menu = ref(null);
+import useDetectOutsideClick from "@/composables/useDetectOutsideClick";
+
+useDetectOutsideClick(menu, () => {
+  globalStore.showMenu = false;
+});
 </script>
 
 <style scoped>

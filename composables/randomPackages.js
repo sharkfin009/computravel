@@ -28,6 +28,13 @@ export const useRandomPackages = () => {
                    image_urls 
                    star_rating
                    from
+                   category{
+                      data{
+                        attributes{
+                          name
+                        }
+                      }
+                   }
                   }
                 }
               }}

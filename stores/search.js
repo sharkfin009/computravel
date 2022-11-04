@@ -55,7 +55,7 @@ export const useStore = defineStore("search", {
       let priceFilterString = ` price:{between:[${this.price_min},${this.price_max}]}`;
       let categoryFilterString =
         this.category !== "All" && this.category !== null
-          ? ` category:{eq:"${this.category}"}`
+          ? ` category:{name{eq:"${this.category}"}}`
           : "";
       let query = `
             query{packages(
@@ -82,7 +82,13 @@ export const useStore = defineStore("search", {
                    } 
                    image_urls 
                    star_rating
-                   category
+                   category{
+                    data{
+                      attributes{
+                        name
+                      }
+                    }
+                   }
                    from
                   }
                 }
@@ -124,7 +130,13 @@ export const useStore = defineStore("search", {
              } 
              image_urls
              star_rating
-             category
+             category{
+              data{
+                attributes{
+                  name
+                }
+              }
+             }
              from
             }
           }

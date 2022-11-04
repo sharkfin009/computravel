@@ -54,7 +54,13 @@ let query = `
                    valid_to
                    supplier_ref
                    star_rating
-                   category
+                   category{
+                    data{
+                      attributes{
+                        name
+                      }
+                    }
+                   }
                    from
                    duration
                    terms

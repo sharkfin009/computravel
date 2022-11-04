@@ -89,6 +89,13 @@ const { data, error } = useGraph(`query{
           }
         }
        } 
+       category{
+        data{
+          attributes{
+            name
+          }
+        }
+       }
        image_urls
         star_rating
         slug

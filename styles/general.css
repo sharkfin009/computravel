@@ -130,8 +130,9 @@ p{
 .email-bg{
   background-color: #EBF1EF;
 }
-.policies div {
-  padding:45px !important
+.policies ul {
+
+  list-style-position:inside;
 }
 .policies h3{
 

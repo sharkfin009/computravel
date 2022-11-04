@@ -106,6 +106,13 @@ const { data: favourites, error } = useGraph(`
                         }
                       }
                       }
+                      category{
+                        data{
+                          attributes{
+                            name
+                          }
+                        }
+                      }
                      image_urls
                      
                       valid_to
