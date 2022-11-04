@@ -149,10 +149,10 @@ const browsePointer = ref(0);
 const browseLeft = () => {
   if (browsePointer.value > 0) {
     browsePointer.value--;
-  } else browsePointer.value = favourites.value.favourites.data.length - 1;
+  } else browsePointer.value = favourites.value.data.favourites.data.length - 1;
 };
 const browseRight = () => {
-  if (browsePointer.value < favourites.value.favourites.data.length - 1) {
+  if (browsePointer.value < favourites.value.data.favourites.data.length - 1) {
     browsePointer.value++;
   } else browsePointer.value = 0;
 };
