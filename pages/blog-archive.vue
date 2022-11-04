@@ -9,10 +9,7 @@
         />
         <!-- <pre>{{ data }}</pre> -->
         <div v-if="data" class="flex flex-wrap justify-center gap-5">
-          <div
-            v-for="(item, index) of data.data.blogArticles.data"
-            :key="index"
-          >
+          <div v-for="(item, index) of blogs" :key="index">
             <ArticleCard :article="item" />
           </div>
         </div>
@@ -55,6 +52,20 @@ const { data, error } = useGraph(`query{
     }
     }
     `);
+const blogs = ref(null);
+watch(
+  () => data.value,
+  () => {
+    let array = data.value.data.blogArticles.data;
+    blogs.value = array
+      .map((item) => {
+        item["dateValue"] = new Date(item.attributes.date);
+        return item;
+      })
+      .sort((a, b) => b.dateValue - a.dateValue);
+    console.log(blogs.value);
+  }
+);
 
 searchStore.randomQuery();
 </script>
