@@ -44,6 +44,8 @@
                 </div>
               </NuxtLink>
             </li>
+            <div class="text-sm mt-4 mb-3">Search Packages by:</div>
+
             <div v-if="menuData" class="pl-3 grid grid-cols-[100px,auto]">
               <li
                 class="mb-3 hover:text-lime-500 relative"
@@ -106,7 +108,7 @@
               <MenuList
                 :list="menuData.categories"
                 :state="listState.categories"
-                type="city"
+                type="category"
               />
             </div>
           </ul>
@@ -192,10 +194,6 @@ let items = [
   },
   {
     name: "Contact",
-    url: "/contact",
-  },
-  {
-    name: "Search packages by:",
     url: "/contact",
   },
 ];

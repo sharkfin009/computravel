@@ -38,9 +38,15 @@ import { useGlobalStore } from "@/stores/global";
 const globalStore = useGlobalStore();
 const fireSearch = (item) => {
   globalStore.showMenu = false;
-  searchStore.destinationType = props.type;
-  destinationInputStore.queryString = item;
-  searchStore.destinationQuery = item;
+  //   for region,country , province or city:
+  if (props.type !== "category") {
+    destinationInputStore.queryString = item;
+    searchStore.destinationType = props.type;
+    searchStore.destinationQuery = item;
+  } else {
+    searchStore.category = item;
+  }
+
   searchStore.fireQuery();
   const route = useRoute();
 

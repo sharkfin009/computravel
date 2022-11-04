@@ -61,7 +61,9 @@
       <SearchSelect
         label="Category"
         inputName="category"
-        :options="categories"
+        :options="
+          categories.data.categories.data.map((item) => item.attributes.name)
+        "
         placeholder="All"
         @setValue="setValue"
       />

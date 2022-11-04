@@ -55,7 +55,7 @@ export const useStore = defineStore("search", {
       let priceFilterString = ` price:{between:[${this.price_min},${this.price_max}]}`;
       let categoryFilterString =
         this.category !== "All" && this.category !== null
-          ? ` category:{name{eq:"${this.category}"}}`
+          ? ` category:{name:{eq:"${this.category}"}}`
           : "";
       let query = `
             query{packages(
