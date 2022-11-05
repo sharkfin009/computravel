@@ -5,7 +5,24 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
     />
-    <Title>Computravel</Title>
+    <meta charset="utf-8" />
+    <title>Welcome to Computravel | Home of Luxury Travel Holidays</title>
+    <meta
+      name="description"
+      content="Computravel specialise in luxury holidays abroad to global destinations for the discerning leisure traveller."
+    />
+    <meta
+      name="keywords"
+      content="Computravel Holiday, Holiday, Luxury Holiday International Travel Packages, Home of Computravel, Computravel, flight specials, South Africa,travel overseas, south africa travel agent, luxury holiday packages"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-control" content="public" />
+    <meta name="language" content="EN-ZA" />
+    <meta name="author" content="Computravel" />
+    <meta name="distribution" content="web" />
     <!-- social: -->
     <Meta name="pinterest-rich-pin" content="false" />
     <Meta property="og:type" content="Holiday Package" />
