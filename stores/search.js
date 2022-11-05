@@ -6,7 +6,7 @@ export const useStore = defineStore("search", {
     results: [],
     region: "",
     destinationQuery: ref(""),
-    destinationType: ref("destination"),
+    destinationType: ref(""),
     from_date: "",
     to_date: "",
     price_min: ref(0),
@@ -23,20 +23,21 @@ export const useStore = defineStore("search", {
       this.randomResults = [];
       this.results = [];
       this.loadingState = true;
+      // set up filter for region / destination:
       let destinationMap = {
         region: `region:{ eq:"${this.destinationQuery}"}`,
-        destination: `destination:{ eq:"${this.destinationQuery}"}`,
+        country: `destination:{ eq:"${this.destinationQuery}"}`,
+        province: `destination:{ eq:"${this.destinationQuery}"}`,
         city: `city:{name:{eq:"${this.destinationQuery}"}}`,
       };
+      let destinationFilterString = "";
+      if (this.destinationQuery !== "") {
+        destinationFilterString = destinationMap[this.destinationType];
+      }
+
       const { $graphql } = useNuxtApp();
       let noDestinationFilter = false;
       let noRegionFilter = false;
-      let destinationFilterString;
-      if (this.destinationQuery == "") {
-        destinationFilterString = "";
-      } else {
-        destinationFilterString = destinationMap[this.destinationType];
-      }
 
       let DatesFilter = true;
       if (this.to_date == "" && this.from_date == "") {

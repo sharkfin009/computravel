@@ -92,10 +92,17 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const { result: regionResult, search: regionSearch } = useSearch(
         "production_api::region.region"
       );
-      const { result: destinationResult, search: countryOrProvinceSearch } =
-        useSearch("prod-destinations");
+      const { result: destinationResult, search: countrySearch } = useSearch(
+        "production_api::country.country"
+      );
+      const { result: provinceResult, search: provinceSearch } = useSearch(
+        "production_api::province.province"
+      );
       const { result: citiesResult, search: citySearch } = useSearch(
         "production_api::city.city"
+      );
+      const { result: packageResult, search: packageSearch } = useSearch(
+        "production_api::package.package"
       );
 
       Promise.all([
@@ -105,13 +112,25 @@ export const useFindSuggestStore = defineStore("findSuggest", {
             hitsPerPage: 15,
           },
         }),
-        countryOrProvinceSearch({
+        countrySearch({
+          query: string,
+          requestOptions: {
+            hitsPerPage: 10,
+          },
+        }),
+        provinceSearch({
           query: string,
           requestOptions: {
             hitsPerPage: 10,
           },
         }),
         citySearch({
+          query: string,
+          requestOptions: {
+            hitsPerPage: 10,
+          },
+        }),
+        packageSearch({
           query: string,
           requestOptions: {
             hitsPerPage: 10,
@@ -126,40 +145,38 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         // else show overlay and generate suggestions:
         this.showSuggestions = true;
 
-        // get
-        this.packageSuggestions = [...values[0].hits, ...values[1].hits].map(
-          (item) => ({
-            titleShort: $ellipsis(item.title, 70),
-            title: item.title,
-            description: $ellipsis(item.description, 200),
-            destination: item.destination,
-            slug: item.slug,
-            supplier_ref: item.supplier_ref,
-            price: item.price,
-          })
-        );
         let regionSuggestions = values[0].hits.map((item) => ({
-          name: item.region,
+          name: item.name,
           type: "region",
         }));
-
-        let countryOrProvinceSuggestions = values[1].hits.map((item) => ({
-          name: item.destination,
-          type: "destination",
+        let countrySuggestions = values[1].hits.map((item) => ({
+          name: item.name,
+          type: "country",
         }));
-        let citySuggestions = values[2].hits.map((item) => ({
+        let provinceSuggestions = values[2].hits.map((item) => ({
+          name: item.name,
+          type: "province",
+        }));
+        let citySuggestions = values[3].hits.map((item) => ({
           name: item.name,
           type: "city",
         }));
-        let searchSuggestions = [
+
+        this.searchSuggestions = [
           ...citySuggestions,
+          ...provinceSuggestions,
+          ...countrySuggestions,
           ...regionSuggestions,
-          ...countryOrProvinceSuggestions,
         ];
-        this.searchSuggestions = searchSuggestions.filter(
-          (obj, index, array) =>
-            index === array.findIndex((match) => match.name === obj.name)
-        );
+        this.packageSuggestions = values[4].hits.map((item) => ({
+          titleShort: $ellipsis(item.title, 70),
+          title: item.title,
+          description: $ellipsis(item.description, 200),
+          destination: item.destination,
+          slug: item.slug,
+          supplier_ref: item.supplier_ref,
+          price: item.price,
+        }));
       });
     },
 
