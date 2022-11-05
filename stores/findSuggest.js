@@ -89,8 +89,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       //  get both countries and provinces and (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
       const searchStore = useStore();
       const { $ellipsis } = useNuxtApp();
-      const { result: regionResult, search: regionSearch } =
-        useSearch("prod-regions");
+      const { result: regionResult, search: regionSearch } = useSearch(
+        "production_api::region.region"
+      );
       const { result: destinationResult, search: countryOrProvinceSearch } =
         useSearch("prod-destinations");
       const { result: citiesResult, search: citySearch } = useSearch(
@@ -169,6 +170,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       destinationInputStore.queryString = searchObj.name;
       searchStore.destinationQuery = searchObj.name;
       searchStore.destinationType = searchObj.type;
+      this.queryString = searchObj.name;
       searchStore.fireQuery();
       this.packageSuggestions = [];
       this.destinationSuggestions = [];

@@ -60,7 +60,7 @@
         justify-center
       "
     >
-      <div class="text-lg text-lime-800 opacity-50 font-titillium mb-5">
+      <div class="text-lg text-lime-800 opacity-50 font-titillium">
         browse these packages
       </div>
       <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">

@@ -26,7 +26,7 @@ export const useStore = defineStore("search", {
       let destinationMap = {
         region: `region:{ eq:"${this.destinationQuery}"}`,
         destination: `destination:{ eq:"${this.destinationQuery}"}`,
-        city: `city:{name:eq:"${this.destinationQuery}"}`,
+        city: `city:{name:{eq:"${this.destinationQuery}"}}`,
       };
       const { $graphql } = useNuxtApp();
       let noDestinationFilter = false;
