@@ -40,7 +40,7 @@
       </div>
 
       <!-- mobile cards: -->
-      <div class="flex justify-center md:hidden relative pt-10">
+      <div class="flex justify-center md:hidden relative md:pt-10">
         <div class="relative w-[320px] h-[400px]">
           <card
             v-for="(fave, index) in favourites.data.favourites.data.map(
@@ -48,7 +48,7 @@
             )"
             :key="index"
             :package="fave"
-            class="absolute inset-0 transition-opacity opacity-0 duration-700"
+            class="absolute inset-0 transition-opacity opacity-0 duration-1000"
             :class="{ '!opacity-100': index == browsePointer }"
           ></card>
         </div>
@@ -146,6 +146,13 @@ const scrollLeft = () => {
   });
 };
 const browsePointer = ref(0);
+setInterval(() => {
+  if (browsePointer.value < favourites.value.data.favourites.data.length - 1) {
+    browsePointer.value++;
+  } else {
+    browsePointer.value = 0;
+  }
+}, 5000);
 const browseLeft = () => {
   if (browsePointer.value > 0) {
     browsePointer.value--;

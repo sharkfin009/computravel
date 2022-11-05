@@ -1,11 +1,7 @@
 <template>
   <div
     class="absolute inset-0 z-40"
-    v-if="
-      suggestStore.showSuggestions &&
-      suggestStore.searchSuggestions.length &&
-      suggestStore.queryString.length
-    "
+    v-if="suggestStore.showSuggestions && suggestStore.queryString.length"
   >
     <div
       class="flex justify-center items-start pb-10"
@@ -26,6 +22,7 @@
       >
         <!-- destinations -->
         <div
+          v-if="suggestStore.searchSuggestions.length"
           class="
             hidden
             md:block
@@ -173,12 +170,6 @@ const mouseOver = (index) => {
 
 const mouseLeave = () => {
   hoveredSuggestion.value = null;
-};
-const test = () => {
-  suggestStore.showSuggestions = false;
-  navigateTo({
-    path: "/blog-archive",
-  });
 };
 </script>
 <style>

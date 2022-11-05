@@ -1,5 +1,5 @@
 <template>
-  <div class="py-5">
+  <div class="pt-5 md:pb-5">
     <!-- normal -->
     <div v-if="inverted == false">
       <h2

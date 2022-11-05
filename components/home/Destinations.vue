@@ -7,7 +7,7 @@
         :inverted="true"
       />
       <!-- XL header:-->
-      <div class="hidden xl:block">
+      <div class="xl:block">
         <div />
         <div />
         <TabMenu
@@ -16,7 +16,7 @@
         ></TabMenu>
       </div>
 
-      <div class="relative h-[800px] lg:h-[500px] w-full">
+      <div class="relative h-[470px] lg:h-[500px] w-full">
         <HomeDestination
           v-for="(region, index) in packages"
           :key="index"
@@ -26,7 +26,7 @@
         >
           <!-- unnamed slot for destination pic on left: -->
           <div
-            class="w-[320px] md:w-full h-[250px] lg:h-[450px]"
+            class="hidden md:block w-[320px] md:w-full h-[130px] lg:h-[450px]"
             v-if="picStyles.length > 0"
           >
             <div class="relative h-full lg:mr-10">
@@ -34,7 +34,7 @@
                 v-for="(region, index) in destinationsDictionary"
                 :key="index"
                 :style="picStyles[index]"
-                class="absolute inset-0 rounded-lala shadow-2xl"
+                class="absolute inset-0 rounded-3xl md:rounded-lala shadow-2xl"
                 :class="{
                   '!opacity-0 ': index !== activeTab,
                 }"

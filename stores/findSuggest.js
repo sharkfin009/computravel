@@ -11,8 +11,6 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     showSuggestions: ref(false),
 
     selectedSuggestion: ref(-1),
-    packagesFromRegionQuery: [],
-    packagesFromDestinationQuery: [],
   }),
   actions: {
     manageKeyUp(e) {
@@ -139,9 +137,9 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       ]).then((values) => {
         console.log(values);
         // if no results dont show overlay, we are done - return
-        if (values === null || values === undefined) {
-          return;
-        }
+        // if (values === null || values === undefined) {
+        //   return;
+        // }
         // else show overlay and generate suggestions:
         this.showSuggestions = true;
 
