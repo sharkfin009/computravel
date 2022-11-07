@@ -42,11 +42,10 @@
         mt-5
         flex flex-col
         justify-evenly
-        md:grid md:grid-cols-2 md:grid-rows-3
+        md:grid md:grid-cols-3 md:grid-rows-3
         xl:grid-cols-3 xl:grid-rows-2
         h-none
-        lg:h-[350px]
-        xl:h-[220px]
+        lg:h-[400px]
         gap-10
         md-gap-1
         w-full
@@ -54,18 +53,44 @@
       v-if="showFilters"
     >
       <!-- destination autosuggest input -->
-      <div class="hidden md:block">
-        <DestinationInput @setValue="setValue" parent="search" />
+      <div class="">
+        <searchDestinationInput
+          label="Region"
+          optionsQuery="regions"
+          type="region"
+        />
+      </div>
+      <div class="">
+        <searchDestinationInput
+          label="Country"
+          optionsQuery="countries"
+          type="country"
+        />
+      </div>
+      <div class="">
+        <searchDestinationInput
+          label="SA Province"
+          optionsQuery="provinces"
+          type="province"
+        />
+      </div>
+      <div class="">
+        <searchDestinationInput
+          label="City"
+          optionsQuery="cities"
+          type="city"
+        />
       </div>
 
       <SearchSelect
-        label="Category"
+        v-if="categories"
+        label="Categories"
         inputName="category"
         :options="
           categories.data.categories.data.map((item) => item.attributes.name)
         "
-        placeholder="All"
         @setValue="setValue"
+        placeholder="All"
       />
 
       <!-- dates -->

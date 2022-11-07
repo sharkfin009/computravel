@@ -3,9 +3,10 @@
     <label class="mb-5">{{ label }}</label>
     <v-select
       :options="options"
-      v-model="searchStore[inputName]"
+      v-model="searchStore[type]"
       class="bg-white rounded-xl select-padding input-outline hover:shadow-none"
       :placeholder="placeholder"
+      @option:selected="inputChange()"
     >
       <template v-slot:option="option">
         <div
@@ -33,7 +34,7 @@ const props = defineProps({
   label: {
     type: String,
   },
-  inputName: {
+  type: {
     type: String,
   },
   options: {
@@ -51,13 +52,12 @@ const props = defineProps({
 });
 import { useStore } from "@/stores/search";
 const searchStore = useStore();
-const emit = defineEmits(["setValue"]);
-watch(
-  () => searchStore[props.inputName],
-  (a, b) => {
-    searchStore.fireQuery();
-  }
-);
+const value = ref();
+const inputChange = () => {
+  searchStore.findQuery = searchStore[props.type];
+  searchStore.destinationType = props.type;
+  searchStore.fireQuery();
+};
 </script>
 
 <style >

@@ -42,7 +42,7 @@ const fireSearch = (item) => {
   if (props.type !== "category") {
     destinationInputStore.queryString = item;
     searchStore.destinationType = props.type;
-    searchStore.destinationQuery = item;
+    searchStore.findQuery = item;
   } else {
     searchStore.category = item;
   }

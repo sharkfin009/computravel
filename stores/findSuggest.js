@@ -26,7 +26,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       // down Arrow:
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion < this.destinationSuggestions.length - 1
+        this.selectedSuggestion < this.searchSuggestions.length - 1
       ) {
         this.selectedSuggestion++;
 
@@ -34,7 +34,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       }
       if (
         e.key === "ArrowDown" &&
-        this.selectedSuggestion === this.destinationSuggestions.length - 1
+        this.selectedSuggestion === this.searchSuggestions.length - 1
       ) {
         this.selectedSuggestion = 0;
 
@@ -52,19 +52,16 @@ export const useFindSuggestStore = defineStore("findSuggest", {
         // if no selection:
         if (this.selectedSuggestion === -1) {
           this.showSuggestions = false;
-          searchDestination(this.destinationSuggestions[0]);
+          searchDestination(this.searchSuggestions[0]);
           return;
         }
 
         // if suggestion:
         if (this.queryString !== "") {
-          this.queryString =
-            this.destinationSuggestions[this.selectedSuggestion];
+          this.queryString = this.searchSuggestions[this.selectedSuggestion];
         }
 
-        this.searchDestination(
-          this.destinationSuggestions[this.selectedSuggestion]
-        );
+        this.searchDestination(this.searchSuggestions[this.selectedSuggestion]);
         this.clear();
         this.showSuggestions = false;
         return;
@@ -74,7 +71,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       if (e.key === "Backspace") {
         this.showSuggestions = false;
         this.packageSuggestions = [];
-        this.destinationSuggestions = [];
+        this.searchSuggestions = [];
         this.selectedSuggestion = -1;
         if (this.queryString == "") {
           return;
@@ -183,12 +180,12 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       const searchStore = useStore();
       const destinationInputStore = useSearchDestination();
       destinationInputStore.queryString = searchObj.name;
-      searchStore.destinationQuery = searchObj.name;
+      searchStore.findQuery = searchObj.name;
       searchStore.destinationType = searchObj.type;
       this.queryString = searchObj.name;
       searchStore.fireQuery();
       this.packageSuggestions = [];
-      this.destinationSuggestions = [];
+      this.searchSuggestions = [];
       this.selectedSuggestion = -1;
 
       this.showSuggestions = false;
@@ -209,7 +206,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
       this.destinationQuery = "";
       this.queryString = "";
       this.selectedSuggestion = "";
-      this.destinationSuggestions = [];
+      this.searchSuggestions = [];
       this.packageSuggestions = [];
       this.showSuggestions = false;
       const searchStore = useStore();

@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-between mb-5">
-    <label class="md:text-lg mb-5 md:pb-0">Destination</label>
+  <div class="w-full h-[100px] flex flex-col justify-between mb-5">
+    <label class="md:text-lg md:pb-0">{{ label }}</label>
     <div class="relative">
       <input
         autocomplete="off"
@@ -108,6 +108,7 @@
 const route = useRoute();
 const props = defineProps({
   parent: String,
+  label: String,
 });
 
 const findInput = ref(null);

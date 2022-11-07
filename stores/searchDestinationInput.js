@@ -81,10 +81,10 @@ export const useSearchDestination = defineStore("searchDestinationInput", {
       //  get both countries and provinces (destinations) and regions and make an nonduped array of object with a type property and a name property , so that we can query the right content type from strapi if this suggestion gets searched
       const searchStore = useStore();
       const { $ellipsis } = useNuxtApp();
+
       const { result: regionResult, search: regionSearch } =
         useSearch("prod-regions");
-      const { result: destinationResult, search: destinationSearch } =
-        useSearch("prod-destinations");
+
       let regionSuggestions = [];
       let destinationSuggestions = [];
       await regionSearch({

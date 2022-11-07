@@ -4,18 +4,22 @@ export const useStore = defineStore("search", {
   state: () => ({
     activeInput: ref(""),
     results: [],
-    region: "",
-    destinationQuery: ref(""),
+    findQuery: ref(""),
     destinationType: ref(""),
+    loadingState: false,
+    randomResults: ref([]),
+    firstLoad: ref(true),
+    //filters:
+    region: "",
+    country: "",
+    province: "",
+    city: "",
+    category: "All",
     from_date: "",
     to_date: "",
     price_min: ref(0),
     price_max: ref(100000),
-    category: "All",
     sort_by: "Price low to high",
-    loadingState: false,
-    randomResults: ref([]),
-    firstLoad: ref(true),
   }),
   actions: {
     fireQuery() {
@@ -25,13 +29,13 @@ export const useStore = defineStore("search", {
       this.loadingState = true;
       // set up filter for region / destination:
       let destinationMap = {
-        region: `region:{ eq:"${this.destinationQuery}"}`,
-        country: `destination:{ eq:"${this.destinationQuery}"}`,
-        province: `destination:{ eq:"${this.destinationQuery}"}`,
-        city: `city:{name:{eq:"${this.destinationQuery}"}}`,
+        region: `region:{ eq:"${this.findQuery}"}`,
+        country: `destination:{ eq:"${this.findQuery}"}`,
+        province: `destination:{ eq:"${this.findQuery}"}`,
+        city: `city:{name:{eq:"${this.findQuery}"}}`,
       };
       let destinationFilterString = "";
-      if (this.destinationQuery !== "") {
+      if (this.findQuery !== "") {
         destinationFilterString = destinationMap[this.destinationType];
       }
 
@@ -98,9 +102,15 @@ export const useStore = defineStore("search", {
       $graphql(query)
         .then((response) => {
           this.results = response.data.packages.data;
-          console.log(this.results);
           this.loadingState = false;
+          let temp = this[this.destinationType];
+          this.region = "";
+          this.country = "";
+          this.province = "";
+          this.city = "";
+          this[this.destinationType] = temp;
         })
+
         .catch((error) => {
           console.log(error);
         });
