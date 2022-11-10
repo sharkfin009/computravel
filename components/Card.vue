@@ -167,6 +167,13 @@ let cutTextTitle = titleFirstBit.substring(0, 150);
 if (cutTextTitle.charAt(1) == "*") {
   cutTextTitle = cutTextTitle.substring(2);
 }
+cutTextTitle = cutTextTitle.replace(/[()0-9]/g, "");
+if (cutTextTitle.length > 50) {
+  cutTextTitle = cutTextTitle.slice(0, 50);
+  cutTextTitle = cutTextTitle.split(" ");
+  cutTextTitle.splice(-3, 1);
+  cutTextTitle = cutTextTitle.join(" ");
+}
 
 let stars = [];
 for (let i = 0; i < props.package.star_rating; i++) {

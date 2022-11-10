@@ -21,7 +21,7 @@
           industries.
         </p>
       </div>
-      <a href="public/Asata_Member_Certificate.pdf">
+      <a href="/asata">
         <div class="flex justify-center items-center">
           <img width="250" src="/asata-logo-full-500-sq-transp.png" />
         </div>

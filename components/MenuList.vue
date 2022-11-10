@@ -5,7 +5,7 @@
       class="
         absolute
         -top-3
-        left-10
+        md:left-10
         cursor-pointer
         z-10
         bg-gray-200
@@ -14,6 +14,12 @@
         rounded-xl
       "
     >
+      <div class="absolute right-2 top-2">
+        <IconClose
+          class="md:hidden w-4 transition hover:rotate-180"
+          @mousedown="state = false"
+        />
+      </div>
       <div v-for="(item, index) in list" :key="index">
         <button
           @click="fireSearch(item)"

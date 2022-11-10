@@ -13,7 +13,8 @@
           gap-5
           justify-start
           items-start
-          pl-20
+          pl-5
+          md:pl-20
           pt-40
           font-titillium
           bg-white
@@ -27,7 +28,7 @@
         "
         ref="menu"
       >
-        <div class="overflow-auto pb-[800px] w-full">
+        <div class="overflow-auto pb-40 w-full">
           <div class="text-sm mt-4 mb-3">Search Packages by:</div>
 
           <ul

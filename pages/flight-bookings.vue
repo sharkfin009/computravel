@@ -27,7 +27,7 @@ definePageMeta({
 
 
 
-<style>
+<style scoped>
 /* @keyframes spinner {
         0% {
             transform: translate3d(-50%, -50%, 0) rotate(0deg);
