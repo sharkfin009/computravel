@@ -28,6 +28,77 @@
         ref="menu"
       >
         <div class="overflow-auto pb-[800px] w-full">
+          <div class="text-sm mt-4 mb-3">Search Packages by:</div>
+
+          <ul
+            v-if="menuData"
+            class="pl-3 grid grid-cols-[100px,auto] list-style-none"
+            @mouseleave="clear"
+          >
+            <li
+              class="mb-3 hover:text-lime-500 relative"
+              @click="thisListOnly('regions')"
+              @mouseover="thisListOnly('regions')"
+            >
+              Region
+            </li>
+
+            <MenuList
+              :list="menuData.regions"
+              :state="listState.regions"
+              type="region"
+            />
+
+            <li
+              class="mb-3 hover:text-lime-500"
+              @click="thisListOnly('countries')"
+              @mouseover="thisListOnly('countries')"
+            >
+              Country
+            </li>
+            <MenuList
+              :list="menuData.countries"
+              :state="listState.countries"
+              type="destination"
+            />
+
+            <li
+              class="mb-3 hover:text-lime-500"
+              @mouseover="thisListOnly('provinces')"
+            >
+              SA Province
+            </li>
+            <MenuList
+              :list="menuData.provinces"
+              :state="listState.provinces"
+              type="destination"
+            />
+
+            <li
+              class="mb-3 hover:text-lime-500"
+              @mouseover="thisListOnly('cities')"
+            >
+              City
+            </li>
+            <MenuList
+              :list="menuData.cities"
+              :state="listState.cities"
+              type="city"
+            />
+
+            <li
+              class="mb-3 hover:text-lime-500"
+              @mouseover="thisListOnly('categories')"
+            >
+              Category
+            </li>
+
+            <MenuList
+              :list="menuData.categories"
+              :state="listState.categories"
+              type="category"
+            />
+          </ul>
           <ul class="list-none">
             <li
               v-for="(item, index) of items"
@@ -44,73 +115,6 @@
                 </div>
               </NuxtLink>
             </li>
-            <div class="text-sm mt-4 mb-3">Search Packages by:</div>
-
-            <div v-if="menuData" class="pl-3 grid grid-cols-[100px,auto]">
-              <li
-                class="mb-3 hover:text-lime-500 relative"
-                @click="thisListOnly('regions')"
-                @mouseover="thisListOnly('regions')"
-              >
-                Region
-              </li>
-
-              <MenuList
-                :list="menuData.regions"
-                :state="listState.regions"
-                type="region"
-              />
-
-              <li
-                class="mb-3 hover:text-lime-500"
-                @click="thisListOnly('countries')"
-                @mouseover="thisListOnly('countries')"
-              >
-                Country
-              </li>
-              <MenuList
-                :list="menuData.countries"
-                :state="listState.countries"
-                type="destination"
-              />
-
-              <li
-                class="mb-3 hover:text-lime-500"
-                @mouseover="thisListOnly('provinces')"
-              >
-                SA Province
-              </li>
-              <MenuList
-                :list="menuData.provinces"
-                :state="listState.provinces"
-                type="destination"
-              />
-
-              <li
-                class="mb-3 hover:text-lime-500"
-                @mouseover="thisListOnly('cities')"
-              >
-                City
-              </li>
-              <MenuList
-                :list="menuData.cities"
-                :state="listState.cities"
-                type="city"
-              />
-
-              <li
-                class="mb-3 hover:text-lime-500"
-                @mouseover="thisListOnly('categories')"
-              >
-                Category
-              </li>
-
-              <MenuList
-                :list="menuData.categories"
-                :state="listState.categories"
-                type="category"
-              />
-            </div>
           </ul>
         </div>
         <div
@@ -157,21 +161,10 @@
 <script setup>
 let items = [
   {
-    name: "Travel Tips",
-    url: "/travel-tips",
-  },
-  {
-    name: "Frequently Asked Questions (FAQs)",
-    url: "/FAQs",
-  },
-  {
-    name: "COVID-19",
-    url: "/covid-19",
-  },
-  {
     name: "Groups and Incentives",
     url: "/groups-and-incentives",
   },
+
   {
     name: "Book a Flight",
     url: "/flight-bookings",
@@ -184,6 +177,7 @@ let items = [
     name: "Find A Car",
     url: "/car-bookings",
   },
+
   {
     name: "Travel Insurance",
     url: "https://www.tic.co.za/systematic/travelinsuranceshop.html?ref=89",
@@ -192,6 +186,19 @@ let items = [
     name: "Blog",
     url: "/blog-archive",
   },
+  {
+    name: "Travel Tips",
+    url: "/travel-tips",
+  },
+  {
+    name: "Frequently Asked Questions (FAQs)",
+    url: "/FAQs",
+  },
+  {
+    name: "COVID-19",
+    url: "/covid-19",
+  },
+
   {
     name: "Contact",
     url: "/contact",
@@ -215,6 +222,13 @@ const thisListOnly = (item) => {
   listState.cities = false;
   listState.categories = false;
   listState[item] = true;
+};
+const clear = () => {
+  listState.regions = false;
+  listState.countries = false;
+  listState.provinces = false;
+  listState.cities = false;
+  listState.categories = false;
 };
 const menu = ref(null);
 import useDetectOutsideClick from "@/composables/useDetectOutsideClick";

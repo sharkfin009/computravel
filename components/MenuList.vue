@@ -1,15 +1,29 @@
 <template>
   <div class="relative">
-    <div v-show="state" class="absolute inset-0 cursor-pointer z-10">
+    <div
+      v-show="state"
+      class="
+        absolute
+        -top-3
+        left-10
+        cursor-pointer
+        z-10
+        bg-gray-200
+        px-5
+        py-3
+        rounded-xl
+      "
+    >
       <div v-for="(item, index) in list" :key="index">
         <button
           @click="fireSearch(item)"
           class="
             hover:bg-lime-500 hover:text-lime-50
             block
-            px-2
+            px-5
             rounded-xl
             transition
+            bg-gray-200
           "
         >
           {{ item }}
