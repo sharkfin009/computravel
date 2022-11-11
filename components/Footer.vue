@@ -21,7 +21,7 @@
           industries.
         </p>
       </div>
-      <a href="/asata">
+      <a href="/asata" target="blank">
         <div class="flex justify-center items-center">
           <img width="250" src="/asata-logo-full-500-sq-transp.png" />
         </div>
@@ -37,13 +37,18 @@
           </div>
 
           <div>
-            <a to="" class="cursor-pointer" href="mailto:info@computravel.co.za"
+            <a
+              to=""
+              class="cursor-pointer"
+              href="mailto:info@computravel.co.za"
+              target="blank"
               >info@computravel.co.za</a
             ><br />
             <a
               to=""
               class="cursor-pointer"
               href="mailto:enquiry@computravel.co.za"
+              target="blank"
               >enquiry@computravel.co.za</a
             >
           </div>
@@ -65,13 +70,16 @@
             </NuxtLink>
           </div>
           <div class="flex justify-start gap-5 items-center">
-            <a href="https://www.facebook.com/Computravel/">
+            <a href="https://www.facebook.com/Computravel/" target="blank">
               <i class="fa-brands fa-facebook fa-2x cursor-pointer"
             /></a>
-            <a href="https://twitter.com/computravel">
+            <a href="https://twitter.com/computravel" target="blank">
               <i class="fa-brands fa-twitter fa-2x cursor-pointer" />
             </a>
-            <a href="https://www.instagram.com/computravel/?hl=en">
+            <a
+              href="https://www.instagram.com/computravel/?hl=en"
+              target="blank"
+            >
               <i class="fa-brands fa-instagram fa-2x cursor-pointer" />
             </a>
           </div>
@@ -83,16 +91,16 @@
             <h4 class="font-bold mb-5">legal</h4>
           </div>
           <ul class="list-none text-base">
-            <NuxtLink to="/covid-19">
+            <NuxtLink to="/covid-19" target="blank">
               <li>sacoronavirus.co.za</li>
             </NuxtLink>
-            <NuxtLink to="/terms-and-conditions">
+            <NuxtLink to="/terms-and-conditions" target="blank">
               <li>Terms And Conditions</li>
             </NuxtLink>
-            <NuxtLink to="/disclaimer">
+            <NuxtLink to="/disclaimer" target="blank">
               <li>Disclaimer</li>
             </NuxtLink>
-            <NuxtLink to="/fraud-prevention-policy">
+            <NuxtLink to="/fraud-prevention-policy" target="blank">
               <li>Fraud Prevention Policy</li>
             </NuxtLink>
             <!-- <NuxtLink to="section-51-PAIA-manual">
@@ -105,19 +113,19 @@
             <h4 class="font-bold mb-5">data, privacy and more</h4>
           </div>
           <ul class="list-none text-base">
-            <NuxtLink to="/privacy-policy">
+            <NuxtLink to="/privacy-policy" target="blank">
               <li>Privacy Policy</li>
             </NuxtLink>
-            <NuxtLink to="cookie-policy">
+            <NuxtLink to="cookie-policy" target="blank">
               <li>Cookie Policy</li>
             </NuxtLink>
             <!-- <NuxtLink to="careers">
               <li>Careers</li>
             </NuxtLink> -->
-            <NuxtLink to="faqs">
+            <NuxtLink to="faqs" target="blank">
               <li>FAQs</li>
             </NuxtLink>
-            <NuxtLink to="/travel-tips">
+            <NuxtLink to="/travel-tips" target="blank">
               <li>Travel Tips</li>
             </NuxtLink>
           </ul>

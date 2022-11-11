@@ -245,7 +245,9 @@
                 <img class="w-full object-cover h-full" :src="pic[2]" />
               </div>
               <div
-                v-if="package_data.packages.data[0].attributes.video_url"
+                v-if="
+                  package_data.packages.data[0].attributes.video_url !== null
+                "
                 class="overflow-hidden rounded-xl flex flex-col w-full h-full"
               >
                 <iframe
