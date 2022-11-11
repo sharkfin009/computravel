@@ -58,6 +58,7 @@
               <CompuButton
                 v-if="enquiry.enquirySent == false"
                 class="bg-lime-500"
+                target="blank"
                 >enquire now</CompuButton
               >
             </NuxtLink>
@@ -65,6 +66,7 @@
               <CompuButton
                 v-if="enquiry.enquirySent == true"
                 class="bg-lime-500"
+                target="blank"
                 >contact us</CompuButton
               >
             </NuxtLink>

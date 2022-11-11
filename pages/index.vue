@@ -1,13 +1,13 @@
 <template>
   <div class="relative h-full w-full bg-slate-300 select-none">
-    <HomeWelcome />
+    <!-- <HomeWelcome /> -->
     <div :class="{ '': suggestStore.showSuggestions }">
-      <HomeFavouritePackages />
+      <!-- <HomeFavouritePackages /> -->
       <HomeDestinations />
-      <HomeFlSpecials />
-      <HomeTestimonials />
+      <!-- <HomeFlSpecials /> -->
+      <!-- <HomeTestimonials />
       <HomeFiveReasons />
-      <Footer />
+      <Footer /> -->
     </div>
     <div class="absolute inset-0 pointer-events-none">
       <Header class="pointer-events-auto" />

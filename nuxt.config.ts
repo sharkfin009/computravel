@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@pinia/nuxt"],
+  modules: ["@nuxtjs/strapi"],
   publicRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
     baseUrl: process.env.BASE_URL,

@@ -12,12 +12,9 @@
             items-end
             bg-gray-100
             rounded-lala-t
+            overflow-hidden
             shadow
           "
-          :style="{
-            backgroundImage: `url(${images[0]})`,
-            backgroundSize: 'cover',
-          }"
         >
           <div
             v-if="props.package.category.data.attributes.name"
@@ -31,10 +28,12 @@
               font-titillium
               shadow-light-300 shadow-xl
               rounded-r-xl
+              z-10
             "
           >
             {{ props.package.category.data.attributes.name }}
           </div>
+          <img class="absolute inset-0" :src="images[0]" />
         </div>
       </div>
       <div

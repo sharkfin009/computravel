@@ -12,13 +12,10 @@
         bg-white
       "
     >
-      <div
-        class="relative h-full flex items-end"
-        :style="{
-          backgroundImage: `url(${props.article.attributes.featured_image.data[0].attributes.url})`,
-          backgroundSize: 'cover',
-        }"
-      ></div>
+      <img
+        :src="props.article.attributes.featured_image.data[0].attributes.url"
+      />
+
       <div class="flex flex-col justify-evenly items-center px-5">
         <div class="w-full text-center text-base text-gray-300">
           {{
