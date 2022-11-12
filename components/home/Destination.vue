@@ -1,15 +1,15 @@
 <template>
   <div
-    class="w-full lg:grid lg:grid-rows-none lg:grid-cols-[auto,320px] pb-5"
+    class="w-full lg:grid lg:grid-rows-none lg:grid-cols-[auto,320px]"
     v-if="props.region.length > 0"
   >
     <slot />
 
-    <div class="flex flex-col mt-2 md:mt-8 lg:mt-0">
+    <div class="flex flex-col">
       <div class="flex justify-center">
         <div class="relative mb-7 w-[320px] h-[400px]">
           <card
-            v-for="(pack, index) in props.region"
+            v-for="(pack, index) in region"
             :key="index"
             :package="pack.attributes"
             class="absolute inset-0 transition-opacity duration-1000 opacity-0"

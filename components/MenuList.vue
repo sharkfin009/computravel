@@ -14,8 +14,7 @@
         rounded-xl
         shadow-xl
         w-[220px]
-        md:w-[180px]
-        text-sm
+        md:w-[180px] md:text-sm
       "
     >
       <div class="absolute right-2 top-2">

@@ -10,6 +10,6 @@ export const useGraphPromise = (query) => {
     }),
   })
     .then((response) => response.json())
-    .then((res) => data)
+    .then((res) => res)
     .catch((error) => (error.value = error));
 };
