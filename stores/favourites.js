@@ -36,7 +36,7 @@ export const useStore = defineStore("favourites", {
                       description
                       terms
                       supplier_ref
-                      uploaded_images{
+                      images{
                         data{
                           attributes{
                             url

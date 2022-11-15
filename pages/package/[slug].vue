@@ -67,14 +67,13 @@ let query = `
                    slug
                    supplier_ref
                    video_url
-                   uploaded_images{
+                   images{
                     data{
                       attributes{
                         url
                       }
                     }
                     }
-                   image_urls
                    
 
                   }

@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@pinia/nuxt"],
-  modules: ["@nuxtjs/strapi"],
+  modules: ["@nuxtjs/strapi", "@nuxt/image-edge"],
   publicRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
     baseUrl: process.env.BASE_URL,
@@ -70,6 +70,18 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag) => {
         return tag.startsWith("font-awesome-icon");
+      },
+    },
+  },
+  image: {
+    provider: "cloudinary",
+    cloudinary: {
+      baseURL: "https://res.cloudinary.com/sharkfin/image/upload",
+      modifiers: {
+        // effect: "sharpen:100",
+        quality: "auto:best",
+        // width: 400,
+        // height: 300,
       },
     },
   },

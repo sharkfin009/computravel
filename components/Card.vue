@@ -17,7 +17,7 @@
           "
         >
           <div
-            v-if="props.package.category.data.attributes.name"
+            v-if="props.package.category.data"
             class="
               bg-black
               text-white
@@ -33,7 +33,7 @@
           >
             {{ props.package.category.data.attributes.name }}
           </div>
-          <img class="absolute inset-0" :src="images[0]" />
+          <img v-if="image" class="absolute inset-0" :src="image" />
         </div>
       </div>
       <div
@@ -138,12 +138,12 @@ const props = defineProps({
 });
 
 import { useStore } from "@/stores/search";
-let imageUrls =
-  props.package.image_urls !== null ? props.package.image_urls : [];
-let images = [
-  ...imageUrls,
-  ...props.package.uploaded_images.data.map((item) => item.attributes.url),
-];
+// console.log(props.package.images.data[0].attributes.url)
+let image = null;
+if (props.package.images.data.length) {
+  console.log("yes");
+  image = props.package.images.data[0].attributes.url;
+}
 
 const slugify = (str) =>
   str

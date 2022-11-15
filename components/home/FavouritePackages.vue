@@ -1,6 +1,6 @@
 <template>
-  <HomeSectionLayout bgColor="bg-green-avo">
-    <div v-if="favourites">
+  <HomeSectionLayout v-if="faves.length > 0" bgColor="bg-green-avo">
+    <div>
       <!-- top row -->
       <SectionHeading
         heading="holiday packages"
@@ -99,7 +99,7 @@ const { data: favourites, error } = useGraph(`
                       description
                       terms
                       supplier_ref
-                     uploaded_images{
+                     images{
                       data{
                         attributes{
                           url
@@ -113,7 +113,6 @@ const { data: favourites, error } = useGraph(`
                           }
                         }
                       }
-                     image_urls
                      
                       valid_to
                     }

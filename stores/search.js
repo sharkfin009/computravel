@@ -78,7 +78,7 @@ export const useStore = defineStore("search", {
                    destination
                    price
                    valid_to
-                   uploaded_images{
+                   images{
                     data{
                       attributes{
                         url
@@ -132,14 +132,13 @@ export const useStore = defineStore("search", {
              destination
              price
              valid_to
-             uploaded_images{
+             images{
               data{
                 attributes{
                   url
                 }
               }
              } 
-             image_urls
              star_rating
              category{
               data{

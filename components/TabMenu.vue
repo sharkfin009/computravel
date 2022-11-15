@@ -21,7 +21,7 @@
         rounded-bl-lg rounded-br-lg
         transition
         ease-out
-        duration-700
+        duration-300
       "
       :class="{ 'bg-green-logo': marker_highlighted }"
     />

@@ -232,7 +232,7 @@
             :style="`width:${picScrollWidth}px`"
           >
             <div class="overflow-hidden rounded-xl">
-              <img class="w-full object-cover h-full" :src="pic[0]" />
+              <img class="w-full object-cover h-full" :src="pic[0]" /> 
             </div>
             <div class="grid grid-rows-2 gap-5 h-[500px]">
               <div class="overflow-hidden rounded-xl">
@@ -482,14 +482,11 @@ onMounted(() => {
   // })
 });
 let aboutCopy = props.destination_content ? props.destination_content.copy : "";
-let imageUrls =
-  props.package_data.packages.data[0].attributes.image_urls !== null
-    ? props.package_data.packages.data[0].attributes.image_urls
-    : [];
+
 let images = [
   ...(props.destination_content ? props.destination_content.images : []),
-  ...imageUrls,
-  ...props.package_data.packages.data[0].attributes.uploaded_images.data.map(
+  
+  ...props.package_data.packages.data[0].attributes.images.data.map(
     (item) => item.attributes.url
   ),
 ];

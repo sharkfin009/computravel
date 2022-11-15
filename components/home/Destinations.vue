@@ -1,5 +1,10 @@
 <template>
-  <HomeSectionLayout bgColor="bg-stone-50">
+  <HomeSectionLayout bgColor="bg-stone-50" v-if="done">
+    <!-- <pre>{{
+      destinationPackagesArray.map((item) =>
+        item.map((p) => p.attributes.images)
+      )
+    }}</pre> -->
     <div class="">
       <SectionHeading
         heading="destinations"
@@ -10,40 +15,30 @@
       <div class="xl:block">
         <div />
         <div />
+        <!-- mobile -->
         <TabMenu
+          class="flex md:hidden"
+          @selectTab="setActiveTab"
+          :titles="destinationsDictionary.slice(0, 3)"
+        ></TabMenu>
+        <!-- md -->
+        <TabMenu
+          class="hidden md:flex"
           @selectTab="setActiveTab"
           :titles="destinationsDictionary"
         ></TabMenu>
       </div>
 
       <div class="relative h-[470px] w-full">
-        <HomeDestination
-          v-for="(region, index) in packages"
-          :key="index"
-          :region="region"
-          class="absolute inset-0 w-full flex flex-col"
-          :class="{ '!opacity-0 !pointer-events-none': index !== activeTab }"
-        >
-          <!-- unnamed slot for destination pic on left: -->
-          <div class="hidden lg:block relative h-full lg:mr-10">
-            <img
-              class="
-                absolute
-                rounded-3xl
-                md:rounded-lala
-                shadow-2xl
-                h-[130px]
-                w-[320px]
-                md:w-full
-                lg:h-[450px]
-              "
-              :src="destinationImages[index]"
-              :class="{
-                '!opacity-0 ': index !== activeTab,
-              }"
-            />
-          </div>
-        </HomeDestination>
+        <div v-for="(three, index) in destinationPackagesArray" :key="index">
+          <HomeDestination
+            :destinationPackages="three"
+            :destinationImage="destinationImages[index]"
+            class="absolute inset-0 w-full flex flex-col"
+            :class="{ '!opacity-0 !pointer-events-none': index !== activeTab }"
+          >
+          </HomeDestination>
+        </div>
       </div>
     </div>
   </HomeSectionLayout>
@@ -59,7 +54,6 @@
 definePageMeta({
   layout: "section",
 });
-// const graphqlw = useStrapiGraphQL();
 
 const activeTab = ref(0);
 
@@ -67,18 +61,17 @@ import { useGraphPromise } from "../../composables/useGraphPromise";
 
 const destinationsDictionary = [
   "Europe",
-  "Middle East",
-  "Africa",
+  // "Middle East",
+  // "Africa",
   "Indian Ocean Islands",
   "East and Southeast Asia",
 ];
-const destinationsDictionaryMobile = ["Europe", "Middle East", "Africa"];
-
+// PACKAGES:
 const getThree = (region) => {
   return useGraphPromise(`
   query {
     packages(filters:{region:{eq:"${region}"}} pagination:{
-      page:1,pageSize:20
+      page:1,pageSize:10
     }) {
       data {
         attributes {
@@ -91,7 +84,7 @@ const getThree = (region) => {
           supplier_ref
           valid_to
           price
-          uploaded_images {
+          images {
             data {
               attributes {
                 url
@@ -105,7 +98,14 @@ const getThree = (region) => {
               }
             }
           }
-          image_urls
+          images{
+            data{
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
           star_rating
           slug
         }
@@ -114,16 +114,14 @@ const getThree = (region) => {
   }
 `);
 };
-const packages = ref([]);
-const queryArray = destinationsDictionary.map((item) => {
-  return getThree(item).then((res) =>
+const packageQueryArray = destinationsDictionary.map(async (item) => {
+  let three = await getThree(item).then((res) =>
     res.data.packages.data.sort(() => Math.random() - 0.5).slice(0, 3)
   );
+  return three;
 });
-
-Promise.all(queryArray).then((values) => {
-  packages.value = values;
-});
+// DESTINATION IMAGES:
+const destinationPackagesArray = ref([]);
 const getDestinationImages = (region) => {
   return useGraphPromise(`
   query{
@@ -150,16 +148,23 @@ const getDestinationImages = (region) => {
   }
 }`);
 };
-const destinationQueryArray = destinationsDictionary.map((item) => {
+const destinationQueryArray = destinationsDictionary.map(async (item) => {
   return getDestinationImages(item).then((res) => {
-    return res.data.regions.data[0].attributes.images.data[0].attributes.url;
+    return res.data.regions.data[0].attributes.images.data[0].attributes.url.replace(
+      "https://res.cloudinary.com/sharkfin/image/upload/",
+      ""
+    );
   });
 });
 
 const destinationImages = ref([]);
-Promise.all(destinationQueryArray).then((values) => {
-  destinationImages.value = values;
-  console.log(values);
+// resolve promises:
+const done = ref(false);
+Promise.all([...destinationQueryArray, ...packageQueryArray]).then((values) => {
+  destinationImages.value = values.slice(0, destinationsDictionary.length);
+  destinationPackagesArray.value = values.slice(destinationsDictionary.length);
+  console.log(destinationImages.value, destinationPackagesArray.value);
+  done.value = true;
 });
 
 const setActiveTab = (index) => {

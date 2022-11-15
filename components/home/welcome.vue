@@ -2,19 +2,25 @@
   <section class="relative">
     <!-- slider -->
     <div class="relative w-full h-[98vh] pt-20 px-20 flex flex-col justify-end">
-      <Transition name="fade">
-        <div v-if="imageStyles.length > 0">
-          <div class="w-full h-full absolute inset-0">
-            <div
-              v-for="(image, index) in imageStyles"
-              :key="index"
-              class="w-full h-full absolute transition ease-in duration"
-              :style="imageStyles[index]"
-              :class="{ 'opacity-0 fadeIn': index !== activePic }"
-            ></div>
-          </div>
-        </div>
-      </Transition>
+      <div v-if="images.length">
+        <nuxt-img
+          class="absolute inset-0 w-full h-full transition ease-in duration"
+          :src="images[0]"
+          sizes="lg:90vw"
+        />
+        <!-- <div
+          v-for="(image, index) in images"
+          :key="index"
+          class="w-full h-full absolute inset-0"
+        >
+          <nuxt-img
+            class="absolute inset-0 w-full h-full transition ease-in duration"
+            :src="image"
+            :class="{ 'opacity-0 fadeIn': index !== activePic }"
+            sizes="lg:90vw"
+          />
+        </div> -->
+      </div>
       <div
         class="
           w-full
@@ -81,9 +87,9 @@
 </template>
 <script setup>
 const config = useRuntimeConfig();
-import { useGraph } from "~/composables/useGraph";
-
-const { data: images, error } = useGraph(
+import { useGraphPromise } from "../../composables/useGraphPromise";
+const images = ref([]);
+useGraphPromise(
   `query{
   homePageCarousel{
     data{attributes{
@@ -97,28 +103,20 @@ const { data: images, error } = useGraph(
     }}
   }
 }`
-);
-const imageStyles = ref([]);
-watch(
-  () => images.value,
-  () => {
-    imageStyles.value =
-      images.value.data.homePageCarousel.data.attributes.pics.data.map(
-        (item) => {
-          let url = item.attributes.url;
-          return {
-            backgroundImage: `url(${url})`,
-            backgroundSize: "cover",
-          };
-        }
-      );
-    console.log(imageStyles.value);
-  }
-);
+).then((res) => {
+  images.value = res.data.homePageCarousel.data.attributes.pics.data.map(
+    (item) =>
+      item.attributes.url.replace(
+        "https://res.cloudinary.com/sharkfin/image/upload/",
+        ""
+      )
+  );
+  console.log(images.value);
+});
 
 let activePic = ref(0);
 setInterval(() => {
-  if (activePic.value === imageStyles.value.length - 1) {
+  if (activePic.value === images.value.length - 1) {
     activePic.value = 0;
   }
   activePic.value++;

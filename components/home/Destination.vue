@@ -1,15 +1,39 @@
 <template>
   <div
-    class="w-full lg:grid lg:grid-rows-none lg:grid-cols-[auto,320px]"
-    v-if="props.region.length > 0"
+    class="
+      w-full
+      lg:grid lg:grid-rows-none lg:grid-cols-[auto,320px]
+      pt-5
+      gap-10
+    "
   >
-    <slot />
+    <div class="hidden lg:block relative object-cover">
+      <div
+        class="
+          absolute
+          inset-0
+          bg-blue-100
+          overflow-hidden
+          rounded-3xl
+          shadow-2xl
+        "
+      >
+        <nuxt-img
+          class="w-full h-full object-cover"
+          :src="destinationImage"
+          :class="{ '!opacity-0 ': index !== activeTab }"
+          width="1200px"
+          height="600px"
+          sizes="lg:90vw"
+        />
+      </div>
+    </div>
 
     <div class="flex flex-col">
       <div class="flex justify-center">
         <div class="relative mb-7 w-[320px] h-[400px]">
           <card
-            v-for="(pack, index) in region"
+            v-for="(pack, index) in destinationPackages"
             :key="index"
             :package="pack.attributes"
             class="absolute inset-0 transition-opacity duration-1000 opacity-0"
@@ -41,7 +65,8 @@
 
 <script setup>
 const props = defineProps({
-  region: Array,
+  destinationPackages: Array,
+  destinationImage: String,
 });
 const dots = [1, 2, 3];
 const selectedCard = ref(0);

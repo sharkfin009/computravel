@@ -1,8 +1,7 @@
 <template>
-  <HomeSectionLayout bgColor="bg-green-avo">
+  <HomeSectionLayout v-if="reasons !== undefined" bgColor="bg-green-avo">
     <div
       class="bg-green-avo flex flex-col text-2xl justify-evenly md:mx-0 pb-5"
-      v-if="reasons.length > 0"
     >
       <SectionHeading
         heading="travel with us"
@@ -11,7 +10,6 @@
       />
 
       <TabMenu
-        v-if="titles.length > 0"
         @selectTab="setActiveTab"
         :titles="titles"
         class="mb-5"
@@ -22,8 +20,7 @@
           v-for="(reason, index) in reasons"
           :key="index"
           :reason="reason"
-          :imageStyle="imageStyles[index]"
-          class="absolute inset-0 transition ease-in duration-700"
+          class="absolute inset-0 transition ease-in duration-300"
           :class="{ 'opacity-0 translate-x-[80vw]': index !== activeTab }"
         />
       </div>
@@ -32,25 +29,35 @@
 </template>
 
 <script setup>
-import { useStore } from "~/stores/reasons";
-const reasonsPinia = useStore();
-const reasons = ref([]);
-const imageStyles = ref([]);
-const activeTab = ref(2);
-const titles = ref([]);
+const activeTab = ref(0);
+let titles = ref([]);
 const setActiveTab = (index) => {
   activeTab.value = index;
 };
 
-reasonsPinia.getReasons();
-reasonsPinia.$subscribe((mutations, state) => {
-  if (state.reasons.length > 0) {
-    reasons.value = state.reasons;
-    imageStyles.value = reasons.value.map((item) => ({
-      backgroundImage: `url(${item.attributes.image_path})`,
-      backgroundSize: "cover",
-    }));
-    titles.value = reasons.value.map((item) => item.attributes.title);
+const graphql = useStrapiGraphQL();
+let reasons = await graphql(`
+  query {
+    reasons {
+      data {
+        id
+        attributes {
+          title
+          subtitle
+          content
+          image_path
+        }
+      }
+    }
   }
-});
+`);
+titles.value = reasons.data.reasons.data.map((item) => item.attributes.title);
+reasons = reasons.data.reasons.data.map((item) => ({
+  subtitle: item.attributes.subtitle,
+  content: item.attributes.content,
+  image_url: item.attributes.image_path.replace(
+    "https://res.cloudinary.com/sharkfin/image/upload/",
+    ""
+  ),
+}));
 </script>
