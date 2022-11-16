@@ -3,12 +3,7 @@
     <!-- slider -->
     <div class="relative w-full h-[98vh] pt-20 px-20 flex flex-col justify-end">
       <div v-if="images.length">
-        <nuxt-img
-          class="absolute inset-0 w-full h-full transition ease-in duration"
-          :src="images[0]"
-          sizes="lg:90vw"
-        />
-        <!-- <div
+        <div
           v-for="(image, index) in images"
           :key="index"
           class="w-full h-full absolute inset-0"
@@ -19,7 +14,7 @@
             :class="{ 'opacity-0 fadeIn': index !== activePic }"
             sizes="lg:90vw"
           />
-        </div> -->
+        </div>
       </div>
       <div
         class="
