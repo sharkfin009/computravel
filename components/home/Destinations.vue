@@ -61,8 +61,8 @@ import { useGraphPromise } from "../../composables/useGraphPromise";
 
 const destinationsDictionary = [
   "Europe",
-  // "Middle East",
-  // "Africa",
+  "Middle East",
+  "Africa",
   "Indian Ocean Islands",
   "East and Southeast Asia",
 ];
