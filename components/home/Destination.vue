@@ -19,8 +19,9 @@
         "
       >
         <nuxt-img
+          :alt="destinationImage.alt"
           class="w-full h-full object-cover"
-          :src="destinationImage"
+          :src="destinationImage.url"
           :class="{ '!opacity-0 ': index !== activeTab }"
           width="1200px"
           height="600px"

@@ -82,10 +82,10 @@ export const useStore = defineStore("search", {
                     data{
                       attributes{
                         url
+                        alternativeText
                       }
                     }
                    } 
-                   image_urls 
                    star_rating
                    category{
                     data{
@@ -136,6 +136,7 @@ export const useStore = defineStore("search", {
               data{
                 attributes{
                   url
+                  alternativeText
                 }
               }
              } 

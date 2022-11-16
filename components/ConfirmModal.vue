@@ -62,6 +62,7 @@
           <img
             src="https://res.cloudinary.com/sharkfin/image/upload/v1660814652/computravel/lala_pic_co0zya.png"
             class="hidden lg:block object-cover rounded-3xl"
+            alt="island beach paradise"
           />
         </div>
       </div>

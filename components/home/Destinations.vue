@@ -140,6 +140,7 @@ const getDestinationImages = (region) => {
          data{
            attributes{
              url
+             alternativeText
            }
          }
        }
@@ -150,10 +151,14 @@ const getDestinationImages = (region) => {
 };
 const destinationQueryArray = destinationsDictionary.map(async (item) => {
   return getDestinationImages(item).then((res) => {
-    return res.data.regions.data[0].attributes.images.data[0].attributes.url.replace(
-      "https://res.cloudinary.com/sharkfin/image/upload/",
-      ""
-    );
+    return {
+      url: res.data.regions.data[0].attributes.images.data[0].attributes.url.replace(
+        "https://res.cloudinary.com/sharkfin/image/upload/",
+        ""
+      ),
+      alt: res.data.regions.data[0].attributes.images.data[0].attributes
+        .alternativeText,
+    };
   });
 });
 

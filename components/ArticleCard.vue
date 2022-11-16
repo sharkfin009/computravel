@@ -14,6 +14,10 @@
     >
       <img
         :src="props.article.attributes.featured_image.data[0].attributes.url"
+        :alt="
+          props.article.attributes.featured_image.data[0].attributes
+            .alternativeText
+        "
       />
 
       <div class="flex flex-col justify-evenly items-center px-5">

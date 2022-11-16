@@ -232,7 +232,7 @@
             :style="`width:${picScrollWidth}px`"
           >
             <div class="overflow-hidden rounded-xl">
-              <img class="w-full object-cover h-full" :src="pic[0]" /> 
+              <img class="w-full object-cover h-full" :src="pic[0]" />
             </div>
             <div class="grid grid-rows-2 gap-5 h-[500px]">
               <div class="overflow-hidden rounded-xl">
@@ -485,10 +485,11 @@ let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 
 let images = [
   ...(props.destination_content ? props.destination_content.images : []),
-  
-  ...props.package_data.packages.data[0].attributes.images.data.map(
-    (item) => item.attributes.url
-  ),
+
+  ...props.package_data.packages.data[0].attributes.images.data.map((item) => ({
+    url: item.attributes.url,
+    alt: item.attributes.alternativeText,
+  })),
 ];
 
 console.log(props.package_data);

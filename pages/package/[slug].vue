@@ -71,6 +71,7 @@ let query = `
                     data{
                       attributes{
                         url
+                        alternativeText
                       }
                     }
                     }
@@ -86,8 +87,8 @@ const package_data = ref(null);
 const error = ref(null);
 const destination_content = ref(null);
 const responseCount = ref(0);
-const { $graphql } = useNuxtApp();
-$graphql(query)
+import { useGraphPromise } from "../../composables/useGraphPromise";
+useGraphPromise(query)
   .then((response) => {
     package_data.value = response.data;
     store.package = response.data.packages.data[0];
@@ -196,7 +197,10 @@ watch(
         destination_content.value = {
           name: store.location.country.name,
           copy: store.location.country.copy,
-          images: store.location.country.images.map((item) => item.url),
+          images: store.location.country.images.map((item) => ({
+            url: item.attributes.url,
+            alt: item.attributes.alternativeText,
+          })),
         };
         return;
       }

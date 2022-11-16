@@ -103,6 +103,7 @@ const { data: favourites, error } = useGraph(`
                       data{
                         attributes{
                           url
+                          alternativeText
                         }
                       }
                       }

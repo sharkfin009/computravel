@@ -71,6 +71,7 @@ const { data, pending, error, refresh } = await useFetch(
                                 data{
                                     attributes{
                                         url
+                                        alternativeText
                                     }
                                 }
                             }

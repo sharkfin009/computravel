@@ -37,6 +37,7 @@ const { data, error } = useGraph(`query{
                     data{
                         attributes{
                             url
+                            alternativeText
                         }
                     }
                 }
@@ -44,6 +45,7 @@ const { data, error } = useGraph(`query{
                     data{
                         attributes{
                             url
+                            alternativeText
                         }
                     }
                 }

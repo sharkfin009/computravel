@@ -18,6 +18,10 @@
                 data.data.blogArticles.data[0].attributes.featured_image.data[0]
                   .attributes.url
               "
+              :alt="
+                data.data.blogArticles.data[0].attributes.featured_image.data[0]
+                  .attributes.alternativeText
+              "
               class="object-cover"
             />
           </div>
@@ -116,6 +120,7 @@ let query = `query{
                 data{
                     attributes{
                         url
+                        alternativeText
                     }
                 }
             }

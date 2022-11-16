@@ -23,7 +23,11 @@
       </div>
       <a href="/asata" target="blank">
         <div class="flex justify-center items-center">
-          <img width="250" src="/asata-logo-full-500-sq-transp.png" />
+          <img
+            width="250"
+            src="/asata-logo-full-500-sq-transp.png"
+            alt="ASATA logo"
+          />
         </div>
       </a>
     </div>

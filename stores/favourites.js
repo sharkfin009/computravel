@@ -40,10 +40,10 @@ export const useStore = defineStore("favourites", {
                         data{
                           attributes{
                             url
+                            alternativeText
                           }
                         }
                       } 
-                      image_urls
                       valid_to
                     }
                   }

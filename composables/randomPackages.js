@@ -22,6 +22,8 @@ export const useRandomPackages = () => {
                     data{
                       attributes{
                         url
+                        alternativeText
+
                       }
                     }
                    } 

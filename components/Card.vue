@@ -33,7 +33,12 @@
           >
             {{ props.package.category.data.attributes.name }}
           </div>
-          <img v-if="image" class="absolute inset-0" :src="image" />
+          <img
+            v-if="image"
+            class="absolute inset-0"
+            :src="image.url"
+            :alt="image.alt"
+          />
         </div>
       </div>
       <div
@@ -142,7 +147,10 @@ import { useStore } from "@/stores/search";
 let image = null;
 if (props.package.images.data.length) {
   console.log("yes");
-  image = props.package.images.data[0].attributes.url;
+  image = {
+    url: props.package.images.data[0].attributes.url,
+    alt: props.package.images.data[0].attributes.alternativeText,
+  };
 }
 
 const slugify = (str) =>
