@@ -12,7 +12,7 @@
             class="absolute inset-0 w-full h-full transition ease-in duration"
             :src="image"
             :class="{ 'opacity-0 fadeIn': index !== activePic }"
-            sizes="lg:90vw"
+            quality="50"
           />
         </div>
       </div>
