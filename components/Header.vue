@@ -104,6 +104,13 @@
         >
       </ConfirmModal>
     </transition>
+
+    <transition name="fade">
+      <ConfirmModal :showRef="false" v-if="subscriptionState.showConfirmation">
+        <template #header> Thank you for your subscription! </template>
+        <template #body> You will receive our next newsletter.</template>
+      </ConfirmModal>
+    </transition>
     <transition name="fade">
       <Menu v-if="globalStore.showMenu" />
     </transition>
@@ -118,6 +125,8 @@ const globalStore = useGlobalStore();
 const route = useRoute();
 import { useenquiry } from "@/stores/enquiry";
 const enquiry = useenquiry();
+import { useSubscription } from "@/stores/subscription";
+const subscriptionState = useSubscription();
 const showMenu = () => {
   globalStore.showMenu = true;
 };

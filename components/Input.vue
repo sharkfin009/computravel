@@ -4,52 +4,58 @@
       <label v-if="validationObject" class="tracking-wide mb-5"
         >{{ label }}
       </label>
-      <input
-        autocomplete="off"
-        :id="inputName"
-        :name="inputName"
-        @input="setValue"
-        class="
-          w-full
-          rounded-xl
-          bg-white
-          input-outline
-          p-4
-          hover:shadow-none
-          cursor-pointer
-        "
-        :type="type"
-        :class="{
-          greenClass:
-            validationObject.$error === false &&
-            validationObject.$anyDirty === true,
-          redClass: validationObject.$error === true,
-        }"
-        :placeholder="placeholder"
-        v-model="inputValue"
-        @blur="validationObject.$touch"
-      />
+      <div class="relative">
+        <div class="absolute pointer-events-none flex justify-center w-full">
+          <div
+            v-show="validationObject.$error"
+            class="
+              -translate-y-8
+              font-medium
+              flex
+              items-center
+              animate__animated animate__headShake
+              text-xl text-left text-red-700
+              bg-stone-50
+              shadow
+              rounded-2xl
+              p-4
+              border
+            "
+          >
+            <div>
+              {{ errorMessage }}
+            </div>
+          </div>
+        </div>
+        <input
+          autocomplete="off"
+          :id="inputName"
+          :name="inputName"
+          @input="setValue"
+          class="
+            w-full
+            rounded-xl
+            bg-white
+            input-outline
+            p-4
+            hover:shadow-none
+            cursor-pointer
+          "
+          :type="type"
+          :class="{
+            greenClass:
+              validationObject.$error === false &&
+              validationObject.$anyDirty === true,
+            redClass: validationObject.$error === true,
+          }"
+          :placeholder="placeholder"
+          v-model="inputValue"
+          @blur="validationObject.$touch"
+        />
+      </div>
     </div>
     <slot />
 
-    <div
-      v-show="validationObject.$error"
-      class="
-        absolute
-        left-[40%]
-        top-[0%]
-        font-medium
-        flex
-        items-center
-        w-full
-        animate__animated animate__headShake
-        text-xl text-left text-red-700
-      "
-    >
-      <div>
-        {{ errorMessage }}
-      </div>
-    </div>
     <slot />
   </div>
 </template>
