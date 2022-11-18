@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative listOutside">
     <div
       v-if="!suggestStore.showSuggestions"
       class="sticky top-[142px] md:top-[90px] bg-slate-50 mb-5 z-10"

@@ -89,3 +89,8 @@ const { data, pending, error, refresh } = await useFetch(
   }
 );
 </script>
+<style lang="scss" scoped>
+li {
+  padding-left: 10px !important;
+}
+</style>
