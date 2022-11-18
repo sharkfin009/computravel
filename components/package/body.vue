@@ -29,7 +29,11 @@
             v-if="images.length == 1"
             class="rounded-xl overflow-hidden max-w-screen-md"
           >
-            <img class="w-full h-full object-cover" :src="images[0]" />
+            <nuxt-img
+              class="w-full h-full object-cover"
+              :src="images[0].url"
+              :alt="images[0].alt"
+            />
           </div>
 
           <!-- many pics mobile:-->
@@ -56,7 +60,7 @@
               <iframe
                 class="grow"
                 :src="package_data.packages.data[0].attributes.video_url"
-                title="Sugar Beach Golf & Spa Resort, Mauritius - Overview"
+                title=""
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
@@ -69,7 +73,11 @@
                 '!opacity-100': index + videoCheck == mobilePicPointer,
               }"
             >
-              <img class="w-full h-full object-cover" :src="image" />
+              <nuxt-img
+                class="w-full h-full object-cover"
+                :src="image.url"
+                :alt="image.alt"
+              />
             </div>
             <!-- chevrons for mobile -->
             <div
@@ -232,17 +240,29 @@
             :style="`width:${picScrollWidth}px`"
           >
             <div class="overflow-hidden rounded-xl">
-              <img class="w-full object-cover h-full" :src="pic[0]" />
+              <nuxt-img
+                class="w-full object-cover h-full"
+                :src="pic[0].url"
+                :alt="pic[0].alt"
+              />
             </div>
             <div class="grid grid-rows-2 gap-5 h-[500px]">
               <div class="overflow-hidden rounded-xl">
-                <img class="w-full object-cover h-full" :src="pic[1]" />
+                <nuxt-img
+                  class="w-full object-cover h-full"
+                  :src="pic[1].url"
+                  :alt="pic[1].alt"
+                />
               </div>
               <div
                 v-if="!package_data.packages.data[0].attributes.video_url"
                 class="overflow-hidden rounded-xl"
               >
-                <img class="w-full object-cover h-full" :src="pic[2]" />
+                <nuxt-img
+                  class="w-full object-cover h-full"
+                  :src="pic[2].url"
+                  :alt="pic[3]"
+                />
               </div>
               <div
                 v-if="
@@ -268,14 +288,26 @@
           >
             <div class="grid grid-rows-2 gap-5 h-[500px]">
               <div class="overflow-hidden rounded-xl">
-                <img class="w-full object-cover h-full" :src="pic[0]" />
+                <nuxt-img
+                  class="w-full object-cover h-full"
+                  :src="pic[0].url"
+                  :alt="pic[0].alt"
+                />
               </div>
               <div class="overflow-hidden rounded-xl">
-                <img class="w-full object-cover h-full" :src="pic[1]" />
+                <nuxt-img
+                  class="w-full object-cover h-full"
+                  :src="pic[1].url"
+                  :alt="pic[1]"
+                />
               </div>
             </div>
             <div class="overflow-hidden rounded-xl">
-              <img class="w-full object-cover h-full" :src="pic[2]" />
+              <nuxt-img
+                class="w-full object-cover h-full"
+                :src="pic[2].url"
+                :alt="pic[2].alt"
+              />
             </div>
           </div>
         </div>
@@ -487,7 +519,10 @@ let images = [
   ...(props.destination_content ? props.destination_content.images : []),
 
   ...props.package_data.packages.data[0].attributes.images.data.map((item) => ({
-    url: item.attributes.url,
+    url: item.attributes.url.replace(
+      "https://res.cloudinary.com/sharkfin/image/upload",
+      ""
+    ),
     alt: item.attributes.alternativeText,
   })),
 ];

@@ -183,35 +183,54 @@ watch(
     return responseCount.value;
   },
   () => {
+    alert();
     if (responseCount.value == 3) {
       if (store.location.province !== undefined) {
+        alert("province");
         destination_content.value = {
           name: store.location.province.name,
           copy: store.location.province.copy,
 
-          images: store.location.province.images.map((item) => item.url),
+          images: store.location.province.images.map((item) => ({
+            url: item.url.replace(
+              "https://res.cloudinary.com/sharkfin/image/upload",
+              ""
+            ),
+            alt: item.alternativeText,
+          })),
         };
         return;
       }
       if (store.location.country !== undefined) {
+        alert("country");
         destination_content.value = {
           name: store.location.country.name,
           copy: store.location.country.copy,
           images: store.location.country.images.map((item) => ({
-            url: item.attributes.url,
-            alt: item.attributes.alternativeText,
+            url: item.url.replace(
+              "https://res.cloudinary.com/sharkfin/image/upload",
+              ""
+            ),
+            alt: item.alternativeText,
           })),
         };
         return;
       }
       if (store.location.region !== undefined) {
+        alert("region");
         destination_content.value = {
           name:
             store.location.region.name == "Mediterranean"
               ? "the Mediterranean"
               : store.location.region.name,
           copy: store.location.region.copy,
-          images: store.location.region.images.map((item) => item.url),
+          images: store.location.region.images.map((item) => ({
+            url: item.url.replace(
+              "https://res.cloudinary.com/sharkfin/image/upload",
+              ""
+            ),
+            alt: item.alternativeText,
+          })),
         };
         return;
       }
