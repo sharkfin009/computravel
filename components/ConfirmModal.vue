@@ -10,6 +10,7 @@
       items-center
       bg-black
       z-50
+      pointer-events-auto
     "
   >
     <div

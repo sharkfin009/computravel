@@ -9,16 +9,16 @@
           <div
             v-show="validationObject.$error"
             class="
-              -translate-y-8
+              -translate-y-7
               font-medium
               flex
               items-center
               animate__animated animate__headShake
-              text-xl text-left text-red-700
+              text-base text-left text-red-700
               bg-stone-50
               shadow
               rounded-2xl
-              p-4
+              p-3
               border
             "
           >

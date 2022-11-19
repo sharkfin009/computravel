@@ -124,6 +124,15 @@
               @setValue="setValue"
             />
           </div>
+          <Input
+            v-if="vl.comment"
+            inputName="comment"
+            :validationObject="vl.comment"
+            label="Comment"
+            type="text"
+            placeholder=""
+            @setValue="setValue"
+          />
 
           <div class="flex flex-col items-center justify-center">
             <CompuButton @mousedown="validate" class="bg-lime-500 my-10"
@@ -164,6 +173,7 @@ const state = reactive({
   no_of_adults: "",
   no_of_minors: "",
   no_of_infants: "",
+  comment: "",
 });
 const rules = {
   full_name: {
@@ -179,11 +189,10 @@ const rules = {
   },
   destination: {},
   from_where: {},
-
   no_of_adults: {},
   no_of_minors: {},
   no_of_infants: {},
-
+  comment: { required },
   when: { required },
 };
 const vl = useVuelidate(rules, state);
@@ -244,6 +253,7 @@ const send = () => {
       no_of_adults:"${state.no_of_adults}"
       no_of_minors:"${state.no_of_minors}"
       no_of_infants:"${state.no_of_infants}"
+      comment:"${state.comment}"
       ref:"${enquiryRef}"
       ${list}
     }

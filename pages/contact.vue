@@ -65,7 +65,9 @@
       >
         <i class="fa-solid fa-envelope mb-5" />
         <div class="text-center">
-          <p>info@computravel.co.za</p>
+          <a href="mailto:info@computravel.co.za" target="blank"
+            >info@computravel.co.za</a
+          >
         </div>
       </div>
     </div>
@@ -204,15 +206,8 @@ const response = ref("");
 const packages = ref([]);
 let ids = [];
 const titles = ref([]);
-onMounted(() => {
-  if (localStorage.getItem("my-packages")) {
-    packages.value = JSON.parse(localStorage.getItem("my-packages"));
-    ids = packages.value.map((item) => item.id);
-    console.log(packages);
-    titles.value = ref(packages.value.map((item) => item.attributes.title));
-    list = "packages: " + JSON.stringify(ids);
-  }
-});
+const list = ref([]);
+
 const config = useRuntimeConfig();
 const showConfirmation = ref(false);
 const showPrompt = ref(false);
