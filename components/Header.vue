@@ -89,12 +89,15 @@
             >
           </NuxtLink>
         </div>
-        <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
+        <NuxtLink to="/enquire-form" v-if="!checkFavorites">
           <CompuButton class="!text-center inset-0 bg-lime-500 !h-full mr-5"
             >enquire now</CompuButton
           >
         </NuxtLink>
-        <NuxtLink to="/my-packages" v-if="checkFavorites">
+        <NuxtLink
+          to="/my-packages"
+          v-if="checkFavorites && route.path !== '/my-packages'"
+        >
           <CompuButton class="inset-0 bg-lime-500 !h-full mr-5"
             >view my favorites</CompuButton
           >
@@ -179,7 +182,7 @@ onMounted(() => {
   }
 });
 const checkFavorites = computed(() => {
-  if (enquiry.myPackages.length && enquiry.enquirySent) {
+  if (enquiry.myPackages.length) {
     return true;
   } else return false;
 });

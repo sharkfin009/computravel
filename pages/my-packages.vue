@@ -96,7 +96,7 @@ onMounted(() => {
     enquiryState.listDirtyState = true;
   }
 
-  // localStorage.setItem("my-packages", JSON.stringify(enquiryState.myPackages));
+  localStorage.setItem("my-packages", JSON.stringify(enquiryState.myPackages));
 });
 const removeFavorite = (index) => {
   let array = enquiryState.myPackages;
