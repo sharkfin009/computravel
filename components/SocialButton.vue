@@ -9,12 +9,11 @@
       md:translate-x-[58%]
       transition
       flex
-      gap-4
       items-center
       cursor-pointer
     "
   >
     <slot />
-    <div class="text-xs md-text-lg">share</div>
+    <div class="ml-5 text-xs md-text-lg">share</div>
   </div>
 </template>

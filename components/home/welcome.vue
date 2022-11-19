@@ -9,7 +9,16 @@
           class="w-full h-full absolute inset-0"
         >
           <nuxt-img
-            class="absolute inset-0 w-full h-full transition ease-in duration"
+            class="
+              absolute
+              inset-0
+              w-full
+              h-full
+              transition
+              ease-in
+              duration
+              object-cover
+            "
             :src="image"
             :class="{ 'opacity-0 fadeIn': index !== activePic }"
             quality="50"

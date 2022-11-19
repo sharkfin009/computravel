@@ -35,7 +35,7 @@
         <div class="relative mb-7 w-[320px] h-[400px]">
           <card
             v-for="(pack, index) in destinationPackages"
-            :key="index"
+            :key="pack"
             :package="pack.attributes"
             class="absolute inset-0 transition-opacity duration-1000 opacity-0"
             :class="{
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="flex justify-center gap-5 w-full z-40">
-        <div v-for="(dot, index) in dots" class="cursor-pointer" :key="index">
+        <div v-for="(dot, index) in dots" class="cursor-pointer" :key="dot">
           <IconActiveDot
             @click="manageClick(index)"
             v-show="index === selectedCard"

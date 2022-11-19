@@ -30,7 +30,7 @@
       </div>
 
       <div class="relative h-[470px] w-full">
-        <div v-for="(three, index) in destinationPackagesArray" :key="index">
+        <div v-for="(three, index) in destinationPackagesArray" :key="three">
           <HomeDestination
             :destinationPackages="three"
             :destinationImage="destinationImages[index]"

@@ -45,7 +45,7 @@
 
       <div class="flex pointer-events-auto">
         <!--  enq now button: -->
-        <div class="flex" v-if="route.path == '/'">
+        <div class="hidden lg:flex" v-if="route.path == '/'">
           <NuxtLink t>
             <CompuButton
               class="

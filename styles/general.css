@@ -60,7 +60,8 @@
 }
 
 .input-outline {
-  outline: 2px #96969c4d solid;
+  /* outline: 1px #96969c4d solid;
+  border-radius: 10px */
 }
 
 em {
