@@ -1,4 +1,4 @@
-<template>
+wle<template>
   <div class="lg:grid lg:grid-cols-2 gap-x-10">
     <div class="flex justify-end items-center">
       <nuxt-img

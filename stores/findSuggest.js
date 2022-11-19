@@ -163,6 +163,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
           ...countrySuggestions,
           ...regionSuggestions,
         ];
+
         this.packageSuggestions = values[4].hits.map((item) => ({
           titleShort: $ellipsis(item.title, 70),
           title: item.title,

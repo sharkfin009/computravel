@@ -146,7 +146,6 @@ import { useStore } from "@/stores/search";
 // console.log(props.package.images.data[0].attributes.url)
 let image = null;
 if (props.package.images.data.length) {
-  console.log("yes");
   image = {
     url: props.package.images.data[0].attributes.url,
     alt: props.package.images.data[0].attributes.alternativeText,

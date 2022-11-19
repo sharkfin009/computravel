@@ -183,10 +183,8 @@ watch(
     return responseCount.value;
   },
   () => {
-    alert();
     if (responseCount.value == 3) {
       if (store.location.province !== undefined) {
-        alert("province");
         destination_content.value = {
           name: store.location.province.name,
           copy: store.location.province.copy,
@@ -202,7 +200,6 @@ watch(
         return;
       }
       if (store.location.country !== undefined) {
-        alert("country");
         destination_content.value = {
           name: store.location.country.name,
           copy: store.location.country.copy,
@@ -217,7 +214,6 @@ watch(
         return;
       }
       if (store.location.region !== undefined) {
-        alert("region");
         destination_content.value = {
           name:
             store.location.region.name == "Mediterranean"

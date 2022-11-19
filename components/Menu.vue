@@ -60,7 +60,7 @@
             <MenuList
               :list="menuData.countries"
               :state="listState.countries"
-              type="destination"
+              type="country"
             />
 
             <li
@@ -72,7 +72,7 @@
             <MenuList
               :list="menuData.provinces"
               :state="listState.provinces"
-              type="destination"
+              type="province"
             />
 
             <li
