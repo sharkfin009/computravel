@@ -7,8 +7,8 @@
     }}</pre> -->
     <div class="">
       <SectionHeading
-        heading="destinations"
-        subheading="experience these"
+        heading="explore these destinations"
+        subheading="looking for inspiration?"
         :inverted="true"
       />
       <!-- XL header:-->

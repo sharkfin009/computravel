@@ -20,8 +20,8 @@
         "
       />
 
-      <div class="flex flex-col justify-evenly items-center px-5">
-        <div class="w-full text-center text-base text-gray-300">
+      <div class="flex flex-col justify-between items-center px-5">
+        <div class="w-full text-center text-base text-gray-800">
           {{
             new Date(props.article.attributes.date).toLocaleDateString(
               "eng-GB",
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="flex flex-col justify-evenly">
-          <div class="w-full font-light text-gray-300 text-sm">
+          <div class="w-full font-light text-gray-800 text-sm">
             <div class="text-center" v-html="bodyEllipsis"></div>
           </div>
         </div>
@@ -65,7 +65,7 @@ const props = defineProps({
 const { $ellipsis } = useNuxtApp();
 
 const bodyEllipsis = computed(() => {
-  return $ellipsis(props.article.attributes.body, 180);
+  return $ellipsis(props.article.attributes.body, 150);
 });
 </script>
 

@@ -26,7 +26,7 @@
     </div>
     <NuxtLink to="/flight-bookings">
       <div class="flex justify-center">
-        <CompuButton class="bg-black"> view all flights </CompuButton>
+        <CompuButton class="bg-black">book a flight </CompuButton>
       </div>
     </NuxtLink>
   </HomeSectionLayout>

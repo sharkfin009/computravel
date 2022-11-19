@@ -11,6 +11,22 @@
         justify-evenly
       "
     >
+      <div class="flex flex-col items-center py-5 justify-center">
+        <CompuButton
+          class="bg-lime-500"
+          v-if="enquiryState.listDirtyState && enquiryState.enquirySent"
+          @click="updateList()"
+          >Send your updated list to us</CompuButton
+        >
+        <div v-if="!enquiryState.enquirySent">
+          <NuxtLink to="/enquire-form">
+            <CompuButton class="bg-lime-500">submit your enquiry</CompuButton>
+            <div class="py-5 text-xs text-center">
+              You may edit your favorites later
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
       <div class="flex">
         <h3 class="text-2xl font-bold font-titillium text-center w-full pb-10">
           These are the packages I am interested in:
@@ -36,23 +52,6 @@
               @click="removeFavorite(index)"
             />
           </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center py-5 justify-center">
-        <CompuButton
-          class="bg-lime-500"
-          v-if="enquiryState.listDirtyState && enquiryState.enquirySent"
-          @click="updateList()"
-          >Send your updated list to us</CompuButton
-        >
-        <div v-if="!enquiryState.enquirySent">
-          <NuxtLink to="/enquire-form">
-            <CompuButton class="bg-lime-500">submit your enquiry</CompuButton>
-            <div class="py-5 text-xs text-center">
-              You may edit your favorites later
-            </div>
-          </NuxtLink>
         </div>
       </div>
     </div>

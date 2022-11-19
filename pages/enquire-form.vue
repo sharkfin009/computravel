@@ -114,13 +114,13 @@
             <CTSelect
               label="No of Minors (2 - 11)"
               inputName="no_of_minors"
-              :options="['1', '2', '3', '4', '5', '6', 'large group']"
+              :options="['0', '1', '2', '3', '4', '5', '6', 'large group']"
               @setValue="setValue"
             />
             <CTSelect
               label="No of infants (< 2)"
               inputName="no_of_infants"
-              :options="['1', '2', '3', '4', '5', '6']"
+              :options="['0', '1', '2', '3', '4', '5', '6']"
               @setValue="setValue"
             />
           </div>
