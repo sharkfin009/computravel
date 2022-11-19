@@ -2,20 +2,15 @@
   <div
     class="fixed select-none inset-0 flex justify-end z-50 pointer-events-none"
   >
-    <div class="backdrop-blur h-full">
+    <div class="backdrop-blur h-full list-none fixed">
       <div
         class="
           h-full
           w-[100vw]
           md:w-[50vw]
           lg:w-[30vw]
-          flex flex-col
-          gap-5
-          justify-start
-          items-start
-          pl-5
-          md:pl-20
-          pt-40
+          pl-10
+          md:pl-10 md:pt-10
           font-titillium
           bg-white
           opacity-100
@@ -28,95 +23,97 @@
         "
         ref="menu"
       >
-        <div class="overflow-auto pb-40 w-full">
-          <div class="text-sm mt-4 mb-3">Search Packages by:</div>
+        <div class="overflow-auto w-full h-screen">
+          <div class="h-[800px]">
+            <div class="text-sm mb-3 pb-30">Search Packages by:</div>
 
-          <ul
-            v-if="menuData"
-            class="pl-3 grid grid-cols-[100px,auto] list-style-none"
-            @mouseleave="clear"
-          >
-            <li
-              class="mb-3 hover:text-lime-500 relative"
-              @click="thisListOnly('regions')"
-              @mouseover="thisListOnly('regions')"
+            <ul
+              v-if="menuData"
+              class="pl-3 grid grid-cols-[100px,auto] list-none"
+              @mouseleave="clear"
             >
-              Region
-            </li>
-
-            <MenuList
-              :list="menuData.regions"
-              :state="listState.regions"
-              type="region"
-            />
-
-            <li
-              class="mb-3 hover:text-lime-500"
-              @click="thisListOnly('countries')"
-              @mouseover="thisListOnly('countries')"
-            >
-              Country
-            </li>
-            <MenuList
-              :list="menuData.countries"
-              :state="listState.countries"
-              type="country"
-            />
-
-            <li
-              class="mb-3 hover:text-lime-500"
-              @mouseover="thisListOnly('provinces')"
-            >
-              SA Province
-            </li>
-            <MenuList
-              :list="menuData.provinces"
-              :state="listState.provinces"
-              type="province"
-            />
-
-            <li
-              class="mb-3 hover:text-lime-500"
-              @mouseover="thisListOnly('cities')"
-            >
-              City
-            </li>
-            <MenuList
-              :list="menuData.cities"
-              :state="listState.cities"
-              type="city"
-            />
-
-            <li
-              class="mb-3 hover:text-lime-500"
-              @mouseover="thisListOnly('categories')"
-            >
-              Category
-            </li>
-
-            <MenuList
-              :list="menuData.categories"
-              :state="listState.categories"
-              type="category"
-            />
-          </ul>
-          <ul class="list-none">
-            <li
-              v-for="(item, index) of items"
-              :key="index"
-              class="mb-3 hover:text-lime-500"
-            >
-              <NuxtLink
-                @click="globalStore.showMenu = false"
-                class="w-full"
-                :to="item.url"
+              <li
+                class="mb-3 hover:text-lime-500 relative"
+                @click="thisListOnly('regions')"
+                @mouseover="thisListOnly('regions')"
               >
-                <div class="w-full">
-                  {{ item.name }}
-                </div>
-              </NuxtLink>
-            </li>
-          </ul>
+                Region
+              </li>
+
+              <MenuList
+                :list="menuData.regions"
+                :state="listState.regions"
+                type="region"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @click="thisListOnly('countries')"
+                @mouseover="thisListOnly('countries')"
+              >
+                Country
+              </li>
+              <MenuList
+                :list="menuData.countries"
+                :state="listState.countries"
+                type="country"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('provinces')"
+              >
+                SA Province
+              </li>
+              <MenuList
+                :list="menuData.provinces"
+                :state="listState.provinces"
+                type="province"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('cities')"
+              >
+                City
+              </li>
+              <MenuList
+                :list="menuData.cities"
+                :state="listState.cities"
+                type="city"
+              />
+
+              <li
+                class="mb-3 hover:text-lime-500"
+                @mouseover="thisListOnly('categories')"
+              >
+                Category
+              </li>
+
+              <MenuList
+                :list="menuData.categories"
+                :state="listState.categories"
+                type="category"
+              />
+            </ul>
+            <ul class="list-none">
+              <li
+                v-for="(item, index) of items"
+                :key="index"
+                class="mb-3 hover:text-lime-500"
+              >
+                <NuxtLink
+                  @click="globalStore.showMenu = false"
+                  class="w-full"
+                  :to="item.url"
+                >
+                  <div class="w-full">
+                    {{ item.name }}
+                  </div>
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
         <div
           class="
@@ -150,6 +147,7 @@
               hover:bg-lime-100
               transition
               duration-300
+              z-50
             "
           >
             <i class="text-stone-600 text-xl md:text-2xl fa-solid fa-close"></i>

@@ -9,6 +9,7 @@
       shadow
       hover:shadow-none
       rounded-full
+      pointer-events-auto
     "
   >
     <div class="relative">

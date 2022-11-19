@@ -32,9 +32,9 @@
             md:ml-10
           "
         >
-          destinations:
+          <div class="mb-5">destinations:</div>
         </div>
-        <div class="m-0 px-5 py-5">
+        <div class="m-0 px-5">
           <div class="flex flex-wrap dest-pills">
             <div
               v-for="(item, index) in suggestStore.searchSuggestions"
@@ -47,9 +47,10 @@
                 pl-1
                 pr-4
                 py-1
-                mb-5
+                mb-8
                 text-lime-700
                 hover:bg-lime-500 hover:text-lime-200
+                ml-5
               "
               @click="suggestStore.searchDestination(item)"
               :class="{
@@ -85,7 +86,7 @@
             "
           >
             <div
-              class="rounded-3xl px-10 py-6"
+              class="rounded-3xl px-10 py-6 my-2"
               v-on:mouseover="mouseOver(index)"
               :class="{
                 '!bg-lime-500 !bg-opacity-80 !text-white':
@@ -172,11 +173,3 @@ const mouseLeave = () => {
   hoveredSuggestion.value = null;
 };
 </script>
-<style>
-.dest-pills > * + * {
-  margin-left: 2rem;
-}
-.layout-gap > * + * {
-  margin-top: 1rem;
-}
-</style>
