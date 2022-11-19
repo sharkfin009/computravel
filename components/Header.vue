@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky top-0 w-full z-50 flex flex-col"
+    class="sticky top-0 w-full z-50 flex flex-col pointer-events-none"
     :class="{ 'bg-slate-50': route.path !== '/' }"
   >
     <div
@@ -17,7 +17,7 @@
       "
     >
       <!-- desktop logo -->
-      <NuxtLink class="text-primary" to="/">
+      <NuxtLink class="text-primary pointer-events-auto" to="/">
         <div
           class="
             bg-opacity-90 bg-green-avo
@@ -35,7 +35,7 @@
         </div>
       </NuxtLink>
 
-      <div class="hidden md:flex items-center">
+      <div class="hidden md:flex items-center pointer-events-autp">
         <SearchBar
           v-if="route.path !== '/'"
           class="w-[250px]"
@@ -43,20 +43,62 @@
         />
       </div>
 
-      <div class="grid grid-cols-[auto,auto]">
+      <div class="flex pointer-events-auto">
         <!--  enq now button: -->
-        <div class="relative md:w-[190px flex justify-center mr-5">
-          <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
-            <CompuButton class="!text-center inset-0 bg-lime-500 !h-full"
-              >enquire now</CompuButton
+        <div class="flex" v-if="route.path == '/'">
+          <NuxtLink t>
+            <CompuButton
+              class="
+                !text-center
+                inset-0
+                bg-opacity-90 bg-green-avo
+                !h-full
+                text-gray-600
+                mr-5
+              "
+              @click="scrollTo('faves')"
+              >holiday packages</CompuButton
             >
           </NuxtLink>
-          <NuxtLink to="/my-packages" v-if="checkFavorites">
-            <CompuButton class="inset-0 bg-lime-500 !h-full"
-              >view my favorites</CompuButton
+          <NuxtLink>
+            <CompuButton
+              class="
+                !text-center
+                inset-0
+                bg-opacity-90 bg-green-avo
+                !h-full
+                text-gray-600
+                mr-5
+              "
+              @click="scrollTo('flights')"
+              >flights</CompuButton
+            >
+          </NuxtLink>
+          <NuxtLink>
+            <CompuButton
+              class="
+                !text-center
+                inset-0
+                bg-opacity-90 bg-green-avo
+                !h-full
+                text-gray-600
+                mr-5
+              "
+              @click="scrollTo('dests')"
+              >destinations</CompuButton
             >
           </NuxtLink>
         </div>
+        <NuxtLink to="/enquire-form" v-if="!enquiry.enquirySent">
+          <CompuButton class="!text-center inset-0 bg-lime-500 !h-full mr-5"
+            >enquire now</CompuButton
+          >
+        </NuxtLink>
+        <NuxtLink to="/my-packages" v-if="checkFavorites">
+          <CompuButton class="inset-0 bg-lime-500 !h-full mr-5"
+            >view my favorites</CompuButton
+          >
+        </NuxtLink>
 
         <!-- hamburger -->
         <div
@@ -141,4 +183,7 @@ const checkFavorites = computed(() => {
     return true;
   } else return false;
 });
+const scrollTo = (target) => {
+  globalStore.homePageScroll = target;
+};
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <HomeSectionLayout v-if="faves.length > 0" bgColor="bg-green-avo">
+  <HomeSectionLayout bgColor="bg-green-avo">
     <div>
       <!-- top row -->
       <SectionHeading
@@ -20,7 +20,7 @@
         <div class="overflow-x-auto lg:snap-x lg:snap-mandatory" ref="cardRow">
           <div ref="" class="card-grid flex pb-8">
             <div
-              v-for="(fave, index) in favourites.data.favourites.data.map(
+              v-for="(fave, index) in faves.data.favourites.data.map(
                 (item) => item.attributes.package.data.attributes
               )"
               :key="index"
@@ -43,7 +43,7 @@
       <div class="flex justify-center md:hidden relative md:pt-10">
         <div class="relative w-[320px] h-[400px]">
           <card
-            v-for="(fave, index) in favourites.data.favourites.data.map(
+            v-for="(fave, index) in faves.data.favourites.data.map(
               (item) => item.attributes.package.data.attributes
             )"
             :key="index"
@@ -75,55 +75,56 @@
 definePageMeta({
   layout: "section",
 });
-import { useGraph } from "../../composables/useGraph";
+const graphql = useStrapiGraphQL();
 
-const { data: favourites, error } = useGraph(`
+const faves = await graphql(`
   query {
-          favourites {
+    favourites {
+      data {
+        attributes {
+          package {
             data {
               attributes {
-                package {
+                slug
+                title
+                region
+                destination
+                price
+                includes
+                excludes
+                duration
+                from
+                to
+                star_rating
+                description
+                terms
+                supplier_ref
+                images {
                   data {
                     attributes {
-                      slug
-                      title
-                     region 
-                      destination
-                      price
-                      includes
-                      excludes
-                      duration
-                      from
-                      to
-                      star_rating
-                      description
-                      terms
-                      supplier_ref
-                     images{
-                      data{
-                        attributes{
-                          url
-                          alternativeText
-                        }
-                      }
-                      }
-                      category{
-                        data{
-                          attributes{
-                            name
-                          }
-                        }
-                      }
-                     
-                      valid_to
+                      url
+                      alternativeText
                     }
                   }
                 }
+                category {
+                  data {
+                    attributes {
+                      name
+                    }
+                  }
+                }
+
+                valid_to
               }
             }
           }
-        }`);
-const faves = ref([]);
+        }
+      }
+    }
+  }
+`);
+console.log(faves);
 
 const cardRow = ref(null);
 
@@ -147,7 +148,7 @@ const scrollLeft = () => {
 };
 const browsePointer = ref(0);
 setInterval(() => {
-  if (browsePointer.value < favourites.value.data.favourites.data.length - 1) {
+  if (browsePointer.value < faves.data.favourites.data.length - 1) {
     browsePointer.value++;
   } else {
     browsePointer.value = 0;
@@ -156,10 +157,10 @@ setInterval(() => {
 const browseLeft = () => {
   if (browsePointer.value > 0) {
     browsePointer.value--;
-  } else browsePointer.value = favourites.value.data.favourites.data.length - 1;
+  } else browsePointer.value = faves.data.favourites.data.length - 1;
 };
 const browseRight = () => {
-  if (browsePointer.value < favourites.value.data.favourites.data.length - 1) {
+  if (browsePointer.value < faves.data.favourites.data.length - 1) {
     browsePointer.value++;
   } else browsePointer.value = 0;
 };
