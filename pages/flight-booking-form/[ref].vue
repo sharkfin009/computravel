@@ -106,7 +106,7 @@
     </div>
     <!-- conf modal -->
     <transition name="fade">
-      <ConfirmModal v-if="bookingSent">
+      <ConfirmModal type="flightBooking" v-if="bookingSent">
         <template #header> Thank you for your flight enquiry! </template>
         <template #body>
           One of our travel experts will be in touch soon.</template

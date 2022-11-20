@@ -89,19 +89,24 @@
             >
           </NuxtLink>
         </div>
-        <NuxtLink to="/enquire-form" v-if="!checkFavorites">
-          <CompuButton class="!text-center inset-0 bg-lime-500 !h-full mr-5"
-            >enquire now</CompuButton
+        <div class="relative">
+          <TooltipLeft v-if="firstVisit">
+            When you're ready to send your enquiry, click here
+          </TooltipLeft>
+          <NuxtLink to="/enquire-form" v-if="!hasPackages()">
+            <CompuButton class="!text-center inset-0 bg-lime-500 !h-full mr-5"
+              >enquire now</CompuButton
+            >
+          </NuxtLink>
+          <NuxtLink
+            to="/my-packages"
+            v-if="hasPackages() && $route.path !== '/my-packages'"
           >
-        </NuxtLink>
-        <NuxtLink
-          to="/my-packages"
-          v-if="checkFavorites && route.path !== '/my-packages'"
-        >
-          <CompuButton class="inset-0 bg-lime-500 !h-full mr-5"
-            >view my favorites</CompuButton
-          >
-        </NuxtLink>
+            <CompuButton class="inset-0 bg-lime-500 !h-full mr-5"
+              >view my favorites</CompuButton
+            >
+          </NuxtLink>
+        </div>
 
         <!-- hamburger -->
         <div
@@ -142,7 +147,11 @@
     <!-- MODALs -->
 
     <transition name="fade">
-      <ConfirmModal :showRef="true" v-if="enquiry.showConfirmation">
+      <ConfirmModal
+        :showRef="true"
+        type="enquiry"
+        v-if="enquiry.showConfirmation"
+      >
         <template #header> Thank you for your enquiry! </template>
         <template #body>
           One of our travel experts will be in touch soon.</template
@@ -151,7 +160,11 @@
     </transition>
 
     <transition name="fade">
-      <ConfirmModal :showRef="false" v-if="subscriptionState.showConfirmation">
+      <ConfirmModal
+        :showRef="false"
+        type="Subscribe"
+        v-if="subscriptionState.showConfirmation"
+      >
         <template #header> Thank you for your subscription! </template>
         <template #body> You will receive our next newsletter.</template>
       </ConfirmModal>
@@ -175,17 +188,22 @@ const subscriptionState = useSubscription();
 const showMenu = () => {
   globalStore.showMenu = true;
 };
+const firstVisit = ref(true);
 
 onMounted(() => {
   if (localStorage.getItem("my-packages")) {
     enquiry.myPackages = JSON.parse(localStorage.getItem("my-packages"));
   }
+
+  firstVisit.value = localStorage.getItem("visitCount") == "1";
 });
-const checkFavorites = computed(() => {
-  if (enquiry.myPackages.length) {
-    return true;
-  } else return false;
-});
+const hasPackages = () => {
+  return localStorage.getItem("my-packages");
+};
+const enquirySent = () => {
+  return localStorage.getItem("enquiry-sent");
+};
+
 const scrollTo = (target) => {
   globalStore.homePageScroll = target;
 };

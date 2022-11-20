@@ -68,6 +68,14 @@ nuxtApp.hook("page:finish", () => {
 import { useenquiry } from "@/stores/enquiry";
 const enquiryState = useenquiry();
 onMounted(() => {
+  if (!localStorage.getItem("visitCount")) {
+    localStorage.setItem("visitCount", "1");
+  } else {
+    localStorage.setItem(
+      "visitCount",
+      localStorage.getItem("visitCount") + "1"
+    );
+  }
   if (
     localStorage.getItem("enquirySent") &&
     localStorage.getItem("enquiryRef") &&

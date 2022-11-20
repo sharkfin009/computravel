@@ -57,7 +57,7 @@
     </div>
 
     <transition name="fade" v-if="enquiryState.showUpdateModal">
-      <ConfirmModal :showRef="true">
+      <ConfirmModal type="addFavorite" :showRef="true">
         <template #header> Thank you for your update </template>
         <template #body
           >One of our travel experts will be in touch soon.</template

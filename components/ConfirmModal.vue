@@ -61,9 +61,9 @@
             </div>
           </div>
           <img
-            src="https://res.cloudinary.com/sharkfin/image/upload/v1660814652/computravel/lala_pic_co0zya.png"
+            :src="image.url"
             class="hidden lg:block object-cover rounded-3xl"
-            alt="island beach paradise"
+            :alt="image.alternativeText"
           />
         </div>
       </div>
@@ -78,7 +78,11 @@ const props = defineProps({
   showRef: {
     type: Boolean,
   },
+  type: {
+    type: String,
+  },
 });
+console.log(props.type);
 const enquiryState = useenquiry();
 const goToSearch = () => {
   enquiryState.showConfirmation = false;
@@ -87,4 +91,28 @@ const goToSearch = () => {
     path: "/search",
   });
 };
+const graphql = useStrapiGraphQL();
+
+let image = await graphql(`
+query{
+  confirmationImage${props.type}
+  {
+    data{
+      attributes{
+        image{
+          data{
+            attributes{
+              url
+              alternativeText
+            }
+          }
+        }
+      }
+    }
+  }}`);
+console.log(image);
+
+image =
+  image.data["confirmationImage" + props.type].data.attributes.image.data
+    .attributes;
 </script>

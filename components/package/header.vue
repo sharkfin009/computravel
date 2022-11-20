@@ -93,6 +93,7 @@
 
       <div
         class="
+          relative
           flex
           md:flex-col
           items-center
@@ -103,6 +104,9 @@
           gap-2
         "
       >
+        <TooltipUnder v-if="firstVisit">
+          Interested in this Package? Add it to your favourites
+        </TooltipUnder>
         <div v-if="!packageStore.alreadyAdded" class="">
           <!-- mobile -->
           <NuxtLink to="/my-packages" class="flex flex-col items-center">
@@ -178,9 +182,17 @@
 </template>
 
 <script setup>
+const hasPackages = () => {
+  // alert(localStorage.getItem("my-packages"));
+  return localStorage.getItem("my-packages");
+};
 const props = defineProps({
   package_data: Object,
 });
 import { useStore } from "@/stores/package";
 let packageStore = useStore();
+const firstVisit = ref(true);
+onMounted(() => {
+  firstVisit.value = localStorage.getItem("visitCount") == "1";
+});
 </script>

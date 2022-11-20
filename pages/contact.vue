@@ -155,7 +155,7 @@
       </div>
     </div>
     <transition name="fade">
-      <ConfirmModal v-if="showConfirmation">
+      <ConfirmModal type="Contact" :showRef="false" v-if="showConfirmation">
         <template #header> Thank you for your message! </template>
         <template #body>
           One of our travel experts will be in touch soon.</template
