@@ -40,7 +40,7 @@ store.alreadyAdded = false;
 let query = `
             query{packages(
               filters:{ supplier_ref: { eq:"${
-                route.params.slug.split("=")[1]
+                route.params.ref
               }" } } ){
                 data{
                   id
@@ -88,8 +88,8 @@ const package_data = ref(null);
 const error = ref(null);
 const destination_content = ref(null);
 const responseCount = ref(0);
-import { useGraphPromise } from "../../composables/useGraphPromise";
-useGraphPromise(query)
+const graphql = useStrapiGraphQL();
+graphql(query)
   .then((response) => {
     console.log(response);
     package_data.value = response.data.packages.data[0].attributes;
@@ -108,7 +108,12 @@ useGraphPromise(query)
       },
       offers: {
         "@type": "Offer",
-        url: config.baseUrl + route.params.slug,
+        url:
+          config.baseUrl +
+          "/" +
+          package_data.supplier_ref +
+          "/" +
+          route.params.slug,
         priceCurrency: "ZAR",
         price: package_data.value.price,
         priceValidUntil: package_data.value.valid_to,

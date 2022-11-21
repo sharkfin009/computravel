@@ -200,7 +200,7 @@ export const useFindSuggestStore = defineStore("findSuggest", {
     viewPackage(slug, supplier_ref) {
       this.showSuggestions = false;
       navigateTo({
-        path: "/package/" + slug + "_ref=" + supplier_ref,
+        path: "/package/" + supplier_ref + slug,
       });
     },
     clear() {

@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="`/package/${props.package.slug}_ref=${props.package.supplier_ref}`"
+    :to="`/packages/${props.package.supplier_ref}/${props.package.slug}`"
   >
     <div class="w-[320px] h-[400px] grid grid-rows-2">
       <div>
