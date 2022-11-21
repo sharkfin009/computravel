@@ -1,11 +1,9 @@
 <template>
   <div class="relative listOutside">
-    <div class="sticky top-[142px] md:top-[90px] bg-slate-50 mb-5 z-10">
+    <div class="sticky top-[142px] mx-5 md:top-[90px] bg-slate-50 mb-5 z-10">
       <PackageHeader class="" :package_data="package_data" />
     </div>
-    <div
-      class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] w-full"
-    >
+    <div class="relative overflow-y-hidden min-h-[250px] md:min-h-[530px] mx-5">
       <!-- pics layout -->
       <div
         class="
@@ -318,7 +316,7 @@
     </div>
 
     <!-- content below pics: -->
-    <div class="px-5">
+    <div class="px-5 mx-5">
       <!-- tabs header -->
       <TabMenu
         @selectTab="setActiveTab"

@@ -6,10 +6,9 @@
         md:grid-cols-[auto,100px]
         bg-green-avo
         rounded-3xl
-        p-2
         md:p-5
         shadow
-        px-10
+        p-5
       "
     >
       <div class="grid grid-cols-2 md:grid-cols-[2fr,1fr]">
@@ -27,7 +26,7 @@
             md:justify-start md:p-2
           "
         >
-          <h3 class="">
+          <h3 class="mb-5 text-center md:text-start">
             {{ package_data.title }}
           </h3>
         </div>
