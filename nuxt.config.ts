@@ -42,12 +42,7 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@pinia/nuxt"],
-  modules: [
-    "@nuxtjs/strapi",
-    "@nuxt/image-edge",
-    "nuxt-jsonld",
-    "'@nuxtjs/gtm'",
-  ],
+  modules: ["@nuxtjs/strapi", "@nuxt/image-edge", "nuxt-jsonld", "@nuxtjs/gtm"],
   publicRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
     baseUrl: process.env.BASE_URL,
