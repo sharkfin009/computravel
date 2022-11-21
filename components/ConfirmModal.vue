@@ -60,10 +60,11 @@
               continue browsing our packages
             </div>
           </div>
-          <img
+          <nuxt-img
             :src="image.url"
             class="hidden lg:block object-cover rounded-3xl"
             :alt="image.alternativeText"
+            format="webp"
           />
         </div>
       </div>

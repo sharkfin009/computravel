@@ -9,6 +9,7 @@
           ''
         )
       "
+      format="webp"
       :alt="image.alternativeText"
     />
     <div class="absolute inset-0 grid grid-rows-[min-content,auto]">

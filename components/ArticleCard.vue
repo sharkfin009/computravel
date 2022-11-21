@@ -12,12 +12,20 @@
         bg-white
       "
     >
-      <img
-        :src="props.article.attributes.featured_image.data[0].attributes.url"
+      <nuxt-img
+        :src="
+          props.article.attributes.featured_image.data[0].attributes.url.replace(
+            'https://res.cloudinary.com/sharkfin/image/upload',
+            ''
+          )
+        "
         :alt="
           props.article.attributes.featured_image.data[0].attributes
             .alternativeText
         "
+        width="320"
+        height="200"
+        format="webp"
       />
 
       <div class="flex flex-col justify-between items-center px-5">

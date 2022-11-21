@@ -33,6 +33,7 @@
               class="w-full h-full object-cover"
               :src="images[0].url"
               :alt="images[0].alt"
+              format="webp"
             />
           </div>
 
@@ -77,6 +78,7 @@
                 class="w-full h-full object-cover"
                 :src="image.url"
                 :alt="image.alt"
+                format="webp"
               />
             </div>
             <!-- chevrons for mobile -->
@@ -244,6 +246,7 @@
                 class="w-full object-cover h-full"
                 :src="pic[0].url"
                 :alt="pic[0].alt"
+                format="webp"
               />
             </div>
             <div class="grid grid-rows-2 gap-5 h-[500px]">
@@ -252,6 +255,7 @@
                   class="w-full object-cover h-full"
                   :src="pic[1].url"
                   :alt="pic[1].alt"
+                  format="webp"
                 />
               </div>
               <div
@@ -262,6 +266,7 @@
                   class="w-full object-cover h-full"
                   :src="pic[2].url"
                   :alt="pic[3]"
+                  format="web-p"
                 />
               </div>
               <div
@@ -290,6 +295,7 @@
                   class="w-full object-cover h-full"
                   :src="pic[0].url"
                   :alt="pic[0].alt"
+                  format="webp"
                 />
               </div>
               <div class="overflow-hidden rounded-xl">
@@ -297,6 +303,7 @@
                   class="w-full object-cover h-full"
                   :src="pic[1].url"
                   :alt="pic[1]"
+                  format="webp|"
                 />
               </div>
             </div>
@@ -305,6 +312,7 @@
                 class="w-full object-cover h-full"
                 :src="pic[2].url"
                 :alt="pic[2].alt"
+                format="webp"
               />
             </div>
           </div>

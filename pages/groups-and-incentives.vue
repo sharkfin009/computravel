@@ -18,7 +18,9 @@
               ''
             )
           "
+          alt="data.data.groupsAndIncentivesContent.data.attributes.images.data[0].attributes.alternativeText"
           class="object-cover rounded-xl"
+          format="webp"
         />
 
         <nuxt-img
@@ -29,6 +31,8 @@
             )
           "
           class="object-cover rounded-xl"
+          alt="data.data.groupsAndIncentivesContent.data.attributes.images.data[1].attributes.alternativeText"
+          format="webp"
         />
       </div>
       <div

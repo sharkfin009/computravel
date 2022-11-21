@@ -21,7 +21,8 @@
             "
             :src="image"
             :class="{ 'opacity-0 fadeIn': index !== activePic }"
-            quality="50"
+            quality="80"
+            format="webp"
           />
         </div>
       </div>

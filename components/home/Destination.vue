@@ -26,6 +26,7 @@
           width="1200px"
           height="600px"
           sizes="lg:90vw"
+          format="webp"
         />
       </div>
     </div>

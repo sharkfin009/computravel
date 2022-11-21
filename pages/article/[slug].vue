@@ -14,16 +14,19 @@
             >
           </Head>
           <div class="max-h-[500px] rounded-3xl overflow-hidden mb-5">
-            <img
+            <nuxt-img
               :src="
-                data.data.blogArticles.data[0].attributes.featured_image.data[0]
-                  .attributes.url
+                data.data.blogArticles.data[0].attributes.featured_image.data[0].attributes.url.replace(
+                  'https://res.cloudinary.com/sharkfin/image/upload',
+                  ''
+                )
               "
               :alt="
                 data.data.blogArticles.data[0].attributes.featured_image.data[0]
                   .attributes.alternativeText
               "
               class="object-cover"
+              format="webp"
             />
           </div>
           <h3
@@ -63,7 +66,17 @@
               :key="index"
               class="max-h-[500px] rounded-3xl overflow-hidden"
             >
-              <img :src="item.attributes.url" class="object-cover" />
+              <nuxt-img
+                :src="
+                  item.attributes.url.replace(
+                    'https://res.cloudinary.com/sharkfin/image/upload',
+                    ''
+                  )
+                "
+                :alt="item.attributes.alternativeText"
+                class="object-cover"
+                format="webp"
+              />
             </div>
           </div>
         </div>

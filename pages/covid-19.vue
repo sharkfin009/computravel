@@ -11,11 +11,12 @@
         <div class="" v-html="data.data.covid19.data.attributes.body"></div>
         <!-- pics -->
         <div class="flex flex-col gap-5 pb-10">
-          <img
+          <nuxt-img
             class="object-cover rounded"
             :src="
               data.data.covid19.data.attributes.images.data[0].attributes.url
             "
+            format="webp"
           />
           <img
             class="object-cover rouned"

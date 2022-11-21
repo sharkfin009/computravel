@@ -16,6 +16,7 @@ wle<template>
         fit="cover"
         quality="70"
         :src="reason.image_url"
+        format="webp"
       />
     </div>
     <!-- content pane: -->

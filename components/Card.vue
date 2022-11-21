@@ -33,11 +33,19 @@
           >
             {{ props.package.category.data.attributes.name }}
           </div>
-          <img
+          <nuxt-img
             v-if="image"
             class="absolute inset-0"
-            :src="image.url"
+            :src="
+              image.url.replace(
+                'https://res.cloudinary.com/sharkfin/image/upload',
+                ''
+              )
+            "
             :alt="image.alt"
+            format="webp"
+            width="320"
+            height="200"
           />
         </div>
       </div>

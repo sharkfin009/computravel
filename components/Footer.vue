@@ -23,10 +23,12 @@
       </div>
       <a href="/asata" target="blank">
         <div class="flex justify-center items-center">
-          <img
+          <nuxt-img
             width="250"
-            src="/asata-logo-full-500-sq-transp.png"
+            height="250"
+            src="/v1669035232/computravel/asata-logo-full-500-sq-transp_vz31jh.png"
             alt="ASATA logo"
+            format="webp"
           />
         </div>
       </a>
