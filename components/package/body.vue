@@ -265,8 +265,8 @@
                 <nuxt-img
                   class="w-full object-cover h-full"
                   :src="pic[2].url"
-                  :alt="pic[3]"
-                  format="web-p"
+                  :alt="pic[3].alt"
+                  format="webp"
                 />
               </div>
               <div
@@ -303,7 +303,7 @@
                   class="w-full object-cover h-full"
                   :src="pic[1].url"
                   :alt="pic[1]"
-                  format="webp|"
+                  format="webp"
                 />
               </div>
             </div>
