@@ -102,7 +102,7 @@ useGraphPromise(query)
       description: package_data.value.description,
       // sku: package_data.value.supplier_ref,
       // mpn: "925872",
-      // brand: {
+      brand: {
         "@type": "Brand",
         name: "Computravel",
       },

@@ -33,4 +33,11 @@ const scrollTo = (homePageScroll) => {
     .querySelector("#" + homePageScroll)
     .scrollIntoView({ behavior: "smooth" });
 };
+const config = useRuntimeConfig();
+useJsonld({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  url: config.baseUrl,
+  logo: "https://res.cloudinary.com/sharkfin/image/upload/v1669024295/computravel/computravel-main-logo_b3kl0j.png",
+});
 </script>
