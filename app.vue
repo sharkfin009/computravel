@@ -2,6 +2,10 @@
   <Head>
     <!-- viewport: -->
     <Meta
+      name="google-site-verification"
+      content="Vkq3hjJVmAiliih9m7Vo1_hih8mlanhM9O3X59cXuEE"
+    />
+    <Meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
     />
