@@ -28,7 +28,7 @@
           "
         >
           <h3 class="">
-            {{ props.package_data.packages.data[0].attributes.title }}
+            {{ package_data.title }}
           </h3>
         </div>
         <div
@@ -53,7 +53,7 @@
               md:text-3xl
             "
           >
-            R{{ props.package_data.packages.data[0].attributes.price }}
+            R{{ package_data.price }}
             <div
               class="
                 font-normal
@@ -70,8 +70,8 @@
           </div>
         </div>
         <div class="order-2 md:order-none p-0 md:p-2 w-full">
-          {{ props.package_data.packages.data[0].attributes.destination }},
-          {{ props.package_data.packages.data[0].attributes.region }}
+          {{ package_data.destination }},
+          {{ package_data.region }}
         </div>
         <div
           class="
@@ -85,7 +85,7 @@
           <div>
             <span class="text-xs">Book before: </span>
             <span class="font-medium">
-              {{ props.package_data.packages.data[0].attributes.valid_to }}
+              {{ props.package_data.valid_to }}
             </span>
           </div>
         </div>

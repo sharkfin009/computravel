@@ -53,13 +53,13 @@
             "
           >
             <div
-              v-if="package_data.packages.data[0].attributes.video_url"
+              v-if="package_data.video_url"
               :class="{ '!opacity-100': 1 == mobilePicPointer }"
               class="overflow-hidden rounded-xl flex flex-col w-full h-full"
             >
               <iframe
                 class="grow"
-                :src="package_data.packages.data[0].attributes.video_url"
+                :src="package_data.video_url"
                 title=""
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
@@ -255,7 +255,7 @@
                 />
               </div>
               <div
-                v-if="!package_data.packages.data[0].attributes.video_url"
+                v-if="!package_data.video_url"
                 class="overflow-hidden rounded-xl"
               >
                 <nuxt-img
@@ -265,14 +265,12 @@
                 />
               </div>
               <div
-                v-if="
-                  package_data.packages.data[0].attributes.video_url !== null
-                "
+                v-if="package_data.video_url !== null"
                 class="overflow-hidden rounded-xl flex flex-col w-full h-full"
               >
                 <iframe
                   class="grow"
-                  :src="package_data.packages.data[0].attributes.video_url"
+                  :src="package_data.video_url"
                   title="Sugar Beach Golf & Spa Resort, Mauritius - Overview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
@@ -355,11 +353,7 @@
           "
         >
           <div class="rounded-xl bg-white p-5 md:p-12">
-            <p
-              v-html="
-                props.package_data.packages.data[0].attributes.description
-              "
-            />
+            <p v-html="props.package_data.description" />
             <PackageHeading> includes:</PackageHeading>
 
             <ul v-if="supplier == 'TH'" class="rounded-xl px-5">
@@ -394,16 +388,14 @@
                 <div>prices from:</div>
                 <div>
                   R
-                  {{ props.package_data.packages.data[0].attributes.price }}
+                  {{ props.package_data.price }}
                   per pps
                 </div>
               </li>
               <li>
                 <div>trip reference:</div>
                 <div>
-                  {{
-                    props.package_data.packages.data[0].attributes.supplier_ref
-                  }}
+                  {{ props.package_data.supplier_ref }}
                 </div>
               </li>
               <li>
@@ -412,16 +404,16 @@
               </li>
               <li>
                 <div>from:</div>
-                {{ props.package_data.packages.data[0].attributes.from }}
+                {{ props.package_data.from }}
               </li>
               <li>
                 <div>duration:</div>
-                {{ props.package_data.packages.data[0].attributes.duration }}
+                {{ props.package_data.duration }}
                 nights
               </li>
               <li>
                 <div>book before:</div>
-                {{ props.package_data.packages.data[0].attributes.valid_to }}
+                {{ props.package_data.valid_to }}
               </li>
             </ul>
             <div class="flex flex-col items-center mt-5">
@@ -456,7 +448,7 @@
               </ul>
               <div
                 v-if="supplier !== 'TH'"
-                v-html="package_data.packages.data[0].attributes.terms"
+                v-html="package_data.terms"
                 class="list-disc"
               />
             </div>
@@ -518,7 +510,7 @@ let aboutCopy = props.destination_content ? props.destination_content.copy : "";
 let images = [
   ...(props.destination_content ? props.destination_content.images : []),
 
-  ...props.package_data.packages.data[0].attributes.images.data.map((item) => ({
+  ...props.package_data.images.data.map((item) => ({
     url: item.attributes.url.replace(
       "https://res.cloudinary.com/sharkfin/image/upload",
       ""
@@ -535,9 +527,9 @@ function shuffle(array) {
 }
 
 // images = shuffle(images);
-// if (props.package_data.packages.data[0].attributes.image_url_lg) {
+// if (props.package_data.image_url_lg) {
 //   images.unshift(
-//     "https://" + props.package_data.packages.data[0].attributes.image_url_lg
+//     "https://" + props.package_data.image_url_lg
 //   );
 // }
 let threeImagesArray = [];
@@ -570,26 +562,23 @@ const browseRight = () => {
 };
 // text data:
 
-let descripLines = props.package_data.packages.data[0].attributes.description;
-let includes = props.package_data.packages.data[0].attributes.includes;
-let excludes = props.package_data.packages.data[0].attributes.excludes;
-let terms = props.package_data.packages.data[0].attributes.excludes;
+let descripLines = props.package_data.description;
+let includes = props.package_data.includes;
+let excludes = props.package_data.excludes;
+let terms = props.package_data.excludes;
 let termsListItems;
 // includes
 
 let supplier = "";
 // Thompsons API package:
-if (
-  props.package_data.packages.data[0].attributes.supplier_ref.substring(0, 2) ==
-  "TH"
-) {
+if (props.package_data.supplier_ref.substring(0, 2) == "TH") {
   supplier = "TH";
   includes = includes.split("\n");
   includes.splice(0, 1);
   includes = includes.filter((item) => item !== "");
   excludes = excludes.split(". ");
   excludes = excludes.filter((item) => item !== "");
-  termsListItems = props.package_data.packages.data[0].attributes.terms
+  termsListItems = props.package_data.terms
     .split("\n")
     .filter((item) => item.length > 1);
 }
@@ -612,7 +601,7 @@ function removePTag(string) {
   return string;
 }
 let videoCheck = 0;
-if (props.package_data.packages.data[0].attributes.video_url) videoCheck = 1;
+if (props.package_data.video_url) videoCheck = 1;
 
 //  template methods:
 const activeTab = ref(0);

@@ -1,5 +1,6 @@
 <template>
   <div class="flex justify-center">
+    <Script :children="jsonLD" />
     <div class="lg:grid lg:grid-cols-[auto,320px] gap-20 pt-10 max-w-[1300px]">
       <div class="flex justify-center">
         <div
@@ -160,6 +161,4 @@ const tags = computed(() => {
     return tags.join(",");
   }
 });
-
-const metaData = ref({});
 </script> 
