@@ -100,21 +100,21 @@ useGraphPromise(query)
       name: package_data.value.title,
       image: [package_data.value.images.data[0].attributes.url],
       description: package_data.value.description,
-      sku: package_data.value.supplier_ref,
-      mpn: "925872",
-      brand: {
-        "@type": "Brand",
-        name: "Computravel",
-      },
-      offers: {
-        "@type": "Offer",
-        url: config.baseUrl + route.params.slug,
-        priceCurrency: "ZAR",
-        price: package_data.value.price,
-        priceValidUntil: package_data.value.valid_to,
-        image: [package_data.value.images.data[0].attributes.url],
-        availability: "https://schema.org/InStock",
-      },
+      // sku: package_data.value.supplier_ref,
+      // mpn: "925872",
+      // brand: {
+      //   "@type": "Brand",
+      //   name: "Computravel",
+      // },
+      // offers: {
+      //   "@type": "Offer",
+      //   url: config.baseUrl + route.params.slug,
+      //   priceCurrency: "ZAR",
+      //   price: package_data.value.price,
+      //   priceValidUntil: package_data.value.valid_to,
+      //   image: [package_data.value.images.data[0].attributes.url],
+      //   availability: "https://schema.org/InStock",
+      // },
     });
     return response.data;
   })
