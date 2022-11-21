@@ -38,7 +38,7 @@
           v-for="(card, index) in enquiryState.myPackages"
           :key="index"
         >
-          <Card class="w-full" :package="card.attributes" />
+          <Card class="w-full" :package="card" />
           <div class="w-full flex justify-center py-5">
             <i
               class="
@@ -84,12 +84,12 @@ onMounted(() => {
   if (localStorage.getItem("my-packages")) {
     enquiryState.myPackages = JSON.parse(localStorage.getItem("my-packages"));
   }
-
+  console.log(store.package);
   if (
-    store.package.attributes &&
+    store.package &&
     !enquiryState.myPackages
-      .map((item) => item.attributes.supplier_ref)
-      .includes(store.package.attributes.supplier_ref)
+      .map((item) => item.supplier_ref)
+      .includes(store.package.supplier_ref)
   ) {
     enquiryState.myPackages.push(store.package);
     enquiryState.listDirtyState = true;

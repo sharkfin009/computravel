@@ -27,6 +27,7 @@
           height="600px"
           sizes="lg:90vw"
           format="webp"
+          loading="lazy"
         />
       </div>
     </div>

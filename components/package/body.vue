@@ -1,9 +1,6 @@
 <template>
   <div class="relative listOutside">
-    <div
-      v-if="!suggestStore.showSuggestions"
-      class="sticky top-[142px] md:top-[90px] bg-slate-50 mb-5 z-10"
-    >
+    <div class="sticky top-[142px] md:top-[90px] bg-slate-50 mb-5 z-10">
       <PackageHeader class="" :package_data="package_data" />
     </div>
     <div
@@ -26,7 +23,7 @@
 
         <div class="flex justify-center pb-6 h-full w-full px-5">
           <div
-            v-if="images.length == 1"
+            v-if="images.length < 3"
             class="rounded-xl overflow-hidden max-w-screen-md"
           >
             <nuxt-img
@@ -40,7 +37,7 @@
           <!-- many pics mobile:-->
 
           <div
-            v-if="images.length > 1"
+            v-if="images.length > 2"
             class="
               block
               xl:hidden
@@ -107,7 +104,7 @@
                     hover:bg-opacity-100
                     transition-all
                   "
-                  v-if="mobilePicPointer > 0 && images.length > 1"
+                  v-if="mobilePicPointer > 0 && images.length > 2"
                 >
                   <IconChevronLeft
                     class="
@@ -178,7 +175,7 @@
               hover:bg-opacity-100
               transition-all
             "
-            v-if="scrollPos > 0 && images.length > 1"
+            v-if="scrollPos > 0 && images.length > 2"
           >
             <IconChevronLeft
               class="
@@ -225,7 +222,7 @@
 
       <!--  many pix xl up : magazine layout-->
       <div
-        v-if="images.length > 1"
+        v-if="images.length > 2"
         class="hidden xl:flex pb-10 overflow-x-hidden overflow-y-hidden"
         ref="scrollBox"
       >
@@ -265,7 +262,7 @@
                 <nuxt-img
                   class="w-full object-cover h-full"
                   :src="pic[2].url"
-                  :alt="pic[3].alt"
+                  :alt="pic[2].alt"
                   format="webp"
                 />
               </div>
@@ -302,7 +299,7 @@
                 <nuxt-img
                   class="w-full object-cover h-full"
                   :src="pic[1].url"
-                  :alt="pic[1]"
+                  :alt="pic[1].alt"
                   format="webp"
                 />
               </div>
@@ -527,7 +524,7 @@ let images = [
   })),
 ];
 
-console.log(props.package_data);
+console.log(props.destination_content);
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);

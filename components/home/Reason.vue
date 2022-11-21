@@ -17,6 +17,7 @@ wle<template>
         quality="70"
         :src="reason.image_url"
         format="webp"
+        loading="lazy"
       />
     </div>
     <!-- content pane: -->

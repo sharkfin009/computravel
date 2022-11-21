@@ -90,7 +90,7 @@
           </NuxtLink>
         </div>
         <div class="relative">
-          <TooltipLeft v-if="firstVisit">
+          <TooltipLeft v-if="firstVisit && /packages/.test($route.path)">
             When you're ready to send your enquiry, click here
           </TooltipLeft>
           <NuxtLink to="/enquire-form" v-if="!hasPackages()">

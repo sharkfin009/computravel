@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <Head v-if="package_data"> </Head>
     <div
       v-show="responseCount < 3"
       class="h-screen flex justify-center items-center"
@@ -39,9 +38,7 @@ store.alreadyAdded = false;
 
 let query = `
             query{packages(
-              filters:{ supplier_ref: { eq:"${
-                route.params.ref
-              }" } } ){
+              filters:{ supplier_ref: { eq:"${route.params.ref}" } } ){
                 data{
                   id
                   attributes{
@@ -94,33 +91,7 @@ graphql(query)
     console.log(response);
     package_data.value = response.data.packages.data[0].attributes;
     store.package = response.data.packages.data[0].attributes;
-    useJsonld({
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      name: package_data.value.title,
-      image: [package_data.value.images.data[0].attributes.url],
-      description: package_data.value.description,
-      // sku: package_data.value.supplier_ref,
-      // mpn: "925872",
-      brand: {
-        "@type": "Brand",
-        name: "Computravel",
-      },
-      offers: {
-        "@type": "Offer",
-        url:
-          config.baseUrl +
-          "/" +
-          package_data.supplier_ref +
-          "/" +
-          route.params.slug,
-        priceCurrency: "ZAR",
-        price: package_data.value.price,
-        priceValidUntil: package_data.value.valid_to,
-        image: [package_data.value.images.data[0].attributes.url],
-        availability: "https://schema.org/InStock",
-      },
-    });
+
     return response.data;
   })
   .then((data) => {
@@ -128,10 +99,12 @@ graphql(query)
       favorites.value &&
       favorites.value
         .map((item) => item.attributes.supplier_ref)
-        .includes(store.package.attributes.supplier_ref)
+        .includes(store.package.supplier_ref)
     ) {
       store.alreadyAdded = true;
     }
+    alert();
+
     return data;
   })
   .then((data) => {
@@ -257,6 +230,34 @@ watch(
         };
         return;
       }
+      console.log(responseCount.value);
+      useJsonld({
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        name: package_data.value.title,
+        image: [package_data.value.images.data[0].attributes.url],
+        description: package_data.value.description,
+        // sku: package_data.value.supplier_ref,
+        // mpn: "925872",
+        brand: {
+          "@type": "Brand",
+          name: "Computravel",
+        },
+        offers: {
+          "@type": "Offer",
+          url:
+            config.baseUrl +
+            "/" +
+            package_data.supplier_ref +
+            "/" +
+            route.params.slug,
+          priceCurrency: "ZAR",
+          price: package_data.value.price,
+          priceValidUntil: package_data.value.valid_to,
+          image: [package_data.value.images.data[0].attributes.url],
+          availability: "https://schema.org/InStock",
+        },
+      });
     }
   }
 );

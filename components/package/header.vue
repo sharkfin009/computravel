@@ -104,7 +104,7 @@
           gap-2
         "
       >
-        <TooltipUnder v-if="firstVisit">
+        <TooltipUnder v-if="firstVisit && /packages/.test($route.path)">
           Interested in this Package? Add it to your favourites
         </TooltipUnder>
         <div v-if="!packageStore.alreadyAdded" class="">

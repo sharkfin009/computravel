@@ -46,6 +46,7 @@
             format="webp"
             width="320"
             height="200"
+            loading="lazy"
           />
         </div>
       </div>
