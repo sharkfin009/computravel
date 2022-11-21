@@ -98,7 +98,7 @@ graphql(query)
     if (
       favorites.value &&
       favorites.value
-        .map((item) => item.attributes.supplier_ref)
+        .map((item) => item.supplier_ref)
         .includes(store.package.supplier_ref)
     ) {
       store.alreadyAdded = true;
