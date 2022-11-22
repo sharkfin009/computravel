@@ -103,7 +103,6 @@ graphql(query)
     ) {
       store.alreadyAdded = true;
     }
-    alert();
 
     return data;
   })
