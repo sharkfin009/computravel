@@ -76,7 +76,7 @@
               v-if="vl.cell"
               inputName="cell"
               label="Cell Number"
-              type="text"
+              type="tel"
               :validationObject="vl.cell"
               errorMessage="valid cell no is required"
               placeholder="number"

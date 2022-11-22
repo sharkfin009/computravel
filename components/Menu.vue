@@ -106,6 +106,7 @@
                   @click="globalStore.showMenu = false"
                   class="w-full"
                   :to="item.url"
+                  :target="item.targetBlank ? '_blank' : '_self'"
                 >
                   <div class="w-full">
                     {{ item.name }}
@@ -162,45 +163,55 @@ let items = [
   {
     name: "Groups and Incentives",
     url: "/groups-and-incentives",
+    targetBlank: false,
   },
 
   {
     name: "Book a Flight",
     url: "/flight-bookings",
+    targetBlank: false,
   },
   {
     name: "Flight Specials",
     url: "/flight-specials",
+    targetBlank: false,
   },
   {
     name: "Find A Car",
     url: "/car-bookings",
+    targetBlank: false,
   },
 
   {
     name: "Travel Insurance",
     url: "https://www.tic.co.za/systematic/travelinsuranceshop.html?ref=89",
+    targetBlank: true,
   },
   {
     name: "Blog",
     url: "/blog-archive",
+    targetBlank: false,
   },
   {
     name: "Travel Tips",
     url: "/travel-tips",
+    targetBlank: false,
   },
   {
     name: "Frequently Asked Questions (FAQs)",
     url: "/FAQs",
+    targetBlank: false,
   },
   {
     name: "COVID-19",
     url: "/covid-19",
+    targetBlank: false,
   },
 
   {
     name: "Contact",
     url: "/contact",
+    targetBlank: false,
   },
 ];
 import { useGlobalStore } from "@/stores/global";
