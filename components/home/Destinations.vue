@@ -8,7 +8,7 @@
     <div class="">
       <SectionHeading
         heading="explore these destinations"
-        subheading="looking for inspiration?"
+        subheading="looking for inspiration"
         :inverted="true"
       />
       <!-- XL header:-->

@@ -10,6 +10,8 @@
         hover:shadow-none
         rounded-lala
         bg-white
+        md:mr-10
+        mb-10
       "
     >
       <nuxt-img
@@ -25,11 +27,12 @@
         "
         width="320"
         height="200"
-        format="webp"
+        class="object-cover"
+        fit="cover"
       />
 
-      <div class="flex flex-col justify-between items-center px-5">
-        <div class="w-full text-center text-base text-gray-800">
+      <div class="flex flex-col justify-center gap-2 items-center px-5">
+        <div class="w-full text-center text-base text-gray-800 mb-2">
           {{
             new Date(props.article.attributes.date).toLocaleDateString(
               "eng-GB",
@@ -43,7 +46,7 @@
         </div>
 
         <div class="flex flex-col justify-evenly">
-          <div class="w-full font-titillium font-semibold text-xl">
+          <div class="w-full font-titillium font-semibold text-xl mb-2">
             <h3 class="text-center">
               {{ props.article.attributes.title }}
             </h3>

@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="min-h-[50vh] flex flex-col items-center">
-      <div class="grid max-w-[1000px]">
+      <div class="flex flex-col">
         <SectionHeading
           heading="computravel blog"
           subheading="feel inspired"
           :inverted="true"
         />
         <!-- <pre>{{ data }}</pre> -->
-        <div v-if="data" class="flex flex-wrap justify-center gap-5">
+        <div v-if="data" class="grid lg:grid-cols-3">
           <div v-for="(item, index) of blogs" :key="index">
             <ArticleCard :article="item" />
           </div>
