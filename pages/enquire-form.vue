@@ -174,6 +174,7 @@ const state = reactive({
   no_of_infants: "",
   comment: "",
 });
+const validPhoneNo = (value) => !/[a-zA-Z]/.test(value) && /[+0-9]/.test(value);
 const rules = {
   full_name: {
     required,
@@ -184,7 +185,7 @@ const rules = {
   },
   cell: {
     required,
-    numeric,
+    validPhoneNo,
   },
   destination: {},
   from_where: {},
@@ -222,7 +223,7 @@ onMounted(() => {
     packages.value = JSON.parse(localStorage.getItem("my-packages"));
     ids = packages.value.map((item) => item.id);
     console.log(packages);
-    titles.value = ref(packages.value.map((item) => item.attributes.title));
+    titles.value = ref(packages.value.map((item) => item.title));
     list = "packages: " + JSON.stringify(ids);
   }
 });
