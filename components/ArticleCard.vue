@@ -26,13 +26,12 @@
             .alternativeText
         "
         width="320"
-        height="200"
-        class="object-cover"
+        class="object-cover h-[100%]"
         fit="cover"
       />
 
       <div class="flex flex-col justify-center gap-2 items-center px-5">
-        <div class="w-full text-center text-base text-gray-800 mb-2">
+        <div class="w-full text-center text-base text-gray-800">
           {{
             new Date(props.article.attributes.date).toLocaleDateString(
               "eng-GB",
@@ -46,8 +45,10 @@
         </div>
 
         <div class="flex flex-col justify-evenly">
-          <div class="w-full font-titillium font-semibold text-xl mb-2">
-            <h3 class="text-center">
+          <div
+            class="w-full font-titillium font-semibold text-xl mb-4 h-[50px]"
+          >
+            <h3 class="text-center leading-6">
               {{ props.article.attributes.title }}
             </h3>
           </div>
