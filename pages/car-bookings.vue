@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <div class="w-[80%] h-[600px]">
+    <div class="w-[90%] h-[600px]">
       <iframe
         scrolling="no"
         style="border: 0px; overflow: hidden; height: 600px !important"

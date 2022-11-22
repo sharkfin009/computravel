@@ -14,7 +14,7 @@
     />
     <div class="absolute inset-0 grid grid-rows-[min-content,auto]">
       <!-- desktop logo -->
-      <div class="flex items-center p-10">
+      <div class="flex items-center p-3 md:p-10">
         <NuxtLink class="text-primary pointer-events-auto" to="/">
           <div
             class="
@@ -38,14 +38,16 @@
         class="
           flex flex-col
           gap-5
-          justify-end
+          justify-center
+          md:justify-end
           items-center
-          pb-[20vh]
+          md:pb-[20vh]
           text-white
+          pt-20
         "
       >
         <h2 class="text-6xl">404</h2>
-        <h5 class="text-xl">
+        <h5 class="text-xl text-center">
           Oops! Looks like you've found an unknown destination
         </h5>
         <CompuButton @click="$router.go(-1)" class="bg-green-avo text-lime-500"

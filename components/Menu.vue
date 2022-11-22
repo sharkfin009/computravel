@@ -24,7 +24,7 @@
         ref="menu"
       >
         <div class="overflow-auto w-full h-screen">
-          <div class="h-[800px]">
+          <div class="h-[800px] pt-10">
             <div class="text-sm mb-3 pb-30">Search Packages by:</div>
 
             <ul
