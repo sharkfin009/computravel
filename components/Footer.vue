@@ -77,12 +77,12 @@
               >
             </NuxtLink>
           </div>
-          <div class="flex justify-start gap-5 items-center">
+          <div class="flex justify-start items-center">
             <a href="https://www.facebook.com/Computravel/" target="blank">
-              <i class="fa-brands fa-facebook fa-2x cursor-pointer"
+              <i class="fa-brands fa-facebook fa-2x cursor-pointer mr-5"
             /></a>
             <a href="https://twitter.com/computravel" target="blank">
-              <i class="fa-brands fa-twitter fa-2x cursor-pointer" />
+              <i class="fa-brands fa-twitter fa-2x cursor-pointer mr-5" />
             </a>
             <a
               href="https://www.instagram.com/computravel/?hl=en"

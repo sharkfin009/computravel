@@ -124,12 +124,11 @@
               @setValue="setValue"
             />
           </div>
-          <Input
+          <TextArea
             v-if="vl.comment"
             inputName="comment"
             :validationObject="vl.comment"
             label="Comment"
-            type="text"
             placeholder=""
             @setValue="setValue"
           />

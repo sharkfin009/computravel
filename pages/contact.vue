@@ -63,11 +63,15 @@
           shadow
         "
       >
-        <i class="fa-solid fa-envelope mb-5" />
         <div class="text-center">
-          <a href="mailto:info@computravel.co.za" target="blank"
-            >info@computravel.co.za</a
+          <a
+            href="mailto:info@computravel.co.za"
+            target="blank"
+            class="flex flex-col justify-center"
           >
+            <i class="fa-solid fa-envelope mb-5" />
+            info@computravel.co.za
+          </a>
         </div>
       </div>
     </div>
