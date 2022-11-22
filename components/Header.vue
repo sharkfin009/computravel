@@ -89,10 +89,10 @@
             >
           </NuxtLink>
         </div>
-        <div class="relative">
-          <TooltipLeft v-if="firstVisit && /packages/.test($route.path)">
+        <div class="relative flex justify-center">
+          <TooltipUnder v-if="firstVisit && /packages/.test($route.path)" >
             When you're ready to send your enquiry, click here
-          </TooltipLeft>
+          </TooltipUnder>
           <NuxtLink to="/enquire-form" v-if="!hasPackages()">
             <CompuButton class="!text-center inset-0 bg-lime-500 !h-full mr-5"
               >enquire now</CompuButton

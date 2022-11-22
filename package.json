@@ -21,18 +21,12 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
     "@nuxtjs/algolia": "^0.7.0",
-    "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/strapi": "npm:@nuxtjs/strapi-edge@latest",
-    "@nuxtjs/web-vitals": "^0.1.10",
     "@pinia/nuxt": "^0.4.0",
-    "@unlighthouse/nuxt": "^0.4.4",
     "@vuelidate/core": "^2.0.0-alpha.34",
     "@vuelidate/validators": "^2.0.0-alpha.26",
     "animate.css": "^4.1.1",
     "nuxt-jsonld": "^2.0.7",
-    "strapi-plugin-email-designer": "^2.1.1",
-    "vue-email-editor": "^2.0.0",
-    "vue-select": "^4.0.0-beta.3",
-    "vue-socialmedia-share": "^1.0.1"
+    "vue-select": "^4.0.0-beta.3"
   }
 }

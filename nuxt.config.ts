@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
-  ssr: false,
+  // ssr: false,
   meta: {
     script: [
       {
