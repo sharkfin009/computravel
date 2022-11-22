@@ -30,32 +30,36 @@
         fit="cover"
       />
 
-      <div class="flex flex-col justify-center gap-2 items-center px-5">
-        <div class="w-full text-center text-base text-gray-800">
-          {{
-            new Date(props.article.attributes.date).toLocaleDateString(
-              "eng-GB",
-              {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              }
-            )
-          }}
-        </div>
-
-        <div class="flex flex-col justify-evenly">
-          <div
-            class="w-full font-titillium font-semibold text-xl mb-4 h-[50px]"
-          >
-            <h3 class="text-center leading-6">
-              {{ props.article.attributes.title }}
-            </h3>
+      <div class="grid grid-rows-[40px,80px,80px] px-5">
+        <div class="flex items-end">
+          <div class="w-full text-center text-base text-gray-800">
+            {{
+              new Date(props.article.attributes.date).toLocaleDateString(
+                "eng-GB",
+                {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                }
+              )
+            }}
           </div>
         </div>
+        <div class="flex flex-col justify-center">
+          <h3
+            class="
+              w-full
+              font-titillium font-semibold
+              text-xl text-center
+              leading-6
+            "
+          >
+            {{ props.article.attributes.title }}
+          </h3>
+        </div>
         <div class="flex flex-col justify-evenly">
-          <div class="w-full font-light text-gray-800 text-sm">
-            <div class="text-center" v-html="bodyEllipsis"></div>
+          <div class="w-full text-sm">
+            <div class="text-center px-3" v-html="bodyEllipsis"></div>
           </div>
         </div>
       </div>
@@ -77,7 +81,7 @@ const props = defineProps({
 const { $ellipsis } = useNuxtApp();
 
 const bodyEllipsis = computed(() => {
-  return $ellipsis(props.article.attributes.body, 150);
+  return $ellipsis(props.article.attributes.body, 120);
 });
 </script>
 
