@@ -1,13 +1,11 @@
 import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   // ssr: false,
+  export default defineNitroConfig({
+    preset: 'netlify'
+  })
   meta: {
-    script: [
-      {
-        src: "https://kit.fontawesome.com/7e89521fcf.js",
-        crossorigin: "anonymous",
-      },
-    ],
+    script: [],
     link: [
       {
         rel: "stylesheet",
@@ -61,19 +59,8 @@ export default defineNuxtConfig({
       include: () => true,
     },
   },
-  css: [
-    "~/styles/general.css",
-    "animate.css",
-    "@fortawesome/fontawesome-svg-core/styles.css",
-  ],
+  css: ["~/styles/general.css", "animate.css"],t
 
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => {
-        return tag.startsWith("font-awesome-icon");
-      },
-    },
-  },
   image: {
     provider: "cloudinary",
     cloudinary: {
