@@ -1,7 +1,6 @@
 <template>
   <div class="relative">
     <div
-      v-show="state"
       class="
         absolute
         -top-1
