@@ -151,7 +151,7 @@
               z-50
             "
           >
-            <IconClose name="close" class="w-5 text-stone-500" />
+            <IconClose class="w-8 text-stone-500" />
           </div>
         </div>
       </div>

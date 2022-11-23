@@ -114,25 +114,26 @@
           Join us on social media
         </div>
         <div class="flex justify-center gap-20 mb-10">
-          <a href="https://www.facebook.com/Computravel/" target="blank">
-            <Icon
-              name="fa6-brands:facebook"
-              size="32"
-              class="cursor-pointer mr-5"
+          <a
+            href="https://www.facebook.com/Computravel/"
+            target="blank"
+            class="cursor-pointer mr-5"
+          >
+            <IconFacebook class="cursor-pointer w-14"
           /></a>
-          <a href="https://twitter.com/computravel" target="blank">
-            <Icon
-              name="fa6-brands:twitter"
-              size="32"
-              class="cursor-pointer mr-5"
-            />
+          <a
+            href="https://twitter.com/computravel"
+            target="blank"
+            class="cursor-pointer mr-5"
+          >
+            <IconTwitterBlack class="text-black w-16" />
           </a>
-          <a href="https://www.instagram.com/computravel/?hl=en" target="blank">
-            <Icon
-              name="fa6-brands:instagram"
-              size="32"
-              class="cursor-pointer mr-5"
-            />
+          <a
+            href="https://www.instagram.com/computravel/?hl=en"
+            target="blank"
+            class="cursor-pointer mr-5"
+          >
+            <IconInstagram class="cursor-pointer mr-5" />
           </a>
         </div>
       </div>

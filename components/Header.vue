@@ -46,48 +46,42 @@
       <div class="flex pointer-events-auto">
         <!--  enq now button: -->
         <div class="hidden lg:flex" v-if="route.path == '/'">
-          <NuxtLink t>
-            <CompuButton
-              class="
-                !text-center
-                inset-0
-                bg-opacity-90 bg-green-avo
-                !h-full
-                text-gray-600
-                mr-5
-              "
-              @click="scrollTo('faves')"
-              >holiday packages</CompuButton
-            >
-          </NuxtLink>
-          <NuxtLink>
-            <CompuButton
-              class="
-                !text-center
-                inset-0
-                bg-opacity-90 bg-green-avo
-                !h-full
-                text-gray-600
-                mr-5
-              "
-              @click="scrollTo('flights')"
-              >flights</CompuButton
-            >
-          </NuxtLink>
-          <NuxtLink>
-            <CompuButton
-              class="
-                !text-center
-                inset-0
-                bg-opacity-90 bg-green-avo
-                !h-full
-                text-gray-600
-                mr-5
-              "
-              @click="scrollTo('dests')"
-              >destinations</CompuButton
-            >
-          </NuxtLink>
+          <CompuButton
+            class="
+              !text-center
+              inset-0
+              bg-opacity-90 bg-green-avo
+              !h-full
+              text-gray-600
+              mr-5
+            "
+            @click="scrollTo('faves')"
+            >holiday packages</CompuButton
+          >
+          <CompuButton
+            class="
+              !text-center
+              inset-0
+              bg-opacity-90 bg-green-avo
+              !h-full
+              text-gray-600
+              mr-5
+            "
+            @click="scrollTo('flights')"
+            >flights</CompuButton
+          >
+          <CompuButton
+            class="
+              !text-center
+              inset-0
+              bg-opacity-90 bg-green-avo
+              !h-full
+              text-gray-600
+              mr-5
+            "
+            @click="scrollTo('dests')"
+            >destinations</CompuButton
+          >
         </div>
         <div class="relative flex justify-center">
           <TooltipUnder v-if="firstVisit && /packages/.test($route.path)">
@@ -132,7 +126,7 @@
             'opacity-0': globalStore.showMenu == true,
           }"
         >
-          <IconHamburger class="text-stone-600 text-2xl md:text-2xl" />
+          <IconHamburger class="w-8 text-stone-600 text-2xl md:text-2xl" />
         </div>
       </div>
     </div>

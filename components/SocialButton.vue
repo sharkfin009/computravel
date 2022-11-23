@@ -1,8 +1,8 @@
 <template>
   <div
     class="
-      p-2
-      md-p-1
+      p-1
+      md:p-3
       rounded-l-xl
       hover:-translate-x-[0%]
       translate-x-[66%]
@@ -14,6 +14,6 @@
     "
   >
     <slot />
-    <div class="ml-5 text-xs md-text-lg">share</div>
+    <div class="ml-1 md:ml-5 text-xs md-text-lg">share</div>
   </div>
 </template>

@@ -15,25 +15,25 @@
       opacity-100
       font-medium
       z-10
-  "
+    "
   >
     <!--  toggle -->
     <div class="flex w-full cursor-pointer">
       <div
         @click="showFilters = true"
         v-if="!showFilters"
-        class="w-full text-lime-600 hover:text-lime-500"
+        class="w-full text-lime-600 hover:text-lime-500 flex items-center"
       >
         show filters
-        <i class="fa fa-chevron-right" />
+        <IconChevronRight class="w-6" />
       </div>
       <div
         @click="showFilters = false"
         v-if="showFilters"
-        class="w-full text-lime-600 hover:text-lime-500"
+        class="w-full text-lime-600 hover:text-lime-500 flex items-center"
       >
         hide filters
-        <i class="fa fa-chevron-down" />
+        <IconChevronDown class="w-6" />
       </div>
     </div>
     <!-- grid -->

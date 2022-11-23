@@ -78,15 +78,24 @@
             </NuxtLink>
           </div>
           <div class="flex justify-start items-center">
-            <a href="https://www.facebook.com/Computravel/" target="blank">
-              <IconFacebook class="cursor-pointer mr-5"
+            <a
+              href="https://www.facebook.com/Computravel/"
+              target="blank"
+              class="cursor-pointer mr-5"
+            >
+              <IconFacebook class="cursor-pointer w-14"
             /></a>
-            <a href="https://twitter.com/computravel" target="blank">
-              <IconTwitter class="cursor-pointer mr-5" />
+            <a
+              href="https://twitter.com/computravel"
+              target="blank"
+              class="cursor-pointer mr-5"
+            >
+              <IconTwitterWhite class="w-14" />
             </a>
             <a
               href="https://www.instagram.com/computravel/?hl=en"
               target="blank"
+              class="cursor-pointer mr-5"
             >
               <IconInstagram class="cursor-pointer mr-5" />
             </a>

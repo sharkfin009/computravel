@@ -3,25 +3,25 @@
     <div
       class="
         flex flex-col
-        gap-0
-        md:gap-2 md:w-50
+        w-[70px]
+        md:w-[100px]
         text-3x text-white
         pointer-events-auto
       "
     >
       <SocialButton class="bg-blue-500 mb-3" @click="share('facebook')">
-        <IconFacebook class="cursor-pointer w-8 mr-2" />
+        <IconFacebook class="cursor-pointer ml-[1px] w-4 md:w-8 mr-1" />
       </SocialButton>
       <SocialButton class="bg-blue-200 mb-3" @click="share('twitter')">
-        <IconTwitter class="cursor-pointer w-8 mr-2" />
+        <IconTwitterWhite class="cursor-pointer ml-[1px] w-5 md:w-8 mr-1" />
       </SocialButton>
 
       <SocialButton class="bg-gray-400 mb-3" @click="share('email')">
-        <IconEnvelope class="cursor-pointer w-6 ml-1 mr-2" />
+        <IconEnvelope class="cursor-pointer w-4 ml-[2px] md:w-6 mr-1" />
       </SocialButton>
 
       <SocialButton class="bg-green-500" @click="share('whatsapp')">
-        <IconWhatsapp class="cursor-pointer w-6 ml-1 mr-2" />
+        <IconWhatsappWhite class="cursor-pointer ml-[1px] w-4 md:w-6 mr-1" />
       </SocialButton>
     </div>
   </div>

@@ -11,25 +11,25 @@
           flex flex-col
           items-center
           justify-center
-          p-20
-          gap-5
           rounded-lala
           bg-white
           shadow
         "
       >
-        <div class="flex flex-col items-center justify-center gap-5">
-          <i class="fa-solid fa-phone" />
-          <div class="text-center">
-            <a href="tel:270217620511">Tel: +27021762-0511</a>
-          </div>
-        </div>
-        <div class="flex flex-col items-center justify-center gap-5">
-          <i class="text-2xl fa-brands fa-whatsapp" />
-          <div class="text-center">
-            <a href="tel:27680424843">Tel: +27680424843</a>
-          </div>
-        </div>
+        <a
+          href="tel:270217620511"
+          class="flex flex-col items-center justify-center mb-5"
+        >
+          <IconPhone class="mb-5" />
+          <div>Tel: +27021762-0511</div>
+        </a>
+        <a
+          href="tel:27680424843"
+          class="flex flex-col items-center justify-center"
+        >
+          <IconWhatsappBlack class="w-10 mb-5" />
+          <div>Tel: +27680424843</div>
+        </a>
       </div>
       <div
         class="
@@ -37,13 +37,12 @@
           items-center
           justify-center
           p-20
-          gap-5
           rounded-lala
           bg-white
           shadow
         "
       >
-        <i class="fa fa-map-marker mb-5" />
+        <IconMapMarker class="w-8 mb-5" />
         <div class="text-center">
           <p>
             59 Waterloo Road, <br />Cnr. Waterloo Road and Wolfe Street,<br />
@@ -57,7 +56,6 @@
           items-center
           justify-center
           p-20
-          gap-5i
           rounded-lala
           bg-white
           shadow
@@ -67,9 +65,9 @@
           <a
             href="mailto:info@computravel.co.za"
             target="blank"
-            class="flex flex-col justify-center"
+            class="flex flex-col items-center justify-center"
           >
-            <i class="fa-solid fa-envelope mb-5" />
+            <IconEnvelope class="w-8 mb-5" />
             info@computravel.co.za
           </a>
         </div>
