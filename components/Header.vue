@@ -90,7 +90,7 @@
           </NuxtLink>
         </div>
         <div class="relative flex justify-center">
-          <TooltipUnder v-if="firstVisit && /packages/.test($route.path)" >
+          <TooltipUnder v-if="firstVisit && /packages/.test($route.path)">
             When you're ready to send your enquiry, click here
           </TooltipUnder>
           <NuxtLink to="/enquire-form" v-if="!hasPackages()">
@@ -170,7 +170,7 @@
       </ConfirmModal>
     </transition>
     <transition name="fade">
-      <Menu v-if="globalStore.showMenu" />
+      <Menu />
     </transition>
 
     <SocialShares />
