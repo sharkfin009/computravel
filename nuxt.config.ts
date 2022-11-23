@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   // ssr: false,
-  
+
   meta: {
     script: [],
     link: [
@@ -57,7 +57,7 @@ export default defineNuxtConfig({
       include: () => true,
     },
   },
-  css: ["~/styles/general.css", "animate.css"],t
+  css: ["~/styles/general.css", "animate.css"],
 
   image: {
     provider: "cloudinary",
