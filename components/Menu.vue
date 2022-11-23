@@ -151,7 +151,11 @@
               z-50
             "
           >
-            <i class="text-stone-600 text-xl md:text-2xl fa-solid fa-close"></i>
+            <Icon
+              name="material-symbols:close"
+              size="22"
+              class="text-stone-600 text-2xl md:text-2xl"
+            />
           </div>
         </div>
       </div>
