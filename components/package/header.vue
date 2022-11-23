@@ -112,7 +112,7 @@
             <div class="text-xs order-none md:order-2 block md:hidden">
               add to
             </div>
-            <i class="text-2xl md:text-3xl fa-regular fa-heart" />
+            <IconHeart class="w-8" />
             <div class="text-xs order-none block md:hidden md:order-3">
               favourites
             </div>
@@ -134,7 +134,7 @@
           <div class="text-xs order-none md:order-2 block md:hidden">
             added to
           </div>
-          <i class="text-lime-500 text-2xl md:text-3xl fa-regular fa-heart" />
+          <IconHeart class="w-8 text-lime-500" />
 
           <NuxtLink to="/my-packages">
             <div

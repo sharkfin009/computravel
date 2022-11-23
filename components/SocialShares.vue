@@ -10,20 +10,18 @@
       "
     >
       <SocialButton class="bg-blue-500 mb-3" @click="share('facebook')">
-        <i class="fa-brands fa-facebook" />
+        <IconFacebook class="cursor-pointer w-8 mr-2" />
       </SocialButton>
       <SocialButton class="bg-blue-200 mb-3" @click="share('twitter')">
-        <i class="fa-brands fa-twitter" />
+        <IconTwitter class="cursor-pointer w-8 mr-2" />
       </SocialButton>
 
       <SocialButton class="bg-gray-400 mb-3" @click="share('email')">
-        <i class="far fa-envelope" />
+        <IconEnvelope class="cursor-pointer w-6 ml-1 mr-2" />
       </SocialButton>
-      <!-- <SocialButton class="bg-red-500" @click="share('pinterest')">
-        <i class="fa-brands fa-pinterest" />
-      </SocialButton> -->
+
       <SocialButton class="bg-green-500" @click="share('whatsapp')">
-        <i class="fa-brands fa-whatsapp" />
+        <IconWhatsapp class="cursor-pointer w-6 ml-1 mr-2" />
       </SocialButton>
     </div>
   </div>

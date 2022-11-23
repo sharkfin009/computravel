@@ -79,27 +79,16 @@
           </div>
           <div class="flex justify-start items-center">
             <a href="https://www.facebook.com/Computravel/" target="blank">
-              <Icon
-                name="fa6-brands:facebook"
-                size="32"
-                class="cursor-pointer mr-5"
+              <IconFacebook class="cursor-pointer mr-5"
             /></a>
             <a href="https://twitter.com/computravel" target="blank">
-              <Icon
-                name="fa6-brands:twitter"
-                size="32"
-                class="cursor-pointer mr-5"
-              />
+              <IconTwitter class="cursor-pointer mr-5" />
             </a>
             <a
               href="https://www.instagram.com/computravel/?hl=en"
               target="blank"
             >
-              <Icon
-                name="fa6-brands:instagram"
-                size="32"
-                class="cursor-pointer mr-5"
-              />
+              <IconInstagram class="cursor-pointer mr-5" />
             </a>
           </div>
         </div>

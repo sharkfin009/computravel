@@ -151,11 +151,7 @@
               z-50
             "
           >
-            <Icon
-              name="material-symbols:close"
-              size="22"
-              class="text-stone-600 text-2xl md:text-2xl"
-            />
+            <IconClose name="close" class="w-5 text-stone-500" />
           </div>
         </div>
       </div>

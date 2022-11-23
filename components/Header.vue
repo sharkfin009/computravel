@@ -90,7 +90,7 @@
           </NuxtLink>
         </div>
         <div class="relative flex justify-center">
-          <TooltipUnder v-if="firstVisit && /packages/.test($route.path)" >
+          <TooltipUnder v-if="firstVisit && /packages/.test($route.path)">
             When you're ready to send your enquiry, click here
           </TooltipUnder>
           <NuxtLink to="/enquire-form" v-if="!hasPackages()">
@@ -132,7 +132,7 @@
             'opacity-0': globalStore.showMenu == true,
           }"
         >
-          <i class="text-stone-600 text-xl fa-solid fa-bars" />
+          <IconHamburger class="text-stone-600 text-2xl md:text-2xl" />
         </div>
       </div>
     </div>
