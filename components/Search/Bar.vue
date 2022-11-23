@@ -29,7 +29,7 @@
           md:px-1
           py-2
           md:py-3
-          lg:px-[40px]
+          lg:px-[45px]
           w-full
         "
         :class="{ 'shadow-lg': inputHasFocus }"
@@ -73,7 +73,7 @@
           "
           @click="searchIconClick"
         >
-          <i class="text-xs fas fa-search" />
+          <IconSearch class="h-4" />
         </div>
       </div>
     </div>

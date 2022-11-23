@@ -56,19 +56,8 @@ export default defineNuxtConfig({
       include: () => true,
     },
   },
-  css: [
-    "~/styles/general.css",
-    "animate.css",
-    "@fortawesome/fontawesome-svg-core/styles.css",
-  ],
+  css: ["~/styles/general.css", "animate.css"],
 
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => {
-        return tag.startsWith("font-awesome-icon");
-      },
-    },
-  },
   image: {
     provider: "cloudinary",
     cloudinary: {
