@@ -28,7 +28,6 @@
             <div class="text-sm mb-3 pb-30">Search Packages by:</div>
 
             <ul
-              v-if="menuData"
               class="pl-3 grid grid-cols-[100px,auto] list-none"
               @mouseleave="clear"
             >
