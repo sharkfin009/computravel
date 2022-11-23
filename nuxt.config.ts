@@ -1,9 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   // ssr: false,
-  export default defineNitroConfig({
-    preset: 'netlify'
-  })
+  
   meta: {
     script: [],
     link: [
