@@ -100,7 +100,7 @@ onMounted(() => {
 const removeFavorite = (index) => {
   let array = enquiryState.myPackages;
   array.splice(index, 1);
-  localStorage.setItem("my-packages", JSON.stringify(array));
+  // localStorage.setItem("my-packages", JSON.stringify(array));
   enquiryState.myPackages = array;
   enquiryState.listDirtyState = true;
 };
@@ -108,12 +108,12 @@ const removeFavorite = (index) => {
 const { $graphql } = useNuxtApp();
 const updateList = () => {
   let list = "";
-  if (localStorage.getItem("my-packages")) {
-    let packages = JSON.parse(localStorage.getItem("my-packages"));
-    let ids = packages.map((item) => item.id);
-    console.log(ids);
-    list = "packages: " + JSON.stringify(ids);
-  }
+  // if (localStorage.getItem("my-packages")) {
+  //   let packages = JSON.parse(localStorage.getItem("my-packages"));
+  //   let ids = packages.map((item) => item.id);
+  //   console.log(ids);
+  //   list = "packages: " + JSON.stringify(ids);
+  // }
   const query = `
     mutation{
         updateEnquiry(id:${enquiryState.enquiryId}

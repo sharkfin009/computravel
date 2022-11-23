@@ -183,7 +183,7 @@
 <script setup>
 const hasPackages = () => {
   // alert(localStorage.getItem("my-packages"));
-  return localStorage.getItem("my-packages");
+  // return localStorage.getItem("my-packages");
 };
 const props = defineProps({
   package_data: Object,
