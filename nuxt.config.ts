@@ -2,12 +2,7 @@ import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   // ssr: false,
   meta: {
-    script: [
-      {
-        src: "https://kit.fontawesome.com/7e89521fcf.js",
-        crossorigin: "anonymous",
-      },
-    ],
+    script: [],
     link: [
       {
         rel: "stylesheet",
@@ -42,7 +37,7 @@ export default defineNuxtConfig({
     ],
   },
   buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@pinia/nuxt"],
-  modules: ["@nuxtjs/strapi", "@nuxt/image-edge", "nuxt-jsonld", "nuxt-icon"],
+  modules: ["@nuxtjs/strapi", "@nuxt/image-edge", "nuxt-jsonld", "nuxt-icons"],
   publicRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
     baseUrl: process.env.BASE_URL,
